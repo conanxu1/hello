@@ -1,3 +1,0 @@
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
-qt.qpa.screen: QXcbConnection: Could not connect to display 
-Could not connect to any X display.
