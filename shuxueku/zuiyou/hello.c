@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <cblas.h>
+#include <openblas/cblas.h>
 
 #include <malloc.h>
 
@@ -16,15 +16,14 @@ void matrix_vector();
 void main()
 {
 	
-	double *y,x[4]={0,0,1,0};
+	double *y,x0[3]={1,1,1},*p;
 	
-	y=lianxu(0,x,4);
 	
-	for(int i=0;i<4;i++)
-	{
-		
-		printf("%lf\n",y[i]);
-	}
+	double y0[3]={1,1,1};
+	
+	
+y=ode1(0,1,100,lianxu,x0,3);
+	
 	
 }
 
@@ -73,6 +72,26 @@ void matrix_vector(){
 	//matrix_vector();
 	
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	p=y0;
+	
+	cblas_daxpby(3, 1, x0, 1, 1, y0, 1);
+	shuchud(x0,1,3);
+	shuchud(y0,1,3);
+
+	shuchud(p,1,3);
+
+	
+	
+	
+	//
  
  */
  

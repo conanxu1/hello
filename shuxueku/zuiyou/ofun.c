@@ -1,6 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
-
+#include <openblas/cblas.h>
 
 double f1(double x)
 {
@@ -11,14 +11,15 @@ double f1(double x)
 }
 
 
-double *lianxu(double t,double *x,int size)
-{
+double *lianxu(double t,double *x)
+{	int size=3;
+
+
 	double *dy =(double *)malloc(size*sizeof(double));
-    dy[0]=x[0];
-	dy[1]=x[1];
-	dy[2]=2*x[2];
-	dy[3]=x[3];
-	
+    dy[0]=x[1]-x[0];
+	dy[1]=x[0]*(1-x[2])-x[1];
+	dy[2]=x[0]*x[1]-x[2];
+
 	
 	
 	

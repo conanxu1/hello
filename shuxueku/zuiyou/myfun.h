@@ -9,7 +9,14 @@ double jifen(double a,double b,int n,double (*f1)(double));
 
 
 
-double *lianxu(double t,double *x,int size);
+
+double *lianxu(double t,double *x);
+
+
+
+double  *ode1(double a,double b,int n,double *(*fff)(double ,double* ),double *x0,int dim);
+
+
 
 
 
