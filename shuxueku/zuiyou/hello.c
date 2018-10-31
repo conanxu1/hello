@@ -4,7 +4,6 @@
 #include <time.h>
 #include <cblas.h>
 #include "myfun.h"
-#include "ofun.h"
 
 
 void matrix_vector();

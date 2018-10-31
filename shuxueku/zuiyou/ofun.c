@@ -9,3 +9,6 @@ double f1(double x)
 	
 	
 }
+
+
+double lianxu(double **x,)

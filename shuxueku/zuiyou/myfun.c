@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "ofun.h"
+
+
 #include "myfun.h"
 
 
@@ -12,6 +13,24 @@ double jifen(double a,double b,int n,double (*fff)(double))
 	return  h/2*(fff(a)+T*2+fff(b));
 	
 }
+
+double ode(double a,double b,int n,double (*fff)(double),)
+{/*a初值,b终值,n分点,fff连续函数   */
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
