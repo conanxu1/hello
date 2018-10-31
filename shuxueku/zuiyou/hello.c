@@ -3,33 +3,35 @@
 #include <stdlib.h>
 #include <time.h>
 #include <cblas.h>
+
+#include <malloc.h>
+
 #include "myfun.h"
 
 
 void matrix_vector();
 
 
-float y[2] = {};
-
 
 void main()
 {
 	
-	double x[2]={0,1},y[2]={0,1};
+	double *y,x[4]={0,0,1,0};
 	
-	printf("\n\nhello%f\n",jifen(0,3,100,f1));
-	//matrix_vector();
+	y=lianxu(0,x,4);
 	
-	
-	
-	
+	for(int i=0;i<4;i++)
+	{
+		
+		printf("%lf\n",y[i]);
+	}
 	
 }
 
 
 
 
-
+/*
 
 void matrix_vector(){
  float array[6] = { 1,2,3,4,5,6 };
@@ -63,6 +65,16 @@ void matrix_vector(){
  
  
  
+
+ 
+ double x[2]={0,1},y[2]={0,1};
+	
+	printf("\n\nhello%f\n",jifen(0,3,100,f1));
+	//matrix_vector();
+	
+ 
+ 
+ */
  
  
  
