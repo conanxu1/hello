@@ -1,6 +1,20 @@
 #include <math.h>
 #include <stdlib.h>
+
+
+#ifdef  AAA
+
+#include <openblas/cblas.h>
+
+#else
 #include <cblas.h>
+
+
+#endif
+
+
+
+
 
 double f1(double x)
 {
@@ -16,7 +30,7 @@ double *lianxu(double t,double *x)
 
 
 	double *dy =(double *)malloc(size*sizeof(double));
-    dy[0]=x[1]-x[0];
+    dy[0]=2*x[1]-x[0];
 	dy[1]=x[0]*(1-x[2])-x[1];
 	dy[2]=x[0]*x[1]-x[2];
 

@@ -1,5 +1,17 @@
 #pragma once
+#define AAA 1
 
+
+
+#ifdef  AAA
+#include <openblas/cblas.h>
+
+
+#else
+#include <cblas.h>
+
+
+#endif
 
 
 double jifen(double a,double b,int n,double (*f1)(double));

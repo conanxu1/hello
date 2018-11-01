@@ -1,12 +1,10 @@
 #include <stdio.h>
 
 #include <stdlib.h>
-
-
-
-#include <cblas.h>
-
 #include "myfun.h"
+
+
+
 
 
 
@@ -124,6 +122,15 @@ cblas_daxpby(dim, h/6, q1, 1, 1, yk, 1);
 
 
 logf=NULL;
+
+
+if((logf = fopen("log.txt" , "a+")) == NULL)
+		{
+			printf("Cannot create/open file");
+			exit(1);		
+			
+		}
+		
 int j;
 for(j=0;j<dim;j++)
 
@@ -137,12 +144,7 @@ for(j=0;j<dim;j++)
 
 	
 	
-		if((logf = fopen("log.txt" , "a+")) == NULL)
-		{
-			printf("Cannot create/open file");
-			exit(1);		
-			
-		}
+		
 		fprintf(logf , "%lf" , yk[j]);
 		fprintf(logf,"\n");
 		

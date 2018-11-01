@@ -2,11 +2,19 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <cblas.h>
 
 #include <malloc.h>
 
 #include "myfun.h"
+
+
+
+
+
+
+
+
+
 
 
 void matrix_vector();
