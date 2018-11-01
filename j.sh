@@ -1,3 +1,3 @@
 git add -A
-git commit -m "new"
+git commit -m "new2"
 git push

@@ -4,7 +4,7 @@
 
 
 
-#include <openblas/cblas.h>
+#include <cblas.h>
 
 #include "myfun.h"
 
@@ -12,7 +12,8 @@
 
 double jifen(double a,double b,int n,double (*fff)(double))
 {	double h = (b - a)/n, T = 0; 
-	for(int i = 1; i < n; i++) 
+	int i;
+	for(i = 1; i < n; i++) 
 		T += (*fff)(a + i * h); 
 	
 	return  h/2*(fff(a)+T*2+fff(b));
@@ -54,9 +55,9 @@ double* tem=(double *)malloc(dim*sizeof(double));
 
 
 
+int i;
 
-
-for(int i = 0; i < dim; i++)
+for(i = 0; i < dim; i++)
 {
 	II[i]=1;	
 }
@@ -70,7 +71,7 @@ tk=t0;
 yk=x0;
 
 
-for(int i = 0; i < n; i++)
+for(i = 0; i < n; i++)
 {
 q1=lianxu(tk,yk);
 
@@ -123,14 +124,15 @@ cblas_daxpby(dim, h/6, q1, 1, 1, yk, 1);
 
 
 logf=NULL;
-for(int j=0;j<dim;j++)
+int j;
+for(j=0;j<dim;j++)
 
 
 //yk1=yk+h/6*(q1+2*q1+2*q3+q4);
 
 
 
-for(int j=0;j<dim;j++)
+for(j=0;j<dim;j++)
 {jieguo[weizhi+j]=yk[j];
 
 	
@@ -172,9 +174,9 @@ return q1;
 
 
 void shuchuf(float *p,int a,int b)
-{
-	for(int i=1;i<=a;i++)
-	{	for(int j=1;j<=b;j++)
+{     int i,j;
+	for(i=1;i<=a;i++)
+	{	for(j=1;j<=b;j++)
 		{printf("%f,",p[(i-1)*b+j-1]);}
 	printf("\n");
 	}
@@ -182,9 +184,9 @@ void shuchuf(float *p,int a,int b)
 }
 
 void shuchud(double *p,int a,int b)
-{
-	for(int i=1;i<=a;i++)
-	{	for(int j=1;j<=b;j++)
+{     int i,j;
+	for(i=1;i<=a;i++)
+	{	for( j=1;j<=b;j++)
 		{printf("%f,",p[(i-1)*b+j-1]);}
 	printf("\n");
 	}

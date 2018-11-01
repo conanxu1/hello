@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <openblas/cblas.h>
+#include <cblas.h>
 
 #include <malloc.h>
 
@@ -24,7 +24,7 @@ void main()
 	
 y=ode1(0,1,100,lianxu,x0,3);
 	
-	
+printf("ok");	
 }
 
 

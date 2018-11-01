@@ -1,6 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
-#include <openblas/cblas.h>
+#include <cblas.h>
 
 double f1(double x)
 {
