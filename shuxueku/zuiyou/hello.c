@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <stddef.h>
 #include <malloc.h>
 
 #include "myfun.h"
@@ -28,11 +28,25 @@ void main()
 	
 	
 	double y0[3]={1,1,1};
+time_t timer;//time_t就是long int 类型
+    struct tm *tblock;
+ timer = time(NULL);
+ tblock = localtime(&timer);
+printf("Local time is: %s\n", asctime(tblock));	
+
+
+
+
 	
-	
-y=ode1(0,1,100,lianxu,x0,3);
+y=ode1(0,10,10000,lianxu,x0,3);
 	
 printf("ok");	
+
+
+ timer = time(NULL);
+ tblock = localtime(&timer);
+printf("Local time is: %s\n", asctime(tblock));
+
 }
 
 

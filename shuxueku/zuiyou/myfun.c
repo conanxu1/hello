@@ -60,6 +60,16 @@ for(i = 0; i < dim; i++)
 	II[i]=1;	
 }
 
+logf=NULL;
+
+
+if((logf = fopen("log.txt" , "w+")) == NULL)
+		{
+			printf("Cannot create/open file");
+			exit(1);		
+			
+		}
+	
 
 
 int weizhi=0;
@@ -113,24 +123,14 @@ cblas_daxpby(dim, 1, q4, 1, 1, q1, 1);
 
 
 cblas_daxpby(dim, h/6, q1, 1, 1, yk, 1);
-
+tk+=h;
 //yk
 
 
 
 
 
-
-logf=NULL;
-
-
-if((logf = fopen("log.txt" , "a+")) == NULL)
-		{
-			printf("Cannot create/open file");
-			exit(1);		
-			
-		}
-		
+	
 int j;
 for(j=0;j<dim;j++)
 
@@ -145,7 +145,7 @@ for(j=0;j<dim;j++)
 	
 	
 		
-		fprintf(logf , "%lf" , yk[j]);
+		fprintf(logf , "%lf,%lf" , yk[j],tk);
 		fprintf(logf,"\n");
 		
 
@@ -155,6 +155,7 @@ for(j=0;j<dim;j++)
 
 
 weizhi+=dim;
+
 }
 fclose(logf);
 
