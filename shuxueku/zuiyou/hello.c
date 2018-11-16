@@ -52,10 +52,10 @@ printf("Local time is: %s\n", asctime(tblock));
 */
 
 
-double _Complex d=3.1+5*I;
+double _Complex d=3+5*I;
 
 
-printf("e^(i2PI) = %lf+i%lf\n", creal(clogl(d)), cimag(clogl(d)));
+printf(" %lf,i%lf\n", creal(clogl(d)), cimag(clogl(d)));
 
 
 
