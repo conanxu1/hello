@@ -31,9 +31,9 @@ void main()
 	
 	double y0[3]={1,1,1};
 time_t timer;//time_t就是long int 类型
-    struct tm *tblock;
- timer = time(NULL);
- tblock = localtime(&timer);
+struct tm *tblock;
+timer = time(NULL);
+tblock = localtime(&timer);
 printf("Local time is: %s\n", asctime(tblock));	
 
 
@@ -52,14 +52,23 @@ printf("Local time is: %s\n", asctime(tblock));
 */
 
 
-double _Complex d=3+5*I;
+time_t timer;//time_t就是long int 类型
+struct tm *tblock;
+timer = time(NULL);
+tblock = localtime(&timer);
+printf("Local time is: %s\n", asctime(tblock));	
 
 
-printf(" %lf,i%lf\n", creal(clogl(d)), cimag(clogl(d)));
+double _Complex d;
+for(int ii=0;ii<1000;ii++)
+d=lamw(100,100);
 
 
+ printf(" %.15f,i%.15f\n", creal(d),cimag(d));
 
-
+ timer = time(NULL);
+ tblock = localtime(&timer);
+printf("Local time is: %s\n", asctime(tblock));
 
 
 }

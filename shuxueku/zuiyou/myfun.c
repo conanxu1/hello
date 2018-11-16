@@ -4,7 +4,7 @@
 #include "myfun.h"
 #include <complex.h>
 
-
+#include <math.h>
 
 
 
@@ -168,11 +168,57 @@ return q1;
 
 
 
+double _Complex lnk(double _Complex a,int k)
+{	double _Complex y;
+	y=clog(a)+2*k*I*PI;
+	return y;
+	
+	
+}
+
+
+//第一类斯特林数
+int st(int p,int k)
+{
+	if (p==k)
+	{return 1;}
+	else if (k==0&&p>0)
+	{return 0;}
+	else 
+	{return st(p-1,k-1)+(p-1)*st(p-1,k);}
+	
+	
+	
+}
 
 
 
+int  jiecheng(int n)
+{
+    int i;
+    int res=1;
+    for(i=2; i<=n; ++i)
+        res = res * i;
+    return res;
+}
 
 
+double _Complex lamw(double _Complex a,int k)
+{	double _Complex y;
+	y=lnk(a,k)-lnk(lnk(a,k),0);
+	for(int l=0;l<10;l++)
+	for(int m=1;m<10;m++)
+	{y+=cpow(lnk(lnk(a,k),0),m)/cpow(lnk(a,k),l+m)*st(l+m,l+1)/jiecheng(m)*cpow(-1,l);
+	
+
+	}
+	
+	
+	
+	return y;
+	
+	
+}
 
 
 
