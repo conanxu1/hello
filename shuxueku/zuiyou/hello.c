@@ -7,7 +7,7 @@
 
 #include "myfun.h"
 
-
+#include <complex.h>
 
 
 
@@ -24,6 +24,8 @@ void matrix_vector();
 void main()
 {
 	
+	
+	/*
 	double *y,x0[3]={1,1,1},*p;
 	
 	
@@ -46,6 +48,19 @@ printf("ok");
  timer = time(NULL);
  tblock = localtime(&timer);
 printf("Local time is: %s\n", asctime(tblock));
+
+*/
+
+
+double _Complex d=3.1+5*I;
+
+
+printf("e^(i2PI) = %lf+i%lf\n", creal(clogl(d)), cimag(clogl(d)));
+
+
+
+
+
 
 }
 
