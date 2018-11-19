@@ -61,14 +61,18 @@ printf("Local time is: %s\n", asctime(tblock));
 
 double* p;
 double* C;
+double *U,*V;
+
 C=danwei(2,3);
 
-double q[4]={1.0,2.0,3.0,4.0};
+double q[25]={ 3,2,3,4,4,3,88,3,4,4,3,2,7,4,4,9,2,3,8,4,3,2,3,77,4};
+
+sduijiao(q,5,5,U,V);
+printf("\n");
 
 
-
-house(q,4);
-shuchud(q,4,1);
+// house(q,4);
+// shuchud(q,4,1);
 
 // shuchud(q,2,2);
 
@@ -86,12 +90,12 @@ shuchud(q,4,1);
 // cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, 2, 3,2, 1,q, 2,p,3, 0,C, 3); 
 
 
-// cblas_sgemv(CblasRowMajor, CblasNoTrans, m, n, alpha, array, n, x, 1, beta, y, 1); 
-// cblas_sgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,M,N,K,alpha,A,A的列数,B,B的列数,beta,C,C的列数)
+// // cblas_sgemv(CblasRowMajor, CblasNoTrans, m, n, alpha, array, n, x, 1, beta, y, 1); 
+// // cblas_sgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,M,N,K,alpha,A,A的列数,B,B的列数,beta,C,C的列数)
 
-//CblasRowMajor表示数组时行为主，相应矩阵大小为(M*K)乘以(K*N)，可以得到M，K，N的值
+// // CblasRowMajor表示数组时行为主，相应矩阵大小为(M*K)乘以(K*N)，可以得到M，K，N的值
 
-//cblas_sgemm(order,transA,transB,M,N,K,ALPHA,A,LDA,B,LDB,BETA,C,LDC);
+// // cblas_sgemm(order,transA,transB,M,N,K,ALPHA,A,LDA,B,LDB,BETA,C,LDC);
 
 
 
@@ -181,6 +185,11 @@ void matrix_vector(){
 	
 	
 	
+	
+	
+	
+	
+	memset（a，val，sizeof(a));快速赋值 
 	//
  
  */

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include <stdlib.h>
 #include "myfun.h"
@@ -236,7 +237,7 @@ void shuchud(double *p,int a,int b)
 {     int i,j;
 	for(i=1;i<=a;i++)
 	{	for( j=1;j<=b;j++)
-		{printf("%f,",p[(i-1)*b+j-1]);}
+		{printf("%.14f,",p[(i-1)*b+j-1]);}
 	printf("\n");
 	}
 	
@@ -245,22 +246,101 @@ void shuchud(double *p,int a,int b)
 
 
 
+
 void svd(double* p,int m,int n)
 {
+	
+	qrweiyi(p,n);
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+void sduijiao(double* p,int m,int n,double* Q1,double* V1)
+{
 	//双对角约化
-	double* EE;
-	EE=danwei(m,n);
-	for(int i=1;i<2;i++)
-	{
+	double *Q;
+	double	*PPP,*tem,*tt1,*tt2,*ttt;
+	
+	Q=(double *)malloc(m*n*sizeof(double));
+	tem=(double *)malloc(m*n*sizeof(double));
+	
+	Q1=danwei(m,m);
+	V1=danwei(n,n);
+	tt1=danwei(m,m);
+	tt2=danwei(n,n);
+	
+	
+	memcpy(Q,p,m*n*sizeof(double));
+	double h1;
+	double *ui,*uj;
+	ui=(double *)malloc(m*sizeof(double));
+	uj=(double *)malloc(n*sizeof(double));
+	PPP=danwei(1,1);
+
+	//双对角化
+	for(int i=0;i<m-1;i++)
+	{	free(PPP);
+		xqu(Q,ui,i,m,n);
+		house(ui,m,i);
+		PPP=danwei(m,m);
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
+		tem=danwei(m,n);
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,PPP, m,Q,n, 0,tem, n);
+		free(Q);
+		Q=tem;
 		
 		
 		
+		
+		
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, m,m, 1,PPP, m,Q1,m, 0,tt1, n);
+						ttt=Q1;
+						Q1=tt1;
+						tt1=ttt;
+		
+		
+		
+		xqu2(Q,uj,i,m,n);
+		house(uj,n,i+1);
+		free(PPP);
+		PPP=danwei(m,m);
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, n, n,1, -2/cblas_ddot(n,uj,1,uj,1),uj, 1,uj,1, 1,PPP, n);
+		tem=danwei(m,n);
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,n, 1,Q, n,PPP,n, 0,tem, n);                                                  
+		free(Q);
+		Q=tem;
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, m,m, 1,PPP, m,V1,m, 0,tt2, n);
+						ttt=V1;
+						V1=tt2;
+						tt2=ttt;
 		
 		
 	}
 
+	tem=danwei(n,n);
+	cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, n, n,m, 1,Q, n,Q,n, 0,tem, n);  
+	
+	free(Q);
+	Q=tem;
 	
 	
+	
+	
+	shuchud(Q,n,n);
+	printf("\n");
+	shuchud(Q1,m,m);
+	printf("\n");
 	
 	
 }
@@ -274,8 +354,7 @@ double* danwei(int m,int n)
 	
 	double* y =(double *)malloc(m*n*sizeof(double));
 	
-	for(int i=0;i<m*n;i++)
-	{y[i]=0.0;}
+	memset(y,0,m*n*sizeof(double));
 	
 	
 	if(m>n)
@@ -298,16 +377,18 @@ double* danwei(int m,int n)
 
 
 
-void house(double* a,int dim)
+void house(double* a,int dim,int i)
 {
 	
 	
 	
-	if(a[0]<0)
-	a[0]=a[0]-sqrt(dot(a,a,dim));
+	if(a[i]<0)
+	a[i]=a[i]-sqrt(cblas_ddot(dim,a,1,a,1));
 	else
-	a[0]=a[0]+sqrt(dot(a,a,dim));
-		
+	a[i]=a[i]+sqrt(cblas_ddot(dim,a,1,a,1));
+	
+	// cblas_daxpy(dim,1/sqrt(dot(a,a,dim))-1,a,1, a, 1);
+	
 	
 	
 	
@@ -330,7 +411,86 @@ return d;
 
 
 
+//配合双对角约化
+void xqu(double* A,double* u,int i,int m,int n)
+{
 
+//从0
+
+memset(u,0,m*sizeof(double));
+	
+
+for(int j=i;j<m;j++)
+{
+	u[j]=A[j*n+i];
+		
+}
+}
+
+void xqu2(double* A,double* u,int i,int m,int n)
+{
+
+//从0
+memset(u,0,n*sizeof(double));
+
+for(int j=i+1;j<n;j++)
+{
+	u[j]=A[i*n+j];
+		
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+void qrweiyi(double* q,int n)
+{
+	double *EE,*OO;
+	
+	
+	
+	// OO=(double *)malloc(n*n*sizeof(double));
+	// memset(OO,0,n*n*sizeof(double));
+
+	EE=danwei(n,n);
+	
+	
+	// cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, n, n,n, 1,Q, n,EE,n, -0.5,EE, n); 
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+double* fuzhi1(double h1,int i,int m)
+{
+	
+	double* P1=(double *)malloc(m*m*sizeof(double));
+	memset(P1,0,m*m*sizeof(double));
+	
+	for(int j=0;j<m;j++)
+	{P1[j*m+j]=1;}
+
+
+
+	for(int j=i;j<m;j++)
+	P1[j*m+j]+=1+h1;
+
+	return P1;
+	
+	
+}
 
 
 

@@ -46,6 +46,17 @@ double _Complex lnk(double _Complex a,int k);
  
 double* danwei(int m,int n);
 
+void sduijiao(double* p,int m,int n,double* Q1,double* V1);
+
 void svd(double* p,int m,int n);
+
+void qrweiyi(double* q,int n);
+
+
 double dot(double* a,double* b,int dim);
-void house(double* a,int dim);
+void house(double* a,int dim,int i);
+
+void xqu(double* A,double* u,int i,int m,int n);
+void xqu2(double* A,double* u,int i,int m,int n);
+
+double* fuzhi1(double h1,int i,int m);
