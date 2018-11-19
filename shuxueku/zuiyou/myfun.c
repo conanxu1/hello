@@ -5,8 +5,8 @@
 #include <complex.h>
 
 #include <math.h>
-
-
+  
+ 
 
 double jifen(double a,double b,int n,double (*fff)(double))
 {	double h = (b - a)/n, T = 0; 
@@ -241,3 +241,99 @@ void shuchud(double *p,int a,int b)
 	}
 	
 }
+
+
+
+
+void svd(double* p,int m,int n)
+{
+	//双对角约化
+	double* EE;
+	EE=danwei(m,n);
+	for(int i=1;i<2;i++)
+	{
+		
+		
+		
+		
+		
+	}
+
+	
+	
+	
+	
+}
+
+
+
+double* danwei(int m,int n)
+{
+	
+	
+	
+	double* y =(double *)malloc(m*n*sizeof(double));
+	
+	for(int i=0;i<m*n;i++)
+	{y[i]=0.0;}
+	
+	
+	if(m>n)
+	{for(int i=0;i<n;i++)
+	y[i*n+i]=1.0;
+//(i,i)(i,j)
+	}
+	else
+	{for(int i=0;i<m;i++)
+	y[i*n+i]=1.0;
+	//(i,i)(i,j)
+	}
+	return y;
+
+
+
+	
+	
+}
+
+
+
+void house(double* a,int dim)
+{
+	
+	
+	
+	if(a[0]<0)
+	a[0]=a[0]-sqrt(dot(a,a,dim));
+	else
+	a[0]=a[0]+sqrt(dot(a,a,dim));
+		
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+double dot(double* a,double* b,int dim)
+{
+double y[0],d;
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, 1, 1,dim, 1,a, dim,b,dim, 0,y, 1); 
+d=y[0];
+return d;
+}
+
+
+
+
+
+
+
+
+
+

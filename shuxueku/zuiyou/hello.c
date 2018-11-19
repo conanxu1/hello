@@ -59,12 +59,44 @@ tblock = localtime(&timer);
 printf("Local time is: %s\n", asctime(tblock));	
 
 
-double _Complex d;
-for(int ii=0;ii<1000;ii++)
-d=lamw(100,100);
+double* p;
+double* C;
+C=danwei(2,3);
+
+double q[4]={1.0,2.0,3.0,4.0};
 
 
- printf(" %.15f,i%.15f\n", creal(d),cimag(d));
+
+house(q,4);
+shuchud(q,4,1);
+
+// shuchud(q,2,2);
+
+// p=danwei(2,3);
+
+
+// printf("\n");
+// p[3]=7;
+// shuchud(p,2,3);
+
+
+// printf("\n");
+
+
+// cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, 2, 3,2, 1,q, 2,p,3, 0,C, 3); 
+
+
+// cblas_sgemv(CblasRowMajor, CblasNoTrans, m, n, alpha, array, n, x, 1, beta, y, 1); 
+// cblas_sgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,M,N,K,alpha,A,A的列数,B,B的列数,beta,C,C的列数)
+
+//CblasRowMajor表示数组时行为主，相应矩阵大小为(M*K)乘以(K*N)，可以得到M，K，N的值
+
+//cblas_sgemm(order,transA,transB,M,N,K,ALPHA,A,LDA,B,LDB,BETA,C,LDC);
+
+
+
+// shuchud(C,2,3);
+
 
  timer = time(NULL);
  tblock = localtime(&timer);
@@ -77,6 +109,18 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 /*
+
+
+double _Complex d;
+for(int ii=0;ii<1000;ii++)
+d=lamw(100,100);
+
+
+ printf(" %.15f,i%.15f\n", creal(d),cimag(d));
+
+
+
+
 
 void matrix_vector(){
  float array[6] = { 1,2,3,4,5,6 };

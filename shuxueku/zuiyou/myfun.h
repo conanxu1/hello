@@ -43,6 +43,9 @@ double f1(double x);
 
 
 double _Complex lnk(double _Complex a,int k);
+ 
+double* danwei(int m,int n);
 
-
-
+void svd(double* p,int m,int n);
+double dot(double* a,double* b,int dim);
+void house(double* a,int dim);
