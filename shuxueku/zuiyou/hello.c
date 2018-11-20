@@ -67,13 +67,14 @@ C=danwei(2,3);
 
 double *q;
 
+int n=1000;
+
+q=duqu("wind.txt",n*n);
 
 
-q=duqu("wind.txt",16);
 
-
-
-svd(q,4,4);
+printf(";;;;;;;;;\n");
+svd(q,n,n);
 
 // house(q,4);
 // shuchud(q,4,1);

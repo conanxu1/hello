@@ -14,10 +14,8 @@ shape求行列'''
 from numpy import *  
   
 def loadData():  
-    return [[0,-1.6,0.6],
-			[0,1.2,0.8],
-			[0,0,0],
-			[0,0,0]
+    return [[39.926,	41.68],
+			[52.688,65.6860]
 				
 			]  
   
@@ -28,7 +26,7 @@ u,sigma,vt=linalg.svd(data)
 sig=zeros([u.shape[0],vt.shape[0]]) 
 
 
-
+print(sigma);
 for i in range(1,sigma.shape[0]+1):
 	sig[i-1,i-1]=sigma[i-1]
 	

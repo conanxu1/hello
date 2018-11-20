@@ -237,7 +237,7 @@ void shuchud(double *p,int a,int b)
 {     int i,j;
 	for(i=1;i<=a;i++)
 	{	for( j=1;j<=b;j++)
-		{printf("%.14f,",p[(i-1)*b+j-1]);}
+		{printf("%.15f,",p[(i-1)*b+j-1]);}
 	printf("\n");
 	}
 	
@@ -253,9 +253,9 @@ void svd(double* p,int m,int n)
 	
 	B=(double *)malloc(m*m*sizeof(double));
 	
-	sduijiao(p,3,3,Q,V,B);
 	
-	
+
+	sduijiao(p,m,m,Q,V,B);
 	
 	qrweiyi(B,n,n);
 	
@@ -305,7 +305,13 @@ void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 		xqu(Q,ui,i,m,n);
 		house(ui,m,i);
 		PPP=danwei(m,m);
-		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
+		
+		
+		if(cblas_ddot(m,ui,1,ui,1)>1e-17)
+		{cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
+		}
+		
+		
 		tem=danwei(m,n);
 		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,PPP, m,Q,n, 0,tem, n);
 		free(Q);
@@ -326,7 +332,11 @@ void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 		house(uj,n,i+1);
 		free(PPP);
 		PPP=danwei(m,m);
+		if(cblas_ddot(m,ui,1,ui,1)>1e-17)
+		{
 		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, n, n,1, -2/cblas_ddot(n,uj,1,uj,1),uj, 1,uj,1, 1,PPP, n);
+		}
+		
 		tem=danwei(m,n);
 		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,n, 1,Q, n,PPP,n, 0,tem, n);                                                  
 		free(Q);
@@ -338,9 +348,14 @@ void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 		
 		
 	}
+	
 
 	tem=danwei(n,n);
 	cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, n, n,m, 1,Q, n,Q,n, 0,tem, n);  
+	
+	
+	
+	
 	
 	free(Q);
 	Q=tem;
@@ -349,7 +364,7 @@ void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 	
 	memcpy(B,Q,m*n*sizeof(double));
 	
-	
+		
 	
 	
 	//Q1,V1  左右
@@ -492,42 +507,62 @@ void qrweiyi(double* A,int m,int n)
 	
 	memcpy(H,A,m*n*sizeof(double));
 	
-	PPP=danwei(m,m);
-	double h=0;
 	
-	for(int k=0;k<1000;k++)
-	{	
+	
+	PPP=danwei(m,m);
+	double h,de;
+	
+	for(int k=0;k<20;k++)
+	{	de=(H[(m-2)*(n+1)]-H[(m-1)*(n+1)])/2;
+		if(de>0)
+			{h=H[(m-1)*(n+1)]+de-sqrt(de*de+H[(m-1)*(n+1)-1]*H[(m-1)*(n+1)-1]);
+			}
+		else
+			{h=H[(m-1)*(n+1)]+de+sqrt(de*de+H[(m-1)*(n+1)-1]*H[(m-1)*(n+1)-1]);
+			}
 	
 		for(int i=0;i<m;i++)
 		{H[i*n+i]-=h;}
+			
+			
+			
 		//H-sigI
 		
 		//局部变量内存
 				 
+				 
+				 
 				
-				QR(H,m,n,Q1,R1);
+			QR(H,m,n,Q1,R1);
+				
+				
 			
 			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, m,m, 1,R1, m,Q1,m, 0,H, m);
 		
 		
 		for(int i=0;i<m;i++)
 		{H[i*n+i]+=h;}
+	
+	
+	
 	}
 	
-	printf("-----\n\n\n ");
+	 
 	for(int i=0;i<m;i++)	
-	{printf("%lf,",sqrt(H[i*n+i]));}
+	{
+		printf("%0.13f,\n",sqrt(fabs(H[i*n+i])));
+
+}
 	printf("\n-----\n\n\n ");
 				
 	
-	
-}
+	//abs 整数
+	}
 
 
 
 void QR(double* A,int m,int n,double* Q1,double* R1)
 {
-	
 	
 	
 	
@@ -557,8 +592,15 @@ house(ui,m,i);
 //ui
 
 PPP=danwei(m,m);
-	
+
+
+
+
+
+if(cblas_ddot(m,ui,1,ui,1)>1e-17)
+{	
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
+}
 //P  此处多次申请内存 可优化
 
  
@@ -567,6 +609,13 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,m, 1,QQ, m,PPP,m, 0,EE,
 					ttt=EE;
 					EE=QQ;
 					QQ=ttt;
+ 
+
+ 
+ 
+ 
+ 
+ 
  
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,PPP, m,Q,n, 0,tem, n);
 //PA
@@ -593,8 +642,6 @@ free(tem);
 memcpy(Q1,QQ,m*m*sizeof(double));
 	
 memcpy(R1,Q,m*n*sizeof(double));
-
-
 
 
 
@@ -648,7 +695,7 @@ double* duqu(char *p,int n)
 	if(fp!=NULL)
 	{
 		for(int j=0;j<n;j++)
-		{fscanf(fp,"%lf,\n",&xx[j]);
+		{fscanf(fp,"%lf\n",&xx[j]);
 		
 		}
 		
