@@ -46,11 +46,17 @@ double _Complex lnk(double _Complex a,int k);
  
 double* danwei(int m,int n);
 
-void sduijiao(double* p,int m,int n,double* Q1,double* V1);
+void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B);
 
 void svd(double* p,int m,int n);
 
-void qrweiyi(double* q,int n);
+
+
+void qrweiyi(double* A,int m,int n);
+
+void QR(double* A,int m,int n,double* Q1,double* R1);
+
+
 
 
 double dot(double* a,double* b,int dim);
@@ -60,3 +66,6 @@ void xqu(double* A,double* u,int i,int m,int n);
 void xqu2(double* A,double* u,int i,int m,int n);
 
 double* fuzhi1(double h1,int i,int m);
+
+
+double* duqu(char *p,int n);

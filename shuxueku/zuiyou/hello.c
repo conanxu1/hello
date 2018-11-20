@@ -65,11 +65,15 @@ double *U,*V;
 
 C=danwei(2,3);
 
-double q[25]={ 3,2,3,4,4,3,88,3,4,4,3,2,7,4,4,9,2,3,8,4,3,2,3,77,4};
+double *q;
 
-sduijiao(q,5,5,U,V);
-printf("\n");
 
+
+q=duqu("wind.txt",16);
+
+
+
+svd(q,4,4);
 
 // house(q,4);
 // shuchud(q,4,1);
@@ -165,6 +169,23 @@ void matrix_vector(){
 	printf("\n\nhello%f\n",jifen(0,3,100,f1));
 	//matrix_vector();
 	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
  
  
  

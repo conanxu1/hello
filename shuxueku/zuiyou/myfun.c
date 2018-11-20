@@ -249,8 +249,15 @@ void shuchud(double *p,int a,int b)
 
 void svd(double* p,int m,int n)
 {
+	double *Q,*V,*B;
 	
-	qrweiyi(p,n);
+	B=(double *)malloc(m*m*sizeof(double));
+	
+	sduijiao(p,3,3,Q,V,B);
+	
+	
+	
+	qrweiyi(B,n,n);
 	
 }
 
@@ -266,11 +273,11 @@ void svd(double* p,int m,int n)
 
 
 
-void sduijiao(double* p,int m,int n,double* Q1,double* V1)
+void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 {
 	//双对角约化
 	double *Q;
-	double	*PPP,*tem,*tt1,*tt2,*ttt;
+	double	*PPP,*tem,*tt1,*tt2,*ttt,*Q1;
 	
 	Q=(double *)malloc(m*n*sizeof(double));
 	tem=(double *)malloc(m*n*sizeof(double));
@@ -291,6 +298,10 @@ void sduijiao(double* p,int m,int n,double* Q1,double* V1)
 	//双对角化
 	for(int i=0;i<m-1;i++)
 	{	free(PPP);
+		
+		
+		
+		
 		xqu(Q,ui,i,m,n);
 		house(ui,m,i);
 		PPP=danwei(m,m);
@@ -336,11 +347,25 @@ void sduijiao(double* p,int m,int n,double* Q1,double* V1)
 	
 	
 	
+	memcpy(B,Q,m*n*sizeof(double));
 	
-	shuchud(Q,n,n);
-	printf("\n");
-	shuchud(Q1,m,m);
-	printf("\n");
+	
+	
+	
+	//Q1,V1  左右
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
@@ -445,30 +470,147 @@ for(int j=i+1;j<n;j++)
 
 
 
-
-
-
-
-
-void qrweiyi(double* q,int n)
+void qrweiyi(double* A,int m,int n)
 {
-	double *EE,*OO;
+	
+	double* Q1;
+	double* R1;
+	double* PPP;
+	double* H;
+	double* EE;
 	
 	
 	
-	// OO=(double *)malloc(n*n*sizeof(double));
-	// memset(OO,0,n*n*sizeof(double));
+	EE=(double *)malloc(m*m*sizeof(double));//jiaohuan
+	
+	
+	Q1=(double *)malloc(m*m*sizeof(double));
+	R1=(double *)malloc(m*n*sizeof(double));
+	
+	
+	H=(double *)malloc(m*n*sizeof(double));
+	
+	memcpy(H,A,m*n*sizeof(double));
+	
+	PPP=danwei(m,m);
+	double h=0;
+	
+	for(int k=0;k<1000;k++)
+	{	
+	
+		for(int i=0;i<m;i++)
+		{H[i*n+i]-=h;}
+		//H-sigI
+		
+		//局部变量内存
+				 
+				
+				QR(H,m,n,Q1,R1);
+			
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, m,m, 1,R1, m,Q1,m, 0,H, m);
+		
+		
+		for(int i=0;i<m;i++)
+		{H[i*n+i]+=h;}
+	}
+	
+	printf("-----\n\n\n ");
+	for(int i=0;i<m;i++)	
+	{printf("%lf,",sqrt(H[i*n+i]));}
+	printf("\n-----\n\n\n ");
+				
+	
+	
+}
 
-	EE=danwei(n,n);
-	
-	
-	// cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, n, n,n, 1,Q, n,EE,n, -0.5,EE, n); 
-	
-	
-	
+
+
+void QR(double* A,int m,int n,double* Q1,double* R1)
+{
 	
 	
 	
+	
+	
+	double *EE,*OO,*ui,*tem,*ttt,*QQ,*V1,*Q,*PPP;
+	
+	Q=(double *)malloc(m*n*sizeof(double));
+	ui=(double *)malloc(m*sizeof(double));
+	
+	QQ=danwei(m,m);
+	
+	memcpy(Q,A,m*n*sizeof(double));
+	EE=danwei(m,m);
+//交换用
+
+tem=danwei(m,n);
+
+
+
+	
+for(int i=0;i<m-1;i++)
+{
+
+xqu(Q,ui,i,m,n);
+house(ui,m,i);
+
+//ui
+
+PPP=danwei(m,m);
+	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
+//P  此处多次申请内存 可优化
+
+ 
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,m, 1,QQ, m,PPP,m, 0,EE, m);
+ 
+					ttt=EE;
+					EE=QQ;
+					QQ=ttt;
+ 
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,PPP, m,Q,n, 0,tem, n);
+//PA
+					ttt=Q;
+					Q=tem;
+					tem=ttt;
+
+
+
+					
+free(PPP);
+}		
+//
+
+
+
+
+free(EE);
+free(ui);
+free(tem);
+
+
+
+memcpy(Q1,QQ,m*m*sizeof(double));
+	
+memcpy(R1,Q,m*n*sizeof(double));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
 	
 }
 
@@ -494,6 +636,40 @@ double* fuzhi1(double h1,int i,int m)
 
 
 
+double* duqu(char *p,int n)
+{
+	
+	FILE *fp;
+	double* xx;
+	xx=(double *)malloc(n*sizeof(double));
+	
+	fp=fopen(p,"r");
+	
+	if(fp!=NULL)
+	{
+		for(int j=0;j<n;j++)
+		{fscanf(fp,"%lf,\n",&xx[j]);
+		
+		}
+		
+	}
+	fclose(fp);
+	return xx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	// OO=(double *)malloc(n*n*sizeof(double));
+	// memset(OO,0,n*n*sizeof(double));
 
 
 
