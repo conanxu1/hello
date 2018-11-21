@@ -17,6 +17,12 @@
 
 
 
+// extern lapack_int LAPACKE_dgeev( int matrix_order, char jobvl, char jobvr,
+                          // lapack_int n, double* a, lapack_int lda, double* wr,
+                          // double* wi, double* vl, lapack_int ldvl, double* vr,
+                          // lapack_int ldvr );
+
+
 void matrix_vector();
 
 
@@ -59,6 +65,15 @@ tblock = localtime(&timer);
 printf("Local time is: %s\n", asctime(tblock));	
 
 
+
+
+
+svd2();
+
+
+
+
+/*
 double* p;
 double* C;
 double *U,*V;
@@ -105,6 +120,8 @@ svd(q,n,n);
 
 
 // shuchud(C,2,3);
+*/
+
 
 
  timer = time(NULL);
@@ -118,7 +135,6 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 /*
-
 
 double _Complex d;
 for(int ii=0;ii<1000;ii++)
@@ -219,6 +235,12 @@ void matrix_vector(){
  
  
  
+/*extern lapack_int LAPACKE_dgeev( int matrix_order, char jobvl, char jobvr,
+                          lapack_int n, double* a, lapack_int lda, double* wr,
+                          double* wi, double* vl, lapack_int ldvl, double* vr,
+                          lapack_int ldvr );
+*/
+
  
  
  

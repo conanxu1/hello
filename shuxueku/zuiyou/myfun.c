@@ -706,6 +706,91 @@ double* duqu(char *p,int n)
 
 
 
+void svd2()
+{
+	
+	
+	
+
+
+
+    int matrix_order = LAPACK_COL_MAJOR;
+    char jobu = 'A';
+    char jobvt = 'A';
+	
+	double *A;
+
+	int n=1000;
+	int m=n;
+	A=duqu("wind.txt",n*n);
+	int lwork;
+	double wk[6*n];
+	double s[n];
+    int lda = n;
+    int info;
+	
+	
+    double u[n*n];
+    int ldu = n;
+    double vt[n*n];
+    int ldvt = n;
+	double superb[n];
+//    int info = LAPACKE_dgeev(matrix_order,jobvl,jobvr,n,A,lda,wr,wi,vl,ldvl,vr,ldvr);
+	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, A,n, s, u, ldu, vt, ldvt, superb);
+
+
+
+	// for(int i=0;i<n;i++)
+	// {printf("%.14g\n",s[i]);}
+
+/*   if(info==0){
+        int i = 0;
+        int j = 0;
+        for(i=0;i<n;i++){
+            printf("eigenvalue %d:\n",i);
+            printf("%.6g + i %.6g \t",wr[i],wi[i]);
+            printf("right eigenvector: ");
+            for(j=0;j<ldvr;j++)
+                printf("%.6g \t",vr[i*4+j]);
+            printf("\n");
+        }
+        printf("SUCCESS\n");
+
+	}
+	*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

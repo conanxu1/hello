@@ -5,12 +5,20 @@
 
 
 #ifdef  AAA
-#include <openblas/cblas.h>
+#include <cblas.h>
+#include <lapacke.h>
+#include <lapacke_config.h>
+#include <lapacke_utils.h>
+
 
 
 #else
 #include <cblas.h>
+#include <lapacke_config.h>
+#include <lapacke_utils.h>
 
+
+#include <lapacke.h>
 
 #endif
 
@@ -69,3 +77,6 @@ double* fuzhi1(double h1,int i,int m);
 
 
 double* duqu(char *p,int n);
+
+
+void svd2();
