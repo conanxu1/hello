@@ -720,7 +720,7 @@ void svd2()
 	
 	double *A;
 
-	int n=1000;
+	int n=500;
 	int m=n;
 	A=duqu("wind.txt",n*n);
 	int lwork;
@@ -738,7 +738,8 @@ void svd2()
 //    int info = LAPACKE_dgeev(matrix_order,jobvl,jobvr,n,A,lda,wr,wi,vl,ldvl,vr,ldvr);
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, A,n, s, u, ldu, vt, ldvt, superb);
 
-
+for(int i=0;i<n;i++)
+{printf("%.7g",s[i]);}
 
 	// for(int i=0;i<n;i++)
 	// {printf("%.14g\n",s[i]);}
