@@ -1,4 +1,4 @@
-#include <stdio.h>
+   #include <stdio.h>
 #include <string.h>
 
 #include <stdlib.h>
@@ -762,6 +762,197 @@ void svd2()
 
 
 
+void drk()
+{
+	int r=2,s=2,m=10,n=100;
+	//r个y   s个K Y m-tau h分割   n步迭代
+	
+	int dim=2;
+	//维数
+	
+	double L[4]={-1,0,0,-0.9};
+	double M[4]={-1,0,-1,-1};
+	double N[4]={0.9,0.45,0,0.05};
+	double tau=0.01;
+	// double *A,*B,*the,*gam;
+	double A[2*2] = {5.0/14,9.0/14,-1.0/2,3.0/2};
+	
+	double B[2*2]={15.0/14,-5.0/14,-1.0/2,3.0/2};
+	double gam[2]={21.0/20,3.0/20};
+	double the[2]={1.0/10,9.0/10};
+	
+	double ***Yni,***Kni,**yn;
+	
+	
+	
+	
+	
+	
+	
+	
+	A=(double*)malloc(sizeof(double)*s*r);  
+    B=(double*)malloc(sizeof(double)*s*r);  
+
+	
+	Yni=(double***)malloc(sizeof(double**)*s);  
+    for(int i=0;i<s;i++)  
+    {Yni[i]=(double**)malloc(sizeof(double*)*(m+1));  
+		for(int j=0;i<m+1;i++)  
+		Yni[i][j]=(double*)malloc(sizeof(double)*dim); 
+	}
+/****************************/
+
+	Kni=(double***)malloc(sizeof(double**)*s);  
+    for(int i=0;i<s;i++)  
+    {Kni[i]=(double**)malloc(sizeof(double*)*(m+1));  
+		for(int j=0;i<m+1;i++)  
+		Kni[i][j]=(double*)malloc(sizeof(double)*dim); 
+	}  
+// /****************************/
+
+
+	
+
+
+	yn=(double**)malloc(sizeof(double*)*r);  
+    // for(i=0;i<s;i++)  
+    // yn[i]=(double*)malloc(sizeof(double)*dim);  
+
+
+
+/****  求A   B  theta gamma  ***/
+	
+	
+	
+	
+/*******    初始化   **Yn,**Kn,**yn,**Kn_m,**Yn_m   **********/
+//初始化是相同
+	
+	double *tem,*tem2;
+	tem=(double*)malloc(sizeof(double)*dim);  
+    int wei;
+	
+	
+	
+	
+inrk(yn,Yni,Kni,r,s,tau);
+
+
+for(int tt=0;tt<n;tt++)
+{
+	
+	for(int i=0;i<s;i++)
+	{
+		
+		
+		
+		
+	
+//减少整体平移故作位置变换在原数组上覆盖数据	
+		
+	wei=(tt+m)%(m+1);
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,L, dim,Yni[i][wei],dim, 1,tem,1 );
+	
+	wei=(tt)%(m+1);
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],dim, 1,tem,1 );
+	
+	wei=(tt+m)%(m+1);
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,N, dim,Kni[i][wei],dim, 1,tem,1 );
+	
+	wei=(tt)%(m+1);
+	
+	tem2=tem;
+	tem=Kni[i][wei];
+	Kni[i][wei]=tem2;
+	
+	}
+	//交换地址
+	
+	
+	
+	
+	for(int i=0;i<s;i++)
+	{
+	
+	wei=(tt+m)%(m+1);
+	
+	
+	
+	
+	//区分前后
+		for(int j=0;j<s;j++)
+		{	
+	
+		wei=(tt+j)%r;
+	
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim,A[i*(s)+j],yn[], dim,Yni[i][wei],dim, 1,tem,1 );
+	
+		}
+	
+	
+	
+	
+	}
+	
+	
+}
+	
+	
+		// Kn[i]=L*Yn[i]+M*Yn_m[i]+N*Kn_m[i];
+		  
+		// Yn[i]=L*Yn[i]+M*Yn_m[i]+N*Kn_m[i];
+		
+		
+		
+		
+	// }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+void inrk(double ***Yni,double ***Kni,double **yn,int r,int s,double tau)
+{
+	
+	for(int i=0;i<s;i++)  
+    { 
+		for(int j=0;i<m+1;i++)  
+		Yni[i][j]=fini(0); 
+	} 
+	
+	for(int i=0;i<s;i++)  
+    { 
+		for(int j=0;i<m+1;i++)  
+		Kni[i][j]=dfini(0); 
+	} 	
+	
+	
+	
+	
+	for(int j=0;j<r;j++)
+	yn[j]=fini(0);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
 
 
 
@@ -771,6 +962,11 @@ void svd2()
 
 
 
+// for(int i=0;i<s;i++)
+// {shuchud(Kn_m[i],dim,1);	
+// printf("\n");
+// }
+	
 
 
 
@@ -779,19 +975,22 @@ void svd2()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// for(i=0;i<m;i++)  
+    // {
+        // for(j=0;j<n;j++)  
+        // {
+            // printf("%p\n",&a[i][j]);     //输出每个元素地址，每行的列与列之间的地址时连续的，行与行之间的地址不连续
+        // }
+    // }
+    // for(i=0;i<m;i++)  
+    // free(a[i]);
+ 
+    // free(a);  
+// --------------------- 
+// 作者：阿阿阿阿阿阿鑫 
+// 来源：CSDN 
+// 原文：https://blog.csdn.net/fengxinlinux/article/details/51541003 
+// 版权声明：本文为博主原创文章，转载请附上博文链接！
 
 
 

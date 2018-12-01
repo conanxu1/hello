@@ -48,6 +48,35 @@ double *lianxu(double t,double *x)
 }
 
 
+double* fini(double t)
+{	int dim=2;
+	double *y =(double *)malloc(dim*sizeof(double));
+	y[0]=sin(t)-2;
+	y[1]=t+2;
+
+	
+    return y;
+	
+}
+
+double* dfini(double t)
+{	int dim=2;
+	double *dy =(double *)malloc(dim*sizeof(double));
+	dy[0]=cos(t);
+	dy[1]=1;
+
+	
+    return dy;
+	
+}
+
+
+
+
+
+
+
+
 
 
 

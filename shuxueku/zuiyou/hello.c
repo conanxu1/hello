@@ -66,9 +66,9 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 
+drk();
 
-
-svd2();
+// svd2();
 
 
 
