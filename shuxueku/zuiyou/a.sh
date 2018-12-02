@@ -1,4 +1,4 @@
-
+#su
 cd /root
 
 #git clone git://github.com/xianyi/OpenBLAS
@@ -14,20 +14,20 @@ aria2c -c -x 16 -s 16 https://github.com/xianyi/OpenBLAS/archive/v0.3.3.zip
 cd 
 apt install gfortran
 
-cd OpenBLAS-0.3.3
+cd /root/OpenBLAS-0.3.3
 sudo make FC=gfortran -j4
 
 make PREFIX=/root/Openblas  install
 
-rm /usr/lib/libblas.so.3
+rm /usr/lib/libopenblas.so
 rm /usr/lib/liblapack.so.3
 rm /usr/lib/libopenblas.so.0
 
 
 
-ln -s /root/Openblas/lib/libopenblas.so  /usr/lib/libblas.so.3
+ln -s /root/Openblas/lib/libopenblas.so  /usr/lib/libopenblas.so
 
-ln -s /root/Openblas/lib/liblapack.so.3 /usr/lib/liblapack.so.3
+#ln -s /root/Openblas/lib/liblapack.so.3 /usr/lib/liblapack.so.3
 
 ln -s /root/Openblas/lib/libopenblas.so.0 /usr/lib/libopenblas.so.0
 

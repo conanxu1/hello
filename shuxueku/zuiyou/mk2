@@ -1,4 +1,0 @@
-hello: hello.c myfun.c ofun.c
-	gcc -g hello.c myfun.c ofun.c -o a -I /root/Openblas/include/   -L /root/Openblas/lib -lopenblas -lm  -lpthread -lgfortran  -std=c99 -O3
-
-#-llapacke -llapack -lblas -ltmglib 
