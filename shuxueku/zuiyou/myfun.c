@@ -1,4 +1,4 @@
-   #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 
 #include <stdlib.h>
@@ -763,21 +763,32 @@ void svd2()
 
 
 void drk()
+{FILE *logf;
+logf=NULL;
+if((logf = fopen("log.txt" , "w+")) == NULL)
 {
-	int r=2,s=2,m=3,n=50;
+	printf("Cannot create/open file");
+	exit(1);		
+}
+
+
+
+	int r=2,s=2,m=10,n=20;
 	//r个y   s个K Y m-tau h分割   n步迭代
 	
 	int dim=2;
 	//维数
+	double tau=1.1;
 	
-	double L[4]={-2,0,0,-0.9};
+	
+	double L[4]={-2.0,0,0,-0.9};
 	double M[4]={-1,0,-1,-1};
 	double N[4]={0.9,0.45,0,0.05};
-	double tau=1.1;
-	// double *A,*B,*the,*gam;
-	double A[2*2] = {5.0/14,9.0/14,-1.0/2,3.0/2};
 	
-	double B[2*2]={15.0/14,-15.0/14,-1.0/2,3.0/2};
+	// double *A,*B,*the,*gam;
+	double A[4] = {5.0/14,9.0/14,-1.0/2,3.0/2};
+	
+	double B[4]={15.0/14,-15.0/14,-1.0/2,3.0/2};
 	double gam[2]={21.0/20,3.0/20};
 	double the[2]={1.0/10,9.0/10};
 	
@@ -786,6 +797,48 @@ void drk()
 	double h=tau/m;
 	
 	
+	double *C;
+	
+	C=danwei(s,s);	
+	
+	
+	for(int i=0;i<s;i++)
+	{
+		C[i*s+i]-=B[i*s+i];
+	}
+	
+	for(int i=0;i<s;i++)
+	for(int j=0;j<s;j++)
+	{
+		if(i!=j)
+		C[i*s+j]=B[j*s+i]*h;
+	}
+	
+	
+	
+	int ipiv[s];
+	int info;
+	
+	
+	
+ info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,C,s,ipiv);
+info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
+	
+	
+	double Cs[s];
+	
+	
+	for(int i=0;i<s;i++)
+	{	Cs[i]=0;
+		
+		for(int q=0;q<s;q++)
+		Cs[i]+=C[q*s+i];
+	}
+	
+	shuchud(C,s,s);
+	
+	
+	shuchud(Cs,1,s);
 	
 	
 	
@@ -857,30 +910,44 @@ for(int tt=0;tt<n;tt++)
 		
 	
 //减少整体平移故作位置变换在原数组上覆盖数据	
-		
-	wei=(tt+m)%(m+1);
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,L, dim,Yni[i][wei],1, 0,tem,1 );
-	
-	printf("%d\n",wei);
-	
-	
-	
+			
 	wei=(tt)%(m+1);
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],1, 1,tem,1 );
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],1, 0,tem,1 );
 	
 	wei=(tt)%(m+1);
 	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,N, dim,Kni[i][wei],1, 1,tem,1 );
 	
 	//n-m最左边
 	
+	
+			for(int j=0;j<r;j++)
+		{	
+	
+		wei=(tt+j)%(r+1);
+			
+		
+		
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, A[i*(r)+j],L, dim,yn[wei],1, 1,tem,1 );
+	
+			
+			
+		}
+	
+	////////////////////beta C逆/
+	//【Kn1,Kn2,....,Kns】C=[beta,beta,...,beta]
+	//【Kn1,Kn2,....,Kns】=[beta,beta,...,beta]*(C^-1)
+	//   Kni_oo=    beta(oo) sum_j Cji
+	
+	
 	wei=(tt)%(m+1);
 	
-	tem2=tem;
-	tem=Kni[i][wei];
-	Kni[i][wei]=tem2;
+
+	cblas_daxpby( dim,Cs[i],tem, 1,0,Kni[i][wei],1);
+	
+	
 	
 	}
-	//交换地址
+	//交换地址Kni
 	
 	
 	
@@ -899,6 +966,9 @@ for(int tt=0;tt<n;tt++)
 		{	
 	
 		wei=(tt+j)%(r+1);
+		
+		
+		
 		cblas_daxpby( dim,A[i*(r)+j],yn[wei], 1,1,tem,1);
 		
 		
@@ -949,7 +1019,7 @@ for(int tt=0;tt<n;tt++)
 		{	
 	//已更新
 		wei=(tt)%(m+1);
-		cblas_daxpby( dim,gam[j],Kni[j][wei],1, 1,tem,1);
+		cblas_daxpby( dim,h*gam[j],Kni[j][wei],1, 1,tem,1);
 	
 		}
 	
@@ -957,11 +1027,14 @@ for(int tt=0;tt<n;tt++)
 	
 	
 	
-	wei=(tt+r)%(r+1);
-	tem2=tem;
-	tem=yn[wei];
-	yn[wei]=tem2;
+wei=(tt+r)%(r+1);
+tem2=tem;
+tem=yn[wei];
+yn[wei]=tem2;
 	
+	
+fprintf(logf , "%lf,%lf" , yn[wei][0],tt*h);
+fprintf(logf,"\n");
 	
 	
 	
@@ -975,7 +1048,8 @@ for(int tt=0;tt<n;tt++)
 	
 }
 	
-	
+
+		
 		// Kn[i]=L*Yn[i]+M*Yn_m[i]+N*Kn_m[i];
 		  
 		// Yn[i]=L*Yn[i]+M*Yn_m[i]+N*Kn_m[i];
@@ -991,11 +1065,20 @@ for(int tt=0;tt<n;tt++)
 	
 	
 	
-	
+	fclose(logf);
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+
 
 
 

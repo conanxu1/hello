@@ -1,12 +1,22 @@
 import os
 import numpy as np
-from pyvirtualdisplay import Display
+
+
+#from pyvirtualdisplay import Display
+# display = Display(visible=0, size=(800, 600))
+# display.start()
+
+
 import matplotlib.pyplot as plt
+
+
+
+
+
+
 
 f=open('log.txt','r',encoding='utf-8')
 
-display = Display(visible=0, size=(800, 600))
-display.start()
 
 w=f.readlines()
 f.close()

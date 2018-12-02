@@ -54,6 +54,9 @@ double* fini(double t)
 	y[0]=sin(t)-2;
 	y[1]=t+2;
 
+
+	
+	
 	
     return y;
 	
