@@ -79,7 +79,7 @@ double* fuzhi1(double h1,int i,int m);
 double* duqu(char *p,int n);
 
 
-void inrk(double **yn,double ***Yni,double ***Kni,int r,int s,double tau);
+void inrk(double ***Yni,double ***Kni,double **yn,int r,int s,int m,double tau);
 
 double* dfini(double t);
 double* fini(double t);

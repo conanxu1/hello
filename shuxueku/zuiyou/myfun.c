@@ -764,40 +764,40 @@ void svd2()
 
 void drk()
 {
-	int r=2,s=2,m=10,n=100;
+	int r=2,s=2,m=3,n=50;
 	//r个y   s个K Y m-tau h分割   n步迭代
 	
 	int dim=2;
 	//维数
 	
-	double L[4]={-1,0,0,-0.9};
+	double L[4]={-2,0,0,-0.9};
 	double M[4]={-1,0,-1,-1};
 	double N[4]={0.9,0.45,0,0.05};
-	double tau=0.01;
+	double tau=1.1;
 	// double *A,*B,*the,*gam;
 	double A[2*2] = {5.0/14,9.0/14,-1.0/2,3.0/2};
 	
-	double B[2*2]={15.0/14,-5.0/14,-1.0/2,3.0/2};
+	double B[2*2]={15.0/14,-15.0/14,-1.0/2,3.0/2};
 	double gam[2]={21.0/20,3.0/20};
 	double the[2]={1.0/10,9.0/10};
 	
 	double ***Yni,***Kni,**yn;
 	
+	double h=tau/m;
 	
 	
 	
 	
 	
 	
-	
-	A=(double*)malloc(sizeof(double)*s*r);  
-    B=(double*)malloc(sizeof(double)*s*r);  
+	// A=(double*)malloc(sizeof(double)*s*r);  
+    // B=(double*)malloc(sizeof(double)*s*r);  
 
 	
 	Yni=(double***)malloc(sizeof(double**)*s);  
     for(int i=0;i<s;i++)  
     {Yni[i]=(double**)malloc(sizeof(double*)*(m+1));  
-		for(int j=0;i<m+1;i++)  
+		for(int j=0;j<m+1;j++)  
 		Yni[i][j]=(double*)malloc(sizeof(double)*dim); 
 	}
 /****************************/
@@ -805,7 +805,7 @@ void drk()
 	Kni=(double***)malloc(sizeof(double**)*s);  
     for(int i=0;i<s;i++)  
     {Kni[i]=(double**)malloc(sizeof(double*)*(m+1));  
-		for(int j=0;i<m+1;i++)  
+		for(int j=0;j<m+1;j++)  
 		Kni[i][j]=(double*)malloc(sizeof(double)*dim); 
 	}  
 // /****************************/
@@ -814,7 +814,7 @@ void drk()
 	
 
 
-	yn=(double**)malloc(sizeof(double*)*r);  
+	yn=(double**)malloc(sizeof(double*)*(r+1));  
     // for(i=0;i<s;i++)  
     // yn[i]=(double*)malloc(sizeof(double)*dim);  
 
@@ -835,8 +835,16 @@ void drk()
 	
 	
 	
-inrk(yn,Yni,Kni,r,s,tau);
+inrk(Yni,Kni,yn,r,s,m,tau);
 
+// for(int oo=0;oo<s;oo++)
+// {for(int uu=0;uu<m+1;uu++)
+// {shuchud(Kni[oo][uu],dim,1);
+// printf("====\n");
+// }
+// }	
+	
+	
 
 for(int tt=0;tt<n;tt++)
 {
@@ -851,13 +859,19 @@ for(int tt=0;tt<n;tt++)
 //减少整体平移故作位置变换在原数组上覆盖数据	
 		
 	wei=(tt+m)%(m+1);
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,L, dim,Yni[i][wei],dim, 1,tem,1 );
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,L, dim,Yni[i][wei],1, 0,tem,1 );
+	
+	printf("%d\n",wei);
+	
+	
 	
 	wei=(tt)%(m+1);
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],dim, 1,tem,1 );
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],1, 1,tem,1 );
 	
-	wei=(tt+m)%(m+1);
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim, 1,N, dim,Kni[i][wei],dim, 1,tem,1 );
+	wei=(tt)%(m+1);
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,N, dim,Kni[i][wei],1, 1,tem,1 );
+	
+	//n-m最左边
 	
 	wei=(tt)%(m+1);
 	
@@ -874,25 +888,89 @@ for(int tt=0;tt<n;tt++)
 	for(int i=0;i<s;i++)
 	{
 	
-	wei=(tt+m)%(m+1);
+	
+					for(int jj=0;jj<dim;jj++)
+					tem[jj]=0;
 	
 	
-	
-	
+	///////////////////////////////////////////////////
 	//区分前后
+		for(int j=0;j<r;j++)
+		{	
+	
+		wei=(tt+j)%(r+1);
+		cblas_daxpby( dim,A[i*(r)+j],yn[wei], 1,1,tem,1);
+		
+		
+		printf("---%d\n\n",wei);
+		shuchud(tem,dim,1);
+		
+		
+		}
+	//yn特殊最左边为当前时刻
+	
 		for(int j=0;j<s;j++)
 		{	
 	
-		wei=(tt+j)%r;
 	
-		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, 1,dim,A[i*(s)+j],yn[], dim,Yni[i][wei],dim, 1,tem,1 );
+	//Kni已经更新过
+		wei=(tt)%(m+1);
+		cblas_daxpby( dim,h*B[i*(s)+j],Kni[j][wei], 1,1,tem,1);
+	
+		}	
+	//////////////////////////////////////////////////////
+	wei=(tt)%(m+1);
+	tem2=tem;
+	tem=Yni[i][wei];
+	Yni[i][wei]=tem2;
+	//n+r+1,1,2,......
+	
+	
+	}
+	
+	
+	
+	
+	for(int jj=0;jj<dim;jj++)
+	tem[jj]=0;
+	//////////////////////////////////////////////////
+	
+	
+			for(int j=0;j<r;j++)
+		{	
+	
+		wei=(tt+j)%(r+1);
+		cblas_daxpby( dim,the[j],yn[wei],1, 1,tem,1);
+	
+		}
+	
+	
+			for(int j=0;j<s;j++)
+		{	
+	//已更新
+		wei=(tt)%(m+1);
+		cblas_daxpby( dim,gam[j],Kni[j][wei],1, 1,tem,1);
 	
 		}
 	
 	
 	
 	
-	}
+	
+	wei=(tt+r)%(r+1);
+	tem2=tem;
+	tem=yn[wei];
+	yn[wei]=tem2;
+	
+	
+	
+	
+	// printf("\n");
+	// shuchud(tem2,dim,1);
+	
+	
+	// printf("\n");
+	
 	
 	
 }
@@ -922,28 +1000,29 @@ for(int tt=0;tt<n;tt++)
 
 
 
-void inrk(double ***Yni,double ***Kni,double **yn,int r,int s,double tau)
-{
+void inrk(double ***Yni,double ***Kni,double **yn,int r,int s,int m,double tau)
+{double h=tau/m;
 	
 	for(int i=0;i<s;i++)  
     { 
-		for(int j=0;i<m+1;i++)  
-		Yni[i][j]=fini(0); 
+		for(int j=0;j<m+1;j++)  
+		{
+			
+		Yni[i][j]=fini((j-m)*h); 
+	
+		Kni[i][j]=dfini((j-m)*h); 
+		
+		}
 	} 
 	
-	for(int i=0;i<s;i++)  
-    { 
-		for(int j=0;i<m+1;i++)  
-		Kni[i][j]=dfini(0); 
-	} 	
 	
 	
 	
 	
-	for(int j=0;j<r;j++)
+	for(int j=0;j<r+1;j++)
 	yn[j]=fini(0);
 	
-	
+	//默认不变
 	
 	
 	
