@@ -27,6 +27,17 @@ double jifen(double a,double b,int n,double (*f1)(double));
 
 double _Complex lamw(double _Complex a,int k);
 
+
+int lamwm(double _Complex* A,int k,int dim,double _Complex*	 w);
+
+void lamwhb(double _Complex* A,double _Complex* w,int dim);
+
+int expm(double _Complex* A,int dim);
+
+
+
+double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim);
+
 int st(int p,int k);
 
 
@@ -42,9 +53,8 @@ int  jiecheng(int n);
 
 
 void shuchuf(float *p,int a,int b);
-
-
 void shuchud(double *p,int a,int b);
+void shuchuz(double _Complex *p,int a,int b);
 
 
 double f1(double x);
@@ -86,5 +96,9 @@ double* fini(double t);
 
 void drk();
 
-
+// void pq();
 void svd2();
+
+
+
+void jiangjie();

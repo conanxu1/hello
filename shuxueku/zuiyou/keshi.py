@@ -35,6 +35,6 @@ for i in range(0,int(n[0]/3)):
 
 
 plt.plot(t,x)
+plt.show()
 
-print(6)
 plt.savefig("3.jpg")

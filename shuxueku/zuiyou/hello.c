@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stddef.h>
 #include <malloc.h>
-
+#include <string.h>
 #include "myfun.h"
 
 #include <complex.h>
@@ -66,7 +66,29 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 
-drk();
+// double _Complex A[9]={1+0*I,1+0*I,0+0*I,0+0*I,2+0*I,0+0*I,0+0*I,0+0*I,1+0*I},re;
+
+int dim=2;
+double _Complex A[4]={1+0*I,2+0*I,3+0*I,4+0*I};
+double _Complex w[2];
+int flag=0;
+int ipiv[dim];
+int info;
+double  yi[2]={1,0},ling[2]={0,0};
+
+
+
+
+printf("A\n");
+
+printf("\n%d\n",flag);
+
+
+expm( A,dim);
+
+
+
+
 
 // svd2();
 

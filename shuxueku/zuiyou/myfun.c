@@ -6,8 +6,232 @@
 #include <complex.h>
 
 #include <math.h>
-  
- 
+
+
+// void pq()
+// {
+// double B[4*2]={1,0,2,0,3,0,4,0};
+// double B1[4*2]={1,0,2,0,3,0,4,0};
+// double *B2;
+// int s=4;
+// double A[4*4*2]={1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,-4,0};
+// //-A -A'
+
+
+
+
+
+
+
+// double *Al,*Ar,*Alc,*Arc,*tem,*ttt;
+// tem=(double *)malloc(16*2*sizeof(double));
+// Al=(double *)malloc(16*2*sizeof(double));
+// Ar=(double *)malloc(16*2*sizeof(double));
+
+// Alc=(double *)malloc(16*sizeof(double));
+// Arc=(double *)malloc(16*sizeof(double));
+
+
+
+
+
+// int ipiv[s];
+// int info;
+
+// double T=50000;
+// int n=1000000;
+// double h=2*T/n;
+
+
+// B2=(double *)malloc(16*2*sizeof(double)); 
+
+// double yi[2]={1.0,0};
+// double ling[2]={0,0};
+// double er[2]={2,0};
+
+// double shh[2]={h/2/2/3.141592653589793,0};
+
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasTrans, s, s,1,yi,B, 1,B1,1, ling,B2, s);
+
+
+
+
+
+
+
+
+
+// double *Sum;
+// Sum=(double *)malloc(s*s*2*sizeof(double));
+
+// for(int j = 1; j < s*s*2; j++)
+// Sum[j]=0;
+
+
+// ////////////////////////////////////////
+
+
+
+// double tt;
+// for(int j = 1; j < n; j++)
+// {
+// tt=-T+j*h;					
+// cblas_zaxpby(s*s, yi, A, 1, ling, Al, 1);
+// cblas_zaxpby(s*s, yi, A, 1, ling, Ar, 1);
+
+// for(int oo=0;oo<s;oo++)
+// {
+// Al[(oo*s+oo)*2+1]+=tt;
+// Ar[(oo*s+oo)*2+1]+=-tt;
+// }
+
+
+
+
+
+
+
+
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Al,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Al,s,ipiv);
+
+
+
+	
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Ar,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Ar,s,ipiv);
+
+
+
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,Al, s,B2,s, ling,tem, s);
+
+	
+// //////////
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,tem, s,Ar,s, ling,Al, s);
+
+
+
+
+	
+
+// cblas_zaxpby(s*s, er, Al, 1, yi, Sum, 1);
+
+
+
+
+// }
+// //////////////////////////////////////////
+// tt=-T;					
+// cblas_zaxpby(s*s, yi, A, 1, ling, Al, 1);
+// cblas_zaxpby(s*s, yi, A, 1, ling, Ar, 1);
+
+// for(int oo=0;oo<s;oo++)
+// {
+// Al[(oo*s+oo)*2+1]+=tt;
+// Ar[(oo*s+oo)*2+1]+=-tt;
+// }
+
+
+
+
+
+
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Al,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Al,s,ipiv);
+
+	
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Ar,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Ar,s,ipiv);
+
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,Al, s,B2,s, ling,tem, s);
+
+
+
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,tem, s,Ar,s, ling,Al, s);
+
+// cblas_zaxpby(s*s, yi, Al, 1, yi, Sum, 1);
+
+
+// ////////////////////////////////////////
+// tt=T;					
+// cblas_zaxpby(s*s, yi, A, 1, ling, Al, 1);
+// cblas_zaxpby(s*s, yi, A, 1, ling, Ar, 1);
+
+// for(int oo=0;oo<s;oo++)
+// {
+// Al[(oo*s+oo)*2+1]+=tt;
+// Ar[(oo*s+oo)*2+1]+=-tt;
+// }
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Al,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Al,s,ipiv);
+
+	
+// info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,s,s,Ar,s,ipiv);
+// info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,s,Ar,s,ipiv);
+
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,Al, s,B2,s, ling,tem, s);
+
+	
+
+	
+// cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, s, s,s,yi,tem, s,Ar,s, ling,Al, s);
+
+
+
+// cblas_zaxpby(s*s, yi, Al, 1, yi, Sum, 1);
+
+
+
+
+
+
+
+// cblas_zaxpby(s*s, shh, Sum, 1, ling, tem, 1);
+
+
+
+
+
+
+
+// printf("the matrix ALLLLLLLLLL is:\n");
+	// for (int i = 0; i<s; i++)
+	// {
+		// for(int j=0;j<s;j++)
+		// {
+			// printf("%f+%f*I\t",tem[(i*s+j)*2],tem[(i*s+j)*2+1]);
+		// }
+		// printf("\n");
+	// }
+
+
+
+// // tt=-T
+// // cblas_zaxpby(s*s, 1, Al, 1, s*s, Sum, 1);
+// // tt=T
+
+// // h/2*
+	
+
+	
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 double jifen(double a,double b,int n,double (*fff)(double))
 {	double h = (b - a)/n, T = 0; 
@@ -242,6 +466,25 @@ void shuchud(double *p,int a,int b)
 	}
 	
 }
+
+
+
+
+void shuchuz(double _Complex *p,int a,int b)
+{printf("\n");
+for(int i=0;i<a;i++)
+{for(int j=0;j<b;j++)
+{printf("%f+%fI\t,",creal(p[i*b+j]),cimag(p[i*b+j]));
+}
+printf("\n");
+}
+
+}
+
+
+
+
+
 
 
 
@@ -773,7 +1016,7 @@ if((logf = fopen("log.txt" , "w+")) == NULL)
 
 
 
-	int r=2,s=2,m=10,n=20;
+	int r=2,s=2,m=40,n=60000;
 	//r个y   s个K Y m-tau h分割   n步迭代
 	
 	int dim=2;
@@ -788,7 +1031,7 @@ if((logf = fopen("log.txt" , "w+")) == NULL)
 	// double *A,*B,*the,*gam;
 	double A[4] = {5.0/14,9.0/14,-1.0/2,3.0/2};
 	
-	double B[4]={15.0/14,-15.0/14,-1.0/2,3.0/2};
+	double B[4]={15.0/14,-5.0/14,-1.0/2,3.0/2};
 	double gam[2]={21.0/20,3.0/20};
 	double the[2]={1.0/10,9.0/10};
 	
@@ -804,16 +1047,17 @@ if((logf = fopen("log.txt" , "w+")) == NULL)
 	
 	for(int i=0;i<s;i++)
 	{
-		C[i*s+i]-=B[i*s+i];
+		C[i*s+i]-=B[i*s+i]*h;
 	}
 	
 	for(int i=0;i<s;i++)
 	for(int j=0;j<s;j++)
 	{
 		if(i!=j)
-		C[i*s+j]=B[j*s+i]*h;
+		C[i*s+j]=-B[j*s+i]*h;
 	}
 	
+	shuchud(C,s,s);
 	
 	
 	int ipiv[s];
@@ -823,6 +1067,9 @@ if((logf = fopen("log.txt" , "w+")) == NULL)
 	
  info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,C,s,ipiv);
 info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
+	shuchud(C,s,s);
+	
+	
 	
 	
 	double Cs[s];
@@ -835,10 +1082,7 @@ info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
 		Cs[i]+=C[q*s+i];
 	}
 	
-	shuchud(C,s,s);
 	
-	
-	shuchud(Cs,1,s);
 	
 	
 	
@@ -972,8 +1216,8 @@ for(int tt=0;tt<n;tt++)
 		cblas_daxpby( dim,A[i*(r)+j],yn[wei], 1,1,tem,1);
 		
 		
-		printf("---%d\n\n",wei);
-		shuchud(tem,dim,1);
+		// printf("---%d\n\n",wei);
+		// shuchud(tem,dim,1);
 		
 		
 		}
@@ -1033,7 +1277,7 @@ tem=yn[wei];
 yn[wei]=tem2;
 	
 	
-fprintf(logf , "%lf,%lf" , yn[wei][0],tt*h);
+fprintf(logf , "%lf,%lf" , yn[wei][1],tt*h);
 fprintf(logf,"\n");
 	
 	
@@ -1115,6 +1359,325 @@ void inrk(double ***Yni,double ***Kni,double **yn,int r,int s,int m,double tau)
 	
 	
 }
+
+
+
+
+
+//考虑特征值互不相同的情况
+
+void jiangjie()
+{
+	
+
+	printf("\n");
+	
+	
+	
+	
+}
+
+//为计算方便 特征值互不相同
+int lamwm(double _Complex* A,int k,int dim,double _Complex*	 w)
+{
+double _Complex u[dim*dim];
+double _Complex v[dim*dim],tem1[dim*dim];
+
+	char jobvl='V';
+	char jobvr='V';
+	int n=dim;
+	int lda=dim;
+	int ldvl=dim;
+	int ldvr=dim;
+	double _Complex	 tem2[n];
+	//返回特征值向量
+	
+	
+	 
+	int matrix_order = LAPACK_ROW_MAJOR;
+	
+	
+	LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, A, lda,w, u , ldvl , v, ldvr);
+	shuchuz(v,dim,dim);//Av=vD
+	
+	
+int ipiv[dim];
+int info;
+
+	
+//左右特征值矩阵的值应该是相同的 至少可逆性一致 考察右特征值是否可逆
+
+LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, u, lda,tem2, tem1 , ldvl , A, ldvr);
+	
+	
+
+		
+		
+memcpy(A,v,dim*dim*sizeof(double _Complex));		
+		
+
+	for(int i=0;i<dim;i++)
+	{
+		if(cabs(tem2[i])<1e-14)
+				return 1;
+	//不可逆失败
+	}	
+	
+	shuchuz(w,1,2);
+	
+	for(int i=0;i<dim;i++)
+	{
+		w[i]=lamw(w[i],k);
+	}
+	return 0;
+	
+}
+
+
+
+
+
+
+
+void lamwhb(double _Complex* A,double _Complex* w,int dim)
+{
+double _Complex A2[dim*dim],jjj[dim*dim];
+int ipiv[dim];
+int info;
+
+double  yi[2]={1,0},ling[2]={0,0};
+
+
+
+
+memcpy(A2,A,dim*dim*sizeof(double _Complex));		
+
+//右列
+for(int i=0;i<dim;i++)	
+for(int j=0;j<dim;j++)
+{
+	A[i*dim+j]*=w[j];
+}
+
+info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,dim,dim,A2,dim,ipiv);
+info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,dim,A2,dim,ipiv);
+
+
+cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,yi,A, dim,A2,dim, ling,jjj, dim);
+
+	
+	
+	
+memcpy(A,jjj,dim*dim*sizeof(double _Complex));		
+
+
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim)
+{
+	double _Complex tem1[dim*dim],tem2[dim*dim],tem3[dim*dim],w[dim];
+	
+	double xishuh[2]={h,0},ling[2]={0,0},yi[2]={1,0},fuyi[2]={-1,0};
+	
+	cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,xishuh,Ad, dim,Q,dim, ling,tem1, dim);
+
+	
+	
+	lamwm(tem1,0,dim,w);
+	lamwhb( tem1,w,dim);
+
+
+	
+	
+	
+	
+	
+	
+	memcpy(tem2,tem1,dim*dim*sizeof(double _Complex));		
+
+	cblas_zaxpby(dim*dim,xishuh,A,1,yi,tem2,1 );
+	
+	
+	 expm( tem2,dim)
+	
+	cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,yi,tem1, dim,tem2,dim, ling,tem3, dim);
+
+	
+	cblas_zaxpby(dim*dim,yi,tem1,1,fuyi,tem2,1 );
+	
+	
+	
+	
+	
+	return cblas_dnrm2(dim*dim,tem2,1);
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int expm(double _Complex* A,int dim)
+{
+	shuchuz(A,dim,dim);//Av=vD
+	
+	
+	
+double _Complex u[dim*dim];
+double _Complex v[dim*dim],tem1[dim*dim],w[dim];
+
+	char jobvl='V';
+	char jobvr='V';
+	int n=dim;
+	int lda=dim;
+	int ldvl=dim;
+	int ldvr=dim;
+	double _Complex	 tem2[n];
+	//返回特征值向量
+	
+	
+	 
+	int matrix_order = LAPACK_ROW_MAJOR;
+	
+	
+	LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, A, lda,w, u , ldvl , v, ldvr);
+	
+	
+int ipiv[dim];
+int info;
+
+	
+//左右特征值矩阵的值应该是相同的 至少可逆性一致 考察右特征值是否可逆
+
+LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, u, lda,tem2, tem1 , ldvl , A, ldvr);
+	
+	
+
+		
+		
+memcpy(A,v,dim*dim*sizeof(double _Complex));		
+		
+
+	for(int i=0;i<dim;i++)
+	{
+		if(cabs(tem2[i])<1e-14)
+				return 1;
+	//不可逆失败
+	}	
+	
+	
+	
+	for(int i=0;i<dim;i++)
+	{
+		w[i]=cexp(w[i]);
+	}
+	
+	
+	
+	
+double _Complex A2[dim*dim],jjj[dim*dim];
+
+
+double  yi[2]={1,0},ling[2]={0,0};
+
+
+
+
+memcpy(A2,A,dim*dim*sizeof(double _Complex));		
+
+//右列
+for(int i=0;i<dim;i++)	
+for(int j=0;j<dim;j++)
+{
+	A[i*dim+j]*=w[j];
+}
+
+info = LAPACKE_zgetrf(LAPACK_ROW_MAJOR,dim,dim,A2,dim,ipiv);
+info = LAPACKE_zgetri(LAPACK_ROW_MAJOR,dim,A2,dim,ipiv);
+
+
+cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,yi,A, dim,A2,dim, ling,jjj, dim);
+
+	
+	
+	
+memcpy(A,jjj,dim*dim*sizeof(double _Complex));		
+
+
+	
+	
+	shuchuz(A,dim,dim);
+	
+	
+	
+	
+	
+	return 0;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
