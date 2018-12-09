@@ -70,6 +70,15 @@ printf("Local time is: %s\n", asctime(tblock));
 
 int dim=2;
 double _Complex A[4]={1+0*I,2+0*I,3+0*I,4+0*I};
+
+double _Complex Ad[4]={1+0*I,2+0*I,3+0*I,4+0*I};
+double h=1.1;
+
+double _Complex Q[4]={2+0*I,2+0*I,0+0*I,1+0*I};
+
+
+
+
 double _Complex w[2];
 int flag=0;
 int ipiv[dim];
@@ -81,10 +90,30 @@ double  yi[2]={1,0},ling[2]={0,0};
 
 printf("A\n");
 
-printf("\n%d\n",flag);
+
+double _Complex aa=0.00+2*I,yy;
+double x1,y1;
+
+int po=0;
+
+ // while(1==1)
+// {
+// printf("...\n");
+// scanf("%lf,%lf",&x1,&y1);
+
+// aa=x1+y1*I;
 
 
-expm( A,dim);
+// yy=lamw(aa,po);
+
+// printf("\n%.6f,%.5f\n",creal(aa),cimag(aa));
+
+
+// }
+
+
+ printf("\n%lf \n",mubiao(A,Ad,Q,h,2));
+
 
 
 

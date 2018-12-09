@@ -429,21 +429,159 @@ int  jiecheng(int n)
 
 
 double _Complex lamw(double _Complex a,int k)
-{	double _Complex y;
-	y=lnk(a,k)-lnk(lnk(a,k),0);
+{	
+
+//用渐进公式  截断多项式给初值  通过牛顿迭代 梯度下降   求精确解
+
+
+
+
+
+double _Complex y0,y;
+
+
+
+
+if(creal(a)<0&&creal(a)>-1/exp(1)&&cimag(a)==0)
+{y0=a-cpow(a,2)+3/2*cpow(a,3)-8/3*cpow(a,4)+125/24*cpow(a,5);
+printf("\n0\n\n1--%lf,%lf\n\n\n",creal(y0),cimag(y0));
+}
+else if(1e-4<cabs(a)&&100>=cabs(a))
+{	
+y0=lnk(a,k);
+printf("\n99\n");
+}
+else if(cabs(a)<=1e-4)
+{y0=0+0*I;
+printf("\n\n\n2\n\n\n");
+}
+else
+{printf("\n\n\n3\n\n\n");
+
+	y0=lnk(a,k)-lnk(lnk(a,k),0);
 	for(int l=0;l<10;l++)
 	for(int m=1;m<10;m++)
-	{y+=cpow(lnk(lnk(a,k),0),m)/cpow(lnk(a,k),l+m)*st(l+m,l+1)/jiecheng(m)*cpow(-1,l);
+	{y0+=cpow(lnk(lnk(a,k),0),m)/cpow(lnk(a,k),l+m)*st(l+m,l+1)/jiecheng(m)*cpow(-1,l);}
+}
+
+int pp;
+double w1,w2,z1,z2,w1k,w2k,v1,v2,norm,test;
+
+z1=creal(a);
+z2=cimag(a);
+
+w1=creal(y0);
+w2=cimag(y0);
+
+printf("预估值%.6f,%.5f\n\n\n",w1,w2);
+
+
+
+y=y0;
+
+
+
+while(cabs(a-y*cexp(y))>1e-12)
+{	
+w1=creal(y);
+w2=cimag(y);
+// printf("当前点%lf,%lf\n",w1,w2);
+
+
+
+
+v1=(2*w1*exp(2*w1)+2*(w1*w1+w2*w2)*exp(2*w1)-2*exp(w1)*(w1*z1*cos(w2)+w2*z2*cos(w2)-w2*z1*sin(w2)+w1*z2*sin(w2)+z1*cos(w2)+z2*sin(w2)));
+	
+	
+v2=(2*w2*exp(2*w1)-2*exp(w1)*(-w1*z1*sin(w2)+z2*cos(w2)-w2*z2*sin(w2)-z1*sin(w2)-w2*z1*cos(w2)+w1*z2*cos(w2)));
+
+
+norm=sqrt(v1*v1+v2*v2);
+v1=v1/norm;
+v2=v2/norm;
+
+
+//线性搜索
+w1k=w1-1e-15*v1;	
+w2k=w2-1e-15*v2;	
+	
+y=w1k+w2k*I;
+	
+test=cabs(a-y*cexp(y));
+pp=15;
+
+
+// printf("&&oooo梯度----|%lf,%lf\n",v1,v2);
+
+// printf("误差%lf\n",cabs(a-y*cexp(y)));
+
+
+
+while(pp>-1)
+{
+	
+	--pp;	
+
+w1k=w1-cpow(0.1,pp)*v1;	
+w2k=w2-cpow(0.1,pp)*v2;	
+	
+y=w1k+w2k*I;
+// printf("\npp%d\n",pp);
+
+
+
+
+
+// printf("---------%.15f,%.15f\n",w1k,w2k);
+
+if(cabs(a-y*cexp(y))>=test)
+{	pp++;
+	w1k=w1-cpow(0.1,pp)*v1;	
+	w2k=w2-cpow(0.1,pp)*v2;	
+	// printf("000");
+	y=w1k+w2k*I;
+	
+	
+	
+	break;}
 	
 
-	}
+	test=cabs(a-y*cexp(y));
+	// printf("误差%lf\n",test);
+	
+}	
+// printf("%.13f,%.13f\n",100*(w1-w1k),100*(w2-w2k));
 	
 	
 	
+	
+
+
+
+// printf("%.6f,%.5f\n",w1,w2);
+
+	
+}
+
+
+
+
+
+
+	printf("w%lf,%lf",creal(y),cimag(y));
 	return y;
 	
 	
+
+
+
+
 }
+	
+	
+	
+
+
 
 
 
@@ -1398,7 +1536,9 @@ double _Complex v[dim*dim],tem1[dim*dim];
 	
 	
 	LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, A, lda,w, u , ldvl , v, ldvr);
-	shuchuz(v,dim,dim);//Av=vD
+	
+	
+	shuchuz(w,1,dim);//Av=vD
 	
 	
 int ipiv[dim];
@@ -1419,11 +1559,20 @@ memcpy(A,v,dim*dim*sizeof(double _Complex));
 	for(int i=0;i<dim;i++)
 	{
 		if(cabs(tem2[i])<1e-14)
-				return 1;
-	//不可逆失败
+			return 1;
+	
+		if((creal(w[i])<-1/exp(1))&&(cimag(w[i])<1e-14))
+			return 1;
+			
+	//不可逆失败 实数大于-1/e
+	
+	
+	
+	
+	
 	}	
 	
-	shuchuz(w,1,2);
+	//shuchuz(w,1,2);
 	
 	for(int i=0;i<dim;i++)
 	{
@@ -1496,16 +1645,24 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 {
 	double _Complex tem1[dim*dim],tem2[dim*dim],tem3[dim*dim],w[dim];
 	
-	double xishuh[2]={h,0},ling[2]={0,0},yi[2]={1,0},fuyi[2]={-1,0};
+	double xishuh[2]={h,0},ling[2]={0,0},yi[2]={1,0},fuyi[2]={-1,0},xifuh[2]={-h,0};
 	
 	cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,xishuh,Ad, dim,Q,dim, ling,tem1, dim);
 
+	printf("W1\n");
+	
+	int flag;
+	flag=lamwm(tem1,0,dim,w);
+	printf("%d\n\n",flag);
 	
 	
-	lamwm(tem1,0,dim,w);
+	
+	shuchuz(tem1,dim,dim);
+	
+	shuchuz(w,1,dim);
+	
 	lamwhb( tem1,w,dim);
-
-
+	shuchuz(tem1,dim,dim);	
 	
 	
 	
@@ -1515,27 +1672,29 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 	memcpy(tem2,tem1,dim*dim*sizeof(double _Complex));		
 
 	cblas_zaxpby(dim*dim,xishuh,A,1,yi,tem2,1 );
+	//G+Ah
 	
-	
-	 expm( tem2,dim)
+	expm(tem2,dim);
 	
 	cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,yi,tem1, dim,tem2,dim, ling,tem3, dim);
 
 	
-	cblas_zaxpby(dim*dim,yi,tem1,1,fuyi,tem2,1 );
 	
+	memcpy(tem2,Ad,dim*dim*sizeof(double _Complex));
+	cblas_zaxpby(dim*dim,yi,tem3,1,xifuh,tem2,1 );
+	//-adh
 	
+	printf("////\n");
+	shuchuz(tem2,dim,dim);
 	
-	
-	
-	return cblas_dnrm2(dim*dim,tem2,1);
+	return cblas_dznrm2(dim*dim,tem2,1);
 	
 }
 
 
 
 
-
+// void nugrad();
 
 
 
@@ -1556,7 +1715,7 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 
 int expm(double _Complex* A,int dim)
 {
-	shuchuz(A,dim,dim);//Av=vD
+	//shuchuz(A,dim,dim);//Av=vD
 	
 	
 	
@@ -1643,7 +1802,7 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 
 	
 	
-	shuchuz(A,dim,dim);
+	//shuchuz(A,dim,dim);
 	
 	
 	
