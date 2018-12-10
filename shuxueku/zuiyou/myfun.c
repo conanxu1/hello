@@ -442,21 +442,17 @@ double _Complex y0,y;
 
 
 
-if(creal(a)<0&&creal(a)>-1/exp(1)&&cimag(a)==0)
+if(cabs(a)<1/exp(1))
 {y0=a-cpow(a,2)+3/2*cpow(a,3)-8/3*cpow(a,4)+125/24*cpow(a,5);
-printf("\n0\n\n1--%lf,%lf\n\n\n",creal(y0),cimag(y0));
 }
-else if(1e-4<cabs(a)&&100>=cabs(a))
+else if(cabs(a)>1/exp(1)&&cabs(a)<10)
 {	
-y0=lnk(a,k);
-printf("\n99\n");
-}
-else if(cabs(a)<=1e-4)
-{y0=0+0*I;
-printf("\n\n\n2\n\n\n");
+y0=lnk(a,k)*(0.05+0*I);
+// printf("\n99\n");
 }
 else
-{printf("\n\n\n3\n\n\n");
+{
+	// printf("\n\n\n3\n\n\n");
 
 	y0=lnk(a,k)-lnk(lnk(a,k),0);
 	for(int l=0;l<10;l++)
@@ -473,7 +469,7 @@ z2=cimag(a);
 w1=creal(y0);
 w2=cimag(y0);
 
-printf("预估值%.6f,%.5f\n\n\n",w1,w2);
+ //printf("预估值%.6f,%.5f\n\n\n",w1,w2);
 
 
 
@@ -568,7 +564,8 @@ if(cabs(a-y*cexp(y))>=test)
 
 
 
-	printf("w%lf,%lf",creal(y),cimag(y));
+	// printf("w%lf,%lf",creal(y),cimag(y));
+	
 	return y;
 	
 	
@@ -1537,8 +1534,9 @@ double _Complex v[dim*dim],tem1[dim*dim];
 	
 	LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, A, lda,w, u , ldvl , v, ldvr);
 	
-	
-	shuchuz(w,1,dim);//Av=vD
+	// printf("--\n");
+	 // //shuchuz(w,1,dim);//Av=vD
+	// printf("--\n");
 	
 	
 int ipiv[dim];
@@ -1561,10 +1559,9 @@ memcpy(A,v,dim*dim*sizeof(double _Complex));
 		if(cabs(tem2[i])<1e-14)
 			return 1;
 	
-		if((creal(w[i])<-1/exp(1))&&(cimag(w[i])<1e-14))
-			return 1;
+		
 			
-	//不可逆失败 实数大于-1/e
+	//不可逆失败 
 	
 	
 	
@@ -1572,11 +1569,17 @@ memcpy(A,v,dim*dim*sizeof(double _Complex));
 	
 	}	
 	
-	//shuchuz(w,1,2);
+	 // printf("+++++++++++++++++++\n");
+	
+	
+	// shuchuz(w,1,dim);
 	
 	for(int i=0;i<dim;i++)
 	{
+		// printf("\nD\n%lf,%lf\n",creal(w[i]),cimag(w[i]));
 		w[i]=lamw(w[i],k);
+		// printf("......\n");
+	
 	}
 	return 0;
 	
@@ -1649,22 +1652,29 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 	
 	cblas_zgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, dim,dim,xishuh,Ad, dim,Q,dim, ling,tem1, dim);
 
-	printf("W1\n");
+	// printf("W1\n");
+	
+	
+	
+	
 	
 	int flag;
+	
 	flag=lamwm(tem1,0,dim,w);
-	printf("%d\n\n",flag);
+	
+	// printf("*****\n");
 	
 	
+	// printf("%d\n\n",flag);
 	
-	shuchuz(tem1,dim,dim);
 	
-	shuchuz(w,1,dim);
+		
+	
+	// shuchuz(w,1,dim);
 	
 	lamwhb( tem1,w,dim);
-	shuchuz(tem1,dim,dim);	
-	
-	
+	// shuchuz(tem1,dim,dim);	
+
 	
 	
 	
@@ -1684,8 +1694,8 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 	cblas_zaxpby(dim*dim,yi,tem3,1,xifuh,tem2,1 );
 	//-adh
 	
-	printf("////\n");
-	shuchuz(tem2,dim,dim);
+	// printf("////\n");
+	// shuchuz(tem2,dim,dim);
 	
 	return cblas_dznrm2(dim*dim,tem2,1);
 	
@@ -1694,7 +1704,75 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 
 
 
-// void nugrad();
+
+
+void qiuQ(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim)
+{double _Complex gra[dim*dim],tem[dim*dim];
+double xishu[2]={1,0},yi[2]={1,0};
+double wucha,mo,bu,test;
+int pp;
+wucha=mubiao(A,Ad,Q,h,dim);
+while(wucha>1e-14)	
+{	
+wucha=mubiao(A,Ad,Q,h,dim);
+	 shuchuz(Q,dim,dim);
+	
+	
+	nugrad(A,Ad,Q,h,dim, gra);
+	memcpy(tem,Q,dim*dim*sizeof(double _Complex));		
+	
+	mo=cblas_dznrm2(dim*dim,gra,1);
+	pp=-3;
+	
+	xishu[0]=-pow(10,pp);
+	cblas_zaxpby(dim*dim,xishu,gra,1,yi,tem,1 );
+	
+	printf("))))))))");
+	test=mubiao(A,Ad,tem,h,dim);
+	for(;pp<3;)
+	{pp++;
+
+	memcpy(tem,Q,dim*dim*sizeof(double _Complex));		
+	
+
+	xishu[0]=-pow(10,pp);
+	cblas_zaxpby(dim*dim,xishu,gra,1,yi,tem,1 );
+	printf("pp%d\n",pp);
+	printf("gra\n");
+	shuchuz(gra,dim,dim);
+	
+	
+	mubiao(A,Ad,tem,h,dim);
+	printf("ooo\n");
+
+			if(test>mubiao(A,Ad,tem,h,dim))
+			{	pp--;
+				printf("oo222o\n");
+	
+	
+				break;
+			}
+			
+			test=mubiao(A,Ad,tem,h,dim);
+			printf("oo33366So\n");
+			
+	}
+	printf("oo333So\n");
+	
+	
+	xishu[0]=-pow(10,pp)/mo;
+	cblas_zaxpby(dim*dim,xishu,gra,1,yi,Q,1 );
+	
+printf("误差%lf\n",wucha);
+	
+	
+	
+}	
+	
+	
+	
+	
+}
 
 
 
@@ -1703,14 +1781,40 @@ double mubiao(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h
 
 
 
+void nugrad(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim,double _Complex* gra)
+{
+
+double _Complex Qh[dim*dim];
+
+
+
+double op=1,tem;
+
+for(int i=0;i<dim*dim;i++)
+{
+	memcpy(Qh,Q,dim*dim*sizeof(double _Complex));		
+	
+	Qh[i]+=op;
+	tem=(mubiao(A,Ad,Qh,h,dim)-mubiao(A,Ad,Q,h,dim))/h;
+	
+	Qh[i]+=-op+op*I;
+	
+	gra[i]=(mubiao(A,Ad,Qh,h,dim)-mubiao(A,Ad,Q,h,dim))/h*I+tem;
+	
+	
+	
+	
+	
+	// printf("xxxxxxxxxxxxxxxxxxx%lf\n",cimag(gra[i]));
+	
+}
 
 
 
 
 
 
-
-
+}
 
 
 int expm(double _Complex* A,int dim)

@@ -101,4 +101,11 @@ void svd2();
 
 
 
+
+void qiuQ(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim);
+
+void nugrad(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,int dim,double _Complex* gra);
+
+
+
 void jiangjie();

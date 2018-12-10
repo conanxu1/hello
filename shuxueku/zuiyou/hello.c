@@ -68,33 +68,82 @@ printf("Local time is: %s\n", asctime(tblock));
 
 // double _Complex A[9]={1+0*I,1+0*I,0+0*I,0+0*I,2+0*I,0+0*I,0+0*I,0+0*I,1+0*I},re;
 
-int dim=2;
-double _Complex A[4]={1+0*I,2+0*I,3+0*I,4+0*I};
-
-double _Complex Ad[4]={1+0*I,2+0*I,3+0*I,4+0*I};
-double h=1.1;
-
-double _Complex Q[4]={2+0*I,2+0*I,0+0*I,1+0*I};
+int dim=6;
+double _Complex A[dim*dim];
 
 
+double _Complex Ad[dim*dim];
+
+FILE *fp;
+fp=fopen("A.txt","r");
+double tx,ty;
+if(fp!=NULL)
+{
+	for(int j=0;j<dim*dim;j++)
+	{fscanf(fp,"%lf+%lf*I\n",&tx,&ty);
+		
+		A[j]=tx+ty*I;
+	}
+		
+}
+fclose(fp);
+
+fp=fopen("Ad.txt","r"); 
+if(fp!=NULL)
+{
+	for(int j=0;j<dim*dim;j++)
+	{fscanf(fp,"%lf+%lf*I\n",&tx,&ty);
+		
+		Ad[j]=tx+ty*I;
+	}
+		
+}
+fclose(fp);
 
 
-double _Complex w[2];
-int flag=0;
-int ipiv[dim];
-int info;
-double  yi[2]={1,0},ling[2]={0,0};
+
+double h=1.6;
+
+double _Complex Q[dim*dim];
+
+
+// ={4.998161-0.006222I     ,-1.003816-0.004304I   ,-5.002351-0.002185I   ,-3.012627-0.011830I    ,7.988945-0.008472I    ,-2.007501-0.004546I   ,-0.006269-0.009055I    ,-4.007304-0.006385I   ,9.995797-0.003338I  };
+
+for(int i=0;i<dim*dim;i++)
+{Q[i]=0+0*I;}
+
+qiuQ(A,Ad,Q,h,dim);
+
+
+
+printf("\n%lf \n",mubiao(A,Ad,Q,h,dim));
+
+shuchuz(Q,dim,dim);
 
 
 
 
-printf("A\n");
 
 
-double _Complex aa=0.00+2*I,yy;
-double x1,y1;
 
-int po=0;
+
+
+// double _Complex w[2];
+// int flag=0;
+// int ipiv[dim];
+// int info;
+// double  yi[2]={1,0},ling[2]={0,0};
+
+
+
+
+// printf("A\n");
+
+
+// double _Complex aa=0.00+2*I,yy;
+// double x1,y1;
+
+// int po=0;
 
  // while(1==1)
 // {
@@ -111,8 +160,6 @@ int po=0;
 
 // }
 
-
- printf("\n%lf \n",mubiao(A,Ad,Q,h,2));
 
 
 
