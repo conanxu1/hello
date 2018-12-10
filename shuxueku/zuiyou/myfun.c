@@ -1718,12 +1718,8 @@ while(wucha>1e-14)
 	if(fp!=NULL)
 	{
 		for(int j=0;j<dim*dim;j++)
-		{fprintf(fp,"%lf+%lf*I\n",creal(Q[j]),cimag(Q[j]));
-		
-		
+		{fprintf(fp,"%lf+%lf*I\n",creal(Q[j]),cimag(Q[j]));}
 	}
-		
-}
 fclose(fp);
 
 
