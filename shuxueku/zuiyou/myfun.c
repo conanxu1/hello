@@ -1950,21 +1950,40 @@ return 1;
 
 //D1
 
-int initxishu(double* D1,double* D0,double* D,int N,double T)
+int initxishu(double* D1,double* D0,double* D,double* S,int N,double T,double tau)
 {
 D1=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
 D0=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
+S=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
 
 memset(D1,0,(2*N+1)*(2*N+1)*sizeof(double));
 memset(D0,0,(2*N+1)*(2*N+1)*sizeof(double));
+memset(S,0,(2*N+1)*(2*N+1)*sizeof(double));
 
 int jie=(2*N+1);
 
+//D1
 for(int i=1;i<=N;i++)	
-{D1[(i+N)*jie+(i+N)]=-2*PI/T*i;
+{D1[(i-1+N)*jie+(i+N)]=-2*PI/T*i;
+
+D1[(i-1+2*N)*jie+(i)]=2*PI/T*i;
+}
+
+//D0
+D0[0]=0.5;
+for(int i=1;i<=N;i++)	
+{D1[(i)*jie+(i)]=1;
 }
 
 
+S[0]=1;
+for(int i=1;i<=N;i++)	
+{
+S[(i)*jie+(i)]=cos(2*PI*i*tau/T);
+S[(i)*jie+(i+N)]=sin(2*PI*i*tau/T);
+S[(i+N)*jie+(i)]=-sin(2*PI*i*tau/T);
+S[(i+N)*jie+(i+N)]=cos(2*PI*i*tau/T);
+}
 
 return 0;	
 }
