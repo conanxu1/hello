@@ -29,6 +29,13 @@ void matrix_vector();
 
 void main()
 {
+double fff[2*3+1]={0};
+	
+phi(fff,int 3,0,6)；
+shuchud(fff,7,1);
+	
+	
+	
 	
 	
 	/*
