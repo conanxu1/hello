@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-#define PI acos(-1)
+#define PI acos(-1.0)
 // void pq()
 // {
 // double B[4*2]={1,0,2,0,3,0,4,0};
@@ -1932,7 +1932,7 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 int phi(double* f,int N,double t,double T)
 {
 	
-	printf("%lf",PI);
+	printf("%15.15f",PI);
 	
 		f[0]=1;
 	for(int i=1;i<=N;i++)
