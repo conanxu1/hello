@@ -1931,6 +1931,9 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 //傅里叶基函数列向量2N+1
 int phi(double* f,int N,double t,double T)
 {
+	
+	printf("%lf",PI);
+	
 		f[0]=1;
 	for(int i=1;i<=N;i++)
 		{f[i]=cos(2*PI*t*i/T);}
