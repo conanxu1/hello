@@ -1932,7 +1932,7 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 int phi(double* f,int N,double t,double T)
 {
 	
-	printf("%15.15f",PI);
+	printf("%30.30f",PI);
 	
 		f[0]=1;
 	for(int i=1;i<=N;i++)
