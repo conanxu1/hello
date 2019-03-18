@@ -109,3 +109,7 @@ void nugrad(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,i
 
 
 void jiangjie();
+
+
+int phi(double* f,int N,double t,double T);
+
