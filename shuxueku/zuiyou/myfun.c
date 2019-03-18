@@ -1947,7 +1947,7 @@ return 1;
 
 //D1
 
-int initxishu(double* D1,double* D0,double* D,int N)
+int initxishu(double* D1,double* D0,double* D,int N,double T)
 {
 D1=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
 D0=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
@@ -1958,7 +1958,7 @@ memset(D0,0,(2*N+1)*(2*N+1)*sizeof(double));
 int jie=(2*N+1);
 
 for(int i=1;i<=N;i++)	
-{D1[(i+N)*jie+(i+N)];
+{D1[(i+N)*jie+(i+N)]=-2*PI/T*i;
 }
 
 
