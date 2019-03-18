@@ -110,7 +110,12 @@ void nugrad(double _Complex* A,double _Complex* Ad,double _Complex* Q,double h,i
 
 void jiangjie();
 
-
+int m0618();
 int phi(double* f,int N,double t,double T);
 
-int initxishu(double* D1,double* D0,double* D,int N,double T);
+int initxishu(double* D1,double* D0,double* D,double* S,int N,double T,double tau);
+
+
+double shixing(double t,double a,double b):
+
+

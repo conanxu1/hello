@@ -33,19 +33,61 @@ double *lianxu(double t,double *x)
 	dy[0]=x[0];
 	dy[1]=x[1];
 	dy[2]=x[2];
-
-	
-	
-	
-	
-	
-	
-	
-    return dy;
-	
-	
-	
+	return dy;
 }
+
+
+
+double *lianxu(double t,double *x)
+{	int size=3;
+
+
+	double *dy =(double *)malloc(size*sizeof(double));
+	dy[0]=x[0];
+	dy[1]=x[1];
+	dy[2]=x[2];
+	return dy;
+}
+
+
+/////////余长君ppt p27  f(x,sigma) [tk-1,tk)
+double *exmf(double t,double *x,double *sigma,int dim)
+{	
+	double *dy =(double *)malloc(size*sizeof(double));
+	dy[0]=x[0]+sigma[0];
+	dy[1]=x[1]+sigma[0];
+	dy[2]=x[2]+sigma[0];
+	return dy;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 double* fini(double t)
