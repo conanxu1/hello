@@ -22,7 +22,7 @@
 
 #endif
 
-#define PI 3.14159265358979323846
+
 double jifen(double a,double b,int n,double (*f1)(double));
 
 double _Complex lamw(double _Complex a,int k);
