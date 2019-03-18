@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-
+#define PI acos(-1)
 // void pq()
 // {
 // double B[4*2]={1,0,2,0,3,0,4,0};
@@ -1930,12 +1930,12 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 /*******傅里叶延时辨识**/
 //傅里叶基函数列向量2N+1
 int phi(double* f,int N,double t,double T)
-{double pii=acos(1);
+{
 		f[0]=1;
 	for(int i=1;i<=N;i++)
-		{f[i]=cos(2*pii*t*i/T);}
+		{f[i]=cos(2*PI*t*i/T);}
 	for(int i=1;i<=N;i++)
-		{f[i+N]=sin(2*pii*t*i/T);}
+		{f[i+N]=sin(2*PI*t*i/T);}
 
 
 return 1;
@@ -1945,10 +1945,26 @@ return 1;
 
 }
 
+//D1
+
+int initxishu(double* D1,double* D0,double* D,int N)
+{
+D1=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
+D0=(double *)malloc((2*N+1)*(2*N+1)*sizeof(double));
+
+memset(D1,0,(2*N+1)*(2*N+1)*sizeof(double));
+memset(D0,0,(2*N+1)*(2*N+1)*sizeof(double));
+
+int jie=(2*N+1);
+
+for(int i=1;i<=N;i++)	
+{D1[(i+N)*jie+(i+N)];
+}
 
 
 
-
+return 0;	
+}
 
 
 

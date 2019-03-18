@@ -113,3 +113,4 @@ void jiangjie();
 
 int phi(double* f,int N,double t,double T);
 
+int initxishu(double* D1,double* D0,double* D,int N);
