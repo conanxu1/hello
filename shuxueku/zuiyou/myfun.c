@@ -1138,6 +1138,36 @@ void svd2()
 	*/
 }
 
+void mypinv()
+{
+int matrix_order = LAPACK_COL_MAJOR;
+char jobu = 'A';
+char jobvt = 'A';
+double *A;
+int n=2;
+int m=n;
+A=[1];
+
+double s[n];
+int lda = n;
+int info;
+double u[n*n];
+int ldu = n;
+double vt[n*n];
+int ldvt = n;
+double superb[n];
+LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, A,n, s, u, ldu, vt, ldvt, superb);
+
+shuchud(A,n);
+}
+
+
+
+
+
+
+
+
 
 
 void drk()
