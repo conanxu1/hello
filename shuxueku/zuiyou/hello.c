@@ -29,9 +29,15 @@ void matrix_vector();
 
 void main()
 {
-double complex a=1+8*I,b=1+8*I;	
-printf("%1.1f,%1.1f",creal(a+b),cimag(a*b));
+double complex a=1+8*I,b=1-8*I;	
+printf("%1.1f,%1.1f\n\n\n",cimag(a+b),creal(a*b));
+
+while(1)
+{
+	scanf("\n");
 	
+}
+
 	/*
 	double *y,x0[3]={1,1,1},*p;
 	
