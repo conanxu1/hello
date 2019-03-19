@@ -2120,9 +2120,15 @@ shuchud(x,size_x,1);
   {  
   printf("-----------\n");
   shuchud(x,size_x,1);
-    temp=x[i];  
+    temp=x[i]; 
+	 printf("%lf\n",temp);
+ 
     x[i]=x[j];  
+printf("%lf\n",temp);
     x[j]=temp;
+printf("%lf\n",temp);
+
+
 shuchud(x,size_x,1);	
   printf("++++++%d++\n",i);
    } 
