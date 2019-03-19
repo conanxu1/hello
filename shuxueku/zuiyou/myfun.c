@@ -2022,7 +2022,7 @@ return 0;
 
 
 
-
+/*
 int m0618()
 {double ep=1e-8;
 	double tau=(sqrt(5)-1)/2;
@@ -2058,7 +2058,7 @@ int m0618()
 
 
 
-
+*/
 
 
 
