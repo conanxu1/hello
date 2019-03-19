@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "fftw3.h"
 
 #include <stdlib.h>
 #include "myfun.h"
