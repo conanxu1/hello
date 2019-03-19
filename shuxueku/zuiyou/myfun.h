@@ -122,8 +122,7 @@ int changema(double* x,int size_x);
 void mypinv();
 
 
-int fft(double* ai,double* ao,int N);
-
+int fft(double _Complex  * ai,double _Complex  * ao,int N);
 
 
 
