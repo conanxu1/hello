@@ -2084,8 +2084,12 @@ double shixing(double t,double a,double b)
 }
 
 
-
-
+double* fft(double* ary,int dim)
+{
+	
+	
+	
+}
 
 
 
@@ -2093,7 +2097,34 @@ double shixing(double t,double a,double b)
  
 
 
+/*变址计算，将x(n)码位倒置*/  
+int changema(double* x,int size_x)        
+{  
+  double _Complex temp;  
+  unsigned short i=0,j=0,k=0;  
+  double t;  
+  for(i=0;i<size_x;i++)  
+  {  
+    k=i;j=0;  
+    t=(log(size_x)/log(2));  
+  while( (t--)>0 )    //利用按位与以及循环实现码位颠倒  
+  {  
+    j=j<<1;  
+    j|=(k & 1);  
+    k=k>>1;  
+  }  
+  if(j>i)    //将x(n)的码位互换  
+  {  
+    temp=x[i];  
+    x[i]=x[j];  
+    x[j]=temp;  
+  }  
+  }  
+  output(); 
+  return 1;
 
+  
+}  
 
 
 

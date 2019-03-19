@@ -29,14 +29,23 @@ void matrix_vector();
 
 void main()
 {
-double complex a=1+8*I,b=1-8*I;	
-printf("%1.1f,%1.1f\n\n\n",cimag(a+b),creal(a*b));
-
-while(1)
-{
-	scanf("\n");
 	
-}
+double xxx[5]={0,1,2,3,4,5};
+
+changema(xxx,5);
+shuchud(xxx,5,1);	
+	
+	
+	
+	
+// double complex a=1+8*I,b=1-8*I;	
+// printf("%1.1f,%1.1f\n\n\n",cimag(a+b),creal(a*b));
+
+// while(1)
+// {
+	// scanf("\n");
+	
+// }
 
 	/*
 	double *y,x0[3]={1,1,1},*p;

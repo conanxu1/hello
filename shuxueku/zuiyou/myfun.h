@@ -117,7 +117,7 @@ int initxishu(double* D1,double* D0,double* D,double* S,int N,double T,double ta
 
 double *exmf(double t,double *x,double *sigma,int dim);
 double shixing(double t,double a,double b);
-
+int changema(double* x,int size_x);
 void mypinv();
 
 int ooo();
