@@ -16,6 +16,7 @@
 #include <cblas.h>
 #include <lapacke_config.h>
 #include <lapacke_utils.h>
+#include "fftw3.h"
 
 
 #include <lapacke.h>

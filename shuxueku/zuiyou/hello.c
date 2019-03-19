@@ -33,7 +33,7 @@ void main()
 double _Complex xxx[5]={0+0*I,1+0*I,2+0*I,3+0*I,4+0*I},ffo[5];
 
 
-fft(xxx,ffo,5)
+fft(xxx,ffo,5);
 shuchuz(ffo,5,1);	
 
 	
