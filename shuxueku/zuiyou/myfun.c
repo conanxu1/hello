@@ -2105,6 +2105,9 @@ int changema(double* x,int size_x)
   double t;  
   for(i=0;i<size_x;i++)  
   {  
+shuchud(x,size_x,1);
+
+
     k=i;j=0;  
     t=(log(size_x)/log(2));  
   while((t--)>0 )    //利用按位与以及循环实现码位颠倒  
@@ -2120,7 +2123,7 @@ int changema(double* x,int size_x)
     temp=x[i];  
     x[i]=x[j];  
     x[j]=temp;  
-  printf("++++++++\n");
+  printf("++++++%d++\n",i);
    } 
   }  
   
