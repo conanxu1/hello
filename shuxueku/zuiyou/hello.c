@@ -30,12 +30,12 @@ void matrix_vector();
 void main()
 {
 	
-double xxx[5]={0,1,2,3,4};
+double xxx[5]={0,1,2,3.0,4};
 
 shuchud(xxx,5,1);	
 
 changema(xxx,5);
-shuchud(xxx,5,1);	
+shuchud(xxx,1,5);	
 printf("\n\n%lf\n\n",xxx[4]);	
 	
 	
