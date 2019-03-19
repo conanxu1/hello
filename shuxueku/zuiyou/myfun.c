@@ -1144,9 +1144,9 @@ int matrix_order = LAPACK_COL_MAJOR;
 char jobu = 'A';
 char jobvt = 'A';
 double *A;
-int n=2;
+int n=1;
 int m=n;
-A=[1];
+A[0]=1;
 
 double s[n];
 int lda = n;
