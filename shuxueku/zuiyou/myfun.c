@@ -2091,7 +2091,7 @@ int fft(double _Complex  * ai,double _Complex  * ao,int N)
 {
 	 fftw_complex *in, *out;
     fftw_plan p;
-    int N= 9;
+   
     int i;
     int j;
     in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * N);
