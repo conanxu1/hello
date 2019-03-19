@@ -36,7 +36,7 @@ shuchud(xxx,5,1);
 
 changema(xxx,5);
 shuchud(xxx,5,1);	
-	
+printf("\n\n%lf\n\n",xxx[4]);	
 	
 	
 	
