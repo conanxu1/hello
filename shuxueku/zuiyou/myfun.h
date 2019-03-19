@@ -116,7 +116,7 @@ int phi(double* f,int N,double t,double T);
 int initxishu(double* D1,double* D0,double* D,double* S,int N,double T,double tau);
 
 
-double shixing(double t,double a,double b):
+double shixing(double t,double a,double b);
 
 
 int ooo();
