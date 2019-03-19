@@ -2118,13 +2118,17 @@ shuchud(x,size_x,1);
   }  
   if(j>i)    //将x(n)的码位互换  
   {  
-  printf("\n");
+  printf("-----------\n");
   shuchud(x,size_x,1);
     temp=x[i];  
     x[i]=x[j];  
-    x[j]=temp;  
+    x[j]=temp;
+shuchud(x,size_x,1);	
   printf("++++++%d++\n",i);
    } 
+   
+   
+   
   }  
   
   
