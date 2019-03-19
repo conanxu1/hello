@@ -2120,8 +2120,7 @@ int changema(double* x,int size_x)
     x[j]=temp;  
   }  
   }  
-   
-  return 1;
+   return 1;
 
   
 }  
