@@ -2087,7 +2087,7 @@ double shixing(double t,double a,double b)
 }
 
 
-int fft(double* ai,double* ao,int N)
+int fft(double _Complex  * ai,double _Complex  * ao,int N)
 {
 	 fftw_complex *in, *out;
     fftw_plan p;
