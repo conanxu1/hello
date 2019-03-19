@@ -2120,7 +2120,7 @@ int changema(double* x,int size_x)
     temp=x[i];  
     x[i]=x[j];  
     x[j]=temp;  
-  printf("\n");
+  printf("++++++++\n");
   }  
   }  
    return 1;
