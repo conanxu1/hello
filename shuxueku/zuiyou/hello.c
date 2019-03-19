@@ -30,13 +30,14 @@ void matrix_vector();
 void main()
 {
 	
-double xxx[5]={0,1,2,3.0,4};
+double _Complex xxx[5]={0+0*I,1+0*I,2+0*I,3+0*I,4+0*I},ffo[5];
 
-shuchud(xxx,5,1);	
 
-changema(xxx,5);
-shuchud(xxx,1,5);	
-printf("\n\n%lf\n\n",xxx[4]);	
+fft(xxx,ffo,5)
+shuchuz(ffo,5,1);	
+
+	
+
 while(1)
 {
 	printf("");

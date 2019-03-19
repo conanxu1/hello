@@ -1,5 +1,5 @@
 #include "fftw3.h"
-#include <typeinfo.h>
+
 int main()
 { 
 
