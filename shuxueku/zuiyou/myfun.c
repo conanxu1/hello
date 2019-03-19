@@ -2121,8 +2121,12 @@ int changema(double* x,int size_x)
     x[i]=x[j];  
     x[j]=temp;  
   printf("++++++++\n");
+   } 
   }  
-  }  
+  
+  
+  
+   shuchud(x,size_x,1);
    return 1;
 
   
