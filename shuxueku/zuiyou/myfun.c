@@ -2128,7 +2128,7 @@ shuchud(x,size_x,1);
     x[i]=x[j];  
 printf("%lf,\n",temp);
     x[j]=temp;
-printf("####%lf,%lf####",temp,x[3]);
+printf("####%lf,%lf####%d",temp,x[3],j);
 
 
 shuchud(x,size_x,1);	
