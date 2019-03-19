@@ -37,7 +37,11 @@ shuchud(xxx,5,1);
 changema(xxx,5);
 shuchud(xxx,1,5);	
 printf("\n\n%lf\n\n",xxx[4]);	
+while(1)
+{
+	printf("");
 	
+}	
 	
 	
 // double complex a=1+8*I,b=1-8*I;	
