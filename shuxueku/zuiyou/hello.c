@@ -30,7 +30,7 @@ void matrix_vector();
 void main()
 {
 	
-double xxx[5]={0,1,2,3,4,5};
+double xxx[5]={0,1,2,3,4};
 
 changema(xxx,5);
 shuchud(xxx,5,1);	
