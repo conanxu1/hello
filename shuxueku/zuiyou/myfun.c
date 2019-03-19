@@ -593,7 +593,7 @@ void shuchuf(float *p,int a,int b)
 }
 
 void shuchud(double *p,int a,int b)
-{   printf("%15.7f,",p[3]);  
+{   printf("..%15.7f,..",p[3]);  
 
 int i,j;
 	for(i=1;i<=a;i++)
