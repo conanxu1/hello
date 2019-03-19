@@ -2086,12 +2086,12 @@ double shixing(double t,double a,double b)
 }
 
 
-double* fft(double* ary,int dim)
-{
+// double* fft(double* ary,int dim)
+// {
 	
 	
 	
-}
+// }
 
 
 
