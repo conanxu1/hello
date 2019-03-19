@@ -120,4 +120,11 @@ double shixing(double t,double a,double b);
 int changema(double* x,int size_x);
 void mypinv();
 
+
+int fft(double* ai,double* ao,int N);
+
+
+
+
+
 int ooo();
