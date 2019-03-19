@@ -32,6 +32,8 @@ void main()
 	
 double xxx[5]={0,1,2,3,4};
 
+shuchud(xxx,5,1);	
+
 changema(xxx,5);
 shuchud(xxx,5,1);	
 	
