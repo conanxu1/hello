@@ -2100,7 +2100,7 @@ double* fft(double* ary,int dim)
 /*变址计算，将x(n)码位倒置*/  
 int changema(double* x,int size_x)        
 {  
-  double _Complex temp;  
+  double  temp;  
   unsigned short i=0,j=0,k=0;  
   double t;  
   for(i=0;i<size_x;i++)  
@@ -2120,7 +2120,7 @@ int changema(double* x,int size_x)
     x[j]=temp;  
   }  
   }  
-  output(); 
+   
   return 1;
 
   
