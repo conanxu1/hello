@@ -1158,7 +1158,7 @@ int ldvt = n;
 double superb[n];
 LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, A,n, s, u, ldu, vt, ldvt, superb);
 
-shuchud(A,n);
+shuchud(A,n,n);
 }
 
 
