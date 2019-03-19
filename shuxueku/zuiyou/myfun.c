@@ -2113,8 +2113,7 @@ int fft(double _Complex  * ai,double _Complex  * ao,int N)
 	for(j = 0;j < N;j++)
     {
 			ao[i]=out[j][0]+out[j][1]*I;
-		
-            printf("%6.2f ",out[j][0]);
+		shuchuz(ao,N,1);
     }
     printf("\n");
     
