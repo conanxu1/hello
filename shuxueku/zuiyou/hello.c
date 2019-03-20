@@ -32,8 +32,11 @@ int main()
 	
 
 double *y,x0[3]={1,1,1},*p;
-		
-y=ode1(0,10,10000,lianxu,x0,3);
+
+
+double jieguo[(3+1)*(10000+1)];
+
+y=ode1(0,10,10000,lianxu,x0,3,);
 return 0;
 	/*
 
