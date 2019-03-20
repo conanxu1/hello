@@ -47,7 +47,7 @@ double *lianxu(double t,double *x);
 
 
 
-double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim,double *jieguo)
+double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim,double *jieguo);
 
 int  jiecheng(int n);
 
