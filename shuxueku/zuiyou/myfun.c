@@ -247,7 +247,7 @@ double jifen(double a,double b,int n,double (*fff)(double))
 //改写为带控制的
 
 
-double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim)
+double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim,double *jieguo)
 {/*a初值,b终值,n分点,fff连续函数*/   
 
 FILE *logf;
@@ -259,7 +259,6 @@ double h = (b - a)/n;
 
 double t0=a,tk;
 
-double jieguo[(dim+1)*n];   //格式 n分量和时间
 
 
 double* yk =(double *)malloc(dim*sizeof(double));
@@ -275,7 +274,7 @@ double* tem=(double *)malloc(dim*sizeof(double));
 //double *dy =(double *)malloc(size*sizeof(double));
 
 int i;
-
+int j;
 
 
 
@@ -286,10 +285,16 @@ exit(1);}
 //打开文件
 
 
-int weizhi=0;
 
 tk=t0;
 yk=x0;
+
+
+for(j=0;j<dim;j++)
+{jieguo[j]=yk[j];
+}
+jieguo[dim]=t0;
+
 
 
 for(i = 0; i < n; i++)
@@ -335,10 +340,10 @@ tk+=h;
 
 
 
+int weizhi=1;
 
 	
-int j;
-for(j=0;j<dim;j++)
+
 
 
 //yk1=yk+h/6*(q1+2*q1+2*q3+q4);
