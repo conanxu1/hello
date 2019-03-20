@@ -34,11 +34,7 @@ void main()
 double *y,x0[3]={1,1,1},*p;
 		
 y=ode1(0,10,10000,lianxu,x0,3);
-while(1)
-{
-	printf("");
-}	
-
+return 0;
 	/*
 
 	
