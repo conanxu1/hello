@@ -294,6 +294,8 @@ for(j=0;j<dim;j++)
 {jieguo[j]=yk[j];
 }
 jieguo[dim]=t0;
+int weizhi=dim+1;
+
 
 
 
@@ -340,9 +342,7 @@ tk+=h;
 
 
 
-int weizhi=1;
 
-	
 
 
 
@@ -352,8 +352,11 @@ int weizhi=1;
 
 for(j=0;j<dim;j++)
 {jieguo[weizhi+j]=yk[j];
-fprintf(logf , "%lf," , yk[j]);
+fprintf(logf , "%lf," , jieguo[weizhi+j]);
 }
+
+
+
 
 jieguo[weizhi+dim]=tk;
 fprintf(logf , "??%lf" , tk);
@@ -365,9 +368,7 @@ weizhi=weizhi+dim+1;
 }
 fclose(logf);
 
-for(int pp ;p<(n+1)(*dim +1);pp++)
-{printf("%lf",jieguo(pp));
-}
+shuchud(jieguo,n+1,dim+1);
 
 
 
