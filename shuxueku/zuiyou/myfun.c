@@ -366,6 +366,8 @@ weizhi+=dim+1;
 fclose(logf);
 
 
+shuchud(jieguo,n+1,dim+1);
+
 return q1;
 }
 
