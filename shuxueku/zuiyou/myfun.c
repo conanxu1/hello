@@ -247,7 +247,7 @@ double jifen(double a,double b,int n,double (*fff)(double))
 //改写为带控制的
 
 
-double  *ode1(double a,double b,int n,double *(*fff)(double ,double *,double *(*uuu)(double )),double *x0,int dim)
+double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim)
 {/*a初值,b终值,n分点,fff连续函数*/   
 
 FILE *logf;
@@ -291,7 +291,7 @@ yk=x0;
 
 for(i = 0; i < n; i++)
 {
-q1=fff(tk,yk,);
+q1=fff(tk,yk);
 
 
 cblas_daxpby(dim, 1, yk, 1, 0, tem, 1);
