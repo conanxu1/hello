@@ -26,10 +26,12 @@ double f1(double x)
 
 
 double *lianxu(double t,double *x)
-{	int size=3;
+{	
 
+//可在此加入控制
 
-	double *dy =(double *)malloc(size*sizeof(double));
+int size=3;
+double *dy =(double *)malloc(size*sizeof(double));
 	dy[0]=x[0];
 	dy[1]=x[1];
 	dy[2]=x[2];

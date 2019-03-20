@@ -257,7 +257,10 @@ FILE *logf;
 double h = (b - a)/n;
 //划分
 
-double t0=a,tk,jieguo[dim*n];
+double t0=a,tk;
+
+double jieguo[(dim+1)*n];   //格式 n分量和时间
+
 
 double* yk =(double *)malloc(dim*sizeof(double));
 double* q1 =(double *)malloc(dim*sizeof(double));
@@ -344,17 +347,15 @@ for(j=0;j<dim;j++)
 
 for(j=0;j<dim;j++)
 {jieguo[weizhi+j]=yk[j];
-	
-	fprintf(logf , "%lf,%lf" , yk[j],tk);
-	fprintf(logf,"\n");
-		
-
-
+fprintf(logf , "%lf," , yk[j]);
 }
 
+jieguo[weizhi+dim]=tk;
+fprintf(logf , "??%lf" , tk);
+fprintf(logf,"\n");
 
 
-weizhi+=dim;
+weizhi+=dim+1;
 
 }
 fclose(logf);
