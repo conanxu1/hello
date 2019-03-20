@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 from pyvirtualdisplay import Display
 
-
-if 0:
+#是否虚拟输出
+if 1:
 	display = Display(visible=0, size=(800, 600))
 	display.start()
 
