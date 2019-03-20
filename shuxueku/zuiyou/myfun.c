@@ -239,22 +239,25 @@ double jifen(double a,double b,int n,double (*fff)(double))
 	int i;
 	for(i = 1; i < n; i++) 
 		T += (*fff)(a + i * h); 
-	
 	return  h/2*(fff(a)+T*2+fff(b));
-	
 }
 
 
 
-double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim)
+//改写为带控制的
+
+
+double  *ode1(double a,double b,int n,double *(*fff)(double ,double *,double *(*uuu)(double )),double *x0,int dim)
 {/*a初值,b终值,n分点,fff连续函数*/   
 
 FILE *logf;
+//记录用
+
+
 double h = (b - a)/n;
+//划分
 
-double t0=a,tk,jieguo[dim*n],II[dim];
-
-
+double t0=a,tk,jieguo[dim*n];
 
 double* yk =(double *)malloc(dim*sizeof(double));
 double* q1 =(double *)malloc(dim*sizeof(double));
@@ -262,44 +265,25 @@ double* q2 =(double *)malloc(dim*sizeof(double));
 double* q3 =(double *)malloc(dim*sizeof(double));
 double* q4 =(double *)malloc(dim*sizeof(double));
 
-
 double* tem=(double *)malloc(dim*sizeof(double));
-
-
-
-
-
 
 
 //*a要分配内存 或者定义时候分配
 //double *dy =(double *)malloc(size*sizeof(double));
 
-
-
-
-
-
 int i;
 
-for(i = 0; i < dim; i++)
-{
-	II[i]=1;	
-}
+
+
 
 logf=NULL;
-
-
 if((logf = fopen("log.txt" , "w+")) == NULL)
-		{
-			printf("Cannot create/open file");
-			exit(1);		
-			
-		}
-	
+{printf("Cannot create/open file");
+exit(1);}
+//打开文件
 
 
 int weizhi=0;
-
 
 tk=t0;
 yk=x0;
@@ -307,14 +291,12 @@ yk=x0;
 
 for(i = 0; i < n; i++)
 {
-q1=lianxu(tk,yk);
-
-
+q1=fff(tk,yk,);
 
 
 cblas_daxpby(dim, 1, yk, 1, 0, tem, 1);
 cblas_daxpby(dim,h/2, q1, 1, 1, tem, 1);
-q2=lianxu(tk+h/2,tem);
+q2=fff(tk+h/2,tem);
 //lianxu(tk+h/2,yk+h/2*q1);
 
 
@@ -334,8 +316,6 @@ cblas_daxpby(dim,h, q3, 1, 1, tem, 1);
 q4=lianxu(tk+h,tem);
 
 
-
-
 cblas_daxpby(dim, 2, q2, 1, 1, q1, 1);
 cblas_daxpby(dim, 2, q3, 1, 1, q1, 1);
 cblas_daxpby(dim, 1, q4, 1, 1, q1, 1);
@@ -343,9 +323,6 @@ cblas_daxpby(dim, 1, q4, 1, 1, q1, 1);
 
 
 //q1+2*q2+2*q3+q4
-
-
-
 
 
 cblas_daxpby(dim, h/6, q1, 1, 1, yk, 1);
@@ -367,12 +344,9 @@ for(j=0;j<dim;j++)
 
 for(j=0;j<dim;j++)
 {jieguo[weizhi+j]=yk[j];
-
 	
-	
-		
-		fprintf(logf , "%lf,%lf" , yk[j],tk);
-		fprintf(logf,"\n");
+	fprintf(logf , "%lf,%lf" , yk[j],tk);
+	fprintf(logf,"\n");
 		
 
 
@@ -388,6 +362,25 @@ fclose(logf);
 
 return q1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

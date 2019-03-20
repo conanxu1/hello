@@ -30,33 +30,17 @@ void matrix_vector();
 void main()
 {
 	
-double _Complex xxx[4]={1+0*I,2+0*I,-1+0*I,3+0*I},ffo[4]={1+0*I};
 
-
-fft(xxx,ffo,4);
-shuchuz(ffo,4,1);	
-
-	
-
+double *y,x0[3]={1,1,1},*p;
+		
+y=ode1(0,10,10000,lianxu,x0,3);
 while(1)
 {
 	printf("");
-	
 }	
-	
-	
-// double complex a=1+8*I,b=1-8*I;	
-// printf("%1.1f,%1.1f\n\n\n",cimag(a+b),creal(a*b));
-
-// while(1)
-// {
-	// scanf("\n");
-	
-// }
 
 	/*
-	double *y,x0[3]={1,1,1},*p;
-	
+
 	
 	double y0[3]={1,1,1};
 time_t timer;//time_t就是long int 类型
@@ -69,8 +53,7 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 	
-y=ode1(0,10,10000,lianxu,x0,3);
-	
+
 printf("ok");	
 
 
