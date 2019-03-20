@@ -360,7 +360,7 @@ fprintf(logf , "??%lf" , tk);
 fprintf(logf,"\n");
 
 
-weizhi+=dim+1;
+weizhi=weizhi+dim+1;
 
 }
 fclose(logf);
