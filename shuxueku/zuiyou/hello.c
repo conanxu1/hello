@@ -27,7 +27,7 @@ void matrix_vector();
 
 
 
-void main()
+int main()
 {
 	
 

@@ -2,9 +2,9 @@ import os
 import numpy as np
 
 
-#from pyvirtualdisplay import Display
-# display = Display(visible=0, size=(800, 600))
-# display.start()
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(800, 600))
+display.start()
 
 
 import matplotlib.pyplot as plt
@@ -38,3 +38,4 @@ plt.plot(t,x)
 plt.show()
 
 plt.savefig("3.jpg")
+plt.close()
