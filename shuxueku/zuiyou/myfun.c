@@ -600,7 +600,7 @@ void shuchud(double *p,int a,int b)
 int i,j;
 	for(i=1;i<=a;i++)
 	{	for( j=1;j<=b;j++)
-		{printf("%15.7f,",p[(i-1)*b+j-1]);}
+		{printf("%lf,",p[(i-1)*b+j-1]);}
 	printf("\n");
 	}
 	
