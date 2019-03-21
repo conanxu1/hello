@@ -2181,8 +2181,7 @@ for(int j=0;j<e;j++)
 
 int mychol(
 		double *L,		//输入 返回 下三角
-		int dim		//维数
-		)
+		int dim)		//维数
 {
 
 int s=dim;
