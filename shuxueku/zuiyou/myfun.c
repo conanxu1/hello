@@ -1156,7 +1156,6 @@ int ipiv[s];
 int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
 
-shuchud(A,s,s);
 
 
 info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,A,s,ipiv);
@@ -2244,45 +2243,42 @@ ni(GI,dim);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );	
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,TEM2, e,0,TEM3,e );	
 
-
-
-
-/*
 memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
 mychol(LW,e);
 	
-	
+//求V L波浪
 	
 
 double *u=(double *)malloc(dim*sizeof(double));
 	
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
+//u=-gk
+
 
 int info;
-	LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 
 //dim   yigelie
-	
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
 
 
 
 
-
+//-gk u w 
 double *bw=(double *)malloc(e*sizeof(double));
 
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
 
 
+//bw v lam
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
-
 LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
 
 
-
+//-gk hw y x
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u,1 );	
@@ -2290,12 +2286,10 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u
 
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-
 LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
 
 
-
-	*/
+shuchud(u,dim,1);
 	
 		
 	
