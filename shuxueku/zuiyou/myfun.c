@@ -2304,9 +2304,11 @@ else
 	{
 		//不属于的
 		if(tp[j]<1)
-		{
+		{shuchui(tp,ie,1);
 		for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
+	
+	
 		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 		test=test/cblas_ddot(dim, ait, 1, dk,1);
 						
