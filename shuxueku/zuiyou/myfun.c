@@ -2312,7 +2312,7 @@ else
 		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 		test=test/cblas_ddot(dim, ait, 1, dk,1);
 						
-			if(test<zuixiao)
+			if((test<zuixiao)&&(cblas_ddot(dim, ait, 1, dk,1)<0))
 			{zuixiao=test;
 			index=j;}
 		}
