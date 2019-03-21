@@ -2242,8 +2242,8 @@ ni(GI,dim)
 //求逆
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,1,A, e,0,TEM2,e );	
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,1,TEM2, e,0,TEM3,e );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );	
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,TEM2, e,0,TEM3,e );	
 memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
@@ -2277,15 +2277,18 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
 
 LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,gk,1 );	
 
 
-
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
-
-LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
+cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,gk,1 );	
+
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,,1);
+
+LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,bw,1);
+
 
 
 	

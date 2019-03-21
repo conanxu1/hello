@@ -29,13 +29,15 @@ void matrix_vector();
 
 int main()
 {	int d=3;
-	double *G;
-	G=duqu("ceshi.txt",d*d);
-	shuchud(G,d,d);
-	printf("\n");
-	ni(G,d);
-	shuchud(G,d,d);
-	myqp(G,G,d,d);
+	double G[9]={1,-0.5,0,
+				-0.5,1,-0.5,
+				0,-0.5,1
+				};
+	double g[3]={2,-1,0};
+	double A[6]={3,-1,-1,2,-1,-1}
+	double bb{3}={0};
+	
+	myqp(G,A,g,bb,3,2);
 
 
 

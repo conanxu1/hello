@@ -150,7 +150,9 @@ int erci(
 int myqp(
 		double *G,		//hessian
 		double *A,		//grad
+		double *gk,
+		double *b,
 		int dim,		//G维数
 		int   e			//A的列数
-		);		
+		)		
 		
