@@ -2340,7 +2340,7 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
 
-
+shuchud(u,dim,1);
 memcpy(TEM,L,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 memcpy(TEM,Lz,dim*dim*sizeof(double));
