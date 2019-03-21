@@ -2357,7 +2357,7 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 //bw v lam
 double *bw=(double *)malloc(e*sizeof(double));
 cblas_daxpby(e, 1, b, 1, 0, bw, 1);
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, 1,1,bw,1 );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, e, 1,dim, -1,A, dim,u, 1,1,bw,1 );	
 
 
 memcpy(TEM3,LW,e*e*sizeof(double));
@@ -2374,7 +2374,7 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, dim, 1,e, 1,A, dim,bw, 1,1,u,1 );
 
 
 memcpy(TEM,L,dim*dim*sizeof(double));
