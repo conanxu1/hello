@@ -2279,23 +2279,19 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );
 
 
-printf("\njj\n");	
-shuchud(A,dim,e);
-printf("\njj\n");
-
-shuchud(TEM2,dim,e);
-printf("\njj\n");
-shuchud(TEM3,e,e);
 
 
 memcpy(V, TEM3, e*e*sizeof(double));
-
-
-
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
 mychol(LW,e,LWz);
+	
+printf("\njj\n");	
+shuchud(LW,e,e);
+
+
+	
 	
 //求V L波浪
 	
