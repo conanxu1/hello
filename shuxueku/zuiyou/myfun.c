@@ -2266,14 +2266,11 @@ mychol(L,dim,Lz);
 memcpy(GI, G, dim*dim*sizeof(double));	
 ni(GI,dim);
 
-shuchud(GI,dim,dim);
 
-printf("\n1\n");
 shuchud(L,dim,dim);
 
 
-shuchud(Lz,dim,dim);
-
+ 
 
 //求逆
 
@@ -2336,9 +2333,14 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
-	
+
+printf(".....");
+shuchud(L,dim,dim);	
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 shuchud(L,dim,dim);
+
+printf(".....");
+
 shuchud(u,dim,1);
 
 
