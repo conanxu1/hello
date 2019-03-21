@@ -1146,6 +1146,33 @@ void svd2()
 	*/
 }
 
+
+//破坏性逆，也可以先复制
+
+void ni(double *A)
+{
+int ipiv[s];
+int info;
+info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,C,s,ipiv);
+info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
+	
+}	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void mypinv()
 {
 int matrix_order = LAPACK_COL_MAJOR;
@@ -2090,6 +2117,86 @@ double shixing(double t,double a,double b)
 	
 	
 }
+
+//
+int mysqp()
+
+
+
+int erci(
+		double *H,		//hessian
+		double *gk,		//grad
+		double *be,		//b   等式约束
+		double *ae,		//系数
+		double *bi,		////b   不等式约束
+		double *ai,
+		int dim,		//问题的维数
+		int e,			//等式维数
+		int ie,
+		)
+{
+//等式约束
+
+//[G,-A;-A' 0] A等式
+
+
+double *lag=(double *)malloc((dim+e)*(dim+e)*sizeof(double));
+double *you=(double *)malloc((dim+e)*sizeof(double));
+
+
+
+
+memset(lag,0,(dim+e)*(dim+e)*sizeof(double));
+
+for(int i=0;i<dim;i++)
+{for(int j=0;j<dim;j++)
+{lag[(i)*(dim+e)+j]=G[(i)*(dim)+j];}}
+//lag赋值G
+
+for(int i=0;i<dim;i++)
+{for(int j=0;j<e;j++)
+{lag[(i)*(dim+e)+j+dim]=-A[(i)*(e)+j];}}
+//lag赋值G
+//高立  p217
+	
+for(int i=0;i<e;i++)
+{for(int j=0;j<dim;j++)
+{lag[(i+dim)*(dim+e)+j]=-A[(j)*(e)+i];}}
+
+
+for(int j=0;j<dim;j++)
+{you[j]=-gk[j];}
+
+for(int j=0;j<e;j++)
+{you[j]=-be[j];}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 int fft(double _Complex  * ai,double _Complex  * ao,int N)

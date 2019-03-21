@@ -29,24 +29,18 @@ void matrix_vector();
 
 int main()
 {
-	
-
-double *y,x0[3]={1,1,1},*p;
-
-
-double jieguo[(3+1)*(10000+1)];
-
-y=ode1(0,10,10000,lianxu,x0,3,jieguo);
-return 0;
-	/*
-
-	
-	double y0[3]={1,1,1};
 time_t timer;//time_t就是long int 类型
 struct tm *tblock;
 timer = time(NULL);
 tblock = localtime(&timer);
 printf("Local time is: %s\n", asctime(tblock));	
+
+
+return 0;
+	/*
+
+double y0[3]={1,1,1};
+	
 
 
 
