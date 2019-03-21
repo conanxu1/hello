@@ -2301,13 +2301,13 @@ else
 		{tp[A0[j]]=1;}
 	}
 
-	
+	shuchui(tp,ie,1);
 	//alpha测试一遍
 	for(int j=0;j<ie;j++)
 	{
 		//不属于的
 		if(tp[j]<1)
-		{shuchui(tp,ie,1);
+		{
 		for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
 	
