@@ -2287,9 +2287,6 @@ memcpy(LW, TEM3, e*e*sizeof(double));
 
 mychol(LW,e,LWz);
 	
-printf("\njj\n");	
-shuchud(LW,e,e);
-
 
 	
 	
@@ -2321,6 +2318,8 @@ double *bw=(double *)malloc(e*sizeof(double));
 
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
 
+
+shuchu(w,dim,1);
 
 //bw v lam
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
