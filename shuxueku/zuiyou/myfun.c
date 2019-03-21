@@ -2201,7 +2201,7 @@ for(int i=0;i<ie;i++)
 
 
 
-
+shuzhud(zuoyong,e+qinum,dim);
  
 printf("../n");
 
