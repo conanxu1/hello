@@ -44,3 +44,14 @@ printf("Local time is: %s\n", asctime(tblock));
 
 
 
+/**      读取矩阵       */
+int d=3;
+double *G;
+G=duqu("ceshi.txt",d*d);
+shuchud(G,d,d);
+printf("\n");
+ni(G,d);
+shuchud(G,d,d);
+//////////////////////
+
+

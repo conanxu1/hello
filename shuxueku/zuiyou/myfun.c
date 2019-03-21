@@ -2179,8 +2179,38 @@ for(int j=0;j<e;j++)
 
 */
 
+int myqp(
+		double *G,		//hessian
+		double *A,		//grad
+		int dim,		//G维数
+		int   e			//A的列数
+		)
+{
+//复制G
+double *GC=(double *)malloc(dim*dim*sizeof(double));
+memcpy(GC, G, dim*dim*sizeof(double));
+	
+	
+int s=dim;
+int ipiv[s];
+int info;
+info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
+//上三角
+//抹去上面  对角线开根号
+for(int i=0;i<dim;i++)
+for(int j=i+1;j<dim;j++)
+{
+print("%d,%d",i,j);	
+	
+}
 
 
+
+	
+	
+	
+return 0;	
+}
 
 
 

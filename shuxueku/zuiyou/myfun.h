@@ -146,3 +146,11 @@ int erci(
 		int dim,		//问题的维数
 		int e,			//等式维数
 		int ie);
+		
+int myqp(
+		double *G,		//hessian
+		double *A,		//grad
+		int dim,		//G维数
+		int   e			//A的列数
+		);		
+		
