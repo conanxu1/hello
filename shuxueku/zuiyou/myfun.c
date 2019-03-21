@@ -2201,7 +2201,7 @@ L[(i)*dim+j]=0;
 }
 for(int j=0;j<i;j++)
 {
-L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(i)*dim+i]);;	
+L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);;	
 }
 
 
