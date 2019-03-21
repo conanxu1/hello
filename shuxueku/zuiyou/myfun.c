@@ -2227,7 +2227,7 @@ Lz[(i)*dim+i]=L[(i)*dim+i];
 
 
 int myqp(
-		double *G,		//hessian
+		double *H,		//hessian
 		double *A,		//yueshu
 		double *gk,
 		double *b,
@@ -2236,7 +2236,11 @@ int myqp(
 		)
 {
 //复制G
-double *GC=(double *)malloc(dim*dim*sizeof(double));
+cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+
+
+
+
 double *L=(double *)malloc(dim*dim*sizeof(double));
 double *LW=(double *)malloc(e*e*sizeof(double));
 double *Lz=(double *)malloc(dim*dim*sizeof(double));
