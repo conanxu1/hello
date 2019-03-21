@@ -2147,7 +2147,8 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
-
+int qinum=0;
+double ep=1e-14;
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
@@ -2166,7 +2167,7 @@ int index;
 memset(A0,0,ie*sizeof(int));
 
 memcpy(tb,be,e*sizeof(double));
-memcpy(zuoyong,A,dim*e*sizeof(double));
+memcpy(zuoyong,Ae,dim*e*sizeof(double));
 memcpy(tg,h,dim*sizeof(double));
 
 
@@ -2175,7 +2176,6 @@ memcpy(xk,tg,dim*sizeof(double));
 
 //xk=tg
 
-int qinum=0;
 
 while(1)
 {  
@@ -2202,11 +2202,11 @@ if(cblas_dasum(dim, tg,1)<ep)
 		zuixiao=tb[e+i];
 		}
 	}
-	if index>=0
+	if(index>=0)
 		{A0[index]=A0[qinum];
 		A0[qinum-1]=0;
-			for(int tt=0;tt<dim tt++)
-				{zuoyong[e*dim+index*dim+j]=zuoyong[e*dim+qinum*dim+j];
+			for(int tt=0;tt<dim;tt++)
+				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+qinum*dim+tt];
 				}
 		qinum=qinum-1;		
 		}
@@ -2223,37 +2223,35 @@ else
 	zuixiao=1;
 	alpha=1;
 	memset(tp,0,sizeof(int));
-	for{int j=0;j<qinum;j++}
+	for(int j=0;j<qinum;j++)
 	{tp[A0[j]]=1;}
 
 	
 	//alpha测试一遍
-	for{int j=0;j<ie;j++}
+	for(int j=0;j<ie;j++)
 	{
 		//不属于的
 		if(tp[j]<1)
 		{
-						for(int tt=0;tt<dim;tt++)
-						{ait[tt]=A[dim*e+dim*j+tt];
-						}
-						test=(be[j]-cblas_dsdot(dim, ait, 1, xk,1));
-						test=test/cblas_dsdot(dim, ait, 1, dk,1)
+		for(int tt=0;tt<dim;tt++)
+		{ait[tt]=Ai[dim*j+tt];}
+		test=(be[j]-cblas_ddot(dim, ait, 1, xk,1));
+		test=test/cblas_ddot(dim, ait, 1, dk,1);
 						
-			if (test<zuixiao)
+			if(test<zuixiao)
 			{zuixiao=test;
 			index=j;}
 		}
 	}
 
 
-	cblas_axpby(dim,1,xk,1,zuixiao,dk,1);
+	cblas_daxpby(dim,1,xk,1,zuixiao,dk,1);
 
-	if index>-1
-		{qinum=qinum+1
+	if(index>-1)
+		{qinum=qinum+1;
 		A0[qinum-1]=index;
-			for(int tt=0;tt<dim tt++)
-			{zuoyong[e*dim+(qinum-1)*dim+tt]=ie[index*dim+tt];
-				}
+	for(int tt=0;tt<dim ;tt++)
+	{zuoyong[e*dim+(qinum-1)*dim+tt]=Ai[index*dim+tt];}
 		
 		}
 }

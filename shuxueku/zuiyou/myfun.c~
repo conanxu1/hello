@@ -1156,7 +1156,6 @@ int ipiv[s];
 int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
 
-shuchud(A,s,s);
 
 
 info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,A,s,ipiv);
@@ -2126,63 +2125,171 @@ double shixing(double t,double a,double b)
 //int mysqp()
 
 
-/*
 int erci(
 		double *H,		//hessian
-		double *gk,		//grad
+		double *h,		//原问题grad
 		double *be,		//b   等式约束
-		double *ae,		//系数
+		double *Ae,		//系数
 		double *bi,		////b   不等式约束
-		double *ai,
+		double *Ai,
 		int dim,		//问题的维数
-		int e,			//等式维数
-		int ie)
+		int e,			//等式个数
+		int ie,
+		double *xk)
 {
 //等式约束
 
 //[G,-A;-A' 0] A等式
 
 
-double *lag=(double *)malloc((dim+e)*(dim+e)*sizeof(double));
-double *you=(double *)malloc((dim+e)*sizeof(double));
+
+double *G=(double *)malloc(dim*dim*sizeof(double));
 
 
+cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+int qinum=0;
+double ep=1e-14;
+//指标集 自动要求等式约束 
+int *A0=(int *)malloc((ie)*sizeof(int));
+int *tp=(int *)malloc((ie)*sizeof(int));
+//A0>=0
+
+double *tg=(double *)malloc(dim*sizeof(double));
+double *zuoyong=(double *)malloc((e+ie)*dim*sizeof(double));
+double *tb=(double *)malloc((e+ie)*sizeof(double));
+double alpha=0;
+double *dk=(double *)malloc(dim*sizeof(double));
+double test;
+double *ait=(double *)malloc(dim*sizeof(double));
+int zuixiao;
+int index;
+
+memset(A0,0,ie*sizeof(int));
+
+memcpy(tb,be,e*sizeof(double));
+memcpy(zuoyong,Ae,dim*e*sizeof(double));
+memcpy(tg,h,dim*sizeof(double));
 
 
-memset(lag,0,(dim+e)*(dim+e)*sizeof(double));
+myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+memcpy(xk,tg,dim*sizeof(double));
 
-for(int i=0;i<dim;i++)
-{for(int j=0;j<dim;j++)
-{lag[(i)*(dim+e)+j]=G[(i)*(dim)+j];}}
-//lag赋值G
+//xk=tg
 
-for(int i=0;i<dim;i++)
-{for(int j=0;j<e;j++)
-{lag[(i)*(dim+e)+j+dim]=-A[(i)*(e)+j];}}
-//lag赋值G
-//高立  p217
+
+while(1)
+{  
+cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
+
+memset(tb,0,(e+ie)*sizeof(int));
+
+
+myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+memcpy(dk,tg,dim*sizeof(double));
 	
-for(int i=0;i<e;i++)
-{for(int j=0;j<dim;j++)
-{lag[(i+dim)*(dim+e)+j]=-A[(j)*(e)+i];}}
+	
+	
+
+if(cblas_dasum(dim, tg,1)<ep)
+{	
+	zuixiao=0;
+	index=-1;
+	for(int i=0;i<qinum;i++)
+	{	
+		if(tb[e+i]<0&&tb[e+i]<zuixiao)
+		{index=i;
+		zuixiao=tb[e+i];
+		}
+	}
+	if(index>=0)
+		{A0[index]=A0[qinum];
+		A0[qinum-1]=0;
+			for(int tt=0;tt<dim;tt++)
+				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+qinum*dim+tt];
+				}
+		qinum=qinum-1;		
+		}
+	else{
+		
+		memcpy(h,xk,dim*sizeof(double));
+		return 1;
+	}
+}
+else
+{//alpha xk
+
+	index=-1;
+	zuixiao=1;
+	alpha=1;
+	memset(tp,0,sizeof(int));
+	for(int j=0;j<qinum;j++)
+	{tp[A0[j]]=1;}
+
+	
+	//alpha测试一遍
+	for(int j=0;j<ie;j++)
+	{
+		//不属于的
+		if(tp[j]<1)
+		{
+		for(int tt=0;tt<dim;tt++)
+		{ait[tt]=Ai[dim*j+tt];}
+		test=(be[j]-cblas_ddot(dim, ait, 1, xk,1));
+		test=test/cblas_ddot(dim, ait, 1, dk,1);
+						
+			if(test<zuixiao)
+			{zuixiao=test;
+			index=j;}
+		}
+	}
 
 
-for(int j=0;j<dim;j++)
-{you[j]=-gk[j];}
+	cblas_daxpby(dim,1,xk,1,zuixiao,dk,1);
 
-for(int j=0;j<e;j++)
-{you[j]=-be[j];}
+	if(index>-1)
+		{qinum=qinum+1;
+		A0[qinum-1]=index;
+	for(int tt=0;tt<dim ;tt++)
+	{zuoyong[e*dim+(qinum-1)*dim+tt]=Ai[index*dim+tt];}
+		
+		}
+}
+
+	
+
+}
+
+
+free(ait);
+free(dk);
+free(tb);
+	
+	
+free(tg);
+free(tg);
+free(zuoyong);
+free(A0);
+free(G);
+
+
+
+
 
 
 
 }
 
-*/
+
+
+
+
 
 int mychol(
 		double *L,		//输入 返回 下三角
-		int dim,		//维数
-		)
+		int dim,
+		double *Lz		//转好
+		)		//维数
 {
 
 int s=dim;
@@ -2192,14 +2299,31 @@ info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
 //上三角
 //抹去上面  对角线开根号
 
+
 printf("\n\n\n");
 for(int i=0;i<dim;i++)
-{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
-for(int j=i+1;j<dim;j++)
 {
-L[(i)*dim+j]=0;	
-}}
+	for(int j=i+1;j<dim;j++)
+	{
+	L[(i)*dim+j]=0;
+	Lz[(j)*dim+i]=0;
+	}
 
+	for(int j=0;j<i;j++)
+	{
+	L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);
+	Lz[(j)*dim+i]=L[(i)*dim+j];
+	}
+
+}
+
+
+//最后再变化对角线  不能影响  下三角时以列为主循环
+for(int i=0;i<dim;i++)
+{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+Lz[(i)*dim+i]=L[(i)*dim+i];
+
+}
 
 
 	
@@ -2210,16 +2334,37 @@ L[(i)*dim+j]=0;
 
 
 int myqp(
-		double *G,		//hessian
-		double *A,		//grad
+		double *H,		//hessian
+		double *A,		//yueshu
+		double *gk,
+		double *b,
 		int dim,		//G维数
 		int   e			//A的列数
 		)
 {
+	
+
+	
 //复制G
-double *GC=(double *)malloc(dim*dim*sizeof(double));
+double *G=(double *)malloc(dim*dim*sizeof(double));
+double *tgk=(double *)malloc(dim*sizeof(double));
+
+cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+if(e==0)
+{	//无约束还要修正   通过ll分解判断正定
+	ni(G,dim);
+	memcpy(tgk,gk,dim*sizeof(double));
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, -1,G, dim,tgk, 1,0,gk,1 );
+	free(G);
+	free(tgk);
+	return 1;}
+
+
+
 double *L=(double *)malloc(dim*dim*sizeof(double));
 double *LW=(double *)malloc(e*e*sizeof(double));
+double *Lz=(double *)malloc(dim*dim*sizeof(double));
+double *LWz=(double *)malloc(e*e*sizeof(double));
 
 
 double *TEM=(double *)malloc(dim*dim*sizeof(double));
@@ -2232,103 +2377,120 @@ double *V=(double *)malloc(e*e*sizeof(double));
 
 
 memcpy(L, G, dim*dim*sizeof(double));	
-mychol(L,dim);
-//求下三角	
+mychol(L,dim,Lz);
+//求下三角
+
+
 	
 memcpy(GI, G, dim*dim*sizeof(double));	
-ni(GI,dim)
+ni(GI,dim);
+
+
+
+
+ 
+
 //求逆
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,1,A, e,0,TEM2,e );	
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,1,TEM2, e,0,TEM3,e );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, e,dim, 1,GI, dim,A, dim,0,TEM2,e );
+
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, e, e,dim, 1,A, dim,TEM2, e,0,TEM3,e );
+
+
+
+
 memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
-mychol(LW,e);
+mychol(LW,e,LWz);
+	
+
+	
+	
+//求V L波浪
+	
+
+double *u=(double *)malloc(dim*sizeof(double));
+	
+cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
+//u=-gk
+
+
+int info;
+int ipiv[dim],ipive[e];
+
+//dim   yigelie
+//要转一起转了
+//dgesv会破坏原矩阵
+
+
+
+memcpy(TEM,L,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
+memcpy(TEM,Lz,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
+//-gk u w 
+
+
+
+
+//bw v lam
+double *bw=(double *)malloc(e*sizeof(double));
+cblas_daxpby(e, 1, b, 1, 0, bw, 1);
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, e, 1,dim, -1,A, dim,u, 1,1,bw,1 );	
+
+
+memcpy(TEM3,LW,e*e*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
+memcpy(TEM3,LWz,e*e*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
+
+
+
+//-gk hw y x
+cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
+
+
+
+
+
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, dim, 1,e, 1,A, dim,bw, 1,1,u,1 );
+
+
+memcpy(TEM,L,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
+memcpy(TEM,Lz,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
+
+printf("lambda\n");
+shuchud(bw,e,1);
+
+printf("x*\n");
+shuchud(u,dim,1);
+	
+memcpy(gk,u,dim*sizeof(double));		
+memcpy(b,bw,dim*sizeof(double));		
 	
 	
 	
-	
-	
-	
-int N = 4;
+free(bw);
+free(u);	
 
-    double A[16] = {  1,  2,  3,  1,
+free(G);
+free(GI);
 
-                      4,  2,  0,  2,
+free(L);
+free(LW);
+free(Lz);
+free(LWz);
+free(TEM);
+free(TEM2);
+free(TEM3);
+free(V);
 
-                     -2,  0, -1,  2,
-
-                      3,  4,  2, -3};
-
-    double B[8] = {  6,  2,  1,  8,
-
-                     1,  2,  3,  4};
-
-    int ipiv[4];
-
-    int n = N;
-
-    int nrhs = 2;
-
-    int lda = N;
-
-    int ldb = N;
-
-
-
-int info=LAPACKE_dgesv(LAPACK_COL_MAJOR,n,nrhs,A,lda,ipiv,B,ldb);
-
-    printf("info:%d/n",info);
-
-    if(info==0)
-
-    {
-
-        int i = 0;
-
-        int j = 0;
-
-        for(j=0;j<</span>nrhs;j++)
-
-        {
-
-            printf("x%d/n",j);
-
-            for(i=0;i<</span>N;i++)
-
-                printf("%.6g /t",B[i+j*N]);
-
-            printf("/n");
-
-        }
-
-    }
-
-}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 return 0;	

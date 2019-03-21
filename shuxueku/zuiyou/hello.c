@@ -46,19 +46,17 @@ double be[0];
 
 
 double Ai[10]={ 0,-1,
-				-1,-1,
-				-1,0,
-				1,0,
-				0,1};
+-1,-1,
+-1,0,
+1,0,
+ 0,1};
 				
 double bi[5]={-3,-4,-2,0,0};
 double xk[2]={0,3};
-				
-				
-				
-erci(H,h,be,Ae,Bi,Ai,2,0,5,);
 
+erci(H,h,be,Ae,bi,Ai,2,0,5,xk);
 
+shuchud(xk,2,1);
 
 
 
