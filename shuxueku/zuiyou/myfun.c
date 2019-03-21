@@ -2183,13 +2183,6 @@ memcpy(tg,h,dim*sizeof(double));
 memcpy(tbi,bi,ie*sizeof(double));
 
 
-shuchud(tbi,ie,1);
-printf("..bi\n");
-
-shuchud(Ai,ie,dim);
-printf("..Ai\n");
-shuchud(xk,dim,1);
-printf("..xk\n");
 
 
 
@@ -2201,7 +2194,7 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1
 index=0;  //借用
 
 
-shuchud(tbi,ie,1);
+
 
 for(int i=0;i<ie;i++)
 {
@@ -2212,7 +2205,8 @@ for(int i=0;i<ie;i++)
 				A0[qinum-1]=i;
 				for(int tt=0;tt<dim;tt++)
 				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
-			printf("%lf,%d,%d",Ai[dim*i+tt],qinum,tt);
+			
+			
 			
 				}
 				
