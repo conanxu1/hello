@@ -2312,9 +2312,6 @@ int ipiv[dim],ipive[e];
 
 memcpy(TEM,L,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
-
-
-
 memcpy(TEM,L,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 //-gk u w 
@@ -2346,12 +2343,7 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u
 
 memcpy(TEM,L,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
-
 memcpy(TEM,Lz,dim*dim*sizeof(double));
-
-
-
-
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 
 
