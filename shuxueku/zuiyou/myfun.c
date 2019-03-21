@@ -2244,7 +2244,7 @@ shuchui(A0,ie,1);
 printf("qiz\n");
 
 printf("xk\n");
-shuchui(xk,dim,1);
+shuchud(xk,dim,1);
 printf("..\n");
 
 
