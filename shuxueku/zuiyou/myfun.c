@@ -2317,7 +2317,7 @@ else
 	}
 
 
-	cblas_daxpby(dim,1,xk,1,zuixiao,dk,1);
+	cblas_daxpby(dim,1,zuixiao,dk,1,1,xk);
 /////////
 
 
