@@ -2259,6 +2259,7 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 
 int info;
+int ipiv[dim],ipive[e];
 
 //dim   yigelie
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
@@ -2274,8 +2275,8 @@ cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,
 
 
 //bw v lam
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
-LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
+LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipive,bw,1);
 
 
 //-gk hw y x
