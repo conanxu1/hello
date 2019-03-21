@@ -2288,7 +2288,7 @@ int ipiv[dim],ipive[e];
 //dim   yigelie
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
-
+printf("\n44\n");
 
 
 
