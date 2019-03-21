@@ -2338,6 +2338,8 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 shuchud(u,dim,1);
+shuchud(A,dim,e);
+shuchud(bw,e,1);
 
 
 
