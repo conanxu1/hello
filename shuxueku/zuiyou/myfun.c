@@ -2203,7 +2203,7 @@ for(int i=0;i<ie;i++)
 
 
  
-
+printf("../n");
 
 //xk=tg
 
