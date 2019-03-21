@@ -2258,7 +2258,10 @@ shuchud(GI,dim,dim);
 //求逆
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );
+
+shuchud(TEM2,dim,e);
+	
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,TEM2, e,0,TEM3,e );	
 
 memcpy(V, TEM3, e*e*sizeof(double));
