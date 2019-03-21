@@ -2193,9 +2193,7 @@ for(int i=0;i<ie;i++)
 			}
 }
 
-if(index=0)
-{memcpy(xk,tg,dim*sizeof(double));}
-
+ 
 
 //定义其作用集 函数 由初始点起作用集
 
