@@ -2325,7 +2325,8 @@ double *bw=(double *)malloc(e*sizeof(double));
 cblas_daxpby(e, 1, b, 1, 0, bw, 1);
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
 
-
+printf("u\n");
+shuchud(bw,e,1);
 
 memcpy(TEM3,LW,e*e*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
@@ -2346,9 +2347,10 @@ printf("A\n");
 shuchud(A,dim,e);
 
 
-printf("u\n");
+printf("l\n");
 shuchud(bw,e,1);
 
+printf("u\n");
 
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
