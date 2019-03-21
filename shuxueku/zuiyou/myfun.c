@@ -2236,6 +2236,7 @@ int myqp(
 		)
 {
 //复制G
+double *G=(double *)malloc(dim*dim*sizeof(double));
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 
 
