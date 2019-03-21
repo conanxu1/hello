@@ -2394,9 +2394,15 @@ for(int i=0;i<ie;i++)
 
 t=t+10;
 
+double ep=1e-15;;
+double *x0=(double *)malloc(dim*sizeof(double));
+memset(x0,0,dim*sizeof(double));
 
 
 
+
+while(t>ep)
+{
 
 double *AM=(double *)malloc((2*e+ie)*dim*sizeof(double));
 double *BM=(double *)malloc((2*e+ie)*sizeof(double));
@@ -2429,12 +2435,18 @@ for(int i=0;i<ie;i++)
 }
 
 
-double *x0=(double *)malloc(dim*sizeof(double));
-memset(x0,0,dim*sizeof(double));
 
 erci(H,hw,BM,AM,bbi,aai,dim,0,(2*e+ie),x0);
 
 shuchud(hw,dim,1);
+
+memcpy(x0,hw,dim*sizeof(double));
+t=t/2;
+}
+
+
+
+
 
 
 erci(H,h,be,Ae,bi,Ai,dim,e,ie,hw);
