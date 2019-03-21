@@ -2171,19 +2171,37 @@ memcpy(zuoyong,Ae,dim*e*sizeof(double));
 memcpy(tg,h,dim*sizeof(double));
 
 
-myqp(H,zuoyong,tg,tb,dim,(e+qinum));
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,tg, 1,0,dk,1 );
-cblas_daxpby(dim,1,xk,1,-1,dk,1);
+
+
+memcpy(dk,bi,ie);
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-,dk,1 );
+
+
+
 index=0;  //借用
-for(int i=0;i<dim;i++)
-{		if(dk[i]<0) 
-			{index=1;}
+
+
+for(int i=0;i<ie;i++)
+{		if(dk[i]<ep) 
+			{	qinum+=1
+				A0[qinum-1]=i;
+				for(int tt;tt<dim;tt++)
+				{zuoyong[dim*e+(qinum-1)+tt]=Ai[dim*i+tt]}
+				
+			}
 }
 
 if(index=0)
 {memcpy(xk,tg,dim*sizeof(double));}
+
+
+//定义其作用集 函数 由初始点起作用集
+
+
+
+
 
 
  
@@ -2221,7 +2239,8 @@ if(cblas_dasum(dim, tg,1)<ep)
 		{A0[index]=A0[qinum];
 		A0[qinum-1]=0;
 			for(int tt=0;tt<dim;tt++)
-				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+qinum*dim+tt];
+				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+ (qinum-1)*dim+tt];
+				//用最后的覆盖
 				}
 		qinum=qinum-1;		
 		}
