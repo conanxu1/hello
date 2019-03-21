@@ -2133,8 +2133,7 @@ int erci(
 		double *ai,
 		int dim,		//问题的维数
 		int e,			//等式维数
-		int ie,
-		)
+		int ie)
 {
 //等式约束
 

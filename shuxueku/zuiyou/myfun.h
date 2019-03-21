@@ -128,3 +128,17 @@ void ni(double *A,int dim);
 
 
 int ooo();
+
+
+
+
+int erci(
+		double *H,		//hessian
+		double *gk,		//grad
+		double *be,		//b   等式约束
+		double *ae,		//系数
+		double *bi,		////b   不等式约束
+		double *ai,
+		int dim,		//问题的维数
+		int e,			//等式维数
+		int ie);
