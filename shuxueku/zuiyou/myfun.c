@@ -2180,7 +2180,11 @@ for(int j=0;j<e;j++)
 
 int mychol(
 		double *L,		//输入 返回 下三角
-		int dim)		//维数
+		int dim,
+		double *Lz,		//转好
+		
+		
+		)		//维数
 {
 
 int s=dim;
@@ -2197,19 +2201,25 @@ for(int i=0;i<dim;i++)
 {
 for(int j=i+1;j<dim;j++)
 {
-L[(i)*dim+j]=0;	
+L[(i)*dim+j]=0;
+Lz[(j)*dim+i]=0
+	
 }
 for(int j=0;j<i;j++)
 {
-L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);;	
+L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);
+Lz[(j)*dim+i]=L[(i)*dim+j];
+
 }
 }
 
 
 //最后再变化对角线  不能影响  下三角时以列为主循环
 for(int i=0;i<dim;i++)
-L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+Lz[(i)*dim+i]=sqrt(L[(i)*dim+i]);
 
+}
 
 
 	
@@ -2232,6 +2242,8 @@ int myqp(
 double *GC=(double *)malloc(dim*dim*sizeof(double));
 double *L=(double *)malloc(dim*dim*sizeof(double));
 double *LW=(double *)malloc(e*e*sizeof(double));
+double *Lz=(double *)malloc(dim*dim*sizeof(double));
+double *LWz=(double *)malloc(e*e*sizeof(double));
 
 
 double *TEM=(double *)malloc(dim*dim*sizeof(double));
@@ -2244,7 +2256,7 @@ double *V=(double *)malloc(e*e*sizeof(double));
 
 
 memcpy(L, G, dim*dim*sizeof(double));	
-mychol(L,dim);
+mychol(L,dim,Lz);
 //求下三角
 
 
@@ -2271,7 +2283,7 @@ memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
-mychol(LW,e);
+mychol(LW,e,LWz);
 	
 //求V L波浪
 	
@@ -2286,8 +2298,12 @@ int info;
 int ipiv[dim],ipive[e];
 
 //dim   yigelie
+//要转一起转了
+
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
 printf("\n44\n");
 
 
@@ -2300,7 +2316,9 @@ cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,
 
 //bw v lam
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
-LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipive,bw,1);
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
 
 
 //-gk hw y x
@@ -2313,7 +2331,9 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u
 
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
 
 
 shuchud(u,dim,1);
