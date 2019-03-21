@@ -2306,7 +2306,7 @@ int ipiv[dim],ipive[e];
 //要转一起转了
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-
+shuchud(u,dim,1);
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
 printf("\n44\n");
@@ -2319,7 +2319,7 @@ double *bw=(double *)malloc(e*sizeof(double));
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
 
 
-shuchud(w,dim,1);
+shuchud(bw,dim,1);
 
 //bw v lam
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
