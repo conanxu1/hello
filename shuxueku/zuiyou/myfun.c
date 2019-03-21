@@ -2263,7 +2263,11 @@ memcpy(GI, G, dim*dim*sizeof(double));
 ni(GI,dim);
 
 shuchud(GI,dim,dim);
+
+printf("\n1\n");
 shuchud(L,dim,dim);
+
+printf("\n1\n");
 shuchud(Lz,dim,dim);
 
 
