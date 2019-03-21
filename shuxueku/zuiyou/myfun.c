@@ -2124,7 +2124,7 @@ double shixing(double t,double a,double b)
 
 //int mysqp()
 
-/*
+
 int erci(
 		double *H,		//hessian
 		double *h,		//原问题grad
@@ -2134,7 +2134,8 @@ int erci(
 		double *Ai,
 		int dim,		//问题的维数
 		int e,			//等式个数
-		int ie)
+		int ie,
+		double *xk)
 {
 //等式约束
 
@@ -2149,22 +2150,126 @@ cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
+int *tp=(int *)malloc((ie)*sizeof(int));
+//A0>=0
+
+double *tg=(double *)malloc(dim*sizeof(double));
+double *zuoyong=(double *)malloc((e+ie)*dim*sizeof(double));
+double *tb=(double *)malloc((e+ie)*sizeof(double));
+double alpha=0;
+double *dk=(double *)malloc(dim*sizeof(double));
+double test;
+double *ait=(double *)malloc(dim*sizeof(double));
+int zuixiao;
+int index;
+
+memset(A0,0,ie*sizeof(int));
+
+memcpy(tb,be,e*sizeof(double));
+memcpy(zuoyong,A,dim*e*sizeof(double));
+memcpy(tg,h,dim*sizeof(double));
+
+
+myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+memcpy(xk,tg,dim*sizeof(double));
+
+//xk=tg
+
+int qinum=0;
 
 while(1)
-{
+{  
+cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
+
+memset(tb,0,(e+ie)*sizeof(int));
+
+
+myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+memcpy(dk,tg,dim*sizeof(double));
 	
 	
 	
+
+if(cblas_dasum(dim, tg,1)<ep)
+{	
+	zuixiao=0;
+	index=-1;
+	for(int i=0;i<qinum;i++)
+	{	
+		if(tb[e+i]<0&&tb[e+i]<zuixiao)
+		{index=i;
+		zuixiao=tb[e+i];
+		}
+	}
+	if index>=0
+		{A0[index]=A0[qinum];
+		A0[qinum-1]=0;
+			for(int tt=0;tt<dim tt++)
+				{zuoyong[e*dim+index*dim+j]=zuoyong[e*dim+qinum*dim+j];
+				}
+		qinum=qinum-1;		
+		}
+	else{
+		
+		memcpy(h,xk,dim*sizeof(double));
+		return 1;
+	}
+}
+else
+{//alpha xk
+
+	index=-1;
+	zuixiao=1;
+	alpha=1;
+	memset(tp,0,sizeof(int));
+	for{int j=0;j<qinum;j++}
+	{tp[A0[j]]=1;}
+
+	
+	//alpha测试一遍
+	for{int j=0;j<ie;j++}
+	{
+		//不属于的
+		if(tp[j]<1)
+		{
+						for(int tt=0;tt<dim;tt++)
+						{ait[tt]=A[dim*e+dim*j+tt];
+						}
+						test=(be[j]-cblas_dsdot(dim, ait, 1, xk,1));
+						test=test/cblas_dsdot(dim, ait, 1, dk,1)
+						
+			if (test<zuixiao)
+			{zuixiao=test;
+			index=j;}
+		}
+	}
+
+
+	cblas_axpby(dim,1,xk,1,zuixiao,dk,1);
+
+	if index>-1
+		{qinum=qinum+1
+		A0[qinum-1]=index;
+			for(int tt=0;tt<dim tt++)
+			{zuoyong[e*dim+(qinum-1)*dim+tt]=ie[index*dim+tt];
+				}
+		
+		}
+}
+
+	
+
+}
+
+
+free(ait);
+free(dk);
+free(tb);
 	
 	
-}	
-
-
-
-
-
-
-
+free(tg);
+free(tg);
 free(zuoyong);
 free(A0);
 free(G);
@@ -2175,41 +2280,9 @@ free(G);
 
 
 
-double *lag=(double *)malloc((dim+e)*(dim+e)*sizeof(double));
-double *you=(double *)malloc((dim+e)*sizeof(double));
-
-
-
-
-memset(lag,0,(dim+e)*(dim+e)*sizeof(double));
-
-for(int i=0;i<dim;i++)
-{for(int j=0;j<dim;j++)
-{lag[(i)*(dim+e)+j]=G[(i)*(dim)+j];}}
-//lag赋值G
-
-for(int i=0;i<dim;i++)
-{for(int j=0;j<e;j++)
-{lag[(i)*(dim+e)+j+dim]=-A[(i)*(e)+j];}}
-//lag赋值G
-//高立  p217
-	
-for(int i=0;i<e;i++)
-{for(int j=0;j<dim;j++)
-{lag[(i+dim)*(dim+e)+j]=-A[(j)*(e)+i];}}
-
-
-for(int j=0;j<dim;j++)
-{you[j]=-gk[j];}
-
-for(int j=0;j<e;j++)
-{you[j]=-be[j];}
-
-
-
 }
 
-*/
+
 
 
 
@@ -2271,10 +2344,22 @@ int myqp(
 		int   e			//A的列数
 		)
 {
+	
+
+	
 //复制G
 double *G=(double *)malloc(dim*dim*sizeof(double));
-cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+double *tgk=(double *)malloc(dim*sizeof(double));
 
+cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+if(e==0)
+{	//无约束还要修正   通过ll分解判断正定
+	ni(G,dim);
+	memcpy(tgk,gk,dim*sizeof(double));
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, -1,G, dim,tgk, 1,0,gk,1 );
+	free(G);
+	free(tgk);
+	return 1;}
 
 
 
@@ -2388,11 +2473,13 @@ shuchud(bw,e,1);
 printf("x*\n");
 shuchud(u,dim,1);
 	
-		
+memcpy(gk,u,dim*sizeof(double));		
+memcpy(b,bw,dim*sizeof(double));		
 	
 	
 	
-	
+free(bw);
+free(u);	
 
 free(G);
 free(GI);
