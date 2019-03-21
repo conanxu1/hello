@@ -2200,7 +2200,7 @@ info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
 for(int i=0;i<dim;i++)
 for(int j=i+1;j<dim;j++)
 {
-print("%d,%d",i,j);	
+printf("%d,%d",i,j);	
 	
 }
 
