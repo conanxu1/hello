@@ -2159,6 +2159,11 @@ double *zuoyong=(double *)malloc((e+ie)*dim*sizeof(double));
 double *tb=(double *)malloc((e+ie)*sizeof(double));
 double alpha=0;
 double *dk=(double *)malloc(dim*sizeof(double));
+double *tbi=(double *)malloc(ie*sizeof(double));
+
+
+
+
 double test;
 double *ait=(double *)malloc(dim*sizeof(double));
 int zuixiao;
@@ -2175,16 +2180,16 @@ memcpy(tg,h,dim*sizeof(double));
 
 
 
-memcpy(dk,bi,ie);
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-1,dk,1 );
+memcpy(tbi,bi,ie);
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-1,tbi,1 );
 
 
 
 index=0;  //借用
-shuchud(dk,dim,1);
+shuchud(tbi,dim,1);
 
 for(int i=0;i<ie;i++)
-{		if(dk[i]<ep) 
+{		if(tbi[i]<ep) 
 			{	qinum+=1;
 				A0[qinum-1]=i;
 				for(int tt;tt<dim;tt++)
