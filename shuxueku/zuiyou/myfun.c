@@ -2176,7 +2176,7 @@ memcpy(tg,h,dim*sizeof(double));
 
 
 memcpy(dk,bi,ie);
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-,dk,1 );
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-1,dk,1 );
 
 
 
