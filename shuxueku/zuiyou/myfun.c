@@ -2263,10 +2263,9 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e
 
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );	
 
-shuchud(TEM3,e,e);
-	
+
 memcpy(V, TEM3, e*e*sizeof(double));
-shuchud(V,e,e);
+
 
 
 memcpy(LW, TEM3, e*e*sizeof(double));
@@ -2306,6 +2305,8 @@ LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipive,bw,1);
 
 //-gk hw y x
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
+prinf("\n44\n");
+
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u,1 );	
 
