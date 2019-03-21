@@ -35,7 +35,7 @@ int main()
 	printf("\n");
 	ni(G,d);
 	shuchud(G,d,d);
-myqp(G,G,d,d);
+	myqp(G,G,d,d);
 
 
 

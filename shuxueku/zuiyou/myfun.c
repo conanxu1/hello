@@ -2197,10 +2197,12 @@ int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
 //上三角
 //抹去上面  对角线开根号
+
+printf("\n\n\n");
 for(int i=0;i<dim;i++)
 for(int j=i+1;j<dim;j++)
 {
-printf("%d,%d",i,j);	
+printf("%d,%d\n",i,j);	
 	
 }
 
