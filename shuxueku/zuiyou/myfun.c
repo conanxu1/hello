@@ -2194,7 +2194,7 @@ shuchud(L,s,s);
 
 printf("\n\n\n");
 for(int i=0;i<dim;i++)
-{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+{
 for(int j=i+1;j<dim;j++)
 {
 L[(i)*dim+j]=0;	
@@ -2203,8 +2203,8 @@ for(int j=0;j<i;j++)
 {
 L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);;	
 }
-
-
+//最后再变化对角线
+L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
 }
 
 
