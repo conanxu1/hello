@@ -2204,14 +2204,13 @@ index=0;  //借用
 shuchud(tbi,ie,1);
 
 for(int i=0;i<ie;i++)
-{printf("kk");
+{
 	if(tbi[i]<ep) 
 			{	
-		printf("ll");
 		
 		qinum+=1;
 				A0[qinum-1]=i;
-				for(int tt;tt<dim;tt++)
+				for(int tt=0;tt<dim;tt++)
 				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
 			printf("%lf,%d,%d",Ai[dim*i+tt],qinum,tt);
 			
