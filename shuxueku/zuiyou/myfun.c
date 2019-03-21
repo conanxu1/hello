@@ -2243,6 +2243,12 @@ printf("qiz\n");
 shuchui(A0,ie,1);
 printf("qiz\n");
 
+printf("xk\n");
+shuchui(xk,dim,1);
+printf("..\n");
+
+
+
 
 cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
@@ -2262,7 +2268,7 @@ if(cblas_dasum(dim, tg,1)<ep)
 	index=-1;
 	for(int i=0;i<qinum;i++)
 	{	
-		if(tb[e+i]<0&&tb[e+i]<zuixiao)
+		if(tb[e+i]<zuixiao)
 		{index=i;
 		zuixiao=tb[e+i];
 		}
@@ -2312,6 +2318,9 @@ else
 
 
 	cblas_daxpby(dim,1,xk,1,zuixiao,dk,1);
+/////////
+
+
 
 	if(index>-1)
 		{qinum=qinum+1;
