@@ -2134,7 +2134,7 @@ int erci(
 		double *Ai,
 		int dim,		//问题的维数
 		int e,			//等式个数
-		int ie,
+		int ie,			//不等式个数
 		double *xk)
 {
 //等式约束
@@ -2172,7 +2172,22 @@ memcpy(tg,h,dim*sizeof(double));
 
 
 myqp(H,zuoyong,tg,tb,dim,(e+qinum));
-memcpy(xk,tg,dim*sizeof(double));
+
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,tg, 1,0,dk,1 );
+cblas_daxpby(dim,1,xk,-1,dk,1);
+index=0;  //借用
+for(int i=0;i<dim;i++)
+{		if(dk[i]<0) 
+			{index=1;}
+}
+
+if(index=0)
+{memcpy(xk,tg,dim*sizeof(double));}
+
+
+ 
+
 
 //xk=tg
 
