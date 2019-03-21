@@ -2233,7 +2233,11 @@ double *V=(double *)malloc(e*e*sizeof(double));
 
 memcpy(L, G, dim*dim*sizeof(double));	
 mychol(L,dim);
-//求下三角	
+//求下三角
+
+shuchud(L,dim,dim);
+
+
 	
 memcpy(GI, G, dim*dim*sizeof(double));	
 ni(GI,dim);
