@@ -1149,8 +1149,9 @@ void svd2()
 
 //破坏性逆，也可以先复制
 
-void ni(double *A)
+void ni(double *A,int dim)
 {
+int s=dim;
 int ipiv[s];
 int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,C,s,ipiv);
