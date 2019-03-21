@@ -2180,7 +2180,7 @@ memcpy(tg,h,dim*sizeof(double));
 
 
 
-memcpy(tbi,bi,ie);
+memcpy(tbi,bi,ie*sizeof(double));
 
 
 shuchud(tbi,ie,1);
