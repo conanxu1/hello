@@ -2317,6 +2317,13 @@ else
 	}
 
 
+	printf("\n....dk");
+	shuchud(dk,dim,1);
+	printf("\n");
+	printf("\n..%lf..alpha",zuixiao);
+	printf("\n");
+	
+	
 	cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
 /////////
 
