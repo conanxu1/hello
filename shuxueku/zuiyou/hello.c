@@ -45,7 +45,7 @@ double be[0];
 
 
 
-double Ai[10]={ 0,-1,
+double Ai[10]={0,-1,
 -1,-1,
 -1,0,
 1,0,
@@ -56,6 +56,8 @@ double xk[2]={0,3};
 
 erci(H,h,be,Ae,bi,Ai,2,0,5,xk);
 
+
+printf("\n");
 shuchud(xk,2,1);
 
 
