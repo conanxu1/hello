@@ -2206,7 +2206,7 @@ L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);;
 }
 
 
-//最后再变化对角线
+//最后再变化对角线  不能影响  下三角时以列为主循环
 for(int i=0;i<dim;i++)
 L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
 
@@ -2247,12 +2247,14 @@ memcpy(L, G, dim*dim*sizeof(double));
 mychol(L,dim);
 //求下三角
 
-shuchud(L,dim,dim);
-
 
 	
 memcpy(GI, G, dim*dim*sizeof(double));	
 ni(GI,dim);
+
+shuchud(GI,dim,dim);
+
+
 //求逆
 
 
@@ -2260,6 +2262,9 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,TEM2, e,0,TEM3,e );	
 
 memcpy(V, TEM3, e*e*sizeof(double));
+shuchud(V,e,e);
+
+
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
