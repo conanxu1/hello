@@ -2237,7 +2237,7 @@ mychol(L,dim);
 //求下三角	
 	
 memcpy(GI, G, dim*dim*sizeof(double));	
-ni(GI,dim)
+ni(GI,dim);
 //求逆
 
 
