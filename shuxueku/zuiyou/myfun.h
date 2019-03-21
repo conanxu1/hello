@@ -159,5 +159,5 @@ int myqp(
 int mychol(
 		double *L,		//输入 返回 下三角
 		int dim,
-		double *Lz,		//转好
+		double *Lz		//转好
 	);		//维数
