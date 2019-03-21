@@ -40,6 +40,13 @@ double *dy =(double *)malloc(size*sizeof(double));
 
 
 
+
+
+
+
+
+
+/*
 double *kongzhi(double t)
 {
 dim=2;
@@ -154,7 +161,7 @@ return dy;
 
 
 
-
+*/
 
 
 
