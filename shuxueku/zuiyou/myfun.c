@@ -2181,13 +2181,26 @@ memcpy(tg,h,dim*sizeof(double));
 
 
 memcpy(tbi,bi,ie);
+
+
+shuchud(tbi,ie,1);
+printf("..bi\n");
+
+shuchud(Ai,ie,dim);
+printf("..Ai\n");
+shuchud(xk,dim,1);
+printf("..xk\n");
+
+
+
+
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-1,tbi,1 );
 
 
 
 index=0;  //借用
-shuchud(tbi,ie,1);
-printf("../n");
+
+
 
 
 for(int i=0;i<ie;i++)
