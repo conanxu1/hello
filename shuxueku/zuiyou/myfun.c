@@ -2175,7 +2175,7 @@ myqp(H,zuoyong,tg,tb,dim,(e+qinum));
 
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,tg, 1,0,dk,1 );
-cblas_daxpby(dim,1,xk,-1,dk,1);
+cblas_daxpby(dim,1,xk,1,-1,dk,1);
 index=0;  //借用
 for(int i=0;i<dim;i++)
 {		if(dk[i]<0) 
