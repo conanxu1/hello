@@ -2215,7 +2215,7 @@ for(int i=0;i<dim;i++)
 //最后再变化对角线  不能影响  下三角时以列为主循环
 for(int i=0;i<dim;i++)
 {L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
-Lz[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+Lz[(i)*dim+i]=L[(i)*dim+i];
 
 }
 
