@@ -2179,6 +2179,36 @@ for(int j=0;j<e;j++)
 
 */
 
+int mychol(
+		double *L,		//输入 返回 下三角
+		int dim,		//维数
+		)
+{
+
+int s=dim;
+int ipiv[s];
+int info;
+info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
+//上三角
+//抹去上面  对角线开根号
+
+printf("\n\n\n");
+for(int i=0;i<dim;i++)
+{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
+for(int j=i+1;j<dim;j++)
+{
+L[(i)*dim+j]=0;	
+}}
+
+
+
+	
+//得下三角
+
+	
+}
+
+
 int myqp(
 		double *G,		//hessian
 		double *A,		//grad
@@ -2188,26 +2218,116 @@ int myqp(
 {
 //复制G
 double *GC=(double *)malloc(dim*dim*sizeof(double));
-memcpy(GC, G, dim*dim*sizeof(double));
+double *L=(double *)malloc(dim*dim*sizeof(double));
+double *LW=(double *)malloc(e*e*sizeof(double));
+
+
+double *TEM=(double *)malloc(dim*dim*sizeof(double));
+double *GI=(double *)malloc(dim*dim*sizeof(double));
+double *TEM2=(double *)malloc(dim*e*sizeof(double));
+
+double *TEM3=(double *)malloc(e*e*sizeof(double));
+
+double *V=(double *)malloc(e*e*sizeof(double));
+
+
+memcpy(L, G, dim*dim*sizeof(double));	
+mychol(L,dim);
+//求下三角	
+	
+memcpy(GI, G, dim*dim*sizeof(double));	
+ni(GI,dim)
+//求逆
+
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,1,A, e,0,TEM2,e );	
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,1,TEM2, e,0,TEM3,e );	
+memcpy(V, TEM3, e*e*sizeof(double));
+memcpy(LW, TEM3, e*e*sizeof(double));
+
+
+mychol(LW,e);
 	
 	
-int s=dim;
-int ipiv[s];
-int info;
-info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
-//上三角
-//抹去上面  对角线开根号
-
-printf("\n\n\n");
-for(int i=0;i<dim;i++)
-for(int j=i+1;j<dim;j++)
-{
-printf("%d,%d\n",i,j);	
 	
-}
+	
+	
+	
+int N = 4;
+
+    double A[16] = {  1,  2,  3,  1,
+
+                      4,  2,  0,  2,
+
+                     -2,  0, -1,  2,
+
+                      3,  4,  2, -3};
+
+    double B[8] = {  6,  2,  1,  8,
+
+                     1,  2,  3,  4};
+
+    int ipiv[4];
+
+    int n = N;
+
+    int nrhs = 2;
+
+    int lda = N;
+
+    int ldb = N;
 
 
 
+    int info = LAPACKE_dgesv(LAPACK_COL_MAJOR,n,nrhs,A,lda,ipiv,B,ldb);
+
+    printf("info:%d/n",info);
+
+    if(info==0)
+
+    {
+
+        int i = 0;
+
+        int j = 0;
+
+        for(j=0;j<</span>nrhs;j++)
+
+        {
+
+            printf("x%d/n",j);
+
+            for(i=0;i<</span>N;i++)
+
+                printf("%.6g /t",B[i+j*N]);
+
+            printf("/n");
+
+        }
+
+    }
+
+}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
