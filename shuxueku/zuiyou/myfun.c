@@ -2307,7 +2307,7 @@ else
 		{
 		for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
-		test=(be[j]-cblas_ddot(dim, ait, 1, xk,1));
+		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 		test=test/cblas_ddot(dim, ait, 1, dk,1);
 						
 			if(test<zuixiao)
