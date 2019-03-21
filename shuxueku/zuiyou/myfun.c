@@ -2207,9 +2207,11 @@ printf("../n");
 
 //xk=tg
 
-
-while(1)
+/////***/
+for(int i=0 ; i<5;i++)
 {  
+
+
 cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
 
