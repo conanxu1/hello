@@ -2192,7 +2192,6 @@ info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
 //上三角
 //抹去上面  对角线开根号
 
-shuchud(L,s,s);
 
 printf("\n\n\n");
 for(int i=0;i<dim;i++)
@@ -2267,7 +2266,7 @@ shuchud(GI,dim,dim);
 printf("\n1\n");
 shuchud(L,dim,dim);
 
-printf("\n1\n");
+
 shuchud(Lz,dim,dim);
 
 
@@ -2277,7 +2276,16 @@ shuchud(Lz,dim,dim);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );
 
 
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );	
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );
+
+
+printf("\njj\n");	
+shuchud(A,dim,e);
+printf("\njj\n");
+
+shuchud(TEM2,dim,e);
+printf("\njj\n");
+shuchud(TEM3,e,e);
 
 
 memcpy(V, TEM3, e*e*sizeof(double));
