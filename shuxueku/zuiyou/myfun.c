@@ -2306,7 +2306,7 @@ int ipiv[dim],ipive[e];
 //要转一起转了
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-
+shuchud(u,dim,1);
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
 printf("\n44\n");
