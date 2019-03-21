@@ -28,14 +28,9 @@ void matrix_vector();
 
 
 int main()
-<<<<<<< HEAD
-{	int d=2;
-	double G[d]={1.0,0.0};
-=======
 {	int d=3;
 	double *G;
 	G=duqu("ceshi.txt",d*d);
->>>>>>> 0e6d38c2cf1a0ec933de460c9e7bcfcadc9935f8
 	shuchud(G,d,d);
 	printf("\n");
 	ni(G,d);
