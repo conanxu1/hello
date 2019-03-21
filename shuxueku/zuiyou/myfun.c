@@ -2197,18 +2197,18 @@ shuchud(L,s,s);
 printf("\n\n\n");
 for(int i=0;i<dim;i++)
 {
-for(int j=i+1;j<dim;j++)
-{
-L[(i)*dim+j]=0;
-Lz[(j)*dim+i]=0
-	
-}
-for(int j=0;j<i;j++)
-{
-L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);
-Lz[(j)*dim+i]=L[(i)*dim+j];
+	for(int j=i+1;j<dim;j++)
+	{
+	L[(i)*dim+j]=0;
+	Lz[(j)*dim+i]=0;
+	}
 
-}
+	for(int j=0;j<i;j++)
+	{
+	L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);
+	Lz[(j)*dim+i]=L[(i)*dim+j];
+	}
+
 }
 
 
