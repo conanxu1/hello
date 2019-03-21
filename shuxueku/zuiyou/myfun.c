@@ -2212,6 +2212,8 @@ L[(i)*dim+j]=0;
 int myqp(
 		double *G,		//hessian
 		double *A,		//grad
+		double *gk,
+		double *b,
 		int dim,		//G维数
 		int   e			//A的列数
 		)
@@ -2250,83 +2252,45 @@ mychol(LW,e);
 	
 	
 	
+
+double *u=(double *)malloc(dim*sizeof(double));
+	
+cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
+
+int info;
+	LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
+
+//dim   yigelie
+	
+LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
+
+
+
+
+
+double *bw=(double *)malloc(e*sizeof(double));
+
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
+
+LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,gk,1 );	
+
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipiv,bw,1);
+
+LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,gk,1 );	
+
+
 	
 	
-	
-int N = 4;
-
-    double A[16] = {  1,  2,  3,  1,
-
-                      4,  2,  0,  2,
-
-                     -2,  0, -1,  2,
-
-                      3,  4,  2, -3};
-
-    double B[8] = {  6,  2,  1,  8,
-
-                     1,  2,  3,  4};
-
-    int ipiv[4];
-
-    int n = N;
-
-    int nrhs = 2;
-
-    int lda = N;
-
-    int ldb = N;
-
-
-
-int info=LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,B,ldb);
-
-//
-
-    printf("info:%d/n",info);
-
-    if(info==0)
-
-    {
-
-        int i = 0;
-
-        int j = 0;
-
-        for(j=0;j<</span>nrhs;j++)
-
-        {
-
-            printf("x%d/n",j);
-
-            for(i=0;i<</span>N;i++)
-
-                printf("%.6g /t",B[i+j*N]);
-
-            printf("/n");
-
-        }
-
-    }
-
-}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	
