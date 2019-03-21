@@ -610,7 +610,17 @@ int i,j;
 	
 }
 
+void shuchui(int *p,int a,int b)
+{   
 
+int i,j;
+	for(i=1;i<=a;i++)
+	{	for( j=1;j<=b;j++)
+		{printf("%d,",p[(i-1)*b+j-1]);}
+	printf("\n");
+	}
+	
+}
 
 
 void shuchuz(double _Complex *p,int a,int b)
@@ -2134,7 +2144,7 @@ int erci(
 		double *Ai,
 		int dim,		//问题的维数
 		int e,			//等式个数
-		int ie,
+		int ie,			//不等式个数
 		double *xk)
 {
 //等式约束
@@ -2159,26 +2169,89 @@ double *zuoyong=(double *)malloc((e+ie)*dim*sizeof(double));
 double *tb=(double *)malloc((e+ie)*sizeof(double));
 double alpha=0;
 double *dk=(double *)malloc(dim*sizeof(double));
+double *tbi=(double *)malloc(ie*sizeof(double));
+
+
+
+
 double test;
 double *ait=(double *)malloc(dim*sizeof(double));
-int zuixiao;
+double zuixiao;
 int index;
 
-memset(A0,0,ie*sizeof(int));
+memset(A0,-1,ie*sizeof(int));
 
 memcpy(tb,be,e*sizeof(double));
 memcpy(zuoyong,Ae,dim*e*sizeof(double));
 memcpy(tg,h,dim*sizeof(double));
 
 
-myqp(H,zuoyong,tg,tb,dim,(e+qinum));
-memcpy(xk,tg,dim*sizeof(double));
+
+
+
+
+memcpy(tbi,bi,ie*sizeof(double));
+
+
+
+
+
+
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1,-1,tbi,1 );
+
+
+
+index=0;  //借用
+
+
+
+
+for(int i=0;i<ie;i++)
+{
+	if(tbi[i]<ep) 
+			{	
+		
+		qinum+=1;
+				A0[qinum-1]=i;
+				for(int tt=0;tt<dim;tt++)
+				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
+			
+			
+			
+				}
+				
+			}
+}
+
+ 
+
+//定义其作用集 函数 由初始点起作用集
+
+
+
+
+
+ 
 
 //xk=tg
+
+/////***/
 
 
 while(1)
 {  
+
+printf("\n\n\n\n\n\n\nqiz\n");
+shuchui(A0,ie,1);
+printf("qiz\n");
+
+printf("xk\n");
+shuchud(xk,dim,1);
+printf("..\n");
+
+
+
+
 cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
 
@@ -2197,16 +2270,17 @@ if(cblas_dasum(dim, tg,1)<ep)
 	index=-1;
 	for(int i=0;i<qinum;i++)
 	{	
-		if(tb[e+i]<0&&tb[e+i]<zuixiao)
+		if(tb[e+i]<zuixiao)
 		{index=i;
 		zuixiao=tb[e+i];
 		}
 	}
 	if(index>=0)
 		{A0[index]=A0[qinum];
-		A0[qinum-1]=0;
+		A0[qinum-1]=-1;
 			for(int tt=0;tt<dim;tt++)
-				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+qinum*dim+tt];
+				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+ (qinum-1)*dim+tt];
+				//用最后的覆盖
 				}
 		qinum=qinum-1;		
 		}
@@ -2224,28 +2298,49 @@ else
 	alpha=1;
 	memset(tp,0,sizeof(int));
 	for(int j=0;j<qinum;j++)
-	{tp[A0[j]]=1;}
+	{
+		if(A0[j]>=0)
+		{tp[A0[j]]=1;}
+	}
 
-	
+	shuchui(tp,ie,1);
 	//alpha测试一遍
 	for(int j=0;j<ie;j++)
-	{
-		//不属于的
-		if(tp[j]<1)
-		{
-		for(int tt=0;tt<dim;tt++)
+	{for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
-		test=(be[j]-cblas_ddot(dim, ait, 1, xk,1));
+
+
+		//不属于的
+		if(tp[j]<1&&(cblas_ddot(dim, ait, 1, dk,1)<0))
+		{
+		
+	
+	
+		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 		test=test/cblas_ddot(dim, ait, 1, dk,1);
-						
+		printf("%lf",test);		
 			if(test<zuixiao)
-			{zuixiao=test;
+			{
+			printf("jjj%djjj",j);
+			zuixiao=test;
 			index=j;}
 		}
+
+	printf("\n..%lf..alpha",zuixiao);
 	}
 
 
-	cblas_daxpby(dim,1,xk,1,zuixiao,dk,1);
+	printf("\n....dk");
+	shuchud(dk,dim,1);
+	printf("\n");
+	printf("\n..%lf..alpha",zuixiao);
+	printf("\n");
+	
+	
+	cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
+/////////
+
+
 
 	if(index>-1)
 		{qinum=qinum+1;
@@ -2267,18 +2362,94 @@ free(tb);
 	
 	
 free(tg);
-free(tg);
 free(zuoyong);
 free(A0);
 free(G);
 
+}
 
 
 
+int erciw(
+		double *H,		//hessian
+		double *h,		//原问题grad
+		double *be,		//b   等式约束
+		double *Ae,		//系数
+		double *bi,		////b   不等式约束
+		double *Ai,
+		int dim,		//问题的维数
+		int e,			//等式个数
+		int ie		//不等式个数
+)
+{
+
+double t=0;
+for(int i=0;i<e;i++)
+{if(abs(be[i])>t)
+	{t=abs(be[i])>t;}}
+
+for(int i=0;i<ie;i++)
+{if(abs(bi[i])>t)
+	{t=abs(bi[i])>t;}}
+
+t=t+10;
+
+
+
+
+
+double *AM=(double *)malloc((2*e+ie)*dim*sizeof(double));
+double *BM=(double *)malloc((2*e+ie)*sizeof(double));
+
+double *bbi=(double *)malloc(0*sizeof(double));
+double *aai=(double *)malloc(0*sizeof(double));
+double *hw=(double *)malloc(dim*sizeof(double));
+
+
+
+for(int i=0;i<e*dim;i++)
+{AM[i]=Ae[i];
+}
+for(int i=0;i<e*dim;i++)
+{AM[dim*e+i]=-Ae[i];
+}
+for(int i=0;i<ie*dim;i++)
+{AM[dim*e*2+i]=Ai[i];
+}
+
+
+for(int i=0;i<e;i++)
+{BM[i]=be[i]-t;
+}
+for(int i=0;i<e;i++)
+{BM[e+i]=-be[i]-t;
+}
+for(int i=0;i<ie;i++)
+{BM[e+i]=bi[i]-t;
+}
+
+
+double *x0=(double *)malloc(dim*sizeof(double));
+memset(x0,0,dim*sizeof(double));
+
+erci(H,h,BM,AM,bbi,aai,dim,0,(2*e+ie),x0);
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

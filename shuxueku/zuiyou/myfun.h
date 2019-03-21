@@ -132,7 +132,17 @@ void ni(double *A,int dim);
 
 int ooo();
 
-
+int erciw(
+		double *H,		//hessian
+		double *h,		//原问题grad
+		double *be,		//b   等式约束
+		double *Ae,		//系数
+		double *bi,		////b   不等式约束
+		double *Ai,
+		int dim,		//问题的维数
+		int e,			//等式个数
+		int ie			//不等式个数
+);
 
 
 

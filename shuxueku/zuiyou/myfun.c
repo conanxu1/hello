@@ -2176,7 +2176,7 @@ double *tbi=(double *)malloc(ie*sizeof(double));
 
 double test;
 double *ait=(double *)malloc(dim*sizeof(double));
-int zuixiao;
+double zuixiao;
 int index;
 
 memset(A0,-1,ie*sizeof(int));
@@ -2236,10 +2236,12 @@ for(int i=0;i<ie;i++)
 //xk=tg
 
 /////***/
-for(int i=0 ; i<5;i++)
+
+
+while(1)
 {  
 
-printf("qiz\n");
+printf("\n\n\n\n\n\n\nqiz\n");
 shuchui(A0,ie,1);
 printf("qiz\n");
 
@@ -2304,21 +2306,27 @@ else
 	shuchui(tp,ie,1);
 	//alpha测试一遍
 	for(int j=0;j<ie;j++)
-	{
-		//不属于的
-		if(tp[j]<1)
-		{
-		for(int tt=0;tt<dim;tt++)
+	{for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
+
+
+		//不属于的
+		if(tp[j]<1&&(cblas_ddot(dim, ait, 1, dk,1)<0))
+		{
+		
 	
 	
 		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 		test=test/cblas_ddot(dim, ait, 1, dk,1);
 		printf("%lf",test);		
-			if((test<zuixiao)&&(cblas_ddot(dim, ait, 1, dk,1)<0))
-			{zuixiao=test;
+			if(test<zuixiao)
+			{
+			printf("jjj%djjj",j);
+			zuixiao=test;
 			index=j;}
 		}
+
+	printf("\n..%lf..alpha",zuixiao);
 	}
 
 
@@ -2354,18 +2362,95 @@ free(tb);
 	
 	
 free(tg);
-free(tg);
 free(zuoyong);
 free(A0);
 free(G);
 
+}
+
+
+
+int erciw(
+		double *H,		//hessian
+		double *h,		//原问题grad
+		double *be,		//b   等式约束
+		double *Ae,		//系数
+		double *bi,		////b   不等式约束
+		double *Ai,
+		int dim,		//问题的维数
+		int e,			//等式个数
+		int ie		//不等式个数
+)
+{
+
+double t=0;
+for(int i=0;i<e;i++)
+{if(abs(be[i])>t)
+	{t=abs(be[i])>t;}}
+
+for(int i=0;i<ie;i++)
+{if(abs(bi[i])>t)
+	{t=abs(bi[i])>t;}}
+
+t=t+10;
 
 
 
 
+
+double *AM=(double *)malloc((2*e+ie)*dim*sizeof(double));
+double *BM=(double *)malloc((2*e+ie)*sizeof(double));
+
+double *bbi=(double *)malloc(0*sizeof(double));
+double *aai=(double *)malloc(0*sizeof(double));
+double *hw=(double *)malloc(dim*sizeof(double));
+
+
+
+for(int i=0;i<e*dim;i++)
+{AM[i]=Ae[i];
+}
+for(int i=0;i<e*dim;i++)
+{AM[dim*e+i]=-Ae[i];
+}
+for(int i=0;i<ie*dim;i++)
+{AM[dim*e*2+i]=Ai[i];
+}
+
+
+for(int i=0;i<e;i++)
+{BM[i]=be[i]-t;
+}
+for(int i=0;i<e;i++)
+{BM[e+i]=-be[i]-t;
+}
+for(int i=0;i<ie;i++)
+{BM[e+i]=bi[i]-t;
+}
+
+
+double *x0=(double *)malloc(dim*sizeof(double));
+memset(x0,0,dim*sizeof(double));
+
+erci(H,h,BM,AM,bbi,aai,dim,0,(2*e+ie),x0);
+
+shuchud(h,dim,1);
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
