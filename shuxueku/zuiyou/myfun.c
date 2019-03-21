@@ -2279,7 +2279,9 @@ int N = 4;
 
 
 
-    int info = LAPACKE_dgesv(LAPACK_COL_MAJOR,n,nrhs,A,lda,ipiv,B,ldb);
+int info=LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,B,ldb);
+
+//
 
     printf("info:%d/n",info);
 
