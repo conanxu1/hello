@@ -2124,22 +2124,56 @@ double shixing(double t,double a,double b)
 
 //int mysqp()
 
-
 /*
 int erci(
 		double *H,		//hessian
-		double *gk,		//grad
+		double *h,		//原问题grad
 		double *be,		//b   等式约束
-		double *ae,		//系数
+		double *Ae,		//系数
 		double *bi,		////b   不等式约束
-		double *ai,
+		double *Ai,
 		int dim,		//问题的维数
-		int e,			//等式维数
+		int e,			//等式个数
 		int ie)
 {
 //等式约束
 
 //[G,-A;-A' 0] A等式
+
+
+
+double *G=(double *)malloc(dim*dim*sizeof(double));
+
+
+cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
+
+//指标集 自动要求等式约束 
+int *A0=(int *)malloc((ie)*sizeof(int));
+int qinum=0;
+while(1)
+{
+	double *zuoyong=(double *)malloc(dim*(e+ie)*sizeof(double));
+
+	myqp(G,zuoyong,dim,qinum);
+	
+	
+	
+}	
+
+
+
+
+
+
+
+free(zuoyong);
+free(A0);
+free(G);
+
+
+
+
+
 
 
 double *lag=(double *)malloc((dim+e)*(dim+e)*sizeof(double));
@@ -2177,6 +2211,10 @@ for(int j=0;j<e;j++)
 }
 
 */
+
+
+
+
 
 int mychol(
 		double *L,		//输入 返回 下三角
@@ -2242,6 +2280,10 @@ cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 
 
 
+
+
+
+
 double *L=(double *)malloc(dim*dim*sizeof(double));
 double *LW=(double *)malloc(e*e*sizeof(double));
 double *Lz=(double *)malloc(dim*dim*sizeof(double));
@@ -2274,10 +2316,10 @@ ni(GI,dim);
 //求逆
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );
 
 
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, e, e,dim, 1,A, e,TEM2, e,0,TEM3,e );
 
 
 
@@ -2321,7 +2363,7 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 //bw v lam
 double *bw=(double *)malloc(e*sizeof(double));
 cblas_daxpby(e, 1, b, 1, 0, bw, 1);
-cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, 1,1,bw,1 );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, 1,1,bw,1 );	
 
 
 memcpy(TEM3,LW,e*e*sizeof(double));
@@ -2338,7 +2380,7 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
+cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
 
 
 memcpy(TEM,L,dim*dim*sizeof(double));
@@ -2357,6 +2399,19 @@ shuchud(u,dim,1);
 	
 	
 	
+
+free(G);
+free(GI);
+
+free(L);
+free(LW);
+free(Lz);
+free(LWz);
+free(TEM);
+free(TEM2);
+free(TEM3);
+free(V);
+
 	
 	
 return 0;	
