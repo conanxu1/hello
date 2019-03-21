@@ -2119,11 +2119,10 @@ double shixing(double t,double a,double b)
 	
 }
 
-//
-int mysqp()
+//int mysqp()
 
 
-
+/*
 int erci(
 		double *H,		//hessian
 		double *gk,		//grad
@@ -2172,20 +2171,9 @@ for(int j=0;j<e;j++)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
 
-
+*/
 
 
 
