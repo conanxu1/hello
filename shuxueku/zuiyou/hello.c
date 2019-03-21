@@ -57,12 +57,6 @@ printf("Local time is: %s\n", asctime(tblock));
 */
 
 
-time_t timer;//time_t就是long int 类型
-struct tm *tblock;
-timer = time(NULL);
-tblock = localtime(&timer);
-printf("Local time is: %s\n", asctime(tblock));	
-
 
 
 // double _Complex A[9]={1+0*I,1+0*I,0+0*I,0+0*I,2+0*I,0+0*I,0+0*I,0+0*I,1+0*I},re;
