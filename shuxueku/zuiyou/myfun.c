@@ -2263,6 +2263,8 @@ memcpy(GI, G, dim*dim*sizeof(double));
 ni(GI,dim);
 
 shuchud(GI,dim,dim);
+shuchud(L,dim,dim);
+shuchud(Lz,dim,dim);
 
 
 //求逆
