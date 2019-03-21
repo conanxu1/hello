@@ -123,7 +123,7 @@ void mypinv();
 
 
 int fft(double _Complex  * ai,double _Complex  * ao,int N);
-
+void ni(double *A,int dim);
 
 
 

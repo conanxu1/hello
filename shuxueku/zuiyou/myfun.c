@@ -1154,8 +1154,8 @@ void ni(double *A,int dim)
 int s=dim;
 int ipiv[s];
 int info;
-info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,C,s,ipiv);
-info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
+info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
+info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,A,s,ipiv);
 	
 }	
 	
