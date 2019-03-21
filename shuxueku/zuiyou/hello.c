@@ -31,7 +31,7 @@ int main()
 {
 	double G[4]={1,1,1,4};
 	shuchud(G,2,2);
-	printf("\n")
+	printf("\n");
 	ni(G,2);
 	shuchud(G,2,2);
 
