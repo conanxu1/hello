@@ -2181,7 +2181,7 @@ for(int j=0;j<e;j++)
 
 int mychol(
 		double *L,		//输入 返回 下三角
-		int dim,		//维数
+		int dim		//维数
 		)
 {
 
@@ -2244,6 +2244,11 @@ ni(GI,dim)
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, e,dim, 1,GI, dim,A, e,0,TEM2,e );	
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, dim,dim, 1,A, e,TEM2, e,0,TEM3,e );	
+
+
+
+
+/*
 memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
@@ -2281,17 +2286,17 @@ LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipiv,bw,1);
 
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,gk,1 );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u,1 );	
 
 
 
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,,1);
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 
-LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,bw,1);
+LAPACKE_dgesv(LAPACK_COL_MAJOR,dim,1,L,dim,ipiv,u,1);
 
 
 
-	
+	*/
 	
 		
 	
