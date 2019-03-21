@@ -2305,7 +2305,7 @@ LAPACKE_dgesv(LAPACK_COL_MAJOR,e,1,LW,e,ipive,bw,1);
 
 //-gk hw y x
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
-prinf("\n44\n");
+printf("\n44\n");
 
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, e,1,u,1 );	
