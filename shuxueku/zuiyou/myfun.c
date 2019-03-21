@@ -2296,7 +2296,10 @@ else
 	alpha=1;
 	memset(tp,0,sizeof(int));
 	for(int j=0;j<qinum;j++)
-	{tp[A0[j]]=1;}
+	{
+		if(A0[j]>=0)
+		{tp[A0[j]]=1;}
+	}
 
 	
 	//alpha测试一遍
