@@ -2179,7 +2179,7 @@ double *ait=(double *)malloc(dim*sizeof(double));
 int zuixiao;
 int index;
 
-memset(A0,0,ie*sizeof(int));
+memset(A0,-1,ie*sizeof(int));
 
 memcpy(tb,be,e*sizeof(double));
 memcpy(zuoyong,Ae,dim*e*sizeof(double));
