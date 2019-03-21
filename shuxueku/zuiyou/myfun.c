@@ -610,7 +610,17 @@ int i,j;
 	
 }
 
+void shuchui(int *p,int a,int b)
+{   
 
+int i,j;
+	for(i=1;i<=a;i++)
+	{	for( j=1;j<=b;j++)
+		{printf("%d,",p[(i-1)*b+j-1]);}
+	printf("\n");
+	}
+	
+}
 
 
 void shuchuz(double _Complex *p,int a,int b)
@@ -2221,16 +2231,14 @@ for(int i=0;i<ie;i++)
 
 
 
-shuchud(zuoyong,e+qinum,dim);
  
-printf("../n");
 
 //xk=tg
 
 /////***/
 for(int i=0 ; i<5;i++)
 {  
-
+shuchui(A0,ie,1);
 
 cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	

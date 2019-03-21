@@ -56,7 +56,7 @@ int  jiecheng(int n);
 void shuchuf(float *p,int a,int b);
 void shuchud(double *p,int a,int b);
 void shuchuz(double _Complex *p,int a,int b);
-
+void shuchui(int *p,int a,int b);
 
 double f1(double x);
 
