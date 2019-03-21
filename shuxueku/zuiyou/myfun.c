@@ -2394,6 +2394,9 @@ for(int i=0;i<ie;i++)
 
 t=t+10;
 
+
+double *hw=(double *)malloc(dim*sizeof(double));
+
 double ep=1e-15;;
 double *x0=(double *)malloc(dim*sizeof(double));
 memset(x0,0,dim*sizeof(double));
@@ -2409,7 +2412,6 @@ double *BM=(double *)malloc((2*e+ie)*sizeof(double));
 
 double *bbi=(double *)malloc(0*sizeof(double));
 double *aai=(double *)malloc(0*sizeof(double));
-double *hw=(double *)malloc(dim*sizeof(double));
 
 memcpy(hw,h,dim*sizeof(double));
 
