@@ -2238,7 +2238,11 @@ for(int i=0;i<ie;i++)
 /////***/
 for(int i=0 ; i<5;i++)
 {  
+
+printf("qiz\n");
 shuchui(A0,ie,1);
+printf("qiz\n");
+
 
 cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
