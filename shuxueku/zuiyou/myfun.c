@@ -2312,7 +2312,7 @@ int ipiv[dim],ipive[e];
 
 memcpy(TEM,L,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
-memcpy(TEM,L,dim*dim*sizeof(double));
+memcpy(TEM,Lz,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 //-gk u w 
 
