@@ -2201,7 +2201,7 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1
 index=0;  //借用
 
 
-
+shuchud(tbi,ie,1);
 
 for(int i=0;i<ie;i++)
 {		if(tbi[i]<ep) 
@@ -2211,7 +2211,7 @@ for(int i=0;i<ie;i++)
 				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
 			printf("%lf,%d,%d",Ai[dim*i+tt],qinum,tt);
 			
-			}
+				}
 				
 			}
 }
