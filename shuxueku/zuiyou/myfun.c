@@ -2320,15 +2320,11 @@ cblas_daxpby(e, 1, b, 1, 0, bw, 1);
 cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,1 );	
 
 
-shuchud(bw,dim,1);
-
-
-
 
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
-
-
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
+
+shuchu(bw,e,1);
 
 
 //-gk hw y x
