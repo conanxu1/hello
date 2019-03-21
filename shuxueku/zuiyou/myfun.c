@@ -2190,6 +2190,8 @@ info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
 //上三角
 //抹去上面  对角线开根号
 
+shuchud(L,s,s);
+
 printf("\n\n\n");
 for(int i=0;i<dim;i++)
 {L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
