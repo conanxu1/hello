@@ -2305,17 +2305,17 @@ else
 	//alpha测试一遍
 	for(int j=0;j<ie;j++)
 	{
-		//不属于的
-		if(tp[j]<1)
-		{
 		for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
-	
-	
-		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
-		test=test/cblas_ddot(dim, ait, 1, dk,1);
-		printf("%lf",test);		
-			if((test<zuixiao)&&(cblas_ddot(dim, ait, 1, dk,1)<0))
+		
+		
+		//不属于的
+		if((tp[j]<1)&&(cblas_ddot(dim, ait, 1, dk,1)<0))
+		{
+			test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
+			test=test/cblas_ddot(dim, ait, 1, dk,1);
+					printf("%lf",test);		
+			if((test<zuixiao))
 			{zuixiao=test;
 			index=j;}
 		}
