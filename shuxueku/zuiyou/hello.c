@@ -28,12 +28,12 @@ void matrix_vector();
 
 
 int main()
-{
-	double G[4]={1,1,1,4};
-	shuchud(G,2,2);
+{	int dd=3
+	double G[d*d]={1, 0, 0,0 ,1, 1,0, 1, 7};
+	shuchud(G,d,d);
 	printf("\n");
-	ni(G,2);
-	shuchud(G,2,2);
+	ni(G,d);
+	shuchud(G,d,d);
 
 
 
