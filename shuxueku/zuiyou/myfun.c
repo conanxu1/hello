@@ -2208,7 +2208,10 @@ for(int i=0;i<ie;i++)
 			{	qinum+=1;
 				A0[qinum-1]=i;
 				for(int tt;tt<dim;tt++)
-				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];}
+				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
+			printf("%lf,%d,%d",Ai[dim*i+tt],qinum,tt);
+			
+			}
 				
 			}
 }
