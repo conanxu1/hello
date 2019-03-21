@@ -2306,10 +2306,17 @@ int ipiv[dim],ipive[e];
 
 //dim   yigelie
 //要转一起转了
+//dgesv会破坏原矩阵
 
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
+
+memcpy(TEM,L,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
+
+
+
+memcpy(TEM,L,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,TEM,ipiv,u,1);
 //-gk u w 
 
 
@@ -2323,7 +2330,9 @@ cblas_dgemm(CblasRowMajor, CblasTrans,CblasNoTrans, e, 1,dim, -1,A, e,u, e,1,bw,
 
 
 
+memcpy(TEM3,LW,e*e*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LW,e,ipive,bw,1);
+memcpy(TEM3,LWz,e*e*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
 
 
@@ -2334,17 +2343,16 @@ cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
 
-printf(".....");
-shuchud(L,dim,dim);	
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
-shuchud(L,dim,dim);
 
-printf(".....");
+memcpy(TEM,L,dim*dim*sizeof(double));
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 
-shuchud(u,dim,1);
+memcpy(TEM,Lz,dim*dim*sizeof(double));
 
 
-LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
+
+
+LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 
 
 shuchud(u,dim,1);
