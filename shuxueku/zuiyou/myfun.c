@@ -2337,8 +2337,16 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
 //-gk hw y x
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
+
+printf("u\n");
 shuchud(u,dim,1);
+
+
+printf("A\n");
 shuchud(A,dim,e);
+
+
+printf("u\n");
 shuchud(bw,e,1);
 
 
