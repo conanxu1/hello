@@ -29,11 +29,14 @@ void matrix_vector();
 
 int main()
 {
-time_t timer;//time_t就是long int 类型
-struct tm *tblock;
-timer = time(NULL);
-tblock = localtime(&timer);
-printf("Local time is: %s\n", asctime(tblock));	
+	double A[4]={1,3,5,7};
+	shuchud(A,2,2);
+	ni(A,2);
+	shuchud(A,2,2);
+
+
+
+
 
 
 return 0;
@@ -233,9 +236,7 @@ svd(q,n,n);
 
 
 
- timer = time(NULL);
- tblock = localtime(&timer);
-printf("Local time is: %s\n", asctime(tblock));
+
 
 
 }

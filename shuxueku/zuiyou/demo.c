@@ -33,4 +33,14 @@ y=ode1(0,10,10000,lianxu,x0,3,jieguo);
 
 
 
+/*****     显示时间      */
+time_t timer;//time_t就是long int 类型
+struct tm *tblock;
+timer = time(NULL);
+tblock = localtime(&timer);
+printf("Local time is: %s\n", asctime(tblock));
+///////////////////////////
+
+
+
 
