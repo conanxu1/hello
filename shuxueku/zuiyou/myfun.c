@@ -2181,7 +2181,7 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1
 
 
 index=0;  //借用
-
+shuchud(dk,dim,1);
 
 for(int i=0;i<ie;i++)
 {		if(dk[i]<ep) 
