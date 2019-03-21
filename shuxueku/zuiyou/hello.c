@@ -29,10 +29,10 @@ void matrix_vector();
 
 int main()
 {
-	double A[4]={1,3,5,7};
-	shuchud(A,2,2);
-	ni(A,2);
-	shuchud(A,2,2);
+	double G[4]={1,3,5,7};
+	shuchud(G,2,2);
+	ni(G,2);
+	shuchud(G,2,2);
 
 
 
