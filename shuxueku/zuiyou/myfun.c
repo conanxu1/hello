@@ -2269,7 +2269,7 @@ if(cblas_dasum(dim, tg,1)<ep)
 	}
 	if(index>=0)
 		{A0[index]=A0[qinum];
-		A0[qinum-1]=0;
+		A0[qinum-1]=-1;
 			for(int tt=0;tt<dim;tt++)
 				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+ (qinum-1)*dim+tt];
 				//用最后的覆盖
