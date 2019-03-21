@@ -2228,7 +2228,7 @@ Lz[(i)*dim+i]=L[(i)*dim+i];
 
 int myqp(
 		double *G,		//hessian
-		double *A,		//grad
+		double *A,		//yueshu
 		double *gk,
 		double *b,
 		int dim,		//G维数
@@ -2330,7 +2330,9 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,e,1,LWz,e,ipive,bw,1);
 cblas_daxpby(dim, -1, gk, 1, 0, u, 1);
 
 
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );	
+cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,e, 1,A, e,bw, 1,1,u,1 );
+shuchud(u,dim,1);
+	
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,L,dim,ipiv,u,1);
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,Lz,dim,ipiv,u,1);
 
