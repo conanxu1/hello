@@ -154,5 +154,10 @@ int myqp(
 		double *b,
 		int dim,		//G维数
 		int   e			//A的列数
-		)		
+		)
+
+int mychol(
+		double *L,		//输入 返回 下三角
+		int dim		//维数
+		);		
 		
