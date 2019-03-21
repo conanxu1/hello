@@ -1156,7 +1156,7 @@ int ipiv[s];
 int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,A,s,ipiv);
 
-shuchu(A,s,s);
+shuchud(A,s,s);
 
 
 info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,A,s,ipiv);
