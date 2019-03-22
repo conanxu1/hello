@@ -54,11 +54,9 @@ double Ai[10]={0,-1,
 double bi[5]={-3,-4,-2,0,0};
 double xk[2]={0,3};
 
-erci(H,h,be,Ae,bi,Ai,2,0,5,xk);
+erciw(H,h,be,Ae,bi,Ai,2,0,5);
 
 
-printf("\n");
-shuchud(xk,2,1);
 
 
 
