@@ -2392,7 +2392,7 @@ int qxt(
 		double *Ae,		//系数
 		double *bi,		////b   不等式约束
 		double *Ai,
-		double t,		//
+
 		int dim,		//问题的维数
 		int e,		
 		int ie			//不等式个数(原问题的  2e+ie)
@@ -2402,7 +2402,7 @@ double *bbe=(double *)malloc(0*sizeof(double));
 double *aae=(double *)malloc(0*sizeof(double));
 
 double *BM=(double *)malloc((2*e+ie+1)*sizeof(double));
-double *AM=(double *)malloc(dim*(2*e+ie+1)*sizeof(double));
+double *AM=(double *)malloc((dim+1)*(2*e+ie+1)*sizeof(double));
 
 
 
@@ -2414,7 +2414,7 @@ for(int i=0;i<e;i++)
 	}
 }
 for(int i=0;i<e;i++)
-{	AM[(i+1)*(dim+1)-1]=1;
+{	AM[i*(dim+1)+dim]=1;
 }
 
 for(int i=0;i<e;i++)
@@ -2429,11 +2429,11 @@ for(int i=0;i<e;i++)
 	}
 }
 for(int i=0;i<e;i++)
-{	AM[e*(dim+1)(i+1)*(dim+1)-1]=1;
+{	AM[e*(dim+1)+i*(dim+1)+dim]=1;
 }
 
 for(int i=0;i<e;i++)
-{	BM[e+i]=-bi[i];
+{	BM[e+i]=-bi[i+e];
 }
 
 ///
@@ -2448,20 +2448,41 @@ for(int i=0;i<ie;i++)
 }
 
 for(int i=0;i<ie;i++)
-{	BM2*[e+i]=-bi[i];
+{	BM2*[e+i]=-bi[i+2*e];
 }
 
 
+/////////
+for(int i=0;i<dim;i++)
+{	AW[(2*e+ie)*(dim+1)+i]=0;
+}
+BM[(2*e+ie)]=0;
+
+AW[(2*e+ie)*(dim+1)+dim]=0;
 
 
 
 /////////////////////////////////////
 double *hw=(double *)malloc((dim+1)*sizeof(double));
+double *Gw=(double *)malloc((dim+1)*(dim+1)*sizeof(double));
+2M
+
+
 memcpy(hw,h,dim*sizeof(double));
 
+double *x0=(double *)malloc((dim+1)*sizeof(double));
+memset(x0,0,dim*sizeof(double));
 
 
-erci(H,hw,bbe,aae,BM,AM,dim,0,(2*e+ie),x0);	
+
+double t=0;
+for(int i=0;i<(2*e+ie+1);i++)
+{if(abs(BW[i])>t)
+	{t=abs(BW[i]);}}
+
+x0[dim]=t;
+
+erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
 
 
 
