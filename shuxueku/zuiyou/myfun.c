@@ -2306,7 +2306,6 @@ else
 	shuchui(tp,ie,1);
 	//alpha测试一遍
 	for(int j=0;j<ie;j++)
-<<<<<<< HEAD
 	{
 		for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
@@ -2320,7 +2319,7 @@ else
 					printf("%lf",test);		
 			if((test<zuixiao))
 			{zuixiao=test;
-=======
+
 	{for(int tt=0;tt<dim;tt++)
 		{ait[tt]=Ai[dim*j+tt];}
 
@@ -2338,7 +2337,7 @@ else
 			{
 			printf("jjj%djjj",j);
 			zuixiao=test;
->>>>>>> 3da7741f817defb491ae8967f38fae253ac1c440
+
 			index=j;}
 		}
 
