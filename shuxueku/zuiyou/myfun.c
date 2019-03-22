@@ -2211,7 +2211,7 @@ for(int i=0;i<ie;i++)
 	if(tbi[i]<ep) 
 			{	
 		
-		qinum+=1;
+				qinum+=1;
 				A0[qinum-1]=i;
 				for(int tt=0;tt<dim;tt++)
 				{zuoyong[dim*e+(qinum-1)*dim+tt]=Ai[dim*i+tt];
@@ -2223,7 +2223,7 @@ for(int i=0;i<ie;i++)
 			}
 }
 
- 
+
 
 //定义其作用集 函数 由初始点起作用集
 
@@ -2238,137 +2238,131 @@ for(int i=0;i<ie;i++)
 /////***/
 
 
-while(1)
-{  
-
-printf("\n\n\n\n\n\n\nqiz\n");
-shuchui(A0,ie,1);
-printf("qiz\n");
-
-printf("xk\n");
-shuchud(xk,dim,1);
-printf("..\n");
-
-
-
-
-cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
-
-memset(tb,0,(e+ie)*sizeof(int));
-
-
-myqp(H,zuoyong,tg,tb,dim,(e+qinum));
-memcpy(dk,tg,dim*sizeof(double));
+for(int qq=0;qq<10000;qq++)
+{	printf("\n\n\n\n\n\n\nqiz\n");
+	shuchui(A0,ie,1);
 	
-	
+	printf("dangqiandianxk\n");
+	shuchud(xk,dim,1);
+//	printf("..\n");
+	printf("\n\n\nqinum\n");
+	printf("%d",qinum);
+
+
+	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
+
+	memset(tb,0,(e+ie)*sizeof(int));
+
+
+	myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+	memcpy(dk,tg,dim*sizeof(double));
+		
+	printf("++...dk\n");
+	shuchud(tg,dim,1);	
+	printf("++...lam_ki\n");
+	shuchud(tb,e+qinum,1);	
 	
 
-if(cblas_dasum(dim, tg,1)<ep)
-{	
-	zuixiao=0;
-	index=-1;
-	for(int i=0;i<qinum;i++)
+	
+	//dk=0
+	if(cblas_dasum(dim, tg,1)<ep)
 	{	
-		if(tb[e+i]<zuixiao)
-		{index=i;
-		zuixiao=tb[e+i];
+		zuixiao=0;
+		index=-1;
+		for(int i=0;i<qinum;i++)
+		{	
+			if(tb[e+i]<zuixiao)
+				{index=i;
+				zuixiao=tb[e+i];
+				}	
 		}
-	}
-	if(index>=0)
-		{A0[index]=A0[qinum];
-		A0[qinum-1]=-1;
+		if(index>=0)
+		{if(index<qinum-1)
+			{
+			A0[index]=A0[qinum-1];
+			A0[qinum-1]=-1;
 			for(int tt=0;tt<dim;tt++)
 				{zuoyong[e*dim+index*dim+tt]=zuoyong[e*dim+ (qinum-1)*dim+tt];
 				//用最后的覆盖
 				}
-		qinum=qinum-1;		
+			qinum=qinum-1;
+			}
+		 else
+			{A0[qinum-1]=-1;
+			qinum=qinum-1;}	
 		}
-	else{
-		
-		memcpy(h,xk,dim*sizeof(double));
-		return 1;
+		else{
+///gai x0weihao			
+			memcpy(h,xk,dim*sizeof(double));
+			return 1;
+		}
 	}
-}
-else
-{//alpha xk
+	else
+	{	//alpha xk
 
-	index=-1;
-	zuixiao=1;
-	alpha=1;
-	memset(tp,0,sizeof(int));
-	for(int j=0;j<qinum;j++)
-	{
-		if(A0[j]>=0)
-		{tp[A0[j]]=1;}
-	}
-
-	shuchui(tp,ie,1);
-	//alpha测试一遍
-	for(int j=0;j<ie;j++)
-	{
-		for(int tt=0;tt<dim;tt++)
-		{ait[tt]=Ai[dim*j+tt];}
-		
-		
-		//不属于的
-		if((tp[j]<1)&&(cblas_ddot(dim, ait, 1, dk,1)<0))
+		index=-1;
+		zuixiao=1;
+		alpha=1;
+		memset(tp,0,ie*sizeof(int));
+		for(int j=0;j<qinum;j++)
 		{
-			test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
-			test=test/cblas_ddot(dim, ait, 1, dk,1);
-					printf("%lf",test);		
-			if((test<zuixiao))
-			{zuixiao=test;
+			if(A0[j]>=0)
+			{tp[A0[j]]=1;}
+		}
+		printf("bukexingji....\n");
+		shuchui(tp,ie,1);
+		//alpha测试一遍
+		for(int j=0;j<ie;j++)
+		{	
+			//不属于的
+			if(tp[j]<1)
+			{for(int tt=0;tt<dim;tt++)
+					{ait[tt]=Ai[dim*j+tt];}
+			
+			
 
-	{for(int tt=0;tt<dim;tt++)
-		{ait[tt]=Ai[dim*j+tt];}
-
-
-		//不属于的
-		if(tp[j]<1&&(cblas_ddot(dim, ait, 1, dk,1)<0))
-		{
-		
-	
-	
-		test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
-		test=test/cblas_ddot(dim, ait, 1, dk,1);
-		printf("%lf",test);		
-			if(test<zuixiao)
+			if(cblas_ddot(dim, ait, 1, dk,1)<0)
 			{
-			printf("jjj%djjj",j);
-			zuixiao=test;
 
-			index=j;}
+				test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
+				test=test/cblas_ddot(dim, ait, 1, dk,1);
+				printf("%lf",test);		
+					if((test<zuixiao))
+					{zuixiao=test;
+					index=j;}
+			}}
+//		printf("\n.dangqian.%lf..alpha",zuixiao);
 		}
 
-	printf("\n..%lf..alpha",zuixiao);
+
+		printf("\n....dk");
+		shuchud(dk,dim,1);
+		printf("\n");
+		printf("\n..%lf..alpha",zuixiao);
+		printf("\n");
+		
+		
+		cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
+	/////////
+
+
+
+		if(index>-1)
+			{qinum=qinum+1;
+			A0[qinum-1]=index;
+			for(int tt=0;tt<dim ;tt++)
+			{zuoyong[e*dim+(qinum-1)*dim+tt]=Ai[index*dim+tt];}
+			
+			}
 	}
 
-
-	printf("\n....dk");
-	shuchud(dk,dim,1);
-	printf("\n");
-	printf("\n..%lf..alpha",zuixiao);
-	printf("\n");
 	
-	
-	cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
-/////////
-
-
-
-	if(index>-1)
-		{qinum=qinum+1;
-		A0[qinum-1]=index;
-	for(int tt=0;tt<dim ;tt++)
-	{zuoyong[e*dim+(qinum-1)*dim+tt]=Ai[index*dim+tt];}
+}
 		
-		}
-}
 
-	
 
-}
+
 
 
 free(ait);
@@ -2381,7 +2375,23 @@ free(zuoyong);
 free(A0);
 free(G);
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 int qxt(
@@ -2402,6 +2412,7 @@ double *aae=(double *)malloc(0*sizeof(double));
 
 double *BM=(double *)malloc((2*e+ie+1)*sizeof(double));
 double *AM=(double *)malloc((dim+1)*(2*e+ie+1)*sizeof(double));
+double *ait=(double *)malloc(dim*sizeof(double));
 
 
 
@@ -2467,8 +2478,8 @@ double *x0=(double *)malloc((dim+1)*sizeof(double));
 /////////////////////////////////////
 double *hw=(double *)malloc((dim+1)*sizeof(double));
 double *Hw=(double *)malloc((dim+1)*(dim+1)*sizeof(double));
-
-
+double test;
+double ep=1e-14;
 
 
 double M=100;
@@ -2487,37 +2498,90 @@ for(int i=0;i<dim;i++)
 
 
 
-shuchud(Ae,e,dim);
-printf("Ae..\n");
-shuchud(Ai,ie,dim);
-printf("Ai..\n");
-shuchud(BM,(2*e+ie+1),1);
-printf("BM..\n");
-shuchud(AM,2*e+ie+1,dim+1);
-printf("AM..\n");
-shuchud(hw,dim+1,1);
-printf("hw..\n");
-shuchud(Hw,dim+1,dim+1);
-printf("Hw..\n");
+//shuchud(Ae,e,dim);
+//printf("Ae..\n");
+//shuchud(Ai,ie,dim);
+//printf("Ai..\n");
+//shuchud(BM,(2*e+ie+1),1);
+//printf("BM..\n");
+//shuchud(AM,2*e+ie+1,dim+1);
+//printf("AM..\n");
 
 
 
-for(int i=0;i<(2*e+ie+1);i++)
-{if(abs(BW[i])>t)
-	{t=abs(BW[i]);}}
 
-x0[dim]=t;	//每次迭代t是满足的
+for(int i=0;i<e;i++)
+{if(abs(BM[i])>t)
+	{t=abs(BM[i]);}}
 
-while(hw[dim]>1e-14)
+for(int i=0;i<ie;i++)
+{if(bi[i]>t)
+	{t=bi[i];}}
+
+//dengshi
+
+if(t>0)
 {
-M=M*2;
-memcpy(hw,h,dim*sizeof(double));      //每次都要赋值	
-Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
-hw[dim]=M;
-memset(x0,0,dim*sizeof(double));
+x0[dim]=t;	//每次迭代t是满足的
+}
+else
+{x0[dim]=0;
+}
+///
 
+
+memset(hw,0,dim*sizeof(double));
+hw[dim]=1;
+
+while(abs(hw[dim])>1e-14)
+{
+
+//迭代完成 hw 即x0自动满足约束
+
+
+
+
+
+
+M=M*2;
+
+
+Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
+
+
+memcpy(x0,hw,dim+1);
+
+memcpy(hw,h,dim*sizeof(double));      //每次都要赋值
+hw[dim]=M;
+
+
+
+printf("x0\n");
+shuchud(x0,dim+1,1);
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
+
+
+}
+
+printf("hw\n\n");
+shuchud(hw,dim+1,1);
+
+
+
+free(ait);
+free(BM);
+free(AM);
+free(x0);
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -2532,24 +2596,7 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);
 
 
 
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 
 
 int erciwM(
@@ -2585,7 +2632,7 @@ for(int i=0;i<ie;i++)
 	{t=abs(bi[i]);}}
 
 
-··	
+
 
 double *hw=(double *)malloc(dim*sizeof(double));
 
@@ -2649,7 +2696,7 @@ t=t/2;
 erci(H,h,be,Ae,bi,Ai,dim,e,ie,hw);
 
 }
-
+*/
 
 
 
@@ -2848,11 +2895,11 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 memcpy(TEM,Lz,dim*dim*sizeof(double));
 LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 
-printf("lambda\n");
-shuchud(bw,e,1);
+//printf("lambda\n");
+//shuchud(bw,e,1);
 
-printf("x*\n");
-shuchud(u,dim,1);
+//printf("x*\n");
+//shuchud(u,dim,1);
 	
 memcpy(gk,u,dim*sizeof(double));		
 memcpy(b,bw,dim*sizeof(double));		
@@ -2929,64 +2976,64 @@ int fft(double _Complex  * ai,double _Complex  * ao,int N)
 
 
 
-
- 
-
-
-/*变址计算，将x(n)码位倒置*/  
-int changema(double* x,int size_x)        
-{  
-  double  temp;  
-  unsigned short i=0,j=0,k=0;  
-  double t;  
-  for(i=0;i<size_x;i++)  
-  {  
-shuchud(x,size_x,1);
-
-
-    k=i;j=0;  
-    t=(log(size_x)/log(2));  
-  while((t--)>0 )    //利用按位与以及循环实现码位颠倒  
-  {  
-    j=j<<1;  
-    j|=(k & 1);  
-    k=k>>1;  
-  }  
-  if(j>i)    //将x(n)的码位互换  
-  {  
-  printf("-----------\n");
-  shuchud(x,size_x,1);
-    temp=x[i]; 
-	 printf("%lf,\n",temp);
- 
-    x[i]=x[j];  
-printf("%lf,\n",temp);
-    x[j]=temp;
-printf("####%lf,%lf####%d",temp,x[3],j);
-
-
-shuchud(x,size_x,1);	
-  printf("++++++%d++\n",i);
-   } 
-   
-   
-   
-  }  
-  
-  
-  
-   shuchud(x,size_x,1);
-   return 1;
-
-  
-}  
-
-
-
-
-
-
-
+//
+// 
+//
+//
+///*变址计算，将x(n)码位倒置*/  
+//int changema(double* x,int size_x)        
+//{  
+//  double  temp;  
+//  unsigned short i=0,j=0,k=0;  
+//  double t;  
+//  for(i=0;i<size_x;i++)  
+//  {  
+//shuchud(x,size_x,1);
+//
+//
+//    k=i;j=0;  
+//    t=(log(size_x)/log(2));  
+//  while((t--)>0 )    //利用按位与以及循环实现码位颠倒  
+//  {  
+//    j=j<<1;  
+//    j|=(k & 1);  
+//    k=k>>1;  
+//  }  
+//  if(j>i)    //将x(n)的码位互换  
+//  {  
+//  printf("-----------\n");
+//  shuchud(x,size_x,1);
+//    temp=x[i]; 
+//	 printf("%lf,\n",temp);
+// 
+//    x[i]=x[j];  
+//printf("%lf,\n",temp);
+//    x[j]=temp;
+//printf("####%lf,%lf####%d",temp,x[3],j);
+//
+//
+//shuchud(x,size_x,1);	
+//  printf("++++++%d++\n",i);
+//   } 
+//   
+//   
+//   
+//    
+//  
+//  
+//  
+//   shuchud(x,size_x,1);
+//   return 1;
+//
+//  
+//}  
+//
+//
+//
+//
+//
+//
+//
 
 
 
