@@ -2418,7 +2418,7 @@ for(int i=0;i<e;i++)
 }
 
 for(int i=0;i<e;i++)
-{	BM[i]=bi[i];
+{	BM[i]=be[i];
 }
 
 ///
@@ -2433,14 +2433,14 @@ for(int i=0;i<e;i++)
 }
 
 for(int i=0;i<e;i++)
-{	BM[e+i]=-bi[i+e];
+{	BM[e+i]=-be[i];
 }
 
 ///
 for(int i=0;i<ie;i++)
 {	for(int j=0;j<dim;j++)
 	{
-		AM[2*e*(dim+1)+i*(dim+1)+j]=-Ai[i*dim+j];
+		AM[2*e*(dim+1)+i*(dim+1)+j]=Ai[i*dim+j];
 	}
 }
 for(int i=0;i<ie;i++)
@@ -2448,41 +2448,91 @@ for(int i=0;i<ie;i++)
 }
 
 for(int i=0;i<ie;i++)
-{	BM2*[e+i]=-bi[i+2*e];
+{	BM[e+i]=bi[i+e];
 }
 
 
 /////////
 for(int i=0;i<dim;i++)
-{	AW[(2*e+ie)*(dim+1)+i]=0;
+{	AM[(2*e+ie)*(dim+1)+i]=0;
 }
+
+AM[(2*e+ie+1)*(dim+1)-1]=1;
 BM[(2*e+ie)]=0;
 
-AW[(2*e+ie)*(dim+1)+dim]=0;
+
+double *x0=(double *)malloc((dim+1)*sizeof(double));
 
 
 
 /////////////////////////////////////
 double *hw=(double *)malloc((dim+1)*sizeof(double));
-double *Gw=(double *)malloc((dim+1)*(dim+1)*sizeof(double));
-2M
-
-
-memcpy(hw,h,dim*sizeof(double));
-
-double *x0=(double *)malloc((dim+1)*sizeof(double));
-memset(x0,0,dim*sizeof(double));
+double *Hw=(double *)malloc((dim+1)*(dim+1)*sizeof(double));
 
 
 
+
+double M=100;
 double t=0;
+
+
+for(int i=0;i<dim;i++)
+{	for(int j=0;j<dim;j++)
+	{	Hw[i*(dim+1)+j]=H[i*dim+j];}
+}
+
+//Hw 乘2   M t2+M t
+
+
+//调用erci 改变了什么
+
+
+
+shuchud(Ae,e,dim);
+printf("Ae..\n");
+shuchud(Ai,ie,dim);
+printf("Ai..\n");
+shuchud(BM,(2*e+ie+1),1);
+printf("BM..\n");
+shuchud(AM,2*e+ie+1,dim+1);
+printf("AM..\n");
+shuchud(hw,dim+1,1);
+printf("hw..\n");
+shuchud(Hw,dim+1,dim+1);
+printf("Hw..\n");
+
+
+
 for(int i=0;i<(2*e+ie+1);i++)
 {if(abs(BW[i])>t)
 	{t=abs(BW[i]);}}
 
-x0[dim]=t;
+x0[dim]=t;	//每次迭代t是满足的
+
+while(hw[dim]>1e-14)
+{
+M=M*2;
+memcpy(hw,h,dim*sizeof(double));      //每次都要赋值	
+Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
+hw[dim]=M;
+memset(x0,0,dim*sizeof(double));
+
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
