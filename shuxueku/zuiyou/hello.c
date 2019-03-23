@@ -118,7 +118,11 @@ double TEM[12]={1,2,1,0,
  shuchud(TEM,m,n);
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
-
+	printf("uuuuuuuu\n\n");
+	shuchud(u,n,n);
+	 	
+	printf("vvvvvvvvv\n\n");
+	shuchud(vt,m,m);
 
 
 
