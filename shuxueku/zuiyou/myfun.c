@@ -2249,8 +2249,38 @@ double shixing(double t,double a,double b)
 	
 }
 
-//int mysqp()
 
+// double armijo()
+
+
+// int mysqp()
+// {
+	
+	
+	
+	
+	
+	
+// erci()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+// }
 
 int erci(
 		double *H,		//hessian

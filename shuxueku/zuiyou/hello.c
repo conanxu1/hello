@@ -35,24 +35,26 @@ int d=3;
 
 //注意是否有1/2*G
 
-double H[4]={1,0,0,1};
+double H[4]={1,-0.5,-0.5,2};
 				
-double h[2]={0,0};
+double h[2]={-1,-10};
 
 
 //注意约束的写法ATx=b
 //改为Ax=b 可以有效增减约束
  
-double Ae[1*2]={1,2};
-double be[1]={4};
+double Ae[0];
+double be[0];
 
 
 
-double Ai[2]={2,2};
+double Ai[6]={-3,-2,
+				1,0,
+				0,1};
 				
-double bi[1]={-1};
+double bi[3]={-6,0,0};
 
-qxt(H,h,be,Ae,bi,Ai,2,1,1);
+qxt(H,h,be,Ae,bi,Ai,3,0,3);
 
 
 
