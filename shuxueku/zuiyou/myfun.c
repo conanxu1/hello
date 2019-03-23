@@ -1170,7 +1170,7 @@ int zhi=1;
 
 
 
-
+printf("\n\n%d",zhi);
   shuchud(TEM,zhi,n);
    
 
