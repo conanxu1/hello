@@ -1126,7 +1126,10 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	int ldu = n;
 	double vt[m*m];
 	int ldvt = m;
-	double superb[ff];
+	
+	
+	int ot=(m+n)/2+abs(m-n)/2;
+	double superb[ot];
  
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
