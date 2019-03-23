@@ -1170,7 +1170,7 @@ int zhi=1;
 
 
 
-   
+  shuchud(TEM,zhi,n);
    
 
    
