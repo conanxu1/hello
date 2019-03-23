@@ -30,7 +30,7 @@ void matrix_vector();
 int main()
 {
 
-/*	
+	
 int d=3;
 
 //注意是否有1/2*G
@@ -55,7 +55,6 @@ double bi[1]={-1};
 qxt(H,h,be,Ae,bi,Ai,2,1,1);
 
 
-*/
 
 
 
@@ -66,6 +65,7 @@ qxt(H,h,be,Ae,bi,Ai,2,1,1);
 
 
 
+/*
 
 
 int dim=3;
@@ -90,10 +90,10 @@ double *AM;
 myqp(H,zuoyong,tg,tb,dim,3);
 
 
-//shuchud(tg,dim,1);
+shuchud(tg,dim,1);
 
 
-
+////////////////////
 
 
 
@@ -140,7 +140,7 @@ myqp(H,zuoyong,tg,tb,dim,3);
 
 
 
-
+*/
 
 
 

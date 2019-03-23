@@ -1102,104 +1102,109 @@ double* duqu(char *p,int n)
 
 int xxwg(double *AM,double *A,int m,int n)
 {
+//只求行满秩
+
+
 double *TEM=(double *)malloc(m*n*sizeof(double));
-memcpy(TEM,A,m*n*sizeof(double));
-	int matrix_order = LAPACK_COL_MAJOR;
+double *TEM2=(double *)malloc(m*n*sizeof(double));
+
+
+	memset(TEM,0,m*n*sizeof(double));
+	memcpy(TEM,A,m*n*sizeof(double));
+	int matrix_order = LAPACK_ROW_MAJOR;
 	char jobu = 'A';
 	char jobvt = 'A';
 	
+	int ff=m,lda=n;
 
-	int lwork;
-	int ff=m;
-	if(n<m)
-	ff=n;
 
-	double s[ff];
-
+	
 
 		
-	double u[m*m];
+	double *u=(double *)malloc(m*m*sizeof(double));
+	
 	int ldu = m;
-	double vt[n*n];
+	double *vt=(double *)malloc(n*n*sizeof(double));
 	int ldvt = n;
-	double superb[ff];
- 
-	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,n, s, u, ldu, vt, ldvt, superb);
+	
+	
+	int ot=(m+n)/2+abs(m-n)/2;
+	double *superb=(double *)malloc((m+n)*sizeof(double));
+	double *s=(double *)malloc((m+n)*sizeof(double));
+
+	
+	//printf("ok!!!!!\n");
+	//printf("ok!!!!!\n");
+ //shuchud(TEM,m,n);
+
+
+	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
-	printf("\n\n");
-	shuchud(s,ff,1);
+	//printf("uuuuuuuu\n\n");
+	//shuchud(u,m,m);
+	 	
+	//printf("vvvvvvvvv\n\n");
+	//shuchud(vt,n,n);
+	
+	
+	
 	int wz=ff-1;
-
-	for(int ss=0;ss<ff;ss++)
-	{if(s[ss]<1e-15)
-		wz=ss;
-		break;
-	}
-
-	printf("wz%d\n",wz);
+	if(s[wz]>1e-15)
+			{return ff;   } //hangmanzhi
 
 
-if(s[ff-1]>1e-15)
-{return 1;   } //hangmanzhi
-else
-   {
-	double *AM=(double *)malloc(wz*n*sizeof(double));
+memset(TEM,0,m*n*sizeof(double));
 
-	for(int kk=0;kk<wz;kk++)
-	{for(int ll=0;ll<n;ll++)
-		{TEM[kk*n+ll]=s[kk]*vt[ll*m+kk];}
-	}
+memcpy(TEM,A,1*n*sizeof(double));
 
-	for(int kk=wz;kk<m;kk++)
-	{for(int ll=0;ll<n;ll++)
-		TEM[kk*n+ll]=0;
-	}
+int zhi=1;
 
-	shuchud(TEM,m,n);
-	printf("--TEM--\n");
+for(int pp=1;pp<m;pp++)
+   {	
+	memcpy(TEM2,TEM,zhi*n*sizeof(double));
 
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,u, n,TEM,n, 0,AM,n );
-	printf("\n\nAM\n");
-	shuchud(AM,m,n);
-printf("\n\n\n");
+		
+	for(int jj=0;jj<n;jj++)	
+		TEM2[zhi*n+jj]=A[pp*n+jj];
+	
+	//printf("pppp\n");
+	//shuchud(TEM2,zhi+1,n);
+	
+	//printf("\n\n\n00000pppp\n");
 	
 	
-
-	double *TEM2=(double *)malloc(wz*n*sizeof(double));
-
-//	memcpy(TEM2,u,wz*n*sizeof(double));
-	shuchud(TEM2,wz,n);
-	printf("--2--\n");
-
-
-
-//	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, wz, n,m, 1,TEM2, n,TEM,n, 0,AM,n );
 	
+	LAPACKE_dgesvd(matrix_order,'A', 'A', zhi+1, n, TEM2,n, s, u, ldu, vt, ldvt, superb);
+	shuchud(s,zhi+1,1);
+	
+	
+	
+	//printf("\n\n\n0\n\n\n");
+ 	if(s[zhi]>1e-15)
+		{
+						for(int jj=0;jj<n;jj++)	
+						TEM[zhi*n+jj]=A[pp*n+jj];
+					zhi+=1;
+		}
 
+	}
 
-shuchud(A,m,n);
-printf("\n");
-shuchud(u,m,m);
-printf("u\n");
-shuchud(vt,n,n);
-printf("vt\n");
-
-
-
-//shuchud(AM,wz,n);
-
-
-
-
-//free(TEM);
-//free(TEM2);
-
+//printf("zhi\n");
 
 
 
+AM=(double *)malloc(zhi*n*sizeof(double));
 
+memcpy(AM,TEM,zhi*n*sizeof(double));
 
-   }
+free(TEM);
+
+free(TEM2);
+
+return zhi;
+   
+
+   
 
 }
 
@@ -1222,7 +1227,7 @@ void svd2()
 
 
 
-    int matrix_order = LAPACK_COL_MAJOR;
+    int matrix_order = LAPACK_ROW_MAJOR;//修改过排列方式了
     char jobu = 'A';
     char jobvt = 'A';
 	
@@ -2270,7 +2275,7 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 int qinum=0;
-double ep=1e-13;
+double ep=1e-14;
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
@@ -2367,8 +2372,17 @@ for(int i=0;i<ie;i++)
 int ho=0;
 
 //////diedai
-for(int qq=0;qq<5;qq++)
-{	printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",qq);
+while(ho<30)
+{
+ho++;
+printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
+
+
+
+
+printf("xk\n");
+shuchud(xk,dim,1);
+
 printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
 shuchud(xk,dim,1);	
 	printf("\n\n\n\n\n\n\nqiz\n");
@@ -2413,6 +2427,9 @@ shuchud(xk,dim,1);
 	printf("++...zuoyong \n");
 	shuchud(zuoyong,e+qinum,dim);
 
+		
+
+
 
 	//dk=0
 	if(cblas_dasum(dim, tg,1)<ep)
@@ -2445,7 +2462,7 @@ shuchud(xk,dim,1);
 		else{
 ///gai x0weihao			
 			
-			printf("ffd\n");
+			printf("ffinishd\n");
 			return 1;
 		}
 	}
@@ -2633,7 +2650,7 @@ double test;
 double ep=1e-15;
 
 
-double M=1e1;
+double M=1e10;
 double t=0;
 
 
@@ -2690,10 +2707,7 @@ memset(hw,0,dim*sizeof(double));
 hw[dim]=1;
 
 
-
-
-
-while(M<1e2)
+while(x0[dim]>1e-13&&M<1e17)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2703,7 +2717,7 @@ while(M<1e2)
 
 
 
-M=M*2;
+M=M*10;
 
 
 Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
@@ -2715,7 +2729,7 @@ hw[dim]=M;
 
 
 
-printf("x0\n");
+printf("--------------x0\n");
 shuchud(x0,dim+1,1);
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
@@ -2725,6 +2739,8 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);
 
 printf("hw\n\n");
 shuchud(hw,dim+1,1);
+printf("x0%lf\n\n",log(M)/log(10));
+shuchud(x0,dim+1,1);
 
 
 
@@ -2924,13 +2940,64 @@ Lz[(i)*dim+i]=L[(i)*dim+i];
 
 int myqp(
 		double *H,		//hessian
-		double *A,		//yueshu
+		double *Aw,		//yueshu
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   e			//A的列数
+		int   ge			//A的列数  应该改过方向了
 		)
 {
+double *AM;
+double *A=(double *)malloc(ge*dim*sizeof(double));
+memcpy(A,Aw,ge*dim*sizeof(double));
+
+int tte=xxwg(AM,A, ge, dim);
+printf("000000000000000000000000000000000000000000000000000000000000step1\n");
+
+if(tte<ge)
+{	
+	AM=(double *)malloc(ge*(dim+1)*sizeof(double));
+	for(int qq=0;qq<ge;qq++)
+	{	AM[qq*(dim+1)+dim]=b[qq];
+
+		for(int kk=0;kk<dim;kk++)
+		{
+			AM[qq*(dim+1)+kk]=Aw[qq*(dim)+kk];
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	if(xxwg(A,AM, ge, dim+1)>tte)
+	{printf("wujie");
+		return 1;
+	}
+	
+	
+	
+	memcpy(AM,Aw,ge*dim*sizeof(double));
+
+	tte=xxwg(A,AM, ge, dim);
+
+
+
+
+	
+	
+	
+	
+	//xishu zhen  增广阵的秩
+}
+
+
+shuchud(A,tte,dim);
+int e=tte;
+
+
 
 
 //qiu Ajidaxianxingwuguanzu 

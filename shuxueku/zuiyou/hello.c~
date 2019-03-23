@@ -30,7 +30,7 @@ void matrix_vector();
 int main()
 {
 
-/*	
+	
 int d=3;
 
 //注意是否有1/2*G
@@ -55,7 +55,18 @@ double bi[1]={-1};
 qxt(H,h,be,Ae,bi,Ai,2,1,1);
 
 
-*/
+
+
+
+
+
+
+
+
+
+
+/*
+
 
 int dim=3;
 
@@ -68,19 +79,71 @@ double H[9]={  1,0,0,
 double zuoyong[3*3]={   1,2,1,
 			-1,-2,1,
 			0,0,1};
-double tb[3]={0};
+double tb[3]={0,0,0};
 double tg[3]={1.6,3.2,80};
 
 
 double *AM;
 
-xxwg(AM,zuoyong,3,3);
+//xxwg(AM,zuoyong,3,3);
 
-
-//myqp(H,zuoyong,tg,tb,dim,3);
+myqp(H,zuoyong,tg,tb,dim,3);
 
 
 shuchud(tg,dim,1);
+
+
+////////////////////
+
+
+
+// int m=3,n=4;
+
+
+// double TEM[12]={1,2,1,0,
+				// -1,-2,1,0,
+				// 0,0,1,0};
+
+	// int matrix_order = LAPACK_ROW_MAJOR;
+	// char jobu = 'A';
+	// char jobvt = 'A';
+	
+	// int ff=m,lda=n;
+
+
+	// double s[m+n];
+
+
+		
+	// double u[100];
+	// int ldu = m;
+	// double vt[100];
+	// int ldvt = n;
+	
+	
+	// int ot=(m+n)/2+abs(m-n)/2;
+	// double superb[100];
+	
+	
+	// printf("ok\n");
+ // shuchud(TEM,m,n);
+	// LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
+ 	
+	// printf("uuuuuuuu\n\n");
+	// shuchud(u,m,m);
+	 // shuchud(s,m+n,1);
+	// printf("vvvvvvvvv\n\n");
+	// shuchud(vt,n,n);
+
+
+
+
+
+
+*/
+
+
+
 
 
 

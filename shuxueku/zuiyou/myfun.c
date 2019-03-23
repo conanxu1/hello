@@ -1109,7 +1109,7 @@ double *TEM=(double *)malloc(m*n*sizeof(double));
 double *TEM2=(double *)malloc(m*n*sizeof(double));
 
 
-
+	memset(TEM,0,m*n*sizeof(double));
 	memcpy(TEM,A,m*n*sizeof(double));
 	int matrix_order = LAPACK_ROW_MAJOR;
 	char jobu = 'A';
@@ -1133,16 +1133,18 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	double *s=(double *)malloc((m+n)*sizeof(double));
 
 	
-	printf("ok!!!!!\n");
-	printf("ok!!!!!\n");
- shuchud(TEM,m,n);
+	//printf("ok!!!!!\n");
+	//printf("ok!!!!!\n");
+ //shuchud(TEM,m,n);
+
+
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
-	printf("uuuuuuuu\n\n");
-	shuchud(u,m,m);
+	//printf("uuuuuuuu\n\n");
+	//shuchud(u,m,m);
 	 	
-	printf("vvvvvvvvv\n\n");
-	shuchud(vt,n,n);
+	//printf("vvvvvvvvv\n\n");
+	//shuchud(vt,n,n);
 	
 	
 	
@@ -1165,10 +1167,10 @@ for(int pp=1;pp<m;pp++)
 	for(int jj=0;jj<n;jj++)	
 		TEM2[zhi*n+jj]=A[pp*n+jj];
 	
-	printf("pppp\n");
-	shuchud(TEM2,zhi+1,n);
+	//printf("pppp\n");
+	//shuchud(TEM2,zhi+1,n);
 	
-	printf("\n\n\n00000pppp\n");
+	//printf("\n\n\n00000pppp\n");
 	
 	
 	
@@ -1177,7 +1179,7 @@ for(int pp=1;pp<m;pp++)
 	
 	
 	
-	printf("\n\n\n0\n\n\n");
+	//printf("\n\n\n0\n\n\n");
  	if(s[zhi]>1e-15)
 		{
 						for(int jj=0;jj<n;jj++)	
@@ -1187,7 +1189,7 @@ for(int pp=1;pp<m;pp++)
 
 	}
 
-printf("zhi\n");
+//printf("zhi\n");
 
 
 
@@ -2273,7 +2275,7 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 int qinum=0;
-double ep=1e-13;
+double ep=1e-14;
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
@@ -2370,8 +2372,17 @@ for(int i=0;i<ie;i++)
 int ho=0;
 
 //////diedai
-for(int qq=0;qq<5;qq++)
-{	printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",qq);
+while(ho<30)
+{
+ho++;
+printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
+
+
+
+
+printf("xk\n");
+shuchud(xk,dim,1);
+
 printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
 shuchud(xk,dim,1);	
 	printf("\n\n\n\n\n\n\nqiz\n");
@@ -2416,6 +2427,9 @@ shuchud(xk,dim,1);
 	printf("++...zuoyong \n");
 	shuchud(zuoyong,e+qinum,dim);
 
+		
+
+
 
 	//dk=0
 	if(cblas_dasum(dim, tg,1)<ep)
@@ -2448,7 +2462,7 @@ shuchud(xk,dim,1);
 		else{
 ///gai x0weihao			
 			
-			printf("ffd\n");
+			printf("ffinishd\n");
 			return 1;
 		}
 	}
@@ -2636,7 +2650,7 @@ double test;
 double ep=1e-15;
 
 
-double M=1e1;
+double M=1e10;
 double t=0;
 
 
@@ -2693,10 +2707,7 @@ memset(hw,0,dim*sizeof(double));
 hw[dim]=1;
 
 
-
-
-
-while(M<1e2)
+while(x0[dim]>1e-13&&M<1e16)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2706,7 +2717,7 @@ while(M<1e2)
 
 
 
-M=M*2;
+M=M*10;
 
 
 Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
@@ -2718,7 +2729,7 @@ hw[dim]=M;
 
 
 
-printf("x0\n");
+printf("--------------x0\n");
 shuchud(x0,dim+1,1);
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
@@ -2728,6 +2739,8 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);
 
 printf("hw\n\n");
 shuchud(hw,dim+1,1);
+printf("x0%lf\n\n",log(M)/log(10));
+shuchud(x0,dim+1,1);
 
 
 
@@ -2931,20 +2944,20 @@ int myqp(
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   e			//A的列数  应该改过方向了
+		int   ge			//A的列数  应该改过方向了
 		)
 {
 double *AM;
-double *A=(double *)malloc(e*dim*sizeof(double));
-memcpy(A,Aw,e*dim*sizeof(double));
+double *A=(double *)malloc(ge*dim*sizeof(double));
+memcpy(A,Aw,ge*dim*sizeof(double));
 
-int tte=xxwg(AM,A, e, dim);
+int tte=xxwg(AM,A, ge, dim);
 printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
-if(tte<e)
-{	free(AM);
-	double *AM=(double *)malloc(e*(dim+1)*sizeof(double));
-	for(int qq=0;qq<e;qq++)
+if(tte<ge)
+{	
+	AM=(double *)malloc(ge*(dim+1)*sizeof(double));
+	for(int qq=0;qq<ge;qq++)
 	{	AM[qq*(dim+1)+dim]=b[qq];
 
 		for(int kk=0;kk<dim;kk++)
@@ -2959,17 +2972,16 @@ if(tte<e)
 	
 	
 	
-	if(xxwg(A,AM, e, dim+1)>tte)
+	if(xxwg(A,AM, ge, dim+1)>tte)
 	{printf("wujie");
 		return 1;
 	}
 	
 	
-	free(A);
-	free(AM);
-	memcpy(AM,Aw,e*dim*sizeof(double));
+	
+	memcpy(AM,Aw,ge*dim*sizeof(double));
 
-	tte=xxwg(A,AM, e, dim);
+	tte=xxwg(A,AM, ge, dim);
 
 
 
@@ -2982,8 +2994,8 @@ if(tte<e)
 }
 
 
-
-
+shuchud(A,tte,dim);
+int e=tte;
 
 
 

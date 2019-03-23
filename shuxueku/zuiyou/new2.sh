@@ -1,6 +1,6 @@
-cd ../..
-git pull
-cd shuxueku/zuiyou
+#cd ../..
+#git pull
+#cd shuxueku/zuiyou
 
 
 
