@@ -1126,8 +1126,12 @@ memcpy(TEM,A,m*n*sizeof(double));
  
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,n, s, u, ldu, vt, ldvt, superb);
  	
-	printf("\n\n");
-	shuchud(s,ff,1);
+	printf("uuuuuuuu\n\n");
+	shuchud(u,m,m);
+	
+	
+	
+	
 	int wz=ff-1;
 
 	for(int ss=0;ss<ff;ss++)
