@@ -1149,9 +1149,9 @@ memcpy(TEM,A,1*n*sizeof(double));
 
 int zhi=1;
 
-	for(int pp=1;pp<ff;pp++)
+	for(int pp=1;pp<m;pp++)
 	{	
-	memcpy(TEM2,TEM,1*n*sizeof(double));
+	memcpy(TEM2,TEM,zhi*n*sizeof(double));
 
 		
 	for(int jj=0;jj<n;jj++)	
@@ -1171,61 +1171,7 @@ int zhi=1;
 
 
    
-	double *AM=(double *)malloc(wz*n*sizeof(double));
-
-	for(int kk=0;kk<wz;kk++)
-	{for(int ll=0;ll<n;ll++)
-		{TEM[kk*n+ll]=s[kk]*vt[kk*n+ll];}
-	}
-
-	for(int kk=wz;kk<m;kk++)
-	{for(int ll=0;ll<n;ll++)
-		TEM[kk*n+ll]=0;
-	}
-
-	shuchud(TEM,m,n);
-	printf("--TEM--\n");
-
-//	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,u, n,TEM,n, 0,AM,n );
-	printf("\n\nAM\n");
-	shuchud(AM,m,n);
-printf("\n\n\n");
-	
-	
-
-	double *TEM2=(double *)malloc(wz*n*sizeof(double));
-
-//	memcpy(TEM2,u,wz*n*sizeof(double));
-	shuchud(TEM2,wz,n);
-	printf("--2--\n");
-
-
-
-//	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, wz, n,m, 1,TEM2, n,TEM,n, 0,AM,n );
-	
-
-
-shuchud(A,m,n);
-printf("\n");
-shuchud(u,m,m);
-printf("u\n");
-shuchud(vt,n,n);
-printf("vt\n");
-
-
-
-//shuchud(AM,wz,n);
-
-
-
-
-//free(TEM);
-//free(TEM2);
-
-
-
-
-
+   
 
    
 
