@@ -104,14 +104,14 @@ double TEM[12]={1,2,1,0,
 
 
 		
-	double u[n*n];
-	int ldu = n;
-	double vt[m*m];
-	int ldvt = m;
+	double u[100];
+	int ldu = m;
+	double vt[100];
+	int ldvt = n;
 	
 	
 	int ot=(m+n)/2+abs(m-n)/2;
-	double superb[ot];
+	double superb[100];
 	
 	
 	printf("ok\n");
