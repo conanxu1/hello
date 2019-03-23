@@ -2931,7 +2931,7 @@ double *A=(double *)malloc(e*dim*sizeof(double));
 memcpy(A,Aw,e*dim*sizeof(double));
 
 int tte=xxwg(AM,A, e, dim);
-printf("000000000000000000000000000000000000000000000000000000000000step1\n")
+printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
 if(tte<e)
 {	free(AM);
