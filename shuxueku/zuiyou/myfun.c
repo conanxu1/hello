@@ -1122,9 +1122,9 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 
 
 		
-	double u[n*n];
+	double u[m*m];
 	int ldu = m;
-	double vt[m*m];
+	double vt[n*n];
 	int ldvt = n;
 	
 	
