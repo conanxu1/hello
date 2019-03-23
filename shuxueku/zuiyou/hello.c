@@ -68,7 +68,7 @@ double H[9]={  1,0,0,
 double zuoyong[3*3]={   1,2,1,
 			-1,-2,1,
 			0,0,1};
-double tb[3]={0};
+double tb[3]={0,0,0};
 double tg[3]={1.6,3.2,80};
 
 
