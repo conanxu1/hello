@@ -1184,7 +1184,9 @@ AM=(double *)malloc(zhi*n*sizeof(double));
 
 memcpy(AM,TEM,zhi*n*sizeof(double));
 
+free(TEM);
 
+free(TEM2);
 
 return zhi;
    
