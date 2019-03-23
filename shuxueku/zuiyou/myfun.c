@@ -1138,10 +1138,10 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
 	printf("uuuuuuuu\n\n");
-	shuchud(u,n,n);
+	shuchud(u,m,m);
 	 	
 	printf("vvvvvvvvv\n\n");
-	shuchud(vt,m,m);
+	shuchud(vt,n,n);
 	
 	
 	
