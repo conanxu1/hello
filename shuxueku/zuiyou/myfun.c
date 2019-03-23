@@ -1176,9 +1176,13 @@ int zhi=1;
 	}
 
 
+AM=(double *)malloc(zhi*n*sizeof(double));
 
-printf("\n\n%d",zhi);
-  shuchud(TEM,zhi,n);
+memcpy(AM,TEM,zhi*n*sizeof(double));
+
+
+
+return zhi;
    
 
    
@@ -1204,7 +1208,7 @@ void svd2()
 
 
 
-    int matrix_order = LAPACK_COL_MAJOR;
+    int matrix_order = LAPACK_ROW_MAJOR;//修改过排列方式了
     char jobu = 'A';
     char jobvt = 'A';
 	
@@ -2906,13 +2910,65 @@ Lz[(i)*dim+i]=L[(i)*dim+i];
 
 int myqp(
 		double *H,		//hessian
-		double *A,		//yueshu
+		double *Aw,		//yueshu
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   e			//A的列数
+		int   e			//A的列数  应该改过方向了
 		)
 {
+double *AM;
+double *A=(double *)malloc(e*dim*sizeof(double));
+memcpy(A,Aw,e*dim*sizeof(double));
+
+int tte=xxwg(AM,A, m, n);
+
+
+if(tte<m)
+{	free(AM);
+	double *AM=(double *)malloc(e*(dim+1)*sizeof(double));
+	for(int qq=0;qq<e;qq++)
+	{	AM[qq*(dim+1)+dim]=b[qq];
+
+		for(int kk=0;kk<dim;kk++)
+		{
+			AM[qq*(dim+1)+kk]=Aw[qq*(dim)+kk];
+			
+		}
+		
+		
+		
+	}
+	
+	free(A);
+	
+	if(xxwg(A,AM, m, n)>tte)
+	{printf("wujie")
+		return 1;
+	}
+	
+	
+	free(A);
+	free(AM);
+	memcpy(AM,Aw,e*dim*sizeof(double));
+
+	tte=xxwg(A,AM, m, n);
+
+
+
+
+	
+	
+	
+	
+	//xishu zhen  增广阵的秩
+}
+
+
+
+
+
+
 
 
 //qiu Ajidaxianxingwuguanzu 

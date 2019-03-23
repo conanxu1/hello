@@ -74,10 +74,9 @@ double tg[3]={1.6,3.2,80};
 
 double *AM;
 
-xxwg(AM,zuoyong,3,3);
+//xxwg(AM,zuoyong,3,3);
 
-
-//myqp(H,zuoyong,tg,tb,dim,3);
+myqp(H,zuoyong,tg,tb,dim,3);
 
 
 //shuchud(tg,dim,1);
