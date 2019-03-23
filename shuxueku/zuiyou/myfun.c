@@ -1157,6 +1157,12 @@ int zhi=1;
 	for(int jj=0;jj<n;jj++)	
 		TEM2[zhi*n+jj]=A[pp*n+jj];
 	
+	printf("pppp\n");
+	shuchud(TEM2,zhi+1,n);
+	
+	printf("pppp\n");
+	
+	
 	
 	LAPACKE_dgesvd(matrix_order,'A', 'A', zhi+1, n, TEM2,n, s, u, ldu, vt, ldvt, superb);
  	if(s[zhi]>1e-15)
