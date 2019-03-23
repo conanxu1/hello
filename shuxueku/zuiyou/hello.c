@@ -86,7 +86,7 @@ qxt(H,h,be,Ae,bi,Ai,2,1,1);
 
 
 
-
+int m=3,n=4;
 
 
 double TEM[12]={1,2,1,0,
