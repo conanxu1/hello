@@ -1149,8 +1149,8 @@ memcpy(TEM,A,1*n*sizeof(double));
 
 int zhi=1;
 
-	for(int pp=1;pp<m;pp++)
-	{	
+for(int pp=1;pp<m;pp++)
+   {	
 	memcpy(TEM2,TEM,zhi*n*sizeof(double));
 
 		
@@ -1160,7 +1160,7 @@ int zhi=1;
 	printf("pppp\n");
 	shuchud(TEM2,zhi+1,n);
 	
-	printf("pppp\n");
+	printf("\n\n\n00000pppp\n");
 	
 	
 	
