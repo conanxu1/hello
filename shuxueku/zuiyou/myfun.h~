@@ -187,3 +187,5 @@ int qxt(
 		int e,		
 		int ie			//不等式个数(原问题的  2e+ie)
 		);
+
+int xxwg(double *AM,double *A,dim m,dim n);

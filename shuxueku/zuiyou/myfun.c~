@@ -1100,6 +1100,118 @@ double* duqu(char *p,int n)
 	return xx;
 }
 
+int xxwg(double *AM,double *A,int m,int n)
+{
+double *TEM=(double *)malloc(m*n*sizeof(double));
+memcpy(TEM,A,m*n*sizeof(double));
+	int matrix_order = LAPACK_COL_MAJOR;
+	char jobu = 'A';
+	char jobvt = 'A';
+	
+
+	int lwork;
+	int ff=m;
+	if(n<m)
+	ff=n;
+
+	double s[ff];
+
+
+		
+	double u[m*m];
+	int ldu = m;
+	double vt[n*n];
+	int ldvt = n;
+	double superb[ff];
+ 
+	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,n, s, u, ldu, vt, ldvt, superb);
+ 	
+	printf("\n\n");
+	shuchud(s,ff,1);
+	int wz=ff-1;
+
+	for(int ss=0;ss<ff;ss++)
+	{if(s[ss]<1e-15)
+		wz=ss;
+		break;
+	}
+
+	printf("wz%d\n",wz);
+
+
+if(s[ff-1]>1e-15)
+{return 1;   } //hangmanzhi
+else
+   {
+	double *AM=(double *)malloc(wz*n*sizeof(double));
+
+	for(int kk=0;kk<wz;kk++)
+	{for(int ll=0;ll<n;ll++)
+		{TEM[kk*n+ll]=s[kk]*vt[ll*m+kk];}
+	}
+
+	for(int kk=wz;kk<m;kk++)
+	{for(int ll=0;ll<n;ll++)
+		TEM[kk*n+ll]=0;
+	}
+
+	shuchud(TEM,m,n);
+	printf("--TEM--\n");
+
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, m, n,m, 1,u, n,TEM,n, 0,AM,n );
+	printf("\n\nAM\n");
+	shuchud(AM,m,n);
+printf("\n\n\n");
+	
+	
+
+	double *TEM2=(double *)malloc(wz*n*sizeof(double));
+
+//	memcpy(TEM2,u,wz*n*sizeof(double));
+	shuchud(TEM2,wz,n);
+	printf("--2--\n");
+
+
+
+//	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, wz, n,m, 1,TEM2, n,TEM,n, 0,AM,n );
+	
+
+
+shuchud(A,m,n);
+printf("\n");
+shuchud(u,m,m);
+printf("u\n");
+shuchud(vt,n,n);
+printf("vt\n");
+
+
+
+//shuchud(AM,wz,n);
+
+
+
+
+//free(TEM);
+//free(TEM2);
+
+
+
+
+
+
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 void svd2()
@@ -2158,7 +2270,7 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 int qinum=0;
-double ep=1e-14;
+double ep=1e-13;
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
@@ -2204,6 +2316,20 @@ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, ie, 1,dim, 1,Ai, dim,xk, 1
 index=0;  //借用
 
 
+//printf("Ai\n");
+//shuchud(Ai,ie,dim);
+//printf("xk\n");
+//shuchud(xk,dim,1);
+
+//printf("bi\n");
+//shuchud(bi,ie,1);
+
+printf("tbi\n");
+shuchud(tbi,ie,1);
+//printf("H\n");
+//shuchud(H,dim,dim);
+
+
 
 
 for(int i=0;i<ie;i++)
@@ -2235,36 +2361,59 @@ for(int i=0;i<ie;i++)
 
 //xk=tg
 
-/////***/
+/////***//d
 
 
-for(int qq=0;qq<1000;qq++)
-{	printf("\n\n\n\n\n\n\nqiz\n");
+int ho=0;
+
+//////diedai
+for(int qq=0;qq<5;qq++)
+{	printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",qq);
+printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
+shuchud(xk,dim,1);	
+	printf("\n\n\n\n\n\n\nqiz\n");
 	shuchui(A0,ie,1);
 	
-	printf("dangqiandianxk\n");
-	shuchud(xk,dim,1);
+	
+	
 //	printf("..\n");
 	printf("\n\n\nqinum\n");
 	printf("%d",qinum);
 
 
 	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
+	
 	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,G, dim,xk, 1,1,tg,1 );	
+	
 
-	memset(tb,0,(e+ie)*sizeof(int));
+
+	memset(tb,0,(e+ie)*sizeof(double));
+
+	printf("\n++...G \n");
+	shuchud(G,dim,dim);
+	
+	printf("++...zuoyong \n");
+	shuchud(zuoyong,e+qinum,dim);
+	printf("++...tg\n");
+	shuchud(tg,dim,1);
+	printf("++... %d\n",e+qinum);
+	printf("..%lf..\n",tb[0]);
+
+
 
 
 	myqp(H,zuoyong,tg,tb,dim,(e+qinum));
+
 	memcpy(dk,tg,dim*sizeof(double));
 		
 	printf("++...dk\n");
 	shuchud(tg,dim,1);	
 	printf("++...lam_ki\n");
 	shuchud(tb,e+qinum,1);	
-	
+	printf("++...zuoyong \n");
+	shuchud(zuoyong,e+qinum,dim);
 
-	
+
 	//dk=0
 	if(cblas_dasum(dim, tg,1)<ep)
 	{	
@@ -2278,7 +2427,8 @@ for(int qq=0;qq<1000;qq++)
 				}	
 		}
 		if(index>=0)
-		{if(index<qinum-1)
+		{printf("index%d\n",index);
+			if(index<qinum-1)
 			{
 			A0[index]=A0[qinum-1];
 			A0[qinum-1]=-1;
@@ -2294,7 +2444,8 @@ for(int qq=0;qq<1000;qq++)
 		}
 		else{
 ///gai x0weihao			
-			memcpy(h,xk,dim*sizeof(double));
+			
+			printf("ffd\n");
 			return 1;
 		}
 	}
@@ -2310,8 +2461,8 @@ for(int qq=0;qq<1000;qq++)
 			if(A0[j]>=0)
 			{tp[A0[j]]=1;}
 		}
-		printf("bukexingji....\n");
-		shuchui(tp,ie,1);
+		//printf("bukexingji....\n");
+		//shuchui(tp,ie,1);
 		//alpha测试一遍
 		for(int j=0;j<ie;j++)
 		{	
@@ -2327,12 +2478,12 @@ for(int qq=0;qq<1000;qq++)
 
 				test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 				test=test/cblas_ddot(dim, ait, 1, dk,1);
-				printf("%lf",test);		
+				//printf("%lf\n",test);		
 					if((test<zuixiao))
 					{zuixiao=test;
 					index=j;}
 			}}
-//		printf("\n.dangqian.%lf..alpha",zuixiao);
+		printf("\n.dangqian.%lf..alpha",zuixiao);
 		}
 
 
@@ -2458,7 +2609,7 @@ for(int i=0;i<ie;i++)
 }
 
 for(int i=0;i<ie;i++)
-{	BM[e+i]=bi[i+e];
+{	BM[2*e+i]=bi[i];
 }
 
 
@@ -2479,10 +2630,10 @@ double *x0=(double *)malloc((dim+1)*sizeof(double));
 double *hw=(double *)malloc((dim+1)*sizeof(double));
 double *Hw=(double *)malloc((dim+1)*(dim+1)*sizeof(double));
 double test;
-double ep=1e-14;
+double ep=1e-15;
 
 
-double M=100;
+double M=1e1;
 double t=0;
 
 
@@ -2502,16 +2653,21 @@ for(int i=0;i<dim;i++)
 //printf("Ae..\n");
 //shuchud(Ai,ie,dim);
 //printf("Ai..\n");
-//shuchud(BM,(2*e+ie+1),1);
-//printf("BM..\n");
-//shuchud(AM,2*e+ie+1,dim+1);
-//printf("AM..\n");
+shuchud(BM,(2*e+ie+1),1);
+printf("BM..\n");
+shuchud(AM,2*e+ie+1,dim+1);
+printf("AM..\n");
+
+shuchud(Hw,dim+1,dim+1);
+printf("HW\n");
+shuchud(H,dim,dim);
+printf("H\n");
 
 
 
 
 for(int i=0;i<e;i++)
-{if(abs(BM[i])>t)
+{if(fabs(BM[i])>t)
 	{t=abs(BM[i]);}}
 
 for(int i=0;i<ie;i++)
@@ -2533,7 +2689,11 @@ else
 memset(hw,0,dim*sizeof(double));
 hw[dim]=1;
 
-while(abs(hw[dim])>1e-14)
+
+
+
+
+while(M<1e2)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2549,9 +2709,8 @@ M=M*2;
 Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
 
 
-memcpy(x0,hw,dim+1);
 
-memcpy(hw,h,dim*sizeof(double));      //每次都要赋值
+   //每次都要赋值
 hw[dim]=M;
 
 
@@ -2772,7 +2931,12 @@ int myqp(
 		int   e			//A的列数
 		)
 {
-	
+
+
+//qiu Ajidaxianxingwuguanzu 
+
+
+
 
 	
 //复制G
