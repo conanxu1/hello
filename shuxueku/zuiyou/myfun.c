@@ -1112,8 +1112,8 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 
 	memcpy(TEM,A,m*n*sizeof(double));
 	int matrix_order = LAPACK_ROW_MAJOR;
-	char jobu = 'N';
-	char jobvt = 'N';
+	char jobu = 'A';
+	char jobvt = 'A';
 	
 	int ff=m,lda=n;
 
