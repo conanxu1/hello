@@ -2924,7 +2924,7 @@ memcpy(A,Aw,e*dim*sizeof(double));
 int tte=xxwg(AM,A, e, dim);
 
 
-if(tte<m)
+if(tte<e)
 {	free(AM);
 	double *AM=(double *)malloc(e*(dim+1)*sizeof(double));
 	for(int qq=0;qq<e;qq++)
