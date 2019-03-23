@@ -1130,6 +1130,9 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	
 	int ot=(m+n)/2+abs(m-n)/2;
 	double superb[ot];
+	
+	
+	printf("ok\n");
  shuchud(TEM,m,n);
 	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
