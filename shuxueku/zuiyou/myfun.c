@@ -1111,7 +1111,7 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 
 
 	memcpy(TEM,A,m*n*sizeof(double));
-	int matrix_order = LAPACK_COL_MAJOR;
+	int matrix_order = LAPACK_ROW_MAJOR;
 	char jobu = 'A';
 	char jobvt = 'A';
 	
