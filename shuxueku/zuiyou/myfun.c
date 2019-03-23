@@ -2943,7 +2943,7 @@ if(tte<e)
 	free(A);
 	
 	if(xxwg(A,AM, e, dim+1)>tte)
-	{printf("wujie")
+	{printf("wujie");
 		return 1;
 	}
 	
