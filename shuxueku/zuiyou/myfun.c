@@ -2921,7 +2921,7 @@ double *AM;
 double *A=(double *)malloc(e*dim*sizeof(double));
 memcpy(A,Aw,e*dim*sizeof(double));
 
-int tte=xxwg(AM,A, m, n);
+int tte=xxwg(AM,A, e, dim);
 
 
 if(tte<m)
@@ -2942,7 +2942,7 @@ if(tte<m)
 	
 	free(A);
 	
-	if(xxwg(A,AM, m, n)>tte)
+	if(xxwg(A,AM, e, dim+1)>tte)
 	{printf("wujie")
 		return 1;
 	}
@@ -2952,7 +2952,7 @@ if(tte<m)
 	free(AM);
 	memcpy(AM,Aw,e*dim*sizeof(double));
 
-	tte=xxwg(A,AM, m, n);
+	tte=xxwg(A,AM, e, dim);
 
 
 
