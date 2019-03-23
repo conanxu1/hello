@@ -1118,8 +1118,7 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	int ff=m,lda=n;
 
 
-	double s[ff];
-
+	
 
 		
 	double u[m*m];
@@ -1130,7 +1129,8 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	
 	int ot=(m+n)/2+abs(m-n)/2;
 	double superb[ot];
-	
+	double s[ot];
+
 	
 	printf("ok!!!!!\n");
 	printf("ok!!!!!\n");
