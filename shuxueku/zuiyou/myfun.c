@@ -1102,32 +1102,36 @@ double* duqu(char *p,int n)
 
 int xxwg(double *AM,double *A,int m,int n)
 {
+//只求行满秩
+
+
 double *TEM=(double *)malloc(m*n*sizeof(double));
-memcpy(TEM,A,m*n*sizeof(double));
+double *TEM2=(double *)malloc(m*n*sizeof(double));
+
+
+
+	memcpy(TEM,A,m*n*sizeof(double));
 	int matrix_order = LAPACK_COL_MAJOR;
 	char jobu = 'A';
 	char jobvt = 'A';
 	
+	int ff=m,lda=n;
 
-	int lwork;
-	int ff=m;
-	if(n<m)
-	ff=n;
 
 	double s[ff];
 
 
 		
-	double u[m*m];
-	int ldu = m;
-	double vt[n*n];
-	int ldvt = n;
+	double u[n*n];
+	int ldu = n;
+	double vt[m*m];
+	int ldvt = m;
 	double superb[ff];
  
-	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,n, s, u, ldu, vt, ldvt, superb);
+	LAPACKE_dgesvd(matrix_order,jobu, jobvt, m, n, TEM,lda, s, u, ldu, vt, ldvt, superb);
  	
 	printf("uuuuuuuu\n\n");
-	shuchud(u,m,m);
+	shuchud(u,n,n);
 	 	
 	printf("vvvvvvvvv\n\n");
 	shuchud(vt,m,m);
@@ -1135,25 +1139,43 @@ memcpy(TEM,A,m*n*sizeof(double));
 	
 	
 	int wz=ff-1;
+	if(s[wz]>1e-15)
+			{return ff;   } //hangmanzhi
 
-	for(int ss=0;ss<ff;ss++)
-	{if(s[ss]<1e-15)
-		wz=ss;
-		break;
+
+memset(TEM,0,m*n*sizeof(double));
+
+memcpy(TEM,A,1*n*sizeof(double));
+
+int zhi=1;
+
+	for(int pp=1;pp<ff;pp++)
+	{	
+	memcpy(TEM2,TEM,1*n*sizeof(double));
+
+		
+	for(int jj=0;jj<n;jj++)	
+		TEM2[zhi*n+jj]=A[pp*n+jj];
+	
+	
+	LAPACKE_dgesvd(matrix_order,'A', 'A', zhi+1, n, TEM2,n, s, u, ldu, vt, ldvt, superb);
+ 	if(s[zhi]>1e-15)
+		{zhi+=1;
+						for(int jj=0;jj<n;jj++)	
+						TEM[zhi*n+jj]=A[pp*n+jj];
+		}
+
 	}
 
-	printf("wz%d\n",wz);
 
 
-if(s[ff-1]>1e-15)
-{return 1;   } //hangmanzhi
-else
-   {
+
+   
 	double *AM=(double *)malloc(wz*n*sizeof(double));
 
 	for(int kk=0;kk<wz;kk++)
 	{for(int ll=0;ll<n;ll++)
-		{TEM[kk*n+ll]=s[kk]*vt[ll*m+kk];}
+		{TEM[kk*n+ll]=s[kk]*vt[kk*n+ll];}
 	}
 
 	for(int kk=wz;kk<m;kk++)
@@ -1205,7 +1227,7 @@ printf("vt\n");
 
 
 
-   }
+   
 
 }
 
