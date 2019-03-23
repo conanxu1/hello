@@ -120,7 +120,7 @@ double TEM[12]={1,2,1,0,
  	
 	printf("uuuuuuuu\n\n");
 	shuchud(u,m,m);
-	 	
+	 shuchud(s,m+n,1);
 	printf("vvvvvvvvv\n\n");
 	shuchud(vt,n,n);
 
