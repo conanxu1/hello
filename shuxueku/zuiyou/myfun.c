@@ -1128,8 +1128,8 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	
 	
 	int ot=(m+n)/2+abs(m-n)/2;
-	double superb[ot];
-	double s[ot];
+	double superb[m+n];
+	double s[m+n];
 
 	
 	printf("ok!!!!!\n");
