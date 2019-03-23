@@ -1128,7 +1128,9 @@ memcpy(TEM,A,m*n*sizeof(double));
  	
 	printf("uuuuuuuu\n\n");
 	shuchud(u,m,m);
-	
+	 	
+	printf("vvvvvvvvv\n\n");
+	shuchud(vt,m,m);
 	
 	
 	
