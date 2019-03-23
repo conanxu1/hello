@@ -100,7 +100,7 @@ double TEM[12]={1,2,1,0,
 	int ff=m,lda=n;
 
 
-	double s[ff];
+	double s[m+n];
 
 
 		
