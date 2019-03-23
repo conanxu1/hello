@@ -1165,6 +1165,7 @@ int zhi=1;
 	
 	
 	LAPACKE_dgesvd(matrix_order,'A', 'A', zhi+1, n, TEM2,n, s, u, ldu, vt, ldvt, superb);
+	shuchud(s,zhi+1,1);
  	if(s[zhi]>1e-15)
 		{
 						for(int jj=0;jj<n;jj++)	
