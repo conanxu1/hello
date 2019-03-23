@@ -94,8 +94,8 @@ double TEM[12]={1,2,1,0,
 				0,0,1,0};
 
 	int matrix_order = LAPACK_ROW_MAJOR;
-	char jobu = 'N';
-	char jobvt = 'N';
+	char jobu = 'A';
+	char jobvt = 'A';
 	
 	int ff=m,lda=n;
 
