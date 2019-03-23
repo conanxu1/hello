@@ -1121,15 +1121,16 @@ double *TEM2=(double *)malloc(m*n*sizeof(double));
 	
 
 		
-	double u[m*m];
+	double *u=(double *)malloc*(m*m*sizeof(double));
+	
 	int ldu = m;
-	double vt[n*n];
+	double *vt=(double *)malloc*(n*n*sizeof(double));
 	int ldvt = n;
 	
 	
 	int ot=(m+n)/2+abs(m-n)/2;
-	double superb[m+n];
-	double s[m+n];
+	double *superb=(double *)malloc*((m+n)*sizeof(double));
+	double *s=(double *)malloc*((m+n)*sizeof(double));
 
 	
 	printf("ok!!!!!\n");
@@ -1185,6 +1186,10 @@ for(int pp=1;pp<m;pp++)
 		}
 
 	}
+
+printf("zhi\n");
+
+shuchud(TEM,) 
 
 
 AM=(double *)malloc(zhi*n*sizeof(double));
