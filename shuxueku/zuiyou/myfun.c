@@ -2262,13 +2262,50 @@ double shixing(double t,double a,double b)
 	
 	
 // erci()
+
+//追赶法
+int zhui(double *A,double *d,int n,double *x)
+{
+//不覆盖
 	
+if(jie!=NULL)
+{
+	free(jie);
+	jie=NULL;
+}
+double *tem;
+ci=(double *)malloc((n-1)*sizeof(double));
+di=(double *)malloc((n-1)*sizeof(double));
+
+jie=(double *)malloc(n*sizeof(double));
+
+
+
+
+// cp=A[(p-1)*n+n];
+// bp=A[(p-1)*n+(p-1)];
+// ap=A[(p-1)*n+(p-2)];
+//cp*=ci[p-1];
+
+
+int i,p;
+ci[0]=A[1]/B[0];
+di[0]=d[0]/B[0];
+
+
+for(p=2;p<=n-1;p++)
+{
+ci[p-1]=A[(p-1)*n+n]/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]+ci[p-2]);	
 	
-	
-	
-	
-	
-	
+di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*di[p-2]*ci[p-2]);	
+}
+
+x[n-1]=di[n-1];
+for(p=n-2;p>=1;p--)
+{  x[p]=di[p-2]-ci[p-1]*x[p+1];
+}
+
+}
 	
 	
 	
