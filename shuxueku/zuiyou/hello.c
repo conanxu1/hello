@@ -30,6 +30,48 @@ void matrix_vector();
 int main()
 {
 
+int i;
+    
+int n=4;
+
+double x[4]={1,2,2,3},*jie;
+double A[16]={2,-1,0,0,
+             -1,2,-1,0,
+             0,-1,2,-1,
+             0,0,-1,2};
+
+
+    
+zhui(A,x,4,jie); 
+
+shuchud(jie,4,4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	
 int d=3;
 
@@ -61,7 +103,7 @@ qxt(H,h,be,Ae,bi,Ai,3,0,3);
 
 
 
-
+*/
 
 
 

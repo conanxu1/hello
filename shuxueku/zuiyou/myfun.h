@@ -189,3 +189,14 @@ int qxt(
 		);
 
 int xxwg(double *AM,double *A,int m,int n);
+
+
+
+//追赶法解方程
+
+int zhui(double *A,		//系数
+		double *d,		//右侧
+		int n,
+		double *x)
+
+
