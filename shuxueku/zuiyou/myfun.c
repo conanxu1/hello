@@ -2264,51 +2264,81 @@ double shixing(double t,double a,double b)
 // erci()
 
 //追赶法
-int zhui(double *A,double *d,int n,double *x)
+int zhui(double *A,double *d,int n,double *jie)
 {
 //不覆盖
-	
-if(jie!=NULL)
-{
-	free(jie);
-	jie=NULL;
-}
-double *tem;
+
+
+double *ci,*di;
 ci=(double *)malloc((n-1)*sizeof(double));
 di=(double *)malloc((n-1)*sizeof(double));
 
-jie=(double *)malloc(n*sizeof(double));
 
 
 
-
-// cp=A[(p-1)*n+n];
+// cp=A[(p-1)*n+p];
 // bp=A[(p-1)*n+(p-1)];
 // ap=A[(p-1)*n+(p-2)];
 //cp*=ci[p-1];
 
 
 int i,p;
-ci[0]=A[1]/B[0];
-di[0]=d[0]/B[0];
+ci[0]=A[1]/A[0];
+di[0]=d[0]/A[0];
 
 
 for(p=2;p<=n-1;p++)
 {
-ci[p-1]=A[(p-1)*n+n]/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]+ci[p-2]);	
+ci[p-1]=A[(p-1)*n+p]/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);	
 	
-di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*di[p-2]*ci[p-2]);	
+di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);	
+}
+p=n;
+di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);
+
+
+jie[n-1]=di[n-1];
+for(p=n-2;p>=0;p--)
+{  jie[p]=di[p]-ci[p]*jie[p+1];
 }
 
-x[n-1]=di[n-1];
-for(p=n-2;p>=1;p--)
-{  x[p]=di[p-2]-ci[p-1]*x[p+1];
-}
 
+free(ci);
+free(di);
+
+ci=NULL;
+di=NULL;
+
+
+shuchud(jie,n,1);
+
+
+return 1;
 }
 	
 	
+
+
+int zuoyongyu(int **a)
+{
 	
+/*
+主函数中
+int *a;
+zuoyongyu(&a);
+printf("\n%d\n",*a);
+
+在子函数里用malloc给参数变量分配空间，变量赋值后，主函数的值不会变。
+原因：malloc出来的地址跟main中声明的变量的地址是不一样的，子函数中的赋值语句只是给malloc出来的那个空间付了值
+解决方法：在主函数定义变量时，定义成指针变量。调用时加&，在子函数的参数里用**。
+*/	
+	
+	
+	
+ (*a)=(int *)malloc(sizeof(a));
+ **a=100;
+ return 1;
+}	
 	
 	
 	
@@ -2774,7 +2804,7 @@ memset(hw,0,dim*sizeof(double));
 hw[dim]=1;
 
 
-while(x0[dim]>1e-13||M<1e14)
+while(x0[dim]>1e-13&&M<1e16)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2803,15 +2833,13 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);
 
 
 }
-erci(H,h,be,Ae,bi,Ai,dim,e,ie,x0);
-	
 
 printf("hw\n\n");
 shuchud(hw,dim+1,1);
-printf("x0..%lf\n\n",log(M)/log(10));
+printf("x0%lf\n\n",log(M)/log(10));
 shuchud(x0,dim+1,1);
 
-fuzhi
+
 
 free(ait);
 free(BM);

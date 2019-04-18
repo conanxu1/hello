@@ -197,6 +197,7 @@ int xxwg(double *AM,double *A,int m,int n);
 int zhui(double *A,		//系数
 		double *d,		//右侧
 		int n,
-		double *x)
+		double *jie);
 
 
+int zuoyongyu(int **a);

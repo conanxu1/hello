@@ -23,7 +23,7 @@
                           // lapack_int ldvr );
 
 
-void matrix_vector();
+// void matrix_vector();
 
 
 
@@ -34,17 +34,24 @@ int i;
     
 int n=4;
 
-double x[4]={1,2,2,3},*jie;
-double A[16]={2,-1,0,0,
-             -1,2,-1,0,
-             0,-1,2,-1,
-             0,0,-1,2};
+double x[4]={1,2,2,3},*ooo;
+double A[16]={3,-1,0,0,
+             -1,3,-1,0,
+             0,-1,3,-1,
+             0,0,-1,3};
 
+ooo=(double *)malloc(2*sizeof(double));
 
     
-zhui(A,x,4,jie); 
+zhui(A,x,4,ooo); 
 
-shuchud(jie,4,4);
+// if(jie==NULL)
+// printf("\n1\n");
+
+printf("%lf",ooo[1]);
+
+free(ooo);
+ooo=NULL;
 
 
 
@@ -95,12 +102,10 @@ double Ai[6]={-3,-2,
 				0,1};
 				
 double bi[3]={-6,0,0};
-double x0[3]={0,0,0};
+
+qxt(H,h,be,Ae,bi,Ai,3,0,3);
 
 
-qxt(H,h,be,Ae,bi,Ai,2,0,3);
-
-shuchud(h,3,1);
 
 
 
