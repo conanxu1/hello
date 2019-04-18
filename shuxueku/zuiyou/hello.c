@@ -53,10 +53,12 @@ double Ai[6]={-3,-2,
 				0,1};
 				
 double bi[3]={-6,0,0};
+double x0[3]={0,0,0};
 
-qxt(H,h,be,Ae,bi,Ai,3,0,3);
 
+qxt(H,h,be,Ae,bi,Ai,2,0,3);
 
+shuchud(h,3,1);
 
 
 

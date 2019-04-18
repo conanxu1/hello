@@ -2249,8 +2249,38 @@ double shixing(double t,double a,double b)
 	
 }
 
-//int mysqp()
 
+// double armijo()
+
+
+// int mysqp()
+// {
+	
+	
+	
+	
+	
+	
+// erci()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+// }
 
 int erci(
 		double *H,		//hessian
@@ -2707,7 +2737,7 @@ memset(hw,0,dim*sizeof(double));
 hw[dim]=1;
 
 
-while(x0[dim]>1e-13&&M<1e17)
+while(x0[dim]>1e-13||M<1e14)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2736,13 +2766,15 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);
 
 
 }
+erci(H,h,be,Ae,bi,Ai,dim,e,ie,x0);
+	
 
 printf("hw\n\n");
 shuchud(hw,dim+1,1);
-printf("x0%lf\n\n",log(M)/log(10));
+printf("x0..%lf\n\n",log(M)/log(10));
 shuchud(x0,dim+1,1);
 
-
+fuzhi
 
 free(ait);
 free(BM);
