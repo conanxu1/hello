@@ -2271,7 +2271,7 @@ int zhui(double *A,double *d,int n,double *jie)
 
 double *ci,*di;
 ci=(double *)malloc((n-1)*sizeof(double));
-di=(double *)malloc((n-1)*sizeof(double));
+di=(double *)malloc((n)*sizeof(double));
 
 
 
@@ -2304,9 +2304,12 @@ for(p=n-2;p>=0;p--)
 
 
 free(ci);
+ci=NULL;
+
+
 free(di);
 
-ci=NULL;
+
 di=NULL;
 
 

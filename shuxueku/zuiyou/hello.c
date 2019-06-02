@@ -40,7 +40,7 @@ double A[16]={3,-1,0,0,
              0,-1,3,-1,
              0,0,-1,3};
 
-ooo=(double *)malloc(2*sizeof(double));
+ooo=(double *)malloc(n*sizeof(double));
 
     
 zhui(A,x,4,ooo); 
