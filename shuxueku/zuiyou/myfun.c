@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-b#include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include "fftw3.h"
 
