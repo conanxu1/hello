@@ -1,4 +1,4 @@
-#include <stdio.h>
+b#include <stdio.h>
 #include <string.h>
 #include "fftw3.h"
 
@@ -2264,51 +2264,81 @@ double shixing(double t,double a,double b)
 // erci()
 
 //追赶法
-int zhui(double *A,double *d,int n,double *x)
+int zhui(double *A,double *d,int n,double *jie)
 {
 //不覆盖
-	
-if(jie!=NULL)
-{
-	free(jie);
-	jie=NULL;
-}
-double *tem;
+
+
+double *ci,*di;
 ci=(double *)malloc((n-1)*sizeof(double));
 di=(double *)malloc((n-1)*sizeof(double));
 
-jie=(double *)malloc(n*sizeof(double));
 
 
 
-
-// cp=A[(p-1)*n+n];
+// cp=A[(p-1)*n+p];
 // bp=A[(p-1)*n+(p-1)];
 // ap=A[(p-1)*n+(p-2)];
 //cp*=ci[p-1];
 
 
 int i,p;
-ci[0]=A[1]/B[0];
-di[0]=d[0]/B[0];
+ci[0]=A[1]/A[0];
+di[0]=d[0]/A[0];
 
 
 for(p=2;p<=n-1;p++)
 {
-ci[p-1]=A[(p-1)*n+n]/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]+ci[p-2]);	
+ci[p-1]=A[(p-1)*n+p]/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);	
 	
-di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*di[p-2]*ci[p-2]);	
+di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);	
+}
+p=n;
+di[p-1]=(d[p-1]-A[(p-1)*n+(p-2)]*di[p-2])/(A[(p-1)*n+(p-1)]-A[(p-1)*n+(p-2)]*ci[p-2]);
+
+
+jie[n-1]=di[n-1];
+for(p=n-2;p>=0;p--)
+{  jie[p]=di[p]-ci[p]*jie[p+1];
 }
 
-x[n-1]=di[n-1];
-for(p=n-2;p>=1;p--)
-{  x[p]=di[p-2]-ci[p-1]*x[p+1];
-}
 
+free(ci);
+free(di);
+
+ci=NULL;
+di=NULL;
+
+
+shuchud(jie,n,1);
+
+
+return 1;
 }
 	
 	
+
+
+int zuoyongyu(int **a)
+{
 	
+/*
+主函数中
+int *a;
+zuoyongyu(&a);
+printf("\n%d\n",*a);
+
+在子函数里用malloc给参数变量分配空间，变量赋值后，主函数的值不会变。
+原因：malloc出来的地址跟main中声明的变量的地址是不一样的，子函数中的赋值语句只是给malloc出来的那个空间付了值
+解决方法：在主函数定义变量时，定义成指针变量。调用时加&，在子函数的参数里用**。
+*/	
+	
+	
+	
+ (*a)=(int *)malloc(sizeof(a));
+ **a=100;
+ return 1;
+}	
 	
 	
 	
@@ -3274,6 +3304,212 @@ int fft(double _Complex  * ai,double _Complex  * ao,int N)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+//拉格朗日插值导数Dki 一块算 减少重复计算
+
+int dlagx(double x,double  *c,dim NN,double * Dki)
+{
+
+double fenmui=1;
+
+int j;
+for(j=0;j<NN;j++)
+{if(i!=j)
+{fenmui*=(c[i]-c[j]);}}
+
+
+
+
+
+for(k=0;k<NN;k++)
+{for(i=0;i<NN;i++)
+{
+if(i!=k)	
+{
+	for(j=0;j<NN;j++)
+	{
+		
+	}
+}
+else
+{}
+
+}
+}	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+ 
+//拉格朗日插值基函数
+
+
+
+
+
+
+int lagx(double x,int i,double  *c,int N)
+{
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+double ttau(double tau,double t0,double tf)
+{
+	return  (tf-t0)/2*tau+(tf+t0)/2
+}
+
+
+
+
+
+
+//高斯勒让德积分
+int glint(double *(*fff)(double ,double *),double* Xk,double* Uk,double tauk,int N)
+{
+	
+	
+	wk*fff+
+	
+	
+	
+	
+	
+	return 0;
+}
+
+
+
+
+
+//切比雪夫高斯点
+
+int cgd(double *x,int K)
+{
+int i;
+for(i=1;i<=K;i++)
+{
+x[i-1]=cos((K+1-i)/(K+1)*PI);
+	
+	
+}
+
+return 0;
+}	
+
+
+
+
+
+
+
+
+*/
+
+//勒让德高斯点
+//x0,x1...,xn    初值为0
+//2n+1次代数精度
+//x n+1维
+
+//输入节点指针和n
+//输出节点不含端点
+
+
+int lgd(double *x,int n)
+{
+
+
+
+
+//-1+i*h
+
+//s1 求yk
+//
+double *A=(double *)malloc((n+1)*(n+1)*sizeof(double));
+
+memset(y,0,(n+1)*sizeof(double));
+
+
+int i,j,k;
+
+
+for(i=1;i<=n;i++)
+{
+A[(i-1)*(n+1)+i]=sqrt((2*i-1)/(2*i+1)*i)/(2*i-1);
+A[i*(n+1)+(i-1)]=A[(i-1)*(n+1)+i];	
+}
+
+
+
+
+
+
+
+
+ 
+
+
+return 0;
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 // 
 //
@@ -3385,7 +3621,5 @@ int fft(double _Complex  * ai,double _Complex  * ao,int N)
 
 
 	// OO=(double *)malloc(n*n*sizeof(double));
-	// memset(OO,0,n*n*sizeof(double));
-
-
+	// memset(OO,0,n*n*sizeof(double));  
 

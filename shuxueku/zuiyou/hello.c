@@ -23,31 +23,23 @@
                           // lapack_int ldvr );
 
 
-void matrix_vector();
+// void matrix_vector();
 
 
 
 int main()
 {
 
-int i;
-    
-int n=4;
-
-double x[4]={1,2,2,3},*jie;
-double A[16]={2,-1,0,0,
-             -1,2,-1,0,
-             0,-1,2,-1,
-             0,0,-1,2};
-
-
-    
-zhui(A,x,4,jie); 
-
-shuchud(jie,4,4);
 
 
 
+
+
+int n=2;
+double *x=(double *)malloc((n+1)*sizeof(double));
+
+
+lgd(double *x,int n);
 
 
 
@@ -72,6 +64,60 @@ shuchud(jie,4,4);
 
 
 /*
+
+
+
+
+
+//追赶法三对角
+int i;
+    
+int n=4;
+
+double x[4]={1,2,2,3},*ooo;
+double A[16]={3,-1,0,0,
+             -1,3,-1,0,
+             0,-1,3,-1,
+             0,0,-1,3};
+
+ooo=(double *)malloc(2*sizeof(double));
+
+    
+zhui(A,x,4,ooo); 
+
+// if(jie==NULL)
+// printf("\n1\n");
+
+printf("%lf",ooo[1]);
+
+free(ooo);
+ooo=NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 int d=3;
 

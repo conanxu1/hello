@@ -192,11 +192,38 @@ int xxwg(double *AM,double *A,int m,int n);
 
 
 
+
+
+
+
+
+//勒让德高斯积分的  勒让德节点
+int lgd(double *x,int n);
+
+
+
+
+
+
+
+
+
+
 //追赶法解方程
 
 int zhui(double *A,		//系数
 		double *d,		//右侧
 		int n,
-		double *x)
+		double *jie);
+
+
+int zuoyongyu(int **a);
+
+
+
+
+
+
+
 
 
