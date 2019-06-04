@@ -201,6 +201,9 @@ int xxwg(double *AM,double *A,int m,int n);
 int lgd(double *x,int n);
 
 
+//勒让德高斯系数Ak  A0...An
+
+int lgAk(double *xk,double *Ak,int n);
 
 
 

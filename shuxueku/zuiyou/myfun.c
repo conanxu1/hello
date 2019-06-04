@@ -3453,7 +3453,7 @@ return 0;
 //输出节点不含端点
 
 
-int lgd(double *x,int n)
+int lgd(double *d,int n)
 {
 
 
@@ -3463,7 +3463,7 @@ int i;
 
 //s1 求yk
 //
-double *d=(double *)malloc((n+1)*sizeof(double));
+ 
 memset(d,0,(n+1)*sizeof(double));
 
 double *e=(double *)malloc((n)*sizeof(double));
@@ -3483,8 +3483,6 @@ e[i-1]=sqrt((2*i-1.0)/(2*i+1.0))*i/(2*i-1.0);
 
 
 }
-shuchud(e,n,1);
-
 
 printf("\n");
 
@@ -3499,8 +3497,7 @@ char job = 'N';
 
 LAPACKE_dstevd( CblasRowMajor, job, n+1,  d,e, z, ldz );
 
-shuchud(d,n+1,1);
-
+ 
 
 
  
@@ -3526,14 +3523,14 @@ double dp_1=0,dp_2=1,x,dp,p_1,p_2,p;
 
 
 int i,j;
-if{n==0}
+if(n==0)
 {
-Ak[0]=0;
+Ak[0]=2;
 return 0;
 }
 else if(n==1)
 {
-	Ak[0]=1;
+Ak[0]=1;
 Ak[1]=1;
 
 return 0;}
@@ -3546,19 +3543,19 @@ for(i=0;i<=n;i++)
 	dp_2=0;
 	dp_1=1;
 	p_2=1;
-	p_1=x
+	p_1=x;
 	
 	//复用dp
 	
 	
-	for(j=2;j<=n;j++)	
+	for(j=2;j<=n+1;j++)	
 		{
 			//dp=p'j
-			dp=(2*j-1.0)/j*x*dp_1-(j-1.0)*dp_2+(2*j-1.0)/j*p;
+			dp=((2*j-1.0)*x*dp_1-(j-1.0)*dp_2+(2*j-1.0)*p_1)/j;
 			dp_2=dp_1;
-			dp_1=dp
+			dp_1=dp;
 			
-			p=(2*j-1.0)/j*x*P_1-(j-1)*p_2;
+			p=((2*j-1.0)*x*p_1-(j-1)*p_2)/j;
 			p_2=p_1;
 			p_1=p;
 		}

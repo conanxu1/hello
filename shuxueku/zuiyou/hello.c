@@ -35,13 +35,17 @@ int main()
 
 
 
-int n=4;
+int n=3;
 double *xk=(double *)malloc((n+1)*sizeof(double));
 double *Ak=(double *)malloc((n+1)*sizeof(double));
 
 
 lgd( xk, n);
-lgAk(Ak,n);
+shuchud(xk,n+1,1);
+
+
+printf("\n");
+lgAk(xk,Ak,n);
 shuchud(Ak,n+1,1);
 
 
