@@ -35,12 +35,14 @@ int main()
 
 
 
-int n=200;
-double *x=(double *)malloc((n+1)*sizeof(double));
+int n=4;
+double *xk=(double *)malloc((n+1)*sizeof(double));
+double *Ak=(double *)malloc((n+1)*sizeof(double));
 
 
-lgd( x, n);
-
+lgd( xk, n);
+lgAk(Ak,n);
+shuchud(Ak,n+1,1);
 
 
 

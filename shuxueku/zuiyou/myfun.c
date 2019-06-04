@@ -3513,8 +3513,65 @@ return 0;
 
 
 
+//勒让德高斯系数Ak
+//A0...An
 
 
+
+int lgAk(double *xk,double *Ak,int n)
+{
+double dp_1=0,dp_2=1,x,dp,p_1,p_2,p;
+
+
+
+
+int i,j;
+if{n==0}
+{
+Ak[0]=0;
+return 0;
+}
+else if(n==1)
+{
+	Ak[0]=1;
+Ak[1]=1;
+
+return 0;}
+
+
+
+for(i=0;i<=n;i++)
+{	x=xk[i];
+
+	dp_2=0;
+	dp_1=1;
+	p_2=1;
+	p_1=x
+	
+	//复用dp
+	
+	
+	for(j=2;j<=n;j++)	
+		{
+			//dp=p'j
+			dp=(2*j-1.0)/j*x*dp_1-(j-1.0)*dp_2+(2*j-1.0)/j*p;
+			dp_2=dp_1;
+			dp_1=dp
+			
+			p=(2*j-1.0)/j*x*P_1-(j-1)*p_2;
+			p_2=p_1;
+			p_1=p;
+		}
+
+	Ak[i]=2/(1-x*x)/(dp*dp);
+	
+	
+}
+
+
+
+return 0;
+}	
 
 
 
