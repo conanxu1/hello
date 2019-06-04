@@ -215,6 +215,7 @@ int zhui(double *A,		//系数
 		double *d,		//右侧
 		int n,
 		double *jie);
+<<<<<<< HEAD
 
 
 int zuoyongyu(int **a);
@@ -225,5 +226,8 @@ int zuoyongyu(int **a);
 
 
 
+=======
+>>>>>>> 00794ba3943908d399a95a20168a3712a43e18f4
 
 
+int zuoyongyu(int **a);
