@@ -25,13 +25,57 @@
 
 // void matrix_vector();
 
+double hp(double a)
+{
+return 1.5;
+}
+
+double ff(double *a,int n)
+{
+return 5;
+}
+
 
 
 int main()
 {
 
 
+RnR *new;
+RR new2[2];
+double x[2]={0,1};
 
+
+
+new2[0]=hp;
+new2[1]=hp;
+
+
+
+
+new=(RnR *)malloc(2*sizeof(RnR));
+new[0]=ff;
+new[1]=ff;
+ 
+
+
+
+
+printf("%lf",new[0](x,2));
+
+
+
+
+
+
+
+
+
+
+/*
+勒让德的系数
+jiedian jifen daoshu 
+xk Ai Dki
 
 
 
@@ -50,7 +94,7 @@ lg_AD(xk,Ak,Dki,n);
 shuchud(Ak,n+1,1);
 shuchud(Dki,n+1,n+1);
 
-
+*/
 
 
 

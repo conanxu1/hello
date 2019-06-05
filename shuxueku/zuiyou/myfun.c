@@ -3267,19 +3267,15 @@ return 0;
 
 
 
-int yueshu(double (*gk)(double *x,n))
+int yueshu(RnR f,RnR *fk)
 {
 	
 double x[2]={1.0,0};	
-	
-printf("%lf",gk(x,2));	
-	
+ 
 	
 	
 	
-	
-	
-return 0
+return 0;
 	
 }
 
@@ -3566,7 +3562,7 @@ return 0;
 
 
 
-int lg_AD(double *xk,double *Ak,double Dki,int n)
+int lg_AD(double *xk,double *Ak,double *Dki,int n)
 {
 double dp_1=0,dp_2=1,x,dp,p_1,p_2,p;
 
@@ -3593,9 +3589,9 @@ Dki[0]=xk[0]/(1-xk[0]*xk[0]);
 Dki[1*(n+1)+(1)]=xk[1]/(1-xk[1]*xk[1]);
 
 
-Dki[1*(n+1)+(0)]=1.0/(x[1]-x[0]);
+Dki[1*(n+1)+(0)]=1.0/(xk[1]-xk[0]);
 
-Dki[0*(n+1)+(1)]=1.0/(x[0]-x[1]);
+Dki[0*(n+1)+(1)]=1.0/(xk[0]-xk[1]);
 
 
 
@@ -3669,7 +3665,7 @@ Dki[k*(n+1)+i]=Dki[k]/Dki[i]/(xk[k]-xk[i]);
 
 
 //对角线
-Dk[i*(n+1)+i]=xk[i]/(1-xk[i]*xk[i]);
+Dki[i*(n+1)+i]=xk[i]/(1-xk[i]*xk[i]);
 }
 
 

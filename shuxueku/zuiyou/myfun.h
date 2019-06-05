@@ -24,6 +24,25 @@
 #endif
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 double jifen(double a,double b,int n,double (*f1)(double));
 
 double _Complex lamw(double _Complex a,int k);
@@ -188,14 +207,21 @@ int qxt(
 		int ie			//不等式个数(原问题的  2e+ie)
 		);
 
+//Rn->R
+typedef double (*RnR)(double *x,int n);
+typedef double (*RR)(double x);
+typedef double *(*RnRn)(double *x,int n);
 
 
 //求解非线性约束优化问题
-int yueshu(double (*gk)(double *x,n))；
-
+int yueshu(RnR f,RnR *fk);
 
 //梯度
 double gk(double *x,int n);
+
+
+
+
 
 
 
@@ -214,9 +240,7 @@ int lgd(double *x,int n);
 
 //勒让德高斯系数Ak  Dki   A0...An   导数系数   d Li(xk)
 
-int lg_AD(double *xk,double *Ak,double Dki,int n);
-
-
+int lg_AD(double *xk,double *Ak,double *Dki,int n);
 
 
 
