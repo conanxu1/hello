@@ -188,6 +188,17 @@ int qxt(
 		int ie			//不等式个数(原问题的  2e+ie)
 		);
 
+
+
+//求解非线性约束优化问题
+int yueshu(double (*gk)(double *x,n))；
+
+
+//梯度
+double gk(double *x,int n);
+
+
+
 int xxwg(double *AM,double *A,int m,int n);
 
 
@@ -201,10 +212,9 @@ int xxwg(double *AM,double *A,int m,int n);
 int lgd(double *x,int n);
 
 
-//勒让德高斯系数Ak  A0...An
+//勒让德高斯系数Ak  Dki   A0...An   导数系数   d Li(xk)
 
-int lgAk(double *xk,double *Ak,int n);
-
+int lg_AD(double *xk,double *Ak,double Dki,int n);
 
 
 
@@ -222,6 +232,8 @@ int zhui(double *A,		//系数
 
 
 int zuoyongyu(int **a);
+
+
 
 
 
