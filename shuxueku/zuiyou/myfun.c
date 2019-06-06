@@ -3267,8 +3267,145 @@ return 0;
 
 
 
-int yueshu(RnR f,RnR *fk)
+
+
+
+
+//f(X1,X2;P1,P2)
+//
+
+double fuheRnR(RnR f,double *x,int *list1,int *list2)
 {
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//min f(x_i^n_j)     f(x,u,v,x^1,u^1,v^1)  i代表 x,u,v    n代表不同的时刻  j 代表每个列向量  x,u,v  的分量 
+
+
+// ni多少种列向量  即nf的维数   nt 分割的时刻   nf  每种列向量的维数构成数组 
+//x0 输入初值   维数（各种向量维数的和）*时刻
+//输出最优点？
+
+//f目标函数
+//gf 梯度
+//cek  等式约束
+//cik  不等约束
+//gcek  等式约束梯度
+//gcik  不等约束梯度
+//
+
+
+
+
+
+
+
+
+
+/*
+int yueshu(RnR f,RnRn gf,RnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *x0)
+{
+	
+
+int dim=0,i;
+
+for(i=0;i<ni;i++)
+{
+	dim+=nf[i];	
+}
+dim*=nt;
+//x0的维数
+
+double *Bk;
+
+
+Bk=(double *)malloc(dim*dim*sizeof(double)); 
+memset(Bk,0,dim*dim*sizeof(double));
+for(i=0;i<dim;i++)
+Bk=1;
+//单位阵
+
+
+
+
+
+
+
+
+//转化成系系数阵
+
+
+
+
+
+
+
+erci(double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk);
+		
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+double
+	
+	
+	
+	
+	
+	
 	
 double x[2]={1.0,0};	
  
@@ -3281,10 +3418,29 @@ return 0;
 
 
 
-
-
-
-
+//系数转化
+int yueshuxishu(RnR f,RnRn gf,RnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *xk,double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk)
+{
+	
+	
+	
+	
+ 
+//h梯度  维数是dim                       int dim=0,i;for i  dim+=nf[i]; dim*=nt;
+int i;
+for(i=0;i<dim;i++)
+{
+	
+	
+	
+	
+}	
+	
+	
+	
+	
+}
+*/
 
 
 
