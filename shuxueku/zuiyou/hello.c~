@@ -30,9 +30,26 @@ double hp(double a)
 return 1.5;
 }
 
-double ff(double *a,int n)
+
+
+
+
+
+
+
+
+
+
+
+
+double ff(double **a)
 {
-return 5;
+
+
+
+
+
+return a[0][1]*a[0][1]+a[1][0]*a[1][0];
 }
 
 
@@ -40,17 +57,45 @@ return 5;
 int main()
 {
 
+int i;
+double *XX,jjg;
+int listx[2]={2,2};
+int gex=2;
 
+XX=(double *)malloc(4*sizeof(double));
+
+XX[0]=1;
+XX[1]=1;
+XX[2]=1;
+XX[3]=1;
+
+ 
+
+
+
+jjg=fxutRnR(ff,XX,listx,gex);
+
+printf("%lf",jjg);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 RnR *new;
 RR new2[2];
 double x[2]={0,1};
 
 
-
 new2[0]=hp;
 new2[1]=hp;
-
-
 
 
 new=(RnR *)malloc(2*sizeof(RnR));
@@ -59,12 +104,10 @@ new[1]=ff;
  
 
 
-
-
 printf("%lf",new[0](x,2));
 
 
-
+*/
 
 
 

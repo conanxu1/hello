@@ -2,6 +2,12 @@
 #include <string.h>
 #include "fftw3.h"
 
+
+#include<stdarg.h>
+
+
+
+
 #include <stdlib.h>
 #include "myfun.h"
 #include <complex.h>
@@ -3258,6 +3264,7 @@ return 0;
 
 
 //有约束优化 局部sqp    假设梯度已知  拟牛顿 powell
+
 // void(*pfunarr[3])();
 // 函数指针数组
 // void(*(*pfunarr2)[3])();
@@ -3270,19 +3277,50 @@ return 0;
 
 
 
-
-//f(X1,X2;P1,P2)
+//f(X1,X2,X3...X_gex;P1,P2,P3...,P_gep)
+//[x;u;t]    f(x,u;t)
 //
+//f(向量指针列表)
+//listx[i]   Xi deweishu
+//f({1,2,    3})
 
-double fuheRnR(RnR f,double *x,int *list1,int *list2)
+
+
+
+
+//当函数给定后 分量的排列是确定的
+
+
+double fxutRnR(lyRnR f,double *X,int *listx,int gex)
 {
-	
-	
-	
-	
-	
-	
-	
+
+int i,j,k;
+
+int dangqian=0;
+
+double **x,rs;
+
+x=(double **)malloc(gex*sizeof(double *));
+
+
+for(i=0;i<gex;i++)
+{
+x[i]=(double *)malloc(listx[i]*sizeof(double));
+for(j=0;j<listx[i];j++)
+x[i][j]=X[dangqian+j];
+
+dangqian+=listx[i];
+}
+
+rs=f(x);
+
+free(x);
+x=NULL;
+
+return rs;
+
+
+
 }
 
 
@@ -3320,8 +3358,7 @@ double fuheRnR(RnR f,double *x,int *list1,int *list2)
 
 
 
-/*
-int yueshu(RnR f,RnRn gf,RnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *x0)
+int yueshu(lyRnR f,lyRnRn gf,lyRnR *cek,lyRnR *cik,lyRnRn *gcek,lyRnRn *gcik,int nt,int *nf,int ni,double *x0)
 {
 	
 
@@ -3419,7 +3456,7 @@ return 0;
 
 
 //系数转化
-int yueshuxishu(RnR f,RnRn gf,RnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *xk,double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk)
+int yueshuxishu(lyRnR f,lyRnRn gf,lyRnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *xk,double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk)
 {
 	
 	
@@ -3440,7 +3477,7 @@ for(i=0;i<dim;i++)
 	
 	
 }
-*/
+
 
 
 

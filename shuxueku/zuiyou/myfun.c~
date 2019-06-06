@@ -2,6 +2,12 @@
 #include <string.h>
 #include "fftw3.h"
 
+
+#include<stdarg.h>
+
+
+
+
 #include <stdlib.h>
 #include "myfun.h"
 #include <complex.h>
@@ -3258,6 +3264,7 @@ return 0;
 
 
 //有约束优化 局部sqp    假设梯度已知  拟牛顿 powell
+
 // void(*pfunarr[3])();
 // 函数指针数组
 // void(*(*pfunarr2)[3])();
@@ -3267,8 +3274,175 @@ return 0;
 
 
 
-int yueshu(RnR f,RnR *fk)
+
+
+
+//f(X1,X2,X3...X_gex;P1,P2,P3...,P_gep)
+//[x;u;t]    f(x,u;t)
+//
+//f(向量指针列表)
+//listx[i]   Xi deweishu
+//f({1,2,    3})
+
+
+
+
+
+//当函数给定后 分量的排列是确定的
+
+
+double fxutRnR(lyRnR f,double *X,int *listx,int gex)
 {
+
+int i,j,k;
+
+int dangqian=0;
+
+double **x,rs;
+
+x=(double **)malloc(gex*sizeof(double *));
+
+
+for(i=0;i<gex;i++)
+{
+x[i]=(double *)malloc(listx[i]*sizeof(double));
+for(j=0;j<listx[i];j++)
+x[i][j]=X[dangqian+j];
+
+dangqian+=listx[i];
+}
+
+rs=f(x);
+
+free(x);
+x=NULL;
+
+return rs;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//min f(x_i^n_j)     f(x,u,v,x^1,u^1,v^1)  i代表 x,u,v    n代表不同的时刻  j 代表每个列向量  x,u,v  的分量 
+
+
+// ni多少种列向量  即nf的维数   nt 分割的时刻   nf  每种列向量的维数构成数组 
+//x0 输入初值   维数（各种向量维数的和）*时刻
+//输出最优点？
+
+//f目标函数
+//gf 梯度
+//cek  等式约束
+//cik  不等约束
+//gcek  等式约束梯度
+//gcik  不等约束梯度
+//
+
+
+
+
+
+
+
+
+
+int yueshu(lyRnR f,lyRnRn gf,lyRnR *cek,lyRnR *cik,lyRnRn *gcek,lyRnRn *gcik,int nt,int *nf,int ni,double *x0)
+{
+	
+
+int dim=0,i;
+
+for(i=0;i<ni;i++)
+{
+	dim+=nf[i];	
+}
+dim*=nt;
+//x0的维数
+
+double *Bk;
+
+
+Bk=(double *)malloc(dim*dim*sizeof(double)); 
+memset(Bk,0,dim*dim*sizeof(double));
+for(i=0;i<dim;i++)
+Bk=1;
+//单位阵
+
+
+
+
+
+
+
+
+//转化成系系数阵
+
+
+
+
+
+
+
+erci(double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk);
+		
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+double
+	
+	
+	
+	
+	
+	
 	
 double x[2]={1.0,0};	
  
@@ -3281,9 +3455,28 @@ return 0;
 
 
 
-
-
-
+//系数转化
+int yueshuxishu(lyRnR f,lyRnRn gf,lyRnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *xk,double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk)
+{
+	
+	
+	
+	
+ 
+//h梯度  维数是dim                       int dim=0,i;for i  dim+=nf[i]; dim*=nt;
+int i;
+for(i=0;i<dim;i++)
+{
+	
+	
+	
+	
+}	
+	
+	
+	
+	
+}
 
 
 

@@ -212,6 +212,28 @@ typedef double (*RnR)(double *x,int n);
 typedef double (*RR)(double x);
 typedef double *(*RnRn)(double *x,int n);
 
+//维数作为全局量 不出现
+typedef double (*yRnR)(double *x);
+typedef double (*yRR)(double x);
+typedef double *(*yRnRn)(double *x);
+
+
+
+//二级指针向量列表
+
+typedef double (*lyRnR)(double **x);
+
+typedef double (*lyRR)(double x);
+
+typedef double *(*lyRnRn)(double **x);
+
+
+
+
+double fxutRnR(lyRnR f,double *X,int *listx,int gex);
+
+
+
 
 //求解非线性约束优化问题
 int yueshu(RnR f,RnR *fk);
