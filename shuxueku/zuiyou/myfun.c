@@ -3277,6 +3277,8 @@ return 0;
 
 
 
+
+
 //f(X1,X2,X3...X_gex;P1,P2,P3...,P_gep)
 //[x;u;t]    f(x,u;t)
 //
@@ -3289,6 +3291,91 @@ return 0;
 
 
 //当函数给定后 分量的排列是确定的
+
+
+
+
+// x=(double **)malloc(gex*sizeof(double *));
+
+
+// for(i=0;i<gex;i++)
+// {
+// x[i]=(double *)malloc(listx[i]*sizeof(double));
+
+
+
+int X2x(double *X,double **x,int *listx,int gex)
+{
+	
+int i,j,dangqian=0;
+
+for(i=0;i<gex;i++)
+{
+for(j=0;j<listx[i];j++)
+x[i][j]=X[dangqian+j];
+
+dangqian+=listx[i];
+}
+	
+	
+return 1;	
+	
+	
+}
+
+
+//有带待充系数   q第几组
+//第一个l=1   取高斯点时 t_0 为左端点
+
+int XP2xpl(double *X,double *P,double **xp,int *listx,int gex,int *listp,int gep,int l)
+{
+	
+int i,j,dangqian=0;
+int zonx=0,zonp=0;
+
+for(i=0;i<gex;i++)
+zonx+=listx[i];
+
+for(i=0;i<gep;i++)
+zonp+=listp[i];
+
+
+
+dangqian=zongx*(l-1);
+
+
+
+
+
+
+
+for(i=0;i<gex;i++)
+{
+for(j=0;j<listx[i];j++)
+xp[i][j]=X[dangqian+j];
+
+dangqian+=listx[i];
+}	
+	
+	
+dangqian=zongp*(l-1);
+
+	
+	
+for(i=0;i<gep;i++)
+{
+for(j=0;j<listp[i];j++)
+xp[i+gex][j]=P1[dangqian+j];
+
+dangqian+=listp[i];
+}	
+	
+	
+return 1;	
+}
+
+
+
 
 
 double fxutRnR(lyRnR f,double *X,int *listx,int gex)
@@ -3326,8 +3413,832 @@ return rs;
 
 
 
+//指标转换
+
+int v2tt(int v,int dim,int dimu,int N)
+{
+int tt=ceil(v/(dimx+dimu));
+return tt;	
+}
+
+int v2qp(int v,int dim,int dimu,int N)
+{
+int qp=v%(dimx+dimu+1);
+return qp;	
+}
+ 
+
+int v2s(int v,int dim,int dimu,int N)
+{
+int qp=v%(dimx+dimu+1);
+
+int s=1;
+
+if qp>dimu;
+s=2;
+
+return s;	
+}
+
+int v2qx(int v,int dim,int dimu,int N)
+{
+int qp=v%(dimx+dimu+1);
+int qx=qp;
 
 
+int s=1;
+if qp>dimx;
+{
+	qp=qp-dimx;
+	
+	
+}
+
+
+
+return qx;	
+}
+
+
+
+
+
+
+
+
+//partial yita F   partial f
+
+//partial keis_k F   partial f
+
+//逐点函数到全决策变量函数（xi,ui,tf）
+
+
+// RnR
+//3对3	gg()
+
+int gg2gk(lyRnRnk gxu,double *XUtfk, int dimx,int dimu,   double *tk,int N,int k,double *gk)
+{
+	
+double**  x=(double **)malloc(3*sizeof(double *));
+int i,j;
+
+x[0]=(double *)malloc(dimx*sizeof(double ));
+
+for(i=0;i<dimx;i++)
+{
+x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+
+}
+
+
+for(i=0;i<dimu;i++)
+{
+x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+
+}
+x[2][0]=tk[k-1];
+
+gk=gxu(x);
+free(x);
+x=NULL;
+
+
+return 1;
+}
+
+
+
+//tf 偏导
+int gt2gitf(lyRnRnk gg,double *XUtfk, int dimx,int dimu,   double *tk, double *tauk, int N,int k,double *gk)
+{  
+ 
+  
+double**  x=(double **)malloc(3*sizeof(double *));
+int i,j;
+
+x[0]=(double *)malloc(dimx*sizeof(double ));
+x[1]=(double *)malloc(dimu*sizeof(double ));
+x[2]=(double *)malloc(sizeof(double ));
+
+
+
+for(i=0;i<dimx;i++)
+{
+x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+
+}
+
+
+for(i=0;i<dimu;i++)
+{
+x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+
+}
+x[2][0]=tk[k-1];
+
+gk=gt(x)*(tauk[k]/2+1.0/2);
+free(x);
+x=NULL;
+
+
+return 1;
+   
+    
+}  
+  
+   
+
+
+//性能指标的偏导
+//常微离散化偏导
+
+//逐点等式
+//mayer 等式
+//逐点 不等式 
+//mayer 不等式个数
+//tf 偏导
+
+
+int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k)
+{
+
+x[0]=(double *)malloc(dimx*sizeof(double ));
+
+for(i=0;i<dimx;i++)
+{
+x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+
+}
+
+
+for(i=0;i<dimu;i++)
+{
+x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+
+}
+x[2][0]=tk[k-1];
+
+return 1;
+}
+
+
+
+int xishu(lyRnR PHI,       //目标函数中的终端
+		lyRnR g,     //目标函数中的被积函数
+		lyRnRnk f,
+		
+
+		lyRnR *cek,
+		int numcek,		//逐点等式约束
+		
+		lyRnR *phii,
+		int numphii,	//mayer终端等式约束的个数
+		
+		lyRnR *cik,
+		int numcik,		//逐点不等式约束  cik<=0
+		
+		
+		lyRnR *psii,
+		int numpsii,	//不等式终端
+
+
+		piandao gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
+		
+		
+		piandao gg,	 //被积函数的梯度
+		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
+		
+		piandao gf,	 //状态方程函数的梯度
+		
+		piandao *gcek,	//逐点的梯度函数
+		
+		piandao *gphi,
+					
+		piandao *gcik,
+		
+		piandao *gpsi,				//mayer 的梯度
+		
+	
+		
+		int dimx,
+		int dimu,
+		int Ntau,  //几阶勒让德方法
+		double *tauk, //勒让德点
+		double *wk, //高斯勒让德积分系数
+		double *Dki, //导数系数
+		double *zuiyouX //最优结果
+		 
+		double *H,
+		double *h,
+		double *be,	
+		double *Ae,	
+		double *bi,
+		double *Ai,
+		double *XUk,
+		double tk
+)
+{
+	
+double **xftf,tf;
+
+//xf=x0+....;
+	
+	
+double tt2=(tf-t0)/2;	
+	
+	
+	
+	
+//不转化成f(x)  减少不需要的赋值  dairu(f,xuk ,....)	
+	
+int i,j,k,lo,mu; 
+int zong=(dimx+dimu)*N+1;
+double **xk,ttem;
+double *temg,*temg2,*temf,*temf2,*temnew;
+double **tem1,**tem2;
+
+
+double *jiluxf,*jiluliang;
+//初始零
+
+
+double *temkesi,*temxu,*temxu1;
+
+
+
+int L;
+
+
+
+
+
+
+xk=(double **)malloc(3*sizeof(double *));
+xk[0]=(double *)malloc(dimx*sizeof(double ));
+xk[1]=(double *)malloc(dimu*sizeof(double ));
+xk[2]=(double *)malloc(sizeof(double ));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//状态方程的等式和梯度的系数
+
+//梯度为
+//
+//对角  O	
+//				-P_kesil f
+//对角  O	
+//
+
+//形式
+
+
+
+
+
+
+
+//be维数
+
+//Ntau*dimx
+//+Ntau*numce
+//+numphii	
+	
+	
+//bi维数
+	
+//Ntau*numci
+//+numpsii	
+
+	
+
+
+//cek
+//当前行
+int dangqianhe=Ntau*dimx;
+
+//不等式的行
+int dangqianhi=0;
+
+//尽可能复用一些运算
+int	maxnine=numcek;
+
+
+
+h[Ntau*(dimx+dimu)]=0;
+
+
+
+
+
+
+for(i=0;i<Ntau;i++)
+{
+X2xutk(XUk,xk,dimx,dimu, tk,i)
+
+
+
+
+/*因为可导  指标 仅需要知道梯度*/
+//积分部分的梯度
+//两部分 对状态控制   对tf
+//mayer的梯度和函数值涉及 xf  需要计算所有的   fk
+
+
+
+
+//kesi 
+temg=gg(xk,1);
+cblas_daxpby((dimx+dimu), tt2*wk[i],temg , 1, 0, temxu, 1);
+for(L=0;L<dimx+dimu;L++)
+{
+h[i*(dimx+dimu)+L]+=temxu[L];
+}
+//wk gk 部分
+
+
+
+free(temg);
+temg=NULL;
+temg=gg(xk,2);
+//p_tf  jifen   对tf的导数 要对 g_t修正
+
+h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+//状态方程
+// 终端函数的偏导数里有用
+//列向量
+//temf在循环外先定义一个东西
+
+free(temf)
+temf=NULL;
+
+
+
+temf=f(xk);
+
+cblas_daxpby(dimx, tt2*wk[i],temf , 1, 1, jiluxf, 1);
+	
+
+
+//第一组等式约束
+for(L=0;L<dimx;L++)
+{
+be[i*(dimx)+L]+=tt2*temf[L];
+	
+	
+	
+	for(mu=0;mu<Ntau;mu++)
+	{be[mu*(dimx)+L]+=-Dki[mu*(N)+i]*xk[0][L]；
+	}
+
+}
+
+
+
+//求时间的偏导数
+
+free(temg)
+temg=NULL;
+temg=gf(xk,2);
+
+for(L=0;L<dimx;L++)
+{
+be[i*(dimx)+L]+=(tauk[i]+1)/2*temg[L];
+}
+
+cblas_daxpby(dimx, tt2*wk[i],temg , 1, 1, jiluliang, 1);
+	
+//tt2*wk[i] 这个也可以优化减少乘次数  增加时间复杂度
+
+
+//xu偏导数在下一个循环里
+
+
+
+
+//////////////////////////////////////////////////////////////////
+//第二 四组
+//系数和梯度都可以计算
+dangqianhe=dimx*Ntau;
+
+
+for(j=0;j<numcek;j++)
+{
+free(temg)
+temg=NULL;
+
+
+
+temg=gcek[j](xk,1);
+be[dangqianhe+i*numcek+j]=-cek(xk);
+//返回 P_kesi P_t
+
+for(k=0;k<(dimx+dimu);k++)	
+Ae[(dangqianhe+i*numcek+j)*zong+  i*(dimx+dimu)+k]=temg[k];
+
+
+free(temg)
+temg=NULL;
+temg=gcek[j](xk,2);
+
+//一维数组
+Ae[(dangqianhe+i*numcek+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+}
+
+
+
+
+
+
+
+dangqianhi=dimx*Ntau+numci*Ntau+numphii;
+
+for(j=0;j<numcik;j++)
+{
+free(temg)
+temg=NULL;
+
+
+
+temg=gcik[j](xk,1);
+bi[dangqianhi+i*numcik+j]=-cik(xk);
+//返回 P_kesi P_t
+
+for(k=0;k<(dimx+dimu);k++)	
+Ai[(dangqianhi+i*numcik+j)*zong+  i*(dimx+dimu)+k]=temg[k];
+
+
+free(temg)
+temg=NULL;
+temg=gcik[j](xk,2);
+
+//一维数组
+Ai[(dangqianhi+i*numcik+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+}
+
+}
+/*--------------------------------------------------------------------------------------------------------*/
+
+
+memcpy(x0,temf,dimx*sizeof(double));
+cblas_daxpby(dimx, 1,jiluxf , 1, -1, temf, 1);
+cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
+
+
+//jiluliang+=jiluxf-x0/tf-t0;
+
+
+//终端关于时间  的偏导数有几项可以先计算
+//
+
+
+
+//终端约束
+
+
+ //目标函数的梯度修正   
+	free(temg);
+	temg=NULL;
+	temg=gPHI(xftf,1);
+	// for(mu=0;mu<dimx;mu++)
+			// Ae[mu]=temg[mu];
+	
+	// free(temg);
+	temg=NULL;
+	temg=gPHI(xftf,2);
+	be[dimx]=ttem[0];
+	
+	
+
+
+
+
+
+dangqianhe=Ntau*dimx+Ntau*numcek;
+for(k=0;k<numphii;k++)
+{
+	ttem=phi[k](xftf);
+	be[dangqianhe +k  ]=ttem;	
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,1);
+		for(mu=0;mu<dimx;mu++)
+			Ae[(dangqianhe+k)*zong+mu]=temg[mu];
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,2);
+	be[(dangqianhe+k)*zong+dimx]=ttem[0];
+	
+}	
+	
+ 
+
+dangqianhi= Ntau*numcik;
+for(k=0;k<numpsii;k++)
+{
+	ttem=psi[k](xftf);
+	bi[dangqianhi +k  ]=ttem;	
+	free(temg);
+	temg=NULL;
+	temg=gpsi[k](xftf,1);
+		for(mu=0;mu<dimx;mu++)
+			Ai[(dangqianhi+k)*zong+mu]=temg[mu];
+	free(temg);
+	temg=NULL;
+	temg=gpii[k](xftf,2);
+	bi[(dangqianhe+k)*zong+dimx]=ttem[0];
+	
+}	
+	
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------*/
+	
+//计算遗留的系数
+//终端约束 终端约束的梯度
+//偏f
+	
+for(k=0;k<Ntau;k++)
+{
+	
+X2xutk(XUk,xk,dimx,dimu, tk,i)
+	
+temg=gf(xk,1);
+
+
+for(mu=0;mu<(dimx);mu++)	
+{	Ae[(k*dimx+mu)*zong+  mu]+=Dki[k*(Ntau)+k];
+
+	for(lo=0;lo<(dimx+dimu);lo++)	
+		Ae[(k*dimx+mu)*zong+  lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
+}
+
+
+
+//先算状态方程 然后其他终端的的约束计算过程应该类似
+
+ 
+	 
+	
+//指标 只要梯度 偏PHI	
+//状态
+
+free(tem1);
+tem1=NULL;
+
+tem1=(double *) malloc(dimx*sizeof(double));
+free(tem2);
+tem2=NULL;
+
+tem2=(double *) malloc( sizeof(double));
+
+ 
+for(lo=0;lo<mumphii;lo++)
+{	for(mu=0;mu<dimx;i++)
+		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
+	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
+	
+		/*..............................................................*/
+
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+	for(mu=0;mu<(dimx+dimu);i++)
+	Ae[(dangqianhe+lo)*zong+mu]=temxu[mu];
+	
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+		
+	Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
+}
+
+//P kesiL  f   这个雅可比矩阵在mayer 指标 和mayer 等式不等式中都用到
+//按照雅可比阵的  行列关系
+//P_1 PHI 为行矩阵
+//mayer 的输入为（xf,tf）
+//返回
+
+//f 的第一个是雅可比阵
+//gf 返回一个二级指针 指向两个一级指针第一个是雅可比阵d行,(dx*du）列
+
+
+ 
+for(lo=0;lo<mumpsii;lo++)
+{	for(mu=0;mu<dimx;i++)
+		tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
+	tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
+	
+		/*..............................................................*/
+
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+	for(mu=0;mu<(dimx+dimu);i++)
+	Ai[(dangqianhi+lo)*zong+mu]=temxu[mu];
+	
+		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+		
+	Ai[(dangqianhi+lo)*zong+dimx+dimu]=tem2[0];
+}
+
+	
+	
+	
+	
+	
+}
+
+}
+
+
+
+
+
+
+// // // //sum Dki xi-
+// // // for(mu=0;mu<dimx;mu++)
+// // // {
+	// // // for(k=0;k<Ntau;k++)
+	// // // {
+		// // // be[i*dimx+mu]-=Dki[i*Ntau+k]*XUk[k*(dimx+dimu)+mu];	
+	// // // }
+// // // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+//控制问题优化  自由tf 和x_tf
+
+
+//优化变量(x1,u1,...,xn,un,tf)
+
+
+
+//f目标函数
+//gf 梯度
+//cek  等式约束
+//cik  不等约束
+//gcek  等式约束梯度
+//gcik  不等约束梯度
+
+//先不考虑积分形过程约束  PHI 及phi 都是 xtf tf的函数
+//
+
+
+int kzzy(lyRnR PHI,       //目标函数中的终端
+		lyRnR g,     //目标函数中的被积函数
+		lyRnR f,
+		
+		lyRnR *phii,
+		int numphii,	//mayer终端等式约束的个数
+		lyRnR *cek,
+		int numcek,		//逐点等式约束
+		
+		
+		lyRnR *psii,
+		int numpsii,	//不等式终端
+
+		lyRnR *cik,
+		int numcik,		//逐点不等式约束  cik<=0
+		
+		lyRnRn gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
+		
+		
+		lyRnRn gg,	 //被积函数的梯度
+		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
+		
+		lyRnRn gf,	 //状态方程函数的梯度
+		
+		lyRnRn *gphi,
+		
+		
+		lyRnRn *gcek,	//逐点的梯度函数
+		
+		lyRnRn *gpsi,				//mayerde 梯度
+		
+		
+		lyRnRn *gcik,
+		
+		int dimx,
+		int dimu,
+		int Ntau,  //几阶勒让德方法
+		double *tauk, //勒让德点
+		double *wk, //高斯勒让德积分系数
+		double *Dki, //导数系数
+		double *zuiyouX //最优结果
+		 
+		double *H,
+		double *h,
+		double *be,	
+		double *Ae,	
+		double *bi,
+		double *Ai,
+		double *XUk
+		
+		)
+{
+
+int dimxu=dimx+dimu;
+int dimxu_tf=(dimx+dimu)*Ntau+1;
+	
+	
+	
+double *Bk;
+Bk=(double *)malloc(dim*dim*sizeof(double)); 
+memset(Bk,0,dim*dim*sizeof(double));
+for(i=0;i<dim;i++)
+Bk[i*dimxu_tf+i]=1;
+	
+	
+	
+//s1  初值为0
+//s2 子问题
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+}
+
+
+
+
+
+
+								
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 
 
@@ -3398,7 +4309,7 @@ Bk=1;
 erci(double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk);
 		
 
-
+//jiaozheng
 
 
 
@@ -3456,29 +4367,120 @@ return 0;
 
 
 //系数转化
-int yueshuxishu(lyRnR f,lyRnRn gf,lyRnR *cek,RnR *cik,RnRn *gcek,RnRn *gcik,int nt,int *nf,int ni,double *xk,double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,		int dim,int e,	int ie,		double *xk)
+
+
+
+
+
+//int *lf,int np,int *lp    (X1,...X_ni;P_1,...P_np)  每个的维数lf   
+
+
+
+//tk 不含端点  TN总共的分点
+//有大M法求初值  krylov 法算线性方程组的解
+
+//先固定端点 考虑逐点约束
+//分别有分离的逐点约束 过程型 泛函约束  有些终端条件
+
+//int gshuce,int gshuci,int *lxce,int lxci	
+//等式不等式约束的总个数     逐点约束的个数 过程终端 约束的个数       定义梯度函数时可以分类
+
+
+//先做固定首末端问题 
+
+
+//假定只有终端状态未知
+
+
+
+int yueshuxishu(lyRnR f,lyRnRn gf,lyRnR *cek,lyRnR *cik,lyRnRn *gcek,lyRnRn *gcik,int ni, int *lf,int np,int *lp  ,    double *tauk,int tauN,double *wk,double t0,double tf,
+double *H,	double *h,	double *be,	double *Ae,	double *bi,	double *Ai,	double *XUk)
 {
 	
 	
 	
+//x u t所有的维数
+//x,u;t   np=1
+ 	
+int i,j,k;
+
+int zonx=0,zonp=0,dangqian=0;
+double **xut,*temg;
+
+xut=(double **)malloc((ni+np)*sizeof(double *));
+
+for(i=0;i<ni;i++)
+{zonx+=lf[i];
+xut[i]=(double *)malloc(lf[i]*sizeof(double ));
+}
+
+
+for(i=0;i<np;i++)
+{zonp+=lp[i];
+xut[ni+i]=(double *)malloc(lf[i]*sizeof(double ));
+}
+
+
+
+
+temg=(double *)malloc((zonx+zonp)*sizeof(double ));
+
+
+
+
+
+
+int dim=(zonx+zonp)*TN;
+
 	
- 
-//h梯度  维数是dim                       int dim=0,i;for i  dim+=nf[i]; dim*=nt;
 int i;
-for(i=0;i<dim;i++)
+for(i=0;i<tauN;i++)
 {
-	
-	
-	
-	
+//若只有逐点约束只要求某一时刻的量
+
+
+
+XP2xpl(XUk,Tk,xut,lf,ni,lp,np,i);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+temg=gf(xut);
+
+
+
+for  
+   XUk...=
+
+
+
+be=-c(xut)
+bi=-ci(xut)
+
+be=-phi(XUk)
+bi=-phi(XUk)
+
+
+
+
+Ae
+Ai
+
+
+
 }	
+	
+	
 	
 	
 	
 	
 }
 
-
+*/
 
 
 

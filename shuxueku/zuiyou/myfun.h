@@ -215,7 +215,7 @@ typedef double *(*RnRn)(double *x,int n);
 //维数作为全局量 不出现
 typedef double (*yRnR)(double *x);
 typedef double (*yRR)(double x);
-typedef double *(*yRnRn)(double *x);
+typedef double* (*yRnRn)(double *x);
 
 
 
@@ -225,12 +225,26 @@ typedef double (*lyRnR)(double **x);
 
 typedef double (*lyRR)(double x);
 
-typedef double *(*lyRnRn)(double **x);
+typedef double** (*lyRnRn)(double **x);
+
+typedef double* (*lyRnRnk)(double **x);
 
 
+
+//计算需要终端约束 分对xu 偏导的雅可比 和对时间的偏导
+typedef double* (*piandao)(double **x,int type);
 
 
 double fxutRnR(lyRnR f,double *X,int *listx,int gex);
+
+
+
+//指标转换
+
+int v2tt(int v,int dim,int dimu,int N);
+int v2qp(int v,int dim,int dimu,int N);
+int v2qx(int v,int dim,int dimu,int N);
+int v2s(int v,int dim,int dimu,int N);
 
 
 
