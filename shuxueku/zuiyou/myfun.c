@@ -3794,7 +3794,7 @@ h[Ntau*(dimx+dimu)]=0;
 
 
 
-
+printf("\n debug......................\n");
 
 for(i=0;i<Ntau;i++)
 {
