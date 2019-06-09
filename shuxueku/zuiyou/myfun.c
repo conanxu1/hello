@@ -3921,7 +3921,7 @@ Ae[(dangqianhe+i*numcek+j)*zong+  Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 
 
 
-dangqianhi=dimx*Ntau+numci*Ntau+numphii;
+dangqianhi=dimx*Ntau+numcik*Ntau+numphii;
 
 for(j=0;j<numcik;j++)
 {
@@ -3943,7 +3943,7 @@ temg=NULL;
 temg=gcik[j](xk,2);
 
 //一维数组
-Ai[(dangqianhi+i*numcik+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+Ai[(dangqianhi+i*numcik+j)*zong+  Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 }
 
 }
