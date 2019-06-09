@@ -58,7 +58,7 @@ kkzphi[1]=kzphii2;
 
 
 
-double *h,*be,*Ae,*bi,*Ai,*XUk,tk,*x0,t0;
+double *h,*be,*Ae,*bi,*Ai,*XUk,*tk,*x0,t0;
 
 
 
@@ -142,7 +142,7 @@ shuchud(be,geshu,1);
 
 printf("\n\n...............\n");
  
-shuchud(Ae,(kznumcek*Ntau+kznumphii+dimx*Ntau),((dimx+dimu)*Ntau);
+shuchud(Ae,(kkznumcek*Ntau+kkznumphii+dimx*Ntau),((dimx+dimu)*Ntau);
 
 
 
@@ -150,7 +150,7 @@ shuchud(Ae,(kznumcek*Ntau+kznumphii+dimx*Ntau),((dimx+dimu)*Ntau);
 
 
 printf("\n\n...............\n");
-geshu=kznumcik*Ntau+kznumpsii;
+geshu=kkznumcik*Ntau+kkznumpsii;
  
 
 shuchud(be,geshu,1);
@@ -158,7 +158,7 @@ shuchud(be,geshu,1);
 
 
 printf("\n\n...............\n");
-shuchud(Ae,(kznumcik*Ntau+kznumpsii),((dimx+dimu)*Ntau+1));
+shuchud(Ae,(kkznumcik*Ntau+kkznumpsii),((dimx+dimu)*Ntau+1));
 
 
  
