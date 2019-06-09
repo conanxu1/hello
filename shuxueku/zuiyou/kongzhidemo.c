@@ -145,7 +145,7 @@ shuchud(be,geshu,1);
 
 printf("\n\n...............\n");
  
-shuchud(Ae,(kkznumcek*Ntau+kkznumphii+dimx*Ntau),((dimx+dimu)*Ntau);
+shuchud(Ae,(kkznumcek*Ntau+kkznumphii+dimx*Ntau),(dimx+dimu)*Ntau);
 
 
 
