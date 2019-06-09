@@ -44,8 +44,8 @@ kkzgpsi=malloc(kkznumpsii*sizeof(piandao));
 kkzcik[0]=kzcik1;
 kkzcik[1]=kzcik2;
 
-kkzphi[0]=kzphi1;
-kkzphi[1]=kzphi2;
+kkzphi[0]=kzphii1;
+kkzphi[1]=kzphii2;
 
 
 
