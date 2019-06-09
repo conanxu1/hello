@@ -3894,7 +3894,7 @@ dangqianhe=dimx*Ntau;
 
 for(j=0;j<numcek;j++)
 {
-free(temg)
+free(temg);
 temg=NULL;
 
 
@@ -3907,7 +3907,7 @@ for(k=0;k<(dimx+dimu);k++)
 Ae[(dangqianhe+i*numcek+j)*zong+  i*(dimx+dimu)+k]=temg[k];
 
 
-free(temg)
+free(temg);
 temg=NULL;
 temg=gcek[j](xk,2);
 
@@ -4038,7 +4038,7 @@ for(k=0;k<numpsii;k++)
 for(k=0;k<Ntau;k++)
 {
 	
-X2xutk(XUk,xk,dimx,dimu, tk,i)
+X2xutk(XUk,xk,dimx,dimu, tauk,i)
 	
 temg=gf(xk,1);
 
@@ -4093,7 +4093,7 @@ tem2=(double *) malloc( sizeof(double));
  
  
  
-for(lo=0;lonumphii;lo++)
+for(lo=0;lo<numphii;lo++)
 {	for(mu=0;mu<dimx;mu++)
 		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
 	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
