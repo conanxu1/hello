@@ -87,7 +87,7 @@ tk=(double *)malloc((Ntau)*sizeof(double));
 wk=(double *)malloc((Ntau)*sizeof(double));
 Dki=(double *)malloc((Ntau*Ntau)*sizeof(double));
 lgd(tauk,Ntau-1);
-lg_AD(tauk, Ak,Dki,Ntau-1);
+lg_AD(tauk, wk,Dki,Ntau-1);
 
 
 
@@ -109,7 +109,7 @@ Ae=(double *)malloc(geshu*sizeof(double));
 geshu=kkznumcik*Ntau+kkznumpsii;
 bi=(double *)malloc(geshu*sizeof(double));
 
-geshu=(kznumcik*Ntau+kznumpsii)*((dimx+dimu)*Ntau+1);
+geshu=(kkznumcik*Ntau+kkznumpsii)*((dimx+dimu)*Ntau+1);
 Ai=(double *)malloc(geshu*sizeof(double));
 
 
