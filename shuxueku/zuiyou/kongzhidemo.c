@@ -21,7 +21,7 @@ printf("\n\n...............\n");
 
 lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
 int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
-piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek, *kkzgphi,*kkzgcik,*kkzgpsi,
+piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek, *kkzgphi,*kkzgcik,*kkzgpsi;
 
 int geshu;
 
@@ -31,14 +31,14 @@ double *tauk,*wk,*Dki,*zuiyouX;
 
 
 
-kkzcek=malloc(kznumcek*sizeof(lyRnR));
-kkzcik=malloc(kznumcik*sizeof(lyRnR));
-kkzphi=malloc(kznumphii*sizeof(lyRnR));
-kkzpsi=malloc(kznumpsii*sizeof(lyRnR));
-kkzgcek=malloc(kznumcek*sizeof(piandao));
-kkzgphi=malloc(kznumphii*sizeof(piandao));
-kkzgcik=malloc(kznumcik*sizeof(piandao));
-kkzgpsi=malloc(kznumpsii*sizeof(piandao));
+kkzcek=malloc(kkznumcek*sizeof(lyRnR));
+kkzcik=malloc(kkznumcik*sizeof(lyRnR));
+kkzphi=malloc(kkznumphii*sizeof(lyRnR));
+kkzpsi=malloc(kkznumpsii*sizeof(lyRnR));
+kkzgcek=malloc(kkznumcek*sizeof(piandao));
+kkzgphi=malloc(kkznumphii*sizeof(piandao));
+kkzgcik=malloc(kkznumcik*sizeof(piandao));
+kkzgpsi=malloc(kkznumpsii*sizeof(piandao));
 
 
 kkzcik[0]=kzcik1;
