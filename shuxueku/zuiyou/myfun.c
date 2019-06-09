@@ -250,14 +250,14 @@ double jifen(double a,double b,int n,double (*fff)(double))
 
 
 
-//改写为带控制�?
+//改写为带控制的
 
 
 double  *ode1(double a,double b,int n,double *(*fff)(double ,double *),double *x0,int dim,double *jieguo)
-{/*a初�?b终�?n分点,fff连续函数*/   
+{/*a初值,b终值,n分点,fff连续函数*/   
 
 FILE *logf;
-//记录�?
+//记录用
 
 
 double h = (b - a)/n;
@@ -276,7 +276,7 @@ double* q4 =(double *)malloc(dim*sizeof(double));
 double* tem=(double *)malloc(dim*sizeof(double));
 
 
-//*a要分配内�?或者定义时候分�?
+//*a要分配内存 或者定义时候分配
 //double *dy =(double *)malloc(size*sizeof(double));
 
 int i;
@@ -414,7 +414,7 @@ double _Complex lnk(double _Complex a,int k)
 }
 
 
-//第一类斯特林�?
+//第一类斯特林数
 int st(int p,int k)
 {
 	if (p==k)
@@ -443,7 +443,7 @@ int  jiecheng(int n)
 double _Complex lamw(double _Complex a,int k)
 {	
 
-//用渐进公�? 截断多项式给初�? 通过牛顿迭代 梯度下降   求精确解
+//用渐进公式  截断多项式给初值  通过牛顿迭代 梯度下降   求精确解
 
 
 
@@ -481,7 +481,7 @@ z2=cimag(a);
 w1=creal(y0);
 w2=cimag(y0);
 
- //printf("预估�?.6f,%.5f\n\n\n",w1,w2);
+ //printf("预估值%.6f,%.5f\n\n\n",w1,w2);
 
 
 
@@ -493,7 +493,7 @@ while(cabs(a-y*cexp(y))>1e-12)
 {	
 w1=creal(y);
 w2=cimag(y);
-// printf("当前�?lf,%lf\n",w1,w2);
+// printf("当前点%lf,%lf\n",w1,w2);
 
 
 
@@ -509,7 +509,7 @@ v1=v1/norm;
 v2=v2/norm;
 
 
-//线性搜�?
+//线性搜索
 w1k=w1-1e-15*v1;	
 w2k=w2-1e-15*v2;	
 	
@@ -677,7 +677,7 @@ void svd(double* p,int m,int n)
 
 void sduijiao(double* p,int m,int n,double* Q2,double* V1,double* B)
 {
-	//双对角约�?
+	//双对角约化
 	double *Q;
 	double	*PPP,*tem,*tt1,*tt2,*ttt,*Q1;
 	
@@ -853,11 +853,11 @@ return d;
 
 
 
-//配合双对角约�?
+//配合双对角约化
 void xqu(double* A,double* u,int i,int m,int n)
 {
 
-//�?
+//从0
 
 memset(u,0,m*sizeof(double));
 	
@@ -872,7 +872,7 @@ for(int j=i;j<m;j++)
 void xqu2(double* A,double* u,int i,int m,int n)
 {
 
-//�?
+//从0
 memset(u,0,n*sizeof(double));
 
 for(int j=i+1;j<n;j++)
@@ -930,7 +930,7 @@ void qrweiyi(double* A,int m,int n)
 			
 		//H-sigI
 		
-		//局部变量内�?
+		//局部变量内存
 				 
 				 
 				 
@@ -978,7 +978,7 @@ void QR(double* A,int m,int n,double* Q1,double* R1)
 	
 	memcpy(Q,A,m*n*sizeof(double));
 	EE=danwei(m,m);
-//交换�?
+//交换用
 
 tem=danwei(m,n);
 
@@ -1003,7 +1003,7 @@ if(cblas_ddot(m,ui,1,ui,1)>1e-17)
 {	
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,1, -2/cblas_ddot(m,ui,1,ui,1),ui, 1,ui,1, 1,PPP, m);
 }
-//P  此处多次申请内存 可优�?
+//P  此处多次申请内存 可优化
 
  
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, m, m,m, 1,QQ, m,PPP,m, 0,EE, m);
@@ -1108,7 +1108,7 @@ double* duqu(char *p,int n)
 
 int xxwg(double *AM,double *A,int m,int n)
 {
-//只求行满�?
+//只求行满秩
 
 
 double *TEM=(double *)malloc(m*n*sizeof(double));
@@ -1354,7 +1354,7 @@ if((logf = fopen("log.txt" , "w+")) == NULL)
 
 
 	int r=2,s=2,m=40,n=60000;
-	//r个y   s个K Y m-tau h分割   n步迭�?
+	//r个y   s个K Y m-tau h分割   n步迭代
 	
 	int dim=2;
 	//维数
@@ -1459,7 +1459,7 @@ info = LAPACKE_dgetri(LAPACK_ROW_MAJOR,s,C,s,ipiv);
 	
 	
 	
-/*******    初始�?  **Yn,**Kn,**yn,**Kn_m,**Yn_m   **********/
+/*******    初始化   **Yn,**Kn,**yn,**Kn_m,**Yn_m   **********/
 //初始化是相同
 	
 	double *tem,*tem2;
@@ -1490,7 +1490,7 @@ for(int tt=0;tt<n;tt++)
 		
 		
 	
-//减少整体平移故作位置变换在原数组上覆盖数�?
+//减少整体平移故作位置变换在原数组上覆盖数据	
 			
 	wei=(tt)%(m+1);
 	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, 1,M, dim,Yni[i][wei],1, 0,tem,1 );
@@ -1514,9 +1514,9 @@ for(int tt=0;tt<n;tt++)
 			
 		}
 	
-	////////////////////beta C�?
+	////////////////////beta C逆/
 	//【Kn1,Kn2,....,Kns】C=[beta,beta,...,beta]
-	//【Kn1,Kn2,....,Kns�?[beta,beta,...,beta]*(C^-1)
+	//【Kn1,Kn2,....,Kns】=[beta,beta,...,beta]*(C^-1)
 	//   Kni_oo=    beta(oo) sum_j Cji
 	
 	
@@ -1558,13 +1558,13 @@ for(int tt=0;tt<n;tt++)
 		
 		
 		}
-	//yn特殊最左边为当前时�?
+	//yn特殊最左边为当前时刻
 	
 		for(int j=0;j<s;j++)
 		{	
 	
 	
-	//Kni已经更新�?
+	//Kni已经更新过
 		wei=(tt)%(m+1);
 		cblas_daxpby( dim,h*B[i*(s)+j],Kni[j][wei], 1,1,tem,1);
 	
@@ -1598,7 +1598,7 @@ for(int tt=0;tt<n;tt++)
 	
 			for(int j=0;j<s;j++)
 		{	
-	//已更�?
+	//已更新
 		wei=(tt)%(m+1);
 		cblas_daxpby( dim,h*gam[j],Kni[j][wei],1, 1,tem,1);
 	
@@ -1714,7 +1714,7 @@ void jiangjie()
 	
 }
 
-//为计算方�?特征值互不相�?
+//为计算方便 特征值互不相同
 int lamwm(double _Complex* A,int k,int dim,double _Complex*	 w)
 {
 double _Complex u[dim*dim];
@@ -1727,7 +1727,7 @@ double _Complex v[dim*dim],tem1[dim*dim];
 	int ldvl=dim;
 	int ldvr=dim;
 	double _Complex	 tem2[n];
-	//返回特征值向�?
+	//返回特征值向量
 	
 	
 	 
@@ -1745,7 +1745,7 @@ int ipiv[dim];
 int info;
 
 	
-//左右特征值矩阵的值应该是相同�?至少可逆性一�?考察右特征值是否可�?
+//左右特征值矩阵的值应该是相同的 至少可逆性一致 考察右特征值是否可逆
 
 LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, u, lda,tem2, tem1 , ldvl , A, ldvr);
 	
@@ -1763,7 +1763,7 @@ memcpy(A,v,dim*dim*sizeof(double _Complex));
 	
 		
 			
-	//不可逆失�?
+	//不可逆失败 
 	
 	
 	
@@ -2046,7 +2046,7 @@ double _Complex v[dim*dim],tem1[dim*dim],w[dim];
 	int ldvl=dim;
 	int ldvr=dim;
 	double _Complex	 tem2[n];
-	//返回特征值向�?
+	//返回特征值向量
 	
 	
 	 
@@ -2060,7 +2060,7 @@ int ipiv[dim];
 int info;
 
 	
-//左右特征值矩阵的值应该是相同�?至少可逆性一�?考察右特征值是否可�?
+//左右特征值矩阵的值应该是相同的 至少可逆性一致 考察右特征值是否可逆
 
 LAPACKE_zgeev(matrix_order ,jobvl, jobvr, n, u, lda,tem2, tem1 , ldvl , A, ldvr);
 	
@@ -2075,7 +2075,7 @@ memcpy(A,v,dim*dim*sizeof(double _Complex));
 	{
 		if(cabs(tem2[i])<1e-14)
 				return 1;
-	//不可逆失�?
+	//不可逆失败
 	}	
 	
 	
@@ -2129,8 +2129,8 @@ memcpy(A,jjj,dim*dim*sizeof(double _Complex));
 	
 }
 
-/*******傅里叶延时辨�?*/
-//傅里叶基函数列向�?N+1
+/*******傅里叶延时辨识**/
+//傅里叶基函数列向量2N+1
 int phi(double* f,int N,double t,double T)
 {
 	
@@ -2269,10 +2269,10 @@ double shixing(double t,double a,double b)
 	
 // erci()
 
-//追赶�?
+//追赶法
 int zhui(double *A,double *d,int n,double *jie)
 {
-//不覆�?
+//不覆盖
 
 
 double *ci,*di;
@@ -2334,9 +2334,9 @@ int *a;
 zuoyongyu(&a);
 printf("\n%d\n",*a);
 
-在子函数里用malloc给参数变量分配空间，变量赋值后，主函数的值不会变�?
-原因：malloc出来的地址跟main中声明的变量的地址是不一样的，子函数中的赋值语句只是给malloc出来的那个空间付了�?
-解决方法：在主函数定义变量时，定义成指针变量。调用时�?，在子函数的参数里用**�?
+在子函数里用malloc给参数变量分配空间，变量赋值后，主函数的值不会变。
+原因：malloc出来的地址跟main中声明的变量的地址是不一样的，子函数中的赋值语句只是给malloc出来的那个空间付了值
+解决方法：在主函数定义变量时，定义成指针变量。调用时加&，在子函数的参数里用**。
 */	
 	
 	
@@ -2360,11 +2360,11 @@ int erci(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约束
 		double *Ai,
-		int dim,		//问题的维�?
+		int dim,		//问题的维数
 		int e,			//等式个数
-		int ie,			//不等式个�?
+		int ie,			//不等式个数
 		double *xk)
 {
 //等式约束
@@ -2379,7 +2379,7 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 int qinum=0;
 double ep=1e-14;
-//指标�?自动要求等式约束 
+//指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
 //A0>=0
@@ -2583,7 +2583,7 @@ shuchud(xk,dim,1);
 		}
 		//printf("bukexingji....\n");
 		//shuchui(tp,ie,1);
-		//alpha测试一�?
+		//alpha测试一遍
 		for(int j=0;j<ie;j++)
 		{	
 			//不属于的
@@ -2670,12 +2670,12 @@ int qxt(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约束
 		double *Ai,
 
-		int dim,		//问题的维�?
+		int dim,		//问题的维数
 		int e,		
-		int ie			//不等式个�?原问题的  2e+ie)
+		int ie			//不等式个数(原问题的  2e+ie)
 		)
 {
 double *bbe=(double *)malloc(0*sizeof(double));
@@ -2762,10 +2762,10 @@ for(int i=0;i<dim;i++)
 	{	Hw[i*(dim+1)+j]=H[i*dim+j];}
 }
 
-//Hw �?   M t2+M t
+//Hw 乘2   M t2+M t
 
 
-//调用erci 改变了什�?
+//调用erci 改变了什么
 
 
 
@@ -2823,11 +2823,11 @@ while(x0[dim]>1e-13&&M<1e16)
 M=M*10;
 
 
-Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改�?
+Hw[(dim+1)*(dim+1)-1]=2*M;			//Hw做一下改动	
 
 
 
-   //每次都要赋�?
+   //每次都要赋值
 hw[dim]=M;
 
 
@@ -2882,12 +2882,12 @@ int erciwM(
 		double *h,		//原问题grad
 
 
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约束
 		double *Ai,
-		int dim,		//问题的维�?
+		int dim,		//问题的维数
 	
 	
-		int ie		//不等式个�?原问题的  2e+ie)
+		int ie		//不等式个数(原问题的  2e+ie)
 )
 {
 //后续   采用硬盘读取载入内存  此处已经修正	
@@ -2895,11 +2895,11 @@ int erciwM(
 // double *h,		//原问题grad
 // double *be,		//b   等式约束
 // double *Ae,		//系数
-// double *bi,		////b   不等式约�?
+// double *bi,		////b   不等式约束
 // double *Ai,
 //增加t
 //f(x)+Mt2+Mt
-//1e4�? 800M
+//1e4维  800M
 
 
 double t=0;
@@ -2929,7 +2929,7 @@ double *BM=(double *)malloc((2*e+ie)*sizeof(double));
 
 double *bbi=(double *)malloc(0*sizeof(double));
 double *aai=(double *)malloc(0*sizeof(double));
-//无等�?
+//无等约
 
 
 
@@ -2994,7 +2994,7 @@ erci(H,h,be,Ae,bi,Ai,dim,e,ie,hw);
 
 
 int mychol(
-		double *L,		//输入 返回 下三�?
+		double *L,		//输入 返回 下三角
 		int dim,
 		double *Lz		//转好
 		)		//维数
@@ -3004,7 +3004,7 @@ int s=dim;
 int ipiv[s];
 int info;
 info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
-//上三�?
+//上三角
 //抹去上面  对角线开根号
 
 
@@ -3026,7 +3026,7 @@ for(int i=0;i<dim;i++)
 }
 
 
-//最后再变化对角�? 不能影响  下三角时以列为主循环
+//最后再变化对角线  不能影响  下三角时以列为主循环
 for(int i=0;i<dim;i++)
 {L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
 Lz[(i)*dim+i]=L[(i)*dim+i];
@@ -3047,7 +3047,7 @@ int myqp(
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   ge			//A的列�? 应该改过方向�?
+		int   ge			//A的列数  应该改过方向了
 		)
 {
 double *AM;
@@ -3093,7 +3093,7 @@ if(tte<ge)
 	
 	
 	
-	//xishu zhen  增广阵的�?
+	//xishu zhen  增广阵的秩
 }
 
 
@@ -3115,7 +3115,7 @@ double *tgk=(double *)malloc(dim*sizeof(double));
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 if(e==0)
-{	//无约束还要修�?  通过ll分解判断正定
+{	//无约束还要修正   通过ll分解判断正定
 	ni(G,dim);
 	memcpy(tgk,gk,dim*sizeof(double));
 	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans, dim, 1,dim, -1,G, dim,tgk, 1,0,gk,1 );
@@ -3154,7 +3154,7 @@ ni(GI,dim);
 
  
 
-//求�?
+//求逆
 
 
 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasTrans, dim, e,dim, 1,GI, dim,A, dim,0,TEM2,e );
@@ -3187,7 +3187,7 @@ int info;
 int ipiv[dim],ipive[e];
 
 //dim   yigelie
-//要转一起转�?
+//要转一起转了
 //dgesv会破坏原矩阵
 
 
@@ -3263,12 +3263,12 @@ return 0;
 
 
 
-//有约束优�?局部sqp    假设梯度已知  拟牛�?powell
+//有约束优化 局部sqp    假设梯度已知  拟牛顿 powell
 
 // void(*pfunarr[3])();
 // 函数指针数组
 // void(*(*pfunarr2)[3])();
-// 指向函数指针数组的指�?
+// 指向函数指针数组的指针
 
 //
 
@@ -3290,7 +3290,7 @@ return 0;
 
 
 
-//当函数给定后 分量的排列是确定�?
+//当函数给定后 分量的排列是确定的
 
 
 
@@ -3324,8 +3324,8 @@ return 1;
 }
 
 
-//有带待充系数   q第几�?
-//第一个l=1   取高斯点�?t_0 为左端点
+//有带待充系数   q第几组
+//第一个l=1   取高斯点时 t_0 为左端点
 
 //////int XP2xpl(double *X,double *P,double **xp,int *listx,int gex,int *listp,int gep,int l)
 //{
@@ -3470,11 +3470,11 @@ return rs;
 //
 ////partial keis_k F   partial f
 //
-////逐点函数到全决策变量函数（xi,ui,tf�?
+////逐点函数到全决策变量函数（xi,ui,tf）
 //
 //
 //// RnR
-////3�?	gg()
+////3对3	gg()
 //
 //int gg2gk(lyRnRnk gxu,double *XUtfk, int dimx,int dimu,   double *tk,int N,int k,double *gk)
 //{
@@ -3549,13 +3549,13 @@ return rs;
 //   
 //
 //
-////性能指标的偏�?
-////常微离散化偏�?
+////性能指标的偏导
+////常微离散化偏导
 //
 ////逐点等式
 ////mayer 等式
-////逐点 不等�?
-////mayer 不等式个�?
+////逐点 不等式 
+////mayer 不等式个数
 ////tf 偏导
 //
 //
@@ -3593,43 +3593,43 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		int numcek,		//逐点等式约束
 		
 		lyRnR *phii,
-		int numphii,	//mayer终端等式约束的个�?
+		int numphii,	//mayer终端等式约束的个数
 		
 		lyRnR *cik,
-		int numcik,		//逐点不等式约�? cik<=0
+		int numcik,		//逐点不等式约束  cik<=0
 		
 		
 		lyRnR *psii,
-		int numpsii,	//不等式终�?
+		int numpsii,	//不等式终端
 
 
 		piandao gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
 		
 		
-		piandao gg,	 //被积函数的梯�?
+		piandao gg,	 //被积函数的梯度
 		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
 		
 		piandao gf,	 //状态方程函数的梯度
 		
-		piandao *gcek,	//逐点的梯度函�?
+		piandao *gcek,	//逐点的梯度函数
 		
 		piandao *gphi,
 					
 		piandao *gcik,
 		
-		piandao *gpsi,				//mayer 的梯�?
+		piandao *gpsi,				//mayer 的梯度
 		
 	
 		
 		int dimx,
 		int dimu,
-		int Ntau,  //几阶勒让德方�?
+		int Ntau,  //几阶勒让德方法
 		double *tauk, //勒让德点
-		double *wk, //高斯勒让德积分系�?
+		double *wk, //高斯勒让德积分系数
 		double *Dki, //导数系数
-		double *zuiyouX, //最优结�?
+		double *zuiyouX, //最优结果
 		 
-	                          	//  double *H, H由这些和子问题等等进行修�? Bk+1
+	                          	//  double *H, H由这些和子问题等等进行修正  Bk+1
 		double *h,
 		double *be,	
 		double *Ae,	
@@ -3642,7 +3642,7 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 )
 {
 	
-double **xftf;
+double **xftf,tf;
 
 
 
@@ -3658,27 +3658,23 @@ double tt2=(tf-t0)/2;
 	
 	
 	
-//不转化成f(x)  减少不需要的赋�? dairu(f,xuk ,....)	
+//不转化成f(x)  减少不需要的赋值  dairu(f,xuk ,....)	
 	
 int i,j,k,lo,mu; 
 int zong=(dimx+dimu)*Ntau+1;
 double **xk,ttem;
-double *temg,*temg2,*temf,*temf2,*temnew,*temPHI1,*temPHI2;
-double *tem1,*tem2;
+double *temg,*temg2,*temf,*temf2,*temnew,temPHI1,temPHI2;
+double **tem1,**tem2;
 
-cshi(temg,1);
-cshi(temg2,1);
-cshi(temf,1);
-cshi(temf2,1);
+chushi(temg,1);
+chushi(temg2,1);
+chushi(temf,1);
+chushi(temf2,1);
  
-cshi(temnew,1);
+chushi(temnew,1);
  
-cshi(temPHI1,1);
-cshi(temPHI2,1);
- 
-cshi(tem1,1);
-cshi(tem2,1);
- 
+
+
 
 
 
@@ -3689,7 +3685,7 @@ cshi(tem2,1);
 
 
 double *jiluxf,*jiluliang;
-//初始�?
+//初始零
 
 
 double *temkesi,*temxu,*temxu1;
@@ -3741,7 +3737,7 @@ xk[2]=(double *)malloc(sizeof(double ));
 
 //状态方程的等式和梯度的系数
 
-//梯度�?
+//梯度为
 //
 //对角  O	
 //				-P_kesil f
@@ -3772,13 +3768,13 @@ xk[2]=(double *)malloc(sizeof(double ));
 
 
 //cek
-//当前�?
+//当前行
 int dangqianhe=Ntau*dimx;
 
-//不等式的�?
+//不等式的行
 int dangqianhi=0;
 
-//尽可能复用一些运�?
+//尽可能复用一些运算
 int	maxnine=numcek;
 
 
@@ -3797,10 +3793,10 @@ X2xutk(XUk,xk,dimx,dimu, tauk,i);
 
 
 
-/*因为可导  指标 仅需要知道梯�?/
-//积分部分的梯�?
-//两部�?对状态控�?  对tf
-//mayer的梯度和函数值涉�?xf  需要计算所有的   fk
+/*因为可导  指标 仅需要知道梯度*/
+//积分部分的梯度
+//两部分 对状态控制   对tf
+//mayer的梯度和函数值涉及 xf  需要计算所有的   fk
 
 
 
@@ -3819,7 +3815,7 @@ h[i*(dimx+dimu)+L]+=temxu[L];
 free(temg);
 temg=NULL;
 temg=gg(xk,2);
-//p_tf  jifen   对tf的导�?要对 g_t修正
+//p_tf  jifen   对tf的导数 要对 g_t修正
 
 h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
 
@@ -3828,10 +3824,10 @@ h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
 ///////////////////////////////////////////////////////////////////////
 
 
-//状态方�?
-// 终端函数的偏导数里有�?
-//列向�?
-//temf在循环外先定义一个东�?
+//状态方程
+// 终端函数的偏导数里有用
+//列向量
+//temf在循环外先定义一个东西
 
 free(temf);
 temf=NULL;
@@ -3844,7 +3840,7 @@ cblas_daxpby(dimx, tt2*wk[i],temf , 1, 1, jiluxf, 1);
 	
 
 
-//第一组等式约�?
+//第一组等式约束
 for(L=0;L<dimx;L++)
 {
 be[i*(dimx)+L]+=tt2*temf[L];
@@ -3852,14 +3848,14 @@ be[i*(dimx)+L]+=tt2*temf[L];
 	
 	
 	for(mu=0;mu<Ntau;mu++)
-	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L]�?
+	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L]；
 	}
 
 }
 
 
 
-//求时间的偏导�?
+//求时间的偏导数
 
 free(temg)
 temg=NULL;
@@ -3872,7 +3868,7 @@ be[i*(dimx)+L]+=(tauk[i]+1)/2*temg[L];
 
 cblas_daxpby(dimx, tt2*wk[i],temg , 1, 1, jiluliang, 1);
 	
-//tt2*wk[i] 这个也可以优化减少乘次数  增加时间复杂�?
+//tt2*wk[i] 这个也可以优化减少乘次数  增加时间复杂度
 
 
 //xu偏导数在下一个循环里
@@ -3905,7 +3901,7 @@ free(temg)
 temg=NULL;
 temg=gcek[j](xk,2);
 
-//一维数�?
+//一维数组
 Ae[(dangqianhe+i*numcek+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 }
 
@@ -3936,7 +3932,7 @@ free(temg)
 temg=NULL;
 temg=gcik[j](xk,2);
 
-//一维数�?
+//一维数组
 Ai[(dangqianhi+i*numcik+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 }
 
@@ -3960,7 +3956,7 @@ cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 //终端约束
 
 
- //目标函数的梯度修�?  
+ //目标函数的梯度修正   
 	free(temPHI1);
 	temPHI1=NULL;
 	temPHI1=gPHI(xftf,1);
@@ -3979,7 +3975,7 @@ cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 dangqianhe=Ntau*dimx+Ntau*numcek;
 for(k=0;k<numphii;k++)
 {
-	ttem=phii[k](xftf);
+	ttem=phi[k](xftf);
 	be[dangqianhe +k  ]=ttem;	
 	free(temg);
 	temg=NULL;
@@ -3989,7 +3985,7 @@ for(k=0;k<numphii;k++)
 	free(temg);
 	temg=NULL;
 	temg=gphi[k](xftf,2);
-	be[(dangqianhe+k)*zong+dimx]=temg[0];
+	be[(dangqianhe+k)*zong+dimx]=ttem[0];
 	
 }	
 	
@@ -3998,7 +3994,7 @@ for(k=0;k<numphii;k++)
 dangqianhi= Ntau*numcik;
 for(k=0;k<numpsii;k++)
 {
-	ttem=psii[k](xftf);
+	ttem=psi[k](xftf);
 	bi[dangqianhi +k  ]=ttem;	
 	free(temg);
 	temg=NULL;
@@ -4007,8 +4003,8 @@ for(k=0;k<numpsii;k++)
 			Ai[(dangqianhi+k)*zong+mu]=temg[mu];
 	free(temg);
 	temg=NULL;
-	temg=gphi[k](xftf,2);
-	bi[(dangqianhe+k)*zong+dimx]=temg[0];
+	temg=gpii[k](xftf,2);
+	bi[(dangqianhe+k)*zong+dimx]=ttem[0];
 	
 }	
 	
@@ -4025,14 +4021,14 @@ for(k=0;k<numpsii;k++)
 
 /*--------------------------------------------------------------------------------------------------------*/
 	
-//计算遗留的系�?
-//终端约束 终端约束的梯�?
+//计算遗留的系数
+//终端约束 终端约束的梯度
 //偏f
 	
 for(k=0;k<Ntau;k++)
 {
 	
-X2xutk(XUk,xk,dimx,dimu, tauk,i);
+X2xutk(XUk,xk,dimx,dimu, tk,i)
 	
 temg=gf(xk,1);
 
@@ -4046,13 +4042,13 @@ for(mu=0;mu<(dimx);mu++)
 
 
 
-//先算状态方�?然后其他终端的的约束计算过程应该类似
+//先算状态方程 然后其他终端的的约束计算过程应该类似
 
  
 	 
 	
 //指标 只要梯度 偏PHI	
-//状�?
+//状态
 
 free(tem1);
 tem1=NULL;
@@ -4074,7 +4070,7 @@ tem2=(double *) malloc( sizeof(double));
  cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temPHI1, dimx,jiluliang,1, 1,temPHI2, 1);
 	
 	for(mu=0;mu<dimx;mu++)	
-		h[k*(dimx+dimu)+mu]+=temxu[mu];
+		h[k*(dimx+dimu)+u]+=temxu[mu];
 	
 	h[Ntau*(dimx+dimu)]+=temPHI2[0];
 	
@@ -4087,7 +4083,7 @@ tem2=(double *) malloc( sizeof(double));
  
  
  
-for(lo=0;lo<numphii;lo++)
+for(lo=0;lo<mumphii;lo++)
 {	for(mu=0;mu<dimx;mu++)
 		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
 	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
@@ -4103,18 +4099,18 @@ for(lo=0;lo<numphii;lo++)
 	Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
 }
 
-//P kesiL  f   这个雅可比矩阵在mayer 指标 和mayer 等式不等式中都用�?
-//按照雅可比阵�? 行列关系
+//P kesiL  f   这个雅可比矩阵在mayer 指标 和mayer 等式不等式中都用到
+//按照雅可比阵的  行列关系
 //P_1 PHI 为行矩阵
-//mayer 的输入为（xf,tf�?
+//mayer 的输入为（xf,tf）
 //返回
 
 //f 的第一个是雅可比阵
-//gf 返回一个二级指�?指向两个一级指针第一个是雅可比阵d�?(dx*du）列
+//gf 返回一个二级指针 指向两个一级指针第一个是雅可比阵d行,(dx*du）列
 
 
  
-for(lo=0;lo<numpsii;lo++)
+for(lo=0;lo<mumpsii;lo++)
 {	for(mu=0;mu<dimx;i++)
 		tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
 	tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
@@ -4142,7 +4138,7 @@ for(lo=0;lo<numpsii;lo++)
 
 
 
-
+return 1;
 
 
 }
@@ -4150,7 +4146,7 @@ for(lo=0;lo<numpsii;lo++)
 
 
 
-/*。。。。。。。。。。。。。。。。。。。。。。。。。。。。。�?/
+/*。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
 //计算H B k+1
 
 
@@ -4212,7 +4208,7 @@ for(lo=0;lo<numpsii;lo++)
 //gcek  等式约束梯度
 //gcik  不等约束梯度
 
-//先不考虑积分形过程约�? PHI 及phi 都是 xtf tf的函�?
+//先不考虑积分形过程约束  PHI 及phi 都是 xtf tf的函数
 //
 
 
@@ -4221,21 +4217,21 @@ int kzzy(lyRnR PHI,       //目标函数中的终端
 		lyRnR f,
 		
 		lyRnR *phii,
-		int numphii,	//mayer终端等式约束的个�?
+		int numphii,	//mayer终端等式约束的个数
 		lyRnR *cek,
 		int numcek,		//逐点等式约束
 		
 		
 		lyRnR *psii,
-		int numpsii,	//不等式终�?
+		int numpsii,	//不等式终端
 
 		lyRnR *cik,
-		int numcik,		//逐点不等式约�? cik<=0
+		int numcik,		//逐点不等式约束  cik<=0
 		
 		lyRnRn gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
 		
 		
-		lyRnRn gg,	 //被积函数的梯�?
+		lyRnRn gg,	 //被积函数的梯度
 		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
 		
 		lyRnRn gf,	 //状态方程函数的梯度
@@ -4243,7 +4239,7 @@ int kzzy(lyRnR PHI,       //目标函数中的终端
 		lyRnRn *gphi,
 		
 		
-		lyRnRn *gcek,	//逐点的梯度函�?
+		lyRnRn *gcek,	//逐点的梯度函数
 		
 		lyRnRn *gpsi,				//mayerde 梯度
 		
@@ -4252,11 +4248,11 @@ int kzzy(lyRnR PHI,       //目标函数中的终端
 		
 		int dimx,
 		int dimu,
-		int Ntau,  //几阶勒让德方�?
+		int Ntau,  //几阶勒让德方法
 		double *tauk, //勒让德点
-		double *wk, //高斯勒让德积分系�?
+		double *wk, //高斯勒让德积分系数
 		double *Dki, //导数系数
-		double *zuiyouX, //最优结�?
+		double *zuiyouX, //最优结果
 		 
 		double *H,
 		double *h,
@@ -4283,7 +4279,7 @@ double *Bk;
 	
 	
 //s1  初值为0
-//s2 子问�?
+//s2 子问题
 //
 
 
@@ -4334,12 +4330,12 @@ double *Bk;
 
 
 
-//min f(x_i^n_j)     f(x,u,v,x^1,u^1,v^1)  i代表 x,u,v    n代表不同的时�? j 代表每个列向�? x,u,v  的分�?
+//min f(x_i^n_j)     f(x,u,v,x^1,u^1,v^1)  i代表 x,u,v    n代表不同的时刻  j 代表每个列向量  x,u,v  的分量 
 
 
-// ni多少种列向量  即nf的维�?  nt 分割的时�?  nf  每种列向量的维数构成数组 
-//x0 输入初�?  维数（各种向量维数的和）*时刻
-//输出最优点�?
+// ni多少种列向量  即nf的维数   nt 分割的时刻   nf  每种列向量的维数构成数组 
+//x0 输入初值   维数（各种向量维数的和）*时刻
+//输出最优点？
 
 //f目标函数
 //gf 梯度
@@ -4368,7 +4364,7 @@ for(i=0;i<ni;i++)
 	dim+=nf[i];	
 }
 dim*=nt;
-//x0的维�?
+//x0的维数
 
 double *Bk;
 
@@ -4377,7 +4373,7 @@ Bk=(double *)malloc(dim*dim*sizeof(double));
 memset(Bk,0,dim*dim*sizeof(double));
 for(i=0;i<dim;i++)
 Bk=1;
-//单位�?
+//单位阵
 
 
 
@@ -4386,7 +4382,7 @@ Bk=1;
 
 
 
-//转化成系系数�?
+//转化成系系数阵
 
 
 
@@ -4464,20 +4460,20 @@ return 0;
 
 
 
-//tk 不含端点  TN总共的分�?
-//有大M法求初�? krylov 法算线性方程组的解
+//tk 不含端点  TN总共的分点
+//有大M法求初值  krylov 法算线性方程组的解
 
-//先固定端�?考虑逐点约束
-//分别有分离的逐点约束 过程�?泛函约束  有些终端条件
+//先固定端点 考虑逐点约束
+//分别有分离的逐点约束 过程型 泛函约束  有些终端条件
 
 //int gshuce,int gshuci,int *lxce,int lxci	
-//等式不等式约束的总个�?    逐点约束的个�?过程终端 约束的个�?      定义梯度函数时可以分�?
+//等式不等式约束的总个数     逐点约束的个数 过程终端 约束的个数       定义梯度函数时可以分类
 
 
-//先做固定首末端问�?
+//先做固定首末端问题 
 
 
-//假定只有终端状态未�?
+//假定只有终端状态未知
 
 
 
@@ -4732,7 +4728,7 @@ double ttau(double tau,double t0,double tf)
 
 
 
-//高斯勒让德积�?
+//高斯勒让德积分
 int glint(double *(*fff)(double ,double *),double* Xk,double* Uk,double tauk,int N)
 {
 	
@@ -4750,7 +4746,7 @@ int glint(double *(*fff)(double ,double *),double* Xk,double* Uk,double tauk,int
 
 
 
-//切比雪夫高斯�?
+//切比雪夫高斯点
 
 int cgd(double *x,int K)
 {
@@ -4776,8 +4772,8 @@ return 0;
 
 //勒让德高斯点
 //x0,x1...,xn    初值为0
-//2n+1次代数精�?
-//x n+1�?
+//2n+1次代数精度
+//x n+1维
 
 //输入节点指针和n
 //输出节点不含端点
@@ -4817,9 +4813,9 @@ e[i-1]=sqrt((2*i-1.0)/(2*i+1.0))*i/(2*i-1.0);
 printf("\n");
 
  
-//方向  job ’N‘只求特征�?’v�? 还要特征向量
+//方向  job ’N‘只求特征值 ’v’  还要特征向量
 
-//对称三对角特征�?
+//对称三对角特征值
 //z 特征向量
 
 
@@ -4937,7 +4933,7 @@ for(i=0;i<=n;i++)
 
 
 
-//k 行i�?
+//k 行i列
 for(k=i+1;k<=n;k++)	
 {
 Dki[k*(n+1)+i]=Dki[k]/Dki[i]/(xk[k]-xk[i]);
@@ -4947,7 +4943,7 @@ Dki[k*(n+1)+i]=Dki[k]/Dki[i]/(xk[k]-xk[i]);
 
 
 
-//对角�?
+//对角线
 Dki[i*(n+1)+i]=xk[i]/(1-xk[i]*xk[i]);
 }
 
@@ -4971,11 +4967,13 @@ return 0;
 
 
 
-int cshi(double *x,int n)
+int chushi(double *x,int n)
 {
 	x=(double *)malloc(n*sizeof(double));
 	memset(x,0,n*sizeof(double));
 	return 1;
+	
+	
 }
 
 
@@ -5003,13 +5001,13 @@ int cshi(double *x,int n)
 //
 //    k=i;j=0;  
 //    t=(log(size_x)/log(2));  
-//  while((t--)>0 )    //利用按位与以及循环实现码位颠�? 
+//  while((t--)>0 )    //利用按位与以及循环实现码位颠倒  
 //  {  
 //    j=j<<1;  
 //    j|=(k & 1);  
 //    k=k>>1;  
 //  }  
-//  if(j>i)    //将x(n)的码位互�? 
+//  if(j>i)    //将x(n)的码位互换  
 //  {  
 //  printf("-----------\n");
 //  shuchud(x,size_x,1);
@@ -5076,7 +5074,7 @@ int cshi(double *x,int n)
     // {
         // for(j=0;j<n;j++)  
         // {
-            // printf("%p\n",&a[i][j]);     //输出每个元素地址，每行的列与列之间的地址时连续的，行与行之间的地址不连�?
+            // printf("%p\n",&a[i][j]);     //输出每个元素地址，每行的列与列之间的地址时连续的，行与行之间的地址不连续
         // }
     // }
     // for(i=0;i<m;i++)  
@@ -5084,10 +5082,10 @@ int cshi(double *x,int n)
  
     // free(a);  
 // --------------------- 
-// 作者：阿阿阿阿阿阿�?
+// 作者：阿阿阿阿阿阿鑫 
 // 来源：CSDN 
 // 原文：https://blog.csdn.net/fengxinlinux/article/details/51541003 
-// 版权声明：本文为博主原创文章，转载请附上博文链接�?
+// 版权声明：本文为博主原创文章，转载请附上博文链接！
 
 
 
