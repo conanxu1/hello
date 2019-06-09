@@ -303,3 +303,66 @@ int zuoyongyu(int **a);
  
 
 int zuoyongyu(int **a);
+
+
+
+/*--------------------------*/
+int xishu(lyRnR PHI,       //目标函数中的终端
+		lyRnR g,     //目标函数中的被积函数
+		lyRnRnk f,
+		
+
+		lyRnR *cek,
+		int numcek,		//逐点等式约束
+		
+		lyRnR *phii,
+		int numphii,	//mayer终端等式约束的个数
+		
+		lyRnR *cik,
+		int numcik,		//逐点不等式约束  cik<=0
+		
+		
+		lyRnR *psii,
+		int numpsii,	//不等式终端
+
+
+		piandao gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
+		
+		
+		piandao gg,	 //被积函数的梯度
+		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
+		
+		piandao gf,	 //状态方程函数的梯度
+		
+		piandao *gcek,	//逐点的梯度函数
+		
+		piandao *gphi,
+					
+		piandao *gcik,
+		
+		piandao *gpsi,				//mayer 的梯度
+		
+	
+		
+		int dimx,
+		int dimu,
+		int Ntau,  //几阶勒让德方法
+		double *tauk, //勒让德点
+		double *wk, //高斯勒让德积分系数
+		double *Dki, //导数系数
+		double *zuiyouX, //最优结果
+		 
+	                          	//  double *H, H由这些和子问题等等进行修正  Bk+1
+		double *h,
+		double *be,	
+		double *Ae,	
+		double *bi,
+		double *Ai,
+		double *XUk,
+		double tk,
+		double *x0,
+		double t0
+);
+
+int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k);
+

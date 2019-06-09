@@ -3327,52 +3327,52 @@ return 1;
 //有带待充系数   q第几组
 //第一个l=1   取高斯点时 t_0 为左端点
 
-int XP2xpl(double *X,double *P,double **xp,int *listx,int gex,int *listp,int gep,int l)
-{
-	
-int i,j,dangqian=0;
-int zonx=0,zonp=0;
-
-for(i=0;i<gex;i++)
-zonx+=listx[i];
-
-for(i=0;i<gep;i++)
-zonp+=listp[i];
-
-
-
-dangqian=zongx*(l-1);
-
-
-
-
-
-
-
-for(i=0;i<gex;i++)
-{
-for(j=0;j<listx[i];j++)
-xp[i][j]=X[dangqian+j];
-
-dangqian+=listx[i];
-}	
-	
-	
-dangqian=zongp*(l-1);
-
-	
-	
-for(i=0;i<gep;i++)
-{
-for(j=0;j<listp[i];j++)
-xp[i+gex][j]=P1[dangqian+j];
-
-dangqian+=listp[i];
-}	
-	
-	
-return 1;	
-}
+//////int XP2xpl(double *X,double *P,double **xp,int *listx,int gex,int *listp,int gep,int l)
+//{
+//	
+//int i,j,dangqian=0;
+//int zonx=0,zonp=0;
+//
+//for(i=0;i<gex;i++)
+//zonx+=listx[i];
+//
+//for(i=0;i<gep;i++)
+//zonp+=listp[i];
+//
+//
+//
+//dangqian=zongx*(l-1);
+//
+//
+//
+//
+//
+//
+//
+//for(i=0;i<gex;i++)
+//{
+//for(j=0;j<listx[i];j++)
+//xp[i][j]=X[dangqian+j];
+//
+//dangqian+=listx[i];
+//}	
+//	
+//	
+//dangqian=zongp*(l-1);
+//
+//	
+//	
+//for(i=0;i<gep;i++)
+//{
+//for(j=0;j<listp[i];j++)
+//xp[i+gex][j]=P1[dangqian+j];
+//
+//dangqian+=listp[i];
+//}	
+//	
+//	
+//return 1;	
+//}
 
 
 
@@ -3413,167 +3413,168 @@ return rs;
 
 
 
-//指标转换
-
-int v2tt(int v,int dim,int dimu,int N)
-{
-int tt=ceil(v/(dimx+dimu));
-return tt;	
-}
-
-int v2qp(int v,int dim,int dimu,int N)
-{
-int qp=v%(dimx+dimu+1);
-return qp;	
-}
- 
-
-int v2s(int v,int dim,int dimu,int N)
-{
-int qp=v%(dimx+dimu+1);
-
-int s=1;
-
-if qp>dimu;
-s=2;
-
-return s;	
-}
-
-int v2qx(int v,int dim,int dimu,int N)
-{
-int qp=v%(dimx+dimu+1);
-int qx=qp;
-
-
-int s=1;
-if qp>dimx;
-{
-	qp=qp-dimx;
-	
-	
-}
-
-
-
-return qx;	
-}
-
-
-
-
-
-
-
-
-//partial yita F   partial f
-
-//partial keis_k F   partial f
-
-//逐点函数到全决策变量函数（xi,ui,tf）
-
-
-// RnR
-//3对3	gg()
-
-int gg2gk(lyRnRnk gxu,double *XUtfk, int dimx,int dimu,   double *tk,int N,int k,double *gk)
-{
-	
-double**  x=(double **)malloc(3*sizeof(double *));
-int i,j;
-
-x[0]=(double *)malloc(dimx*sizeof(double ));
-
-for(i=0;i<dimx;i++)
-{
-x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
-
-}
-
-
-for(i=0;i<dimu;i++)
-{
-x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
-
-}
-x[2][0]=tk[k-1];
-
-gk=gxu(x);
-free(x);
-x=NULL;
-
-
-return 1;
-}
-
-
-
-//tf 偏导
-int gt2gitf(lyRnRnk gg,double *XUtfk, int dimx,int dimu,   double *tk, double *tauk, int N,int k,double *gk)
-{  
- 
-  
-double**  x=(double **)malloc(3*sizeof(double *));
-int i,j;
-
-x[0]=(double *)malloc(dimx*sizeof(double ));
-x[1]=(double *)malloc(dimu*sizeof(double ));
-x[2]=(double *)malloc(sizeof(double ));
-
-
-
-for(i=0;i<dimx;i++)
-{
-x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
-
-}
-
-
-for(i=0;i<dimu;i++)
-{
-x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
-
-}
-x[2][0]=tk[k-1];
-
-gk=gt(x)*(tauk[k]/2+1.0/2);
-free(x);
-x=NULL;
-
-
-return 1;
-   
-    
-}  
-  
-   
-
-
-//性能指标的偏导
-//常微离散化偏导
-
-//逐点等式
-//mayer 等式
-//逐点 不等式 
-//mayer 不等式个数
-//tf 偏导
-
+////指标转换
+//
+//int v2tt(int v,int dim,int dimu,int N)
+//{
+//int tt=ceil(v/(dimx+dimu));
+//return tt;	
+//}
+//
+//int v2qp(int v,int dim,int dimu,int N)
+//{
+//int qp=v%(dimx+dimu+1);
+//return qp;	
+//}
+// 
+//
+//int v2s(int v,int dim,int dimu,int N)
+//{
+//int qp=v%(dimx+dimu+1);
+//
+//int s=1;
+//
+//if qp>dimu;
+//s=2;
+//
+//return s;	
+//}
+//
+//int v2qx(int v,int dim,int dimu,int N)
+//{
+//int qp=v%(dimx+dimu+1);
+//int qx=qp;
+//
+//
+//int s=1;
+//if qp>dimx;
+//{
+//	qp=qp-dimx;
+//	
+//	
+//}
+//
+//
+//
+//return qx;	
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+////partial yita F   partial f
+//
+////partial keis_k F   partial f
+//
+////逐点函数到全决策变量函数（xi,ui,tf）
+//
+//
+//// RnR
+////3对3	gg()
+//
+//int gg2gk(lyRnRnk gxu,double *XUtfk, int dimx,int dimu,   double *tk,int N,int k,double *gk)
+//{
+//	
+//double**  x=(double **)malloc(3*sizeof(double *));
+//int i,j;
+//
+//x[0]=(double *)malloc(dimx*sizeof(double ));
+//
+//for(i=0;i<dimx;i++)
+//{
+//x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+//
+//}
+//
+//
+//for(i=0;i<dimu;i++)
+//{
+//x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+//
+//}
+//x[2][0]=tk[k-1];
+//
+//gk=gxu(x);
+//free(x);
+//x=NULL;
+//
+//
+//return 1;
+//}
+//
+//
+//
+////tf 偏导
+//int gt2gitf(lyRnRnk gg,double *XUtfk, int dimx,int dimu,   double *tk, double *tauk, int N,int k,double *gk)
+//{  
+// 
+//  
+//double**  x=(double **)malloc(3*sizeof(double *));
+//int i,j;
+//
+//x[0]=(double *)malloc(dimx*sizeof(double ));
+//x[1]=(double *)malloc(dimu*sizeof(double ));
+//x[2]=(double *)malloc(sizeof(double ));
+//
+//
+//
+//for(i=0;i<dimx;i++)
+//{
+//x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+//
+//}
+//
+//
+//for(i=0;i<dimu;i++)
+//{
+//x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+//
+//}
+//x[2][0]=tk[k-1];
+//
+//gk=gt(x)*(tauk[k]/2+1.0/2);
+//free(x);
+//x=NULL;
+//
+//
+//return 1;
+//   
+//    
+//}  
+//  
+//   
+//
+//
+////性能指标的偏导
+////常微离散化偏导
+//
+////逐点等式
+////mayer 等式
+////逐点 不等式 
+////mayer 不等式个数
+////tf 偏导
+//
+//
 
 int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k)
 {
-
+int i;
 x[0]=(double *)malloc(dimx*sizeof(double ));
 
 for(i=0;i<dimx;i++)
 {
-x[0][i]=XUtfk[(dimx+dimu)*(k-1)+i];
+x[0][i]=X[(dimx+dimu)*(k-1)+i];
 
 }
 
 
 for(i=0;i<dimu;i++)
 {
-x[1][i]=XUtfk[(dimx+dimu)*(k-1)+dimx+i];
+x[1][i]=X[(dimx+dimu)*(k-1)+dimx+i];
 
 }
 x[2][0]=tk[k-1];
@@ -3626,7 +3627,7 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		double *tauk, //勒让德点
 		double *wk, //高斯勒让德积分系数
 		double *Dki, //导数系数
-		double *zuiyouX //最优结果
+		double *zuiyouX, //最优结果
 		 
 	                          	//  double *H, H由这些和子问题等等进行修正  Bk+1
 		double *h,
@@ -3635,15 +3636,25 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		double *bi,
 		double *Ai,
 		double *XUk,
-		double tk
+		double tk,
+		double *x0,
+		double t0
 )
 {
 	
 double **xftf,tf;
 
+
+
+xftf=(double *)malloc(sizeof(double));
+memset(xftf)
+
+
+
+
+
 //xf=x0+....;
-	
-	
+double  tf=XUk[Ntau*(dimx+dimu)];	
 double tt2=(tf-t0)/2;	
 	
 	
@@ -3652,7 +3663,7 @@ double tt2=(tf-t0)/2;
 //不转化成f(x)  减少不需要的赋值  dairu(f,xuk ,....)	
 	
 int i,j,k,lo,mu; 
-int zong=(dimx+dimu)*N+1;
+int zong=(dimx+dimu)*Ntau+1;
 double **xk,ttem;
 double *temg,*temg2,*temf,*temf2,*temnew,temPHI1,temPHI2;
 double **tem1,**tem2;
@@ -3663,6 +3674,23 @@ double *jiluxf,*jiluliang;
 
 
 double *temkesi,*temxu,*temxu1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3745,7 +3773,7 @@ h[Ntau*(dimx+dimu)]=0;
 
 for(i=0;i<Ntau;i++)
 {
-X2xutk(XUk,xk,dimx,dimu, tk,i)
+X2xutk(XUk,xk,dimx,dimu, tauk,i);
 
 
 
@@ -3786,7 +3814,7 @@ h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
 //列向量
 //temf在循环外先定义一个东西
 
-free(temf)
+free(temf);
 temf=NULL;
 
 
@@ -3805,7 +3833,7 @@ be[i*(dimx)+L]+=tt2*temf[L];
 	
 	
 	for(mu=0;mu<Ntau;mu++)
-	{be[mu*(dimx)+L]+=-Dki[mu*(N)+i]*xk[0][L]；
+	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L]；
 	}
 
 }
@@ -4209,7 +4237,7 @@ int kzzy(lyRnR PHI,       //目标函数中的终端
 		double *tauk, //勒让德点
 		double *wk, //高斯勒让德积分系数
 		double *Dki, //导数系数
-		double *zuiyouX //最优结果
+		double *zuiyouX, //最优结果
 		 
 		double *H,
 		double *h,
@@ -4221,17 +4249,17 @@ int kzzy(lyRnR PHI,       //目标函数中的终端
 		
 		)
 {
-
+int i;
 int dimxu=dimx+dimu;
 int dimxu_tf=(dimx+dimu)*Ntau+1;
 	
 	
 	
 double *Bk;
-Bk=(double *)malloc(dim*dim*sizeof(double)); 
-memset(Bk,0,dim*dim*sizeof(double));
-for(i=0;i<dim;i++)
-Bk[i*dimxu_tf+i]=1;
+//Bk=(double *)malloc(dim*dim*sizeof(double)); 
+//memset(Bk,0,dim*dim*sizeof(double));
+//for(i=0;i<dim;i++)
+//Bk[i*dimxu_tf+i]=1;
 	
 	
 	
@@ -4254,7 +4282,7 @@ Bk[i*dimxu_tf+i]=1;
 
 
 	
-	
+	return 0;
 	
 	
 }
