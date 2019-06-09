@@ -3663,8 +3663,8 @@ double tt2=(tf-t0)/2;
 int i,j,k,lo,mu; 
 int zong=(dimx+dimu)*Ntau+1;
 double **xk,ttem;
-double *temg,*temg2,*temf,*temf2,*temnew,temPHI1,temPHI2;
-double **tem1,**tem2;
+double *temg,*temg2,*temf,*temf2,*temnew,*temPHI1,*temPHI2;
+double *tem1,*tem2;
 
 chushi(temg,1);
 chushi(temg2,1);
@@ -3674,6 +3674,16 @@ chushi(temf2,1);
 chushi(temnew,1);
  
 
+ 
+chushi(temPHI1,1);
+ 
+ 
+chushi(temPHI2,1);
+ 
+ 
+chushi(tem1,1);
+chushi(tem2,1);
+ 
 
 
 
@@ -4070,7 +4080,7 @@ tem2=(double *) malloc( sizeof(double));
  cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temPHI1, dimx,jiluliang,1, 1,temPHI2, 1);
 	
 	for(mu=0;mu<dimx;mu++)	
-		h[k*(dimx+dimu)+u]+=temxu[mu];
+		h[k*(dimx+dimu)+mu]+=temxu[mu];
 	
 	h[Ntau*(dimx+dimu)]+=temPHI2[0];
 	
@@ -4083,7 +4093,7 @@ tem2=(double *) malloc( sizeof(double));
  
  
  
-for(lo=0;lo<mumphii;lo++)
+for(lo=0;lonumphii;lo++)
 {	for(mu=0;mu<dimx;mu++)
 		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
 	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
@@ -4110,7 +4120,7 @@ for(lo=0;lo<mumphii;lo++)
 
 
  
-for(lo=0;lo<mumpsii;lo++)
+for(lo=0;lo<numpsii;lo++)
 {	for(mu=0;mu<dimx;i++)
 		tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
 	tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
