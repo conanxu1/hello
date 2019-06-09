@@ -1,6 +1,6 @@
 
 rm a
-make   -f mk2
+make   -f mk3
 
 
 ./a 
