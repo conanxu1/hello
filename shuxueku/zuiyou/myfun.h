@@ -365,3 +365,25 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 
 int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k);
 int cshi(double *x,int n);
+
+
+
+double kzPHI(double **xftf);
+double kzg(double **xut);
+double* kzf(double **xut);
+
+double kzphii1(double **xftf);
+double kzphii2(double **xftf);
+double kzcik1(double **xut);
+double kzcik2(double **xut);
+double* kzgPHI(double **xftf,int flag);
+
+double* kzgg(double **xut,int flag);	
+double* kzgf(double **xut,int flag);	
+double* kzgphi1(double **xftf,int flag);	
+double* kzgphi2(double **xftf,int flag);	
+double* kzgcik1(double **xut,int flag);
+double* kzgcik2(double **xut,int flag);	
+
+
+

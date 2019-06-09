@@ -1,3 +1,8 @@
+#include <math.h>
+#include <stdlib.h>
+
+
+
 
 //J=phi(x0,t0,xf,tf)+int0 t    g(x,u,t)
 
