@@ -3628,7 +3628,7 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		double *Dki, //导数系数
 		double *zuiyouX //最优结果
 		 
-		double *H,
+	                          	//  double *H, H由这些和子问题等等进行修正  Bk+1
 		double *h,
 		double *be,	
 		double *Ae,	
@@ -3654,7 +3654,7 @@ double tt2=(tf-t0)/2;
 int i,j,k,lo,mu; 
 int zong=(dimx+dimu)*N+1;
 double **xk,ttem;
-double *temg,*temg2,*temf,*temf2,*temnew;
+double *temg,*temg2,*temf,*temf2,*temnew,temPHI1,temPHI2;
 double **tem1,**tem2;
 
 
@@ -3914,16 +3914,14 @@ cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 
 
  //目标函数的梯度修正   
-	free(temg);
-	temg=NULL;
-	temg=gPHI(xftf,1);
-	// for(mu=0;mu<dimx;mu++)
-			// Ae[mu]=temg[mu];
+	free(temPHI1);
+	temPHI1=NULL;
+	temPHI1=gPHI(xftf,1);
 	
-	// free(temg);
-	temg=NULL;
-	temg=gPHI(xftf,2);
-	be[dimx]=ttem[0];
+	free(temPHI2);
+	temPHI2=NULL;
+	temPHI2=gPHI(xftf,2);
+ 
 	
 	
 
@@ -4019,8 +4017,31 @@ tem2=NULL;
 tem2=(double *) malloc( sizeof(double));
 
  
+ 
+ 
+ 
+ 
+ 
+ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],temPHI1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+ 
+ cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temPHI1, dimx,jiluliang,1, 1,temPHI2, 1);
+	
+	for(mu=0;mu<dimx;mu++)	
+		h[k*(dimx+dimu)+u]+=temxu[mu];
+	
+	h[Ntau*(dimx+dimu)]+=temPHI2[0];
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 for(lo=0;lo<mumphii;lo++)
-{	for(mu=0;mu<dimx;i++)
+{	for(mu=0;mu<dimx;mu++)
 		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
 	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
 	
@@ -4069,7 +4090,27 @@ for(lo=0;lo<mumpsii;lo++)
 	
 }
 
+
+
+
+
+
+
+
+
 }
+
+
+
+
+/*。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
+//计算H B k+1
+
+
+
+
+
+
 
 
 
