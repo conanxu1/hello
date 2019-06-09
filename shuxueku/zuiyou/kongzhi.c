@@ -35,7 +35,7 @@ return 0;
 double* kzf(double **xut)
 {
 double *fxut;
-fxut=(* double)malloc(3*sizeof(double));	
+fxut=(double *)malloc(3*sizeof(double));	
 	
 fxut[0]=xut[0][1];	
 fxut[1]=xut[1][0];		

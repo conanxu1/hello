@@ -121,7 +121,7 @@ XUk=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
 
 xishu(kzPHI, kzg,kzf,kkzcek,kkznumcek,kkzphii,kkznumphii,kkzcik,
 kkznumcik,kkzpsii,kkznumpsii,kkzgPHI,kkzgg,kkzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
-dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0)
+dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0);
 
 
 
