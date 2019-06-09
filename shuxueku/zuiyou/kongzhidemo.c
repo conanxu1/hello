@@ -125,6 +125,59 @@ dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0)
 
 
 
+printf("\n\n...............\n");
+geshu=(dimx+dimu)*Ntau+1;
+shuchud(h,geshu,1)
+ 
+ 
+printf("\n\n...............\n");
+ 
+geshu=kznumcek*Ntau+kznumphii+dimx*Ntau;
+shuchud(be,geshu,1);
+
+
+
+
+
+printf("\n\n...............\n");
+ 
+shuchud(Ae,(kznumcek*Ntau+kznumphii+dimx*Ntau),((dimx+dimu)*Ntau);
+
+
+
+
+
+
+printf("\n\n...............\n");
+geshu=kznumcik*Ntau+kznumpsii;
+ 
+
+shuchud(be,geshu,1);
+
+
+
+printf("\n\n...............\n");
+shuchud(Ae,(kznumcik*Ntau+kznumpsii),((dimx+dimu)*Ntau+1));
+
+
+ 
+ 
+ 
+printf("\n\n...............\n");
+geshu=(dimx+dimu)*Ntau+1;
+XUk=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double)); shuchud(XUk,geshu,1);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
