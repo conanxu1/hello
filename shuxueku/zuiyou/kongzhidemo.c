@@ -17,7 +17,8 @@ int main()
 {
 
 printf("\n\n...............\n");
- 
+
+int i,j,k;
 
 lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
 int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
@@ -87,9 +88,12 @@ tk=(double *)malloc((Ntau)*sizeof(double));
 wk=(double *)malloc((Ntau)*sizeof(double));
 Dki=(double *)malloc((Ntau*Ntau)*sizeof(double));
 lgd(tauk,Ntau-1);
+
+
 lg_AD(tauk, wk,Dki,Ntau-1);
 
-
+for(i=0;i<Ntau;i++)
+{tk[i]=(tf-t0)/2*tauk[i]+(tf+t0)/2;}	
 
 
 zuiyouX=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
@@ -119,8 +123,8 @@ XUk=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
  
 
 
-xishu(kzPHI, kzg,kzf,kkzcek,kkznumcek,kkzphii,kkznumphii,kkzcik,
-kkznumcik,kkzpsii,kkznumpsii,kkzgPHI,kkzgg,kkzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
+xishu(kzPHI, kzg,kzf,kkzcek,kkznumcek,kkzphi,kkznumphii,kkzcik,
+kkznumcik,kkzpsi,kkznumpsii,kkzgPHI,kkzgg,kkzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
 dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0);
 
 
