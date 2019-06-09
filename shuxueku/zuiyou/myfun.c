@@ -4977,7 +4977,7 @@ return 0;
 
 
 
-int chushi(double *x,int n)
+int cshi(double *x,int n)
 {
 	x=(double *)malloc(n*sizeof(double));
 	memset(x,0,n*sizeof(double));
