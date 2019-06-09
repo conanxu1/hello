@@ -92,8 +92,7 @@ lgd(tauk,Ntau-1);
 
 lg_AD(tauk, wk,Dki,Ntau-1);
 
-for(i=0;i<Ntau;i++)
-{tk[i]=(tf-t0)/2*tauk[i]+(tf+t0)/2;}	
+	
 
 
 zuiyouX=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
