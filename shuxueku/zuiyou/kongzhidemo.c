@@ -16,6 +16,8 @@
 int main()
 {
 
+printf("\n\n...............\n");
+ 
 
 lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
 int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
@@ -73,8 +75,6 @@ x0[2]=0;
 t0=0;
 
 
-printf("\n\n...............\n");
- 
 
 
 
