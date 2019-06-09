@@ -4014,7 +4014,7 @@ for(k=0;k<numpsii;k++)
 	free(temg);
 	temg=NULL;
 	temg=gphi[k](xftf,2);
-	bi[(dangqianhe+k)*zong+dimx]=ttem[0];
+	bi[(dangqianhe+k)*zong+dimx]=temg[0];
 	
 }	
 	
