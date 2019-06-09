@@ -58,7 +58,7 @@ kkzphi[1]=kzphii2;
 
 
 
-double *h,*be,*Ae*bi,*Ai,*XUk,tk,*x0,t0;
+double *h,*be,*Ae,*bi,*Ai,*XUk,tk,*x0,t0;
 
 
 
@@ -99,14 +99,14 @@ zuiyouX=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
 geshu=(dimx+dimu)*Ntau+1;
 h=(double *)malloc(geshu*sizeof(double));
 
-geshu=kznumcek*Ntau+kznumphii+dimx*Ntau;
+geshu=kkznumcek*Ntau+kkznumphii+dimx*Ntau;
 be=(double *)malloc(geshu*sizeof(double));
 
 
-geshu=(kznumcek*Ntau+kznumphii+dimx*Ntau)*((dimx+dimu)*Ntau+1);
+geshu=(kkznumcek*Ntau+kkznumphii+dimx*Ntau)*((dimx+dimu)*Ntau+1);
 Ae=(double *)malloc(geshu*sizeof(double));
 
-geshu=kznumcik*Ntau+kznumpsii;
+geshu=kkznumcik*Ntau+kkznumpsii;
 bi=(double *)malloc(geshu*sizeof(double));
 
 geshu=(kznumcik*Ntau+kznumpsii)*((dimx+dimu)*Ntau+1);
