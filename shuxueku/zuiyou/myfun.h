@@ -358,7 +358,7 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		double *bi,
 		double *Ai,
 		double *XUk,
-		double tk,
+		double *tk,
 		double *x0,
 		double t0
 );
