@@ -3912,7 +3912,7 @@ temg=NULL;
 temg=gcek[j](xk,2);
 
 //一维数组
-Ae[(dangqianhe+i*numcek+j)*zong+  N*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+Ae[(dangqianhe+i*numcek+j)*zong+  Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 }
 
 
@@ -3995,7 +3995,7 @@ for(k=0;k<numphii;k++)
 	free(temg);
 	temg=NULL;
 	temg=gphi[k](xftf,2);
-	be[(dangqianhe+k)*zong+dimx]=ttem[0];
+	be[(dangqianhe+k)*zong+dimx]=temg[0];
 	
 }	
 	
@@ -4038,7 +4038,7 @@ for(k=0;k<numpsii;k++)
 for(k=0;k<Ntau;k++)
 {
 	
-X2xutk(XUk,xk,dimx,dimu, tauk,i)
+X2xutk(XUk,xk,dimx,dimu, tauk,i);
 	
 temg=gf(xk,1);
 
