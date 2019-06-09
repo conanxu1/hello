@@ -26,7 +26,7 @@ piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek, *kkzgphi,*kkzgcik,*kkzgpsi;
 int geshu;
 
 int dimx=3,dimu=1;
-int Ntau=3
+int Ntau=3;
 double *tauk,*wk,*Dki,*zuiyouX;
 
 
