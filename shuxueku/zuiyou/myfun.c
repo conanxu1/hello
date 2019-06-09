@@ -3642,7 +3642,7 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 )
 {
 	
-double **xftf,tf;
+double **xftf;
 
 
 
@@ -3858,7 +3858,7 @@ be[i*(dimx)+L]+=tt2*temf[L];
 	
 	
 	for(mu=0;mu<Ntau;mu++)
-	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L]；
+	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L];
 	}
 
 }
@@ -3900,7 +3900,7 @@ temg=NULL;
 
 
 temg=gcek[j](xk,1);
-be[dangqianhe+i*numcek+j]=-cek(xk);
+be[dangqianhe+i*numcek+j]=-cek[j](xk);
 //返回 P_kesi P_t
 
 for(k=0;k<(dimx+dimu);k++)	
@@ -3925,13 +3925,13 @@ dangqianhi=dimx*Ntau+numci*Ntau+numphii;
 
 for(j=0;j<numcik;j++)
 {
-free(temg)
+free(temg);
 temg=NULL;
 
 
 
 temg=gcik[j](xk,1);
-bi[dangqianhi+i*numcik+j]=-cik(xk);
+bi[dangqianhi+i*numcik+j]=-cik[j](xk);
 //返回 P_kesi P_t
 
 for(k=0;k<(dimx+dimu);k++)	
