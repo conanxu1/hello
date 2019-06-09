@@ -3867,7 +3867,7 @@ be[i*(dimx)+L]+=tt2*temf[L];
 
 //求时间的偏导数
 
-free(temg)
+free(temg);
 temg=NULL;
 temg=gf(xk,2);
 
@@ -3938,7 +3938,7 @@ for(k=0;k<(dimx+dimu);k++)
 Ai[(dangqianhi+i*numcik+j)*zong+  i*(dimx+dimu)+k]=temg[k];
 
 
-free(temg)
+free(temg);
 temg=NULL;
 temg=gcik[j](xk,2);
 
@@ -3985,7 +3985,7 @@ cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 dangqianhe=Ntau*dimx+Ntau*numcek;
 for(k=0;k<numphii;k++)
 {
-	ttem=phi[k](xftf);
+	ttem=phii[k](xftf);
 	be[dangqianhe +k  ]=ttem;	
 	free(temg);
 	temg=NULL;
@@ -4004,7 +4004,7 @@ for(k=0;k<numphii;k++)
 dangqianhi= Ntau*numcik;
 for(k=0;k<numpsii;k++)
 {
-	ttem=psi[k](xftf);
+	ttem=psii[k](xftf);
 	bi[dangqianhi +k  ]=ttem;	
 	free(temg);
 	temg=NULL;
@@ -4013,7 +4013,7 @@ for(k=0;k<numpsii;k++)
 			Ai[(dangqianhi+k)*zong+mu]=temg[mu];
 	free(temg);
 	temg=NULL;
-	temg=gpii[k](xftf,2);
+	temg=gphi[k](xftf,2);
 	bi[(dangqianhe+k)*zong+dimx]=ttem[0];
 	
 }	
