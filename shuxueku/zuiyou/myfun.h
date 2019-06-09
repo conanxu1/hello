@@ -158,11 +158,11 @@ int erciw(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约束
+		double *bi,		////b   不等式约�?
 		double *Ai,
-		int dim,		//问题的维数
+		int dim,		//问题的维�?
 		int e,			//等式个数
-		int ie			//不等式个数
+		int ie			//不等式个�?
 );
 */
 
@@ -172,9 +172,9 @@ int erci(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约束
+		double *bi,		////b   不等式约�?
 		double *Ai,
-		int dim,		//问题的维数
+		int dim,		//问题的维�?
 		int e,			//等式个数
 		int ie,
 		double *xk);
@@ -185,11 +185,11 @@ int myqp(
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   e	);		//A的列数
+		int   e	);		//A的列�?
 		
 
 int mychol(
-		double *L,		//输入 返回 下三角
+		double *L,		//输入 返回 下三�?
 		int dim,
 		double *Lz		//转好
 	);		//维数
@@ -199,12 +199,12 @@ int qxt(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约束
+		double *bi,		////b   不等式约�?
 		double *Ai,
 
-		int dim,		//问题的维数
+		int dim,		//问题的维�?
 		int e,		
-		int ie			//不等式个数(原问题的  2e+ie)
+		int ie			//不等式个�?原问题的  2e+ie)
 		);
 
 //Rn->R
@@ -212,7 +212,7 @@ typedef double (*RnR)(double *x,int n);
 typedef double (*RR)(double x);
 typedef double *(*RnRn)(double *x,int n);
 
-//维数作为全局量 不出现
+//维数作为全局�?不出�?
 typedef double (*yRnR)(double *x);
 typedef double (*yRR)(double x);
 typedef double* (*yRnRn)(double *x);
@@ -231,7 +231,7 @@ typedef double* (*lyRnRnk)(double **x);
 
 
 
-//计算需要终端约束 分对xu 偏导的雅可比 和对时间的偏导
+//计算需要终端约�?分对xu 偏导的雅可比 和对时间的偏�?
 typedef double* (*piandao)(double **x,int type);
 
 
@@ -249,7 +249,7 @@ int v2s(int v,int dim,int dimu,int N);
 
 
 
-//求解非线性约束优化问题
+//求解非线性约束优化问�?
 int yueshu(RnR f,RnR *fk);
 
 //梯度
@@ -270,7 +270,7 @@ int xxwg(double *AM,double *A,int m,int n);
 
 
 
-//勒让德高斯积分的  勒让德节点
+//勒让德高斯积分的  勒让德节�?
 int lgd(double *x,int n);
 
 
@@ -316,43 +316,43 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		int numcek,		//逐点等式约束
 		
 		lyRnR *phii,
-		int numphii,	//mayer终端等式约束的个数
+		int numphii,	//mayer终端等式约束的个�?
 		
 		lyRnR *cik,
-		int numcik,		//逐点不等式约束  cik<=0
+		int numcik,		//逐点不等式约�? cik<=0
 		
 		
 		lyRnR *psii,
-		int numpsii,	//不等式终端
+		int numpsii,	//不等式终�?
 
 
 		piandao gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
 		
 		
-		piandao gg,	 //被积函数的梯度
+		piandao gg,	 //被积函数的梯�?
 		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
 		
 		piandao gf,	 //状态方程函数的梯度
 		
-		piandao *gcek,	//逐点的梯度函数
+		piandao *gcek,	//逐点的梯度函�?
 		
 		piandao *gphi,
 					
 		piandao *gcik,
 		
-		piandao *gpsi,				//mayer 的梯度
+		piandao *gpsi,				//mayer 的梯�?
 		
 	
 		
 		int dimx,
 		int dimu,
-		int Ntau,  //几阶勒让德方法
+		int Ntau,  //几阶勒让德方�?
 		double *tauk, //勒让德点
-		double *wk, //高斯勒让德积分系数
+		double *wk, //高斯勒让德积分系�?
 		double *Dki, //导数系数
-		double *zuiyouX, //最优结果
+		double *zuiyouX, //最优结�?
 		 
-	                          	//  double *H, H由这些和子问题等等进行修正  Bk+1
+	                          	//  double *H, H由这些和子问题等等进行修�? Bk+1
 		double *h,
 		double *be,	
 		double *Ae,	
@@ -365,4 +365,4 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 );
 
 int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k);
-
+int cshi(double *x,int n);
