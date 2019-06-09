@@ -133,7 +133,7 @@ shuchud(h,geshu,1)
  
 printf("\n\n...............\n");
  
-geshu=kznumcek*Ntau+kznumphii+dimx*Ntau;
+geshu=kkznumcek*Ntau+kkznumphii+dimx*Ntau;
 shuchud(be,geshu,1);
 
 
