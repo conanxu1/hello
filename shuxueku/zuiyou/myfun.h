@@ -249,7 +249,7 @@ int v2s(int v,int dim,int dimu,int N);
 
 
 
-//求解非线性约束优化问�?
+//求解非线性约束优化问?
 int yueshu(RnR f,RnR *fk);
 
 //梯度
@@ -270,7 +270,7 @@ int xxwg(double *AM,double *A,int m,int n);
 
 
 
-//勒让德高斯积分的  勒让德节�?
+//勒让德高斯积分的  勒让德节?
 int lgd(double *x,int n);
 
 
@@ -316,43 +316,42 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		int numcek,		//逐点等式约束
 		
 		lyRnR *phii,
-		int numphii,	//mayer终端等式约束的个�?
+		int numphii,	//mayer终端等式约束的个?
 		
 		lyRnR *cik,
-		int numcik,		//逐点不等式约�? cik<=0
+		int numcik,		//逐点不等式约? cik<=0
 		
 		
 		lyRnR *psii,
-		int numpsii,	//不等式终�?
+		int numpsii,	//不等式终?
 
 
 		piandao gPHI,			//PHI(x,t) 返回PHI_x,PHI_t
 		
 		
-		piandao gg,	 //被积函数的梯�?
+		piandao gg,	 //被积函数的梯?
 		//gg(**(x,u,t))  返回(**( gg_kesi,gg_t ))		
 		
 		piandao gf,	 //状态方程函数的梯度
 		
-		piandao *gcek,	//逐点的梯度函�?
+		piandao *gcek,	//逐点的梯度函
 		
 		piandao *gphi,
 					
 		piandao *gcik,
 		
-		piandao *gpsi,				//mayer 的梯�?
+		piandao *gpsi,				//mayer 的梯
 		
 	
 		
 		int dimx,
 		int dimu,
-		int Ntau,  //几阶勒让德方�?
+		int Ntau,  //几阶勒让德方
 		double *tauk, //勒让德点
-		double *wk, //高斯勒让德积分系�?
+		double *wk, //高斯勒让德积分系
 		double *Dki, //导数系数
-		double *zuiyouX, //最优结�?
-		 
-	                          	//  double *H, H由这些和子问题等等进行修�? Bk+1
+		double *zuiyouX, //最优结
+	                          	//  double *H, H由这些和子问题等等进行修? Bk+1
 		double *h,
 		double *be,	
 		double *Ae,	

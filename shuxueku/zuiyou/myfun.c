@@ -3666,23 +3666,23 @@ double **xk,ttem;
 double *temg,*temg2,*temf,*temf2,*temnew,*temPHI1,*temPHI2;
 double *tem1,*tem2;
 
-chushi(temg,1);
-chushi(temg2,1);
-chushi(temf,1);
-chushi(temf2,1);
+cshi(temg,1);
+cshi(temg2,1);
+cshi(temf,1);
+cshi(temf2,1);
  
-chushi(temnew,1);
+cshi(temnew,1);
  
 
  
-chushi(temPHI1,1);
+cshi(temPHI1,1);
  
  
-chushi(temPHI2,1);
+cshi(temPHI2,1);
  
  
-chushi(tem1,1);
-chushi(tem2,1);
+cshi(tem1,1);
+cshi(tem2,1);
  
 
 
