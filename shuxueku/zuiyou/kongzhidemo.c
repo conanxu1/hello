@@ -131,7 +131,7 @@ dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0);
 
 printf("\n\n...............\n");
 geshu=(dimx+dimu)*Ntau+1;
-shuchud(h,geshu,1)
+shuchud(h,geshu,1);
  
  
 printf("\n\n...............\n");
