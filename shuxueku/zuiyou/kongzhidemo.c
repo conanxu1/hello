@@ -16,13 +16,19 @@
 int main()
 {
 
-printf("\n\n...............\n");
-
+ 
 int i,j,k;
 
 lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
 int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
-piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek, *kkzgphi,*kkzgcik,*kkzgpsi;
+piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek,*kkzgphi,*kkzgcik,*kkzgpsi;
+
+
+kkzgPHI=kzgPHI;
+
+
+
+
 
 int geshu;
 
@@ -49,9 +55,12 @@ kkzphi[0]=kzphii1;
 kkzphi[1]=kzphii2;
 
 
+kkzgcik[0]=kzgcik1;
+kkzgcik[1]=kzgcik2;
 
 
-
+kkzgphi[0]=kzgphi1;
+kkzgphi[1]=kzgphi2;
 
 
 
@@ -64,12 +73,40 @@ double *h,*be,*Ae,*bi,*Ai,*XUk,*tk,*x0,t0;
 
 
 
-
+h=cshi(Ntau*(dimx+dimu)+1);
 
 x0=(double *)malloc((dimx)*sizeof(double));
 x0[0]=0;
 x0[1]=1;
 x0[2]=0;
+
+
+
+
+double *ioi,*ioi1;
+ioi=cshi(1);
+ioi1=cshi(1);
+ 
+
+free(ioi);
+ioi=NULL;
+ioi=cshi(1);
+
+free(ioi1);
+ioi1=NULL;
+ioi1=cshi(dimx);
+
+ 
+ cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,1,1,dimx, 1,x0, dimx,ioi1,1, 1,ioi, 1);
+
+
+ 
+	
+
+
+
+
+
 
 
 
@@ -100,39 +137,75 @@ zuiyouX=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
 
 
 geshu=(dimx+dimu)*Ntau+1;
-h=(double *)malloc(geshu*sizeof(double));
+h=cshi(geshu);
+
+
+shuchud(h,geshu,1);
+
+
+
 
 geshu=kkznumcek*Ntau+kkznumphii+dimx*Ntau;
-be=(double *)malloc(geshu*sizeof(double));
+be=cshi(geshu);
 
 
 geshu=(kkznumcek*Ntau+kkznumphii+dimx*Ntau)*((dimx+dimu)*Ntau+1);
-Ae=(double *)malloc(geshu*sizeof(double));
+Ae=cshi(geshu);
 
 geshu=kkznumcik*Ntau+kkznumpsii;
-bi=(double *)malloc(geshu*sizeof(double));
+bi=cshi(geshu);
 
 geshu=(kkznumcik*Ntau+kkznumpsii)*((dimx+dimu)*Ntau+1);
-Ai=(double *)malloc(geshu*sizeof(double));
-
+Ai=cshi(geshu);
+printf("%d",geshu);
 
 
 geshu=(dimx+dimu)*Ntau+1;
-XUk=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
+XUk=cshi(geshu);
+
+
+for(i=1;i<=Ntau;i++)
+XUk[(dimx+dimu)*i-1]=1;
+ 
+
+XUk[(dimx+dimu)*Ntau]=1;
+//t0  neq tf
  
 
 
 xishu(kzPHI, kzg,kzf,kkzcek,kkznumcek,kkzphi,kkznumphii,kkzcik,
-kkznumcik,kkzpsi,kkznumpsii,kkzgPHI,kkzgg,kkzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
+kkznumcik,kkzpsi,kkznumpsii,kkzgPHI,kzgg,kzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
 dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0);
 
 
 
 
-printf("\n\n...............\n");
-geshu=(dimx+dimu)*Ntau+1;
-shuchud(h,geshu,1);
- 
+
+
+printf("\n\ntauk...............\n");
+shuchud(tauk,Ntau,1);
+
+printf("\n\ntauk...............\n");
+shuchud(tauk,Ntau,1);
+
+
+
+
+
+
+
+
+
+
+printf("\n\nbe...............\n");
+geshu=(kkznumcek*Ntau+kkznumphii+dimx*Ntau) ;
+shuchud(be,geshu,1);
+  
+
+/*
+
+
+
  
 printf("\n\n...............\n");
  
@@ -173,7 +246,7 @@ XUk=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double)); shuchud(XUk,geshu,1);
 
 
 
-
+*/
 
 
 

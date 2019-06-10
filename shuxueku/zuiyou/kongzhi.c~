@@ -89,7 +89,7 @@ return -xut[0][0];
 	
 	
 double* kzgPHI(double **xftf,int flag)
-{ 
+{printf("####################################-");
 	double *pd;
 	if(flag==1)
 	{pd=cshi(3);
@@ -320,7 +320,8 @@ double* kzgcik1(double **xut,int flag)
 
 
 	
-	 
+	printf("\n2\n");	
+
 
 		
 	}	
@@ -357,7 +358,8 @@ double* kzgcik2(double **xut,int flag)
 
 
 	
-	 
+	printf("\n====2==\n");	
+
 
 
 		

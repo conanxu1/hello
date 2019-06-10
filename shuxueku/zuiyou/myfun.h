@@ -158,11 +158,11 @@ int erciw(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约��?
 		double *Ai,
-		int dim,		//问题的维�?
+		int dim,		//问题的维��?
 		int e,			//等式个数
-		int ie			//不等式个�?
+		int ie			//不等式个��?
 );
 */
 
@@ -172,9 +172,9 @@ int erci(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约��?
 		double *Ai,
-		int dim,		//问题的维�?
+		int dim,		//问题的维��?
 		int e,			//等式个数
 		int ie,
 		double *xk);
@@ -185,11 +185,11 @@ int myqp(
 		double *gk,
 		double *b,
 		int dim,		//G维数
-		int   e	);		//A的列�?
+		int   e	);		//A的列��?
 		
 
 int mychol(
-		double *L,		//输入 返回 下三�?
+		double *L,		//输入 返回 下三��?
 		int dim,
 		double *Lz		//转好
 	);		//维数
@@ -199,12 +199,12 @@ int qxt(
 		double *h,		//原问题grad
 		double *be,		//b   等式约束
 		double *Ae,		//系数
-		double *bi,		////b   不等式约�?
+		double *bi,		////b   不等式约��?
 		double *Ai,
 
-		int dim,		//问题的维�?
+		int dim,		//问题的维��?
 		int e,		
-		int ie			//不等式个�?原问题的  2e+ie)
+		int ie			//不等式个��?原问题的  2e+ie)
 		);
 
 //Rn->R
@@ -212,7 +212,7 @@ typedef double (*RnR)(double *x,int n);
 typedef double (*RR)(double x);
 typedef double *(*RnRn)(double *x,int n);
 
-//维数作为全局�?不出�?
+//维数作为全局��?不出��?
 typedef double (*yRnR)(double *x);
 typedef double (*yRR)(double x);
 typedef double* (*yRnRn)(double *x);
@@ -231,7 +231,7 @@ typedef double* (*lyRnRnk)(double **x);
 
 
 
-//计算需要终端约�?分对xu 偏导的雅可比 和对时间的偏�?
+//计算需要终端约��?分对xu 偏导的雅可比 和对时间的偏��?
 typedef double* (*piandao)(double **x,int type);
 
 
@@ -364,8 +364,8 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 );
 
 int X2xutk(double *X,double **x,int dimx,int dimu,double *tk,int k);
-int cshi(double *x,int n);
 
+double*  cshi(int n);
 
 
 double kzPHI(double **xftf);
@@ -376,6 +376,8 @@ double kzphii1(double **xftf);
 double kzphii2(double **xftf);
 double kzcik1(double **xut);
 double kzcik2(double **xut);
+
+
 double* kzgPHI(double **xftf,int flag);
 
 double* kzgg(double **xut,int flag);	
