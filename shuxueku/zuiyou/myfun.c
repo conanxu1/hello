@@ -3788,7 +3788,7 @@ fbe(be,f,xk,jiluxf,dimx, dimu,i,tt2,tt2wk,Ntau,Dki);
 
 
 
-//——————————————！     2    ———————————————————————
+//——————————————！     3   ———————————————————————
 
 
 //
@@ -3815,7 +3815,7 @@ gftAe(Ae,gf,xk, dimx,dimu,i,tauk,tt2wk,Ntau,jiluliang);
 //////////////////////////////////////////////////////////////////
 //第二 四组
 //系数和梯度都可以计算
-//——————————————！     3   ———————————————————————
+//——————————————！     4   ———————————————————————
 Ab24(Ae,be,Ai,bi,xk,cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, Ntau);
 
 
@@ -3831,10 +3831,12 @@ Ab24(Ae,be,Ai,bi,xk,cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, N
 
 
 
-//——————————————！     4   ———————————————————————
+//——————————————！     5   ———————————————————————
 
 
 //根据叠加的 xf算出 对时间求梯度 的修正量 还有终端约束
+
+printf("000000----------fff");
 
 zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, numcik, numphii, numpsii, dimx, dimu,tauk,tt2wk, Ntau);
  
@@ -3866,7 +3868,7 @@ zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, n
 //偏f
 
 
-//——————————————！    5  ———————————————————————
+//——————————————！    6  ———————————————————————
 
 
 //zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
@@ -4972,6 +4974,8 @@ double *temf,ttem,*temg;
 int j,k,mu;
 
 temf=cshi(dimx);
+temg=cshi(1);
+
 int zong=(dimx+dimu)*Ntau+1;
 int dangqianhi,dangqianhe;
 
@@ -4988,6 +4992,9 @@ xftf[1][0]=tf;
 //+++++++++++++++++++++++++
 
 //终端约束
+
+
+
 
 dangqianhe=Ntau*dimx+Ntau*numcek;
 for(k=0;k<numphii;k++)
@@ -5014,7 +5021,7 @@ for(k=0;k<numphii;k++)
 
 
 //不需要重复计算
-
+/*
 
 dangqianhi= Ntau*numcik;
 for(k=0;k<numpsii;k++)
@@ -5038,8 +5045,12 @@ for(k=0;k<numpsii;k++)
 }	
 		
 	
+*/	
 	
-	
+xm(temg);
+xm(temf);
+
+
 return 1;	
 	
 	
