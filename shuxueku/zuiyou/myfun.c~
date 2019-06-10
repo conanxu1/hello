@@ -3641,34 +3641,79 @@ int xishu(lyRnR PHI,       //目标函数中的终端
 		double t0
 )
 {
-int nu;
+double **xk,ttem;
+xk=(double **)malloc(3*sizeof(double *));
+xk[0]=(double *)malloc(dimx*sizeof(double ));
+xk[1]=(double *)malloc(dimu*sizeof(double ));
+xk[2]=(double *)malloc(sizeof(double ));
 
+
+double *temg,*temg2,*temf,*temf2,*temnew,*temPHI1,*temPHI2;
+double *tem1,*tem2;
+
+temg=cshi(1);
+temg2=cshi(1);
+temf=cshi(1);
+temf2=cshi(1);
+temnew=cshi(1);
+temPHI1=cshi(1);
+temPHI2=cshi(1);
+tem1=cshi(1);
+tem2=cshi(1);
+double **xftf;
+xftf=(double **)malloc(2*sizeof(double *));
+xftf[0]=cshi(dimx);
+xftf[1]=cshi(1);
+double *jiluxf,*jiluliang;
+//初始零
+jiluxf=cshi(dimx);
+jiluliang=cshi(dimx);
+
+double *temxu;
+temxu=cshi(dimx+dimu);
+int L;
+int i,j,k,lo,mu; 
+int zong=(dimx+dimu)*Ntau+1;
+
+int nu;
 double  tf=XUk[Ntau*(dimx+dimu)];	
 double tt2=(tf-t0)/2;	
-	
-	
+double *tt2wk;
+
+
+//cek
+//当前行
+int dangqianhe=0;
+
+//不等式的行
+int dangqianhi=0;
+
+tt2wk=cshi(Ntau);
+
+for(i=0;i<Ntau;i++)
+tt2wk[i]=tt2*wk[i];
+
+
+
+//------------------------------------------
+//每次计算一下tk
+
 for(nu=0;nu<Ntau;nu++)
 {
 tk[nu]=(tt2*tauk[nu]+(t0+tf)/2);
-
 }
 
 
 
-	
-double **xftf;
+//------------------------------
+//计算所有的fk 叠加得到xf
 
-xftf=(double **)malloc(2*sizeof(double *));
-xftf[0]=cshi(dimx);
-xftf[1]=cshi(1);
+memcpy(jiluxf,x0,dimx*sizeof(double));
 
 
-double *oo,*oo1,*oo2;
-oo=cshi(1);
-oo1=cshi(1);
 
-oo2=cshi(1);
 
+ 
 
 //xf=x0+....;
 
@@ -3676,103 +3721,6 @@ oo2=cshi(1);
 	
 //不转化成f(x)  减少不需要的赋值  dairu(f,xuk ,....)	
 	
-int i,j,k,lo,mu; 
-int zong=(dimx+dimu)*Ntau+1;
-double **xk,ttem;
-double *temg,*temg2,*temf,*temf2,*temnew,*temPHI1,*temPHI2;
-double *tem1,*tem2,*ioi,*ioi1;
-ioi=cshi(1);
-ioi1=cshi(1);
-
-
-
-temg=cshi(1);
-
-temg2=cshi(1);
-temf=cshi(1);
-temf2=cshi(1);
- 
-temnew=cshi(1);
- 
-
- 
-temPHI1=cshi(1);
- 
- 
-temPHI2=cshi(1);
- 
- 
-tem1=cshi(1);
-tem2=cshi(1);
- 
-
-
-
-
-
-
-
-
-
-double *jiluxf,*jiluliang;
-//初始零
-jiluxf=cshi(dimx);
-jiluliang=cshi(dimx);
-
- 
-
-memcpy(jiluxf,x0,dimx*sizeof(double));
-
-
- 
-
-double *temkesi,*temxu,*temxu1;
-
-
-temxu=cshi(dimx+dimu);
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int L;
-
-
-
-
-
-
-xk=(double **)malloc(3*sizeof(double *));
-xk[0]=(double *)malloc(dimx*sizeof(double ));
-xk[1]=(double *)malloc(dimu*sizeof(double ));
-xk[2]=(double *)malloc(sizeof(double ));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //状态方程的等式和梯度的系数
 
 //梯度为
@@ -3783,12 +3731,6 @@ xk[2]=(double *)malloc(sizeof(double ));
 //
 
 //形式
-
-
-
-
-
-
 
 //be维数
 
@@ -3801,154 +3743,69 @@ xk[2]=(double *)malloc(sizeof(double ));
 	
 //Ntau*numci
 //+numpsii	
-
-	
-
-
-//cek
-//当前行
-int dangqianhe=Ntau*dimx;
-
-//不等式的行
-int dangqianhi=0;
-
 //尽可能复用一些运算
-int	maxnine=numcek;
-
-
-
-h[Ntau*(dimx+dimu)]=0;
-
  
 
+
+ 
 
 for(i=0;i<Ntau;i++)
 {
-
-
- 
-
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//得到i-1时刻的    (*x,*u,*t)
 X2xutk(XUk,xk,dimx,dimu, tk,i+1);
-
-
 
 
 /*因为可导  指标 仅需要知道梯度*/
 //积分部分的梯度
 //两部分 对状态控制   对tf
 //mayer的梯度和函数值涉及 xf  需要计算所有的   fk
-
-
-
-
 //kesi 
  
 
-free(temg);
-temg=NULL;
 
- 
-
-temg=gg(xk,1);
-
-
- 
-
-cblas_daxpby((dimx+dimu), tt2*wk[i],temg , 1, 0, temxu, 1);
-
-
-
- 
-
- 
-
-for(L=0;L<dimx+dimu;L++)
-{
-h[i*(dimx+dimu)+L]+=temxu[L];
-}
-//wk gk 部分
-
-
-
-free(temg);
-temg=NULL;
-temg=gg(xk,2);
-//p_tf  jifen   对tf的导数 要对 g_t修正
-
-h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
+//——————————————！     1    ———————————————————————
+//求指标函数关于积分项的梯度  终端项再补充
 
 
 
 
-///////////////////////////////////////////////////////////////////////
+Jgg(h,g,gg,xk,wk,dimx,dimu,i,tt2,tauk,Ntau);
 
 
-//状态方程
-// 终端函数的偏导数里有用
-//列向量
-//temf在循环外先定义一个东西
 
- 
-free(temf);
-temf=NULL;
+//——————————————！     2    ———————————————————————
+						//状态方程
+						// 终端函数的偏导数里有用
+						//列向量
+						//temf在循环外先定义一个东西
+//f  状态方程的系数
+// be     Dki
 
-
- 
-temf=f(xk);
+fbe(be,f,xk,jiluxf,dimx, dimu,i,tt2,tt2wk,Ntau,Dki);					 
 
  
 
 
-cblas_daxpby(dimx, tt2*wk[i],temf , 1, 1, jiluxf, 1);
-	
+
+//——————————————！     2    ———————————————————————
 
 
-//第一组等式约束
-for(L=0;L<dimx;L++)
-{
-be[i*(dimx)+L]+=tt2*temf[L];
+//
+
+//与f 时间偏导数有关的    求时间的偏导数
+
+//
+
+gftAe(Ae,gf,xk, dimx,dimu,i,tauk,tt2wk,Ntau,jiluliang);
+
 	
 	
 	
-	for(mu=0;mu<Ntau;mu++)
-	{be[mu*(dimx)+L]+=-Dki[mu*(Ntau)+i]*xk[0][L];
-	}
-
-}
-
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//求时间的偏导数
-
-free(temg);
-temg=NULL;
-temg=gf(xk,2);
-
-
-
-for(L=0;L<dimx;L++)
-{
-be[i*(dimx)+L]+=(tauk[i]+1)/2*temg[L];
-}
-
-
 	
- 
-cblas_daxpby(dimx, tt2*wk[i],temg , 1, 1, jiluliang, 1);
+	
+	
 	
 //tt2*wk[i] 这个也可以优化减少乘次数  增加时间复杂度
  
@@ -3958,101 +3815,31 @@ cblas_daxpby(dimx, tt2*wk[i],temg , 1, 1, jiluliang, 1);
 //////////////////////////////////////////////////////////////////
 //第二 四组
 //系数和梯度都可以计算
-dangqianhe=dimx*Ntau;
-
-
-for(j=0;j<numcek;j++)
-{
-free(temg);
-temg=NULL;
-
-
-
-temg=gcek[j](xk,1);
-be[dangqianhe+i*numcek+j]=-cek[j](xk);
-//返回 P_kesi P_t
-
-for(k=0;k<(dimx+dimu);k++)	
-Ae[(dangqianhe+i*numcek+j)*zong+  i*(dimx+dimu)+k]=temg[k];
-
-
-free(temg);
-temg=NULL;
-temg=gcek[j](xk,2);
-
-//一维数组
-Ae[(dangqianhe+i*numcek+j)*zong+  Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
-}
-
-
- 
-
-
-dangqianhi=0;
+//——————————————！     3   ———————————————————————
+Ab24(Ae,be,Ai,bi,xk,cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, Ntau);
 
 
 
 
 
 
-
-
-for(j=0;j<numcik;j++)
-{
-free(temg);
-temg=NULL;
-
-
-
- 
-temg=gcik[j](xk,1);
-
- 
-bi[dangqianhi+i*numcik+j]=-cik[j](xk);
-//返回 P_kesi P_t
-
-for(k=0;k<(dimx+dimu);k++)	
-Ai[(i*numcik+j)*zong+  i*(dimx+dimu)+k]=temg[k];
-
-
- 
-
-free(temg);
-temg=NULL;
- 
-temg=gcik[j](xk,2);
- 
- 
-//一维数组
- 
-//Ai[(i*numcik+j)*zong+Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
 
 
 
 
 }
 
-}
 
 
-
-memcpy(temf,x0,dimx*sizeof(double));
-
-
-cblas_daxpby(dimx, 1,jiluxf , 1, -1, temf, 1);
+//——————————————！     4   ———————————————————————
 
 
+//根据叠加的 xf算出 对时间求梯度 的修正量 还有终端约束
 
-printf("TTT");
-shuchud(temf,dimx,1);
-shuchud(jiluliang,dimx,1);
+zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, numcik, numphii, numpsii, dimx, dimu,tauk,tt2wk, Ntau);
+ 
 
 
-printf("TTT");
-
-printf("%lf",tf);
-
-cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 
 
 
@@ -4067,82 +3854,8 @@ cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 
 	
  
-
-memcpy(xftf[0],jiluxf,dimx*sizeof(double));
-xftf[1][0]=tf;
-
-
-//终端约束
-
-
- //目标函数的梯度修正   
-	free(temPHI1);
-	temPHI1=NULL;
-
-	
-	temPHI1=gPHI(xftf,1);
-	
-
-
-
-
-
-
-
-
-	free(temPHI2);
-	temPHI2=NULL;
-	temPHI2=gPHI(xftf,2);
  
 
-
-
-
-
-
-
-
-dangqianhe=Ntau*dimx+Ntau*numcek;
-for(k=0;k<numphii;k++)
-{
-	ttem=phii[k](xftf);
-	be[dangqianhe +k  ]=ttem;	
-	free(temg);
-	temg=NULL;
-	temg=gphi[k](xftf,1);
-		for(mu=0;mu<dimx;mu++)
-			Ae[(dangqianhe+k)*zong+mu]=temg[mu];
-	free(temg);
-	temg=NULL;
-	temg=gphi[k](xftf,2);
-	be[(dangqianhe+k)*zong+dimx]=temg[0];
-
-
-
-
-	 
-	
-}	
-
-
-dangqianhi= Ntau*numcik;
-for(k=0;k<numpsii;k++)
-{
-	ttem=psii[k](xftf);
-	bi[dangqianhi +k  ]=ttem;	
-	free(temg);
-	temg=NULL;
-	temg=gpsi[k](xftf,1);
-		for(mu=0;mu<dimx;mu++)
-			Ai[(dangqianhi+k)*zong+mu]=temg[mu];
-	free(temg);
-	temg=NULL;
-	temg=gphi[k](xftf,2);
-	bi[(dangqianhe+k)*zong+dimx]=temg[0];
-	
-}	
-	
- 
 
 
 
@@ -4151,203 +3864,21 @@ for(k=0;k<numpsii;k++)
 //计算遗留的系数
 //终端约束 终端约束的梯度
 //偏f
-dangqianhe=numcek*Ntau+dimx*Ntau;
 
- printf("\n?????????????\n");
 
+//——————————————！    5  ———————————————————————
 
-for(k=0;k<Ntau;k++)
-{
-	
 
+//zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
 
 
 
-X2xutk(XUk,xk,dimx,dimu, tauk,k+1);
-printf("\n\n\n\n\n\n\n\n\n\n0++++%lf\n",temPHI2[0]);
-	
 
 
 
 
-temg=gf(xk,1);
 
-
-
-
-
-for(mu=0;mu<(dimx);mu++)	
-{	Ae[(k*dimx+mu)*zong+  mu]+=Dki[k*(Ntau)+k];
-
-	for(lo=0;lo<(dimx+dimu);lo++)	
-		Ae[(k*dimx+mu)*zong+  lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
-}
-
-
-
-//先算状态方程 然后其他终端的的约束计算过程应该类似
-
- printf("0-0-0-0-0-%lf",temPHI2[0]);
-
-
-	 
-	
-//指标 只要梯度 偏PHI	
-//状态
-
-free(tem1);
-tem1=cshi(dimx);
-
-free(tem2);
-tem2=cshi(1);
-
- 
-  printf("\n\nh....-+.....+...\n");
- 
-shuchud(h,(dimx+dimu)*Ntau+1,1);
-
- 
- 
-
-///////////// //////////////////
-	
- 
- cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],temPHI1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
- 
-
-
-
-printf("\n+++%d+\n",k);
-
-
-shuchud(temg,dimx,dimx+dimu);
-printf("\n++++\n");
-
-
-
-
-
-printf("+%lf\n\n\n",temPHI2[0]);
-shuchud(jiluliang,dimx,1);
-
-
-
-
-
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temPHI1, dimx,jiluliang,1, 1,temPHI2, 1);
-	
-
-
-
-
-
-
-////////??????????????????????????????????????
- 
-
-
-
- 
-
-
-
-for(mu=0;mu<dimx+dimu;mu++)	
-	h[k*(dimx+dimu)+mu]+=temxu[mu];
-	
-h[Ntau*(dimx+dimu)]+=temPHI2[0];
-	
- 
- 
- 
- 
- 
- 
- 
-for(lo=0;lo<numphii;lo++)
-{	for(mu=0;mu<dimx;mu++)
-		tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
-	tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
-	
-	 
-
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
-
-
-
-for(mu=0;mu<(dimx+dimu);mu++)
-	Ae[(dangqianhe+lo)*zong+mu]=temxu[mu];
-	
-
-
-cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
-		
-	Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
-
-
-
-}
-
-//P kesiL  f   这个雅可比矩阵在mayer 指标 和mayer 等式不等式中都用到
-//按照雅可比阵的  行列关系
-//P_1 PHI 为行矩阵
-//mayer 的输入为（xf,tf）
-//返回
-
-//f 的第一个是雅可比阵
-//gf 返回一个二级指针 指向两个一级指针第一个是雅可比阵d行,(dx*du）列
-
-
-
-
-
- 
-for(lo=0;lo<numpsii;lo++)
-{	for(mu=0;mu<dimx;i++)
-		tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
-	tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
-	
-	 
-
-		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
-	for(mu=0;mu<(dimx+dimu);mu++)
-	Ai[(dangqianhi+lo)*zong+mu]=temxu[mu];
-	
-		cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
-		
-	Ai[(dangqianhi+lo)*zong+dimx+dimu]=tem2[0];
-}
-
-	
-
- 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-////////??????????????????????????????????????
-	
-
-
-
-
-
-	
-}
-
-
-
-
-
+//zuihou Ai Ae be bi  qufu
 
 
 
@@ -4363,9 +3894,22 @@ for(lo=0;lo<numpsii;lo++)
 
 
 
-//free()
+xm2(xk);
 
-
+xm(temg);
+xm(temg2);
+xm(temf);
+xm(temf2);
+xm(temnew);
+xm(temPHI1);
+xm(temPHI2);
+xm(tem1);
+xm(tem2);
+xm2(xftf);
+xm(jiluxf);
+xm(jiluliang);
+xm(temxu);
+xm(tt2wk);
 
 
 
@@ -5215,6 +4759,514 @@ double*  cshi(int n)
 }
 
 
+//______________________________________
+int Jgg(double *h,lyRnR g,piandao gg,double  **xk,double *wk,int dimx,int dimu,int i,double tt2,double *tauk,int Ntau)
+{double *temxu;
+double *temg;
+int L;
+int mu;
+temg=gg(xk,1);
+
+temxu=cshi(dimx+dimu);
+	
+	
+	cblas_daxpby((dimx+dimu), tt2*wk[i],temg , 1, 0, temxu, 1);
+	
+
+
+for(L=0;L<dimx+dimu;L++)
+{
+h[i*(dimx+dimu)+L]+=temxu[L];
+}
+//wk gk 部分
+
+free(temg);
+temg=NULL;
+temg=gg(xk,2);
+//p_tf  jifen   对tf的导数 要对 g_t修正
+
+
+h[Ntau*(dimx+dimu)]+=(0.5*g(xk)+tt2*temg[0]*(tauk[i]/2+0.5))*wk[i];
+
+
+
+
+
+	
+free(temg);
+
+free(temxu);
+temxu=NULL;
+
+temg=NULL;
+
+	return 0;
+}
+
+
+int fbe(double *be,lyRnRnk f,double  **xk,double *jiluxf,int dimx,int dimu,int i,double tt2,double *tt2wk,int Ntau,double *Dki)
+{
+double *temf;
+int L;
+int mu;
+
+
+temf=f(xk);
+
+
+cblas_daxpby(dimx, tt2wk[i],temf , 1, 1, jiluxf, 1);
+
+//第一组等式约束
+for(L=0;L<dimx;L++)
+{
+be[i*(dimx)+L]+=-tt2*temf[L];
+	for(mu=0;mu<Ntau;mu++)
+			{be[mu*(dimx)+L]+=Dki[mu*(Ntau)+i]*xk[0][L];
+			}
+
+}
+	
+
+free(temf);
+temf=NULL;
+
+	
+}
+
+
+
+int gftAe(double *Ae,piandao gf,double  **xk,int dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau,double *jiluliang)
+{
+double *temg;
+int L;
+
+temg=gf(xk,2);
+	
+	
+// i大组  L小组 	
+	
+for(L=0;L<dimx;L++)
+{
+Ae[i*dimx*((dimx+dimu)*Ntau+1)+L*((dimx+dimu)*Ntau+1)+(dimx+dimu)*Ntau]+=(tauk[i]+1)/2*temg[L];
+}
+
+
+
+
+
+
+cblas_daxpby(dimx, tt2wk[i],temg , 1, 1, jiluliang, 1);
+	
+	
+
+
+
+free(temg);
+temg=NULL;
+return 1;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int Ab24(double *Ae,double *be,double  *Ai,double *bi,double **xk, lyRnR *cek,lyRnR *cik,piandao *gcek,piandao *gcik,int numcek,int numcik,int dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau)
+{int dangqianhe;
+int dangqianhi;
+int zong=(dimx+dimu)*Ntau+1;
+double *temg;
+int j,k;
+ 
+temg=cshi(1);
+			dangqianhe=dimx*Ntau;
+
+
+			for(j=0;j<numcek;j++)
+			{
+			
+			be[dangqianhe+i*numcek+j]=cek[j](xk);
+			//返回 P_kesi P_t
+
+			free(temg);
+			temg=NULL;
+
+			temg=gcek[j](xk,1);
+			for(k=0;k<(dimx+dimu);k++)	
+			Ae[(dangqianhe+i*numcek+j)*zong+  i*(dimx+dimu)+k]=temg[k];
+
+
+			free(temg);
+			temg=NULL;
+			temg=gcek[j](xk,2);
+
+			//一维数组
+			Ae[(dangqianhe+i*numcek+j)*zong+  Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+			}
+
+
+			 
+
+
+			dangqianhi=0;
+
+
+			for(j=0;j<numcik;j++)
+			{
+			
+			bi[dangqianhi+i*numcik+j]=cik[j](xk);
+			//返回 P_kesi P_t
+
+
+			free(temg);
+			temg=NULL;
+			temg=gcik[j](xk,1);
+
+			 
+			for(k=0;k<(dimx+dimu);k++)	
+			Ai[(i*numcik+j)*zong+  i*(dimx+dimu)+k]=temg[k];
+
+
+			 //一维数组
+			 
+
+			free(temg);
+			temg=NULL;
+			temg=gcik[j](xk,2);
+			Ai[(i*numcik+j)*zong+Ntau*(dimx+dimu)]=temg[0]*(tauk[i]/2+0.5);
+			}
+			free(temg);
+			temg=NULL;
+
+
+
+
+}
+
+
+
+
+
+
+
+int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *psii,lyRnR *phii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
+{
+printf("test");
+
+
+double *temf,ttem,*temg;
+int j,k,mu;
+
+temf=cshi(dimx);
+int zong=(dimx+dimu)*Ntau+1;
+int dangqianhi,dangqianhe;
+
+ 
+	
+memcpy(temf,x0,dimx*sizeof(double));
+cblas_daxpby(dimx, 1,jiluxf , 1, -1, temf, 1);
+cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
+
+memcpy(xftf[0],jiluxf,dimx*sizeof(double));
+xftf[1][0]=tf;
+
+	
+//+++++++++++++++++++++++++
+
+//终端约束
+
+dangqianhe=Ntau*dimx+Ntau*numcek;
+for(k=0;k<numphii;k++)
+{
+	ttem=phii[k](xftf);
+	be[dangqianhe +k  ]=ttem;
+
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,1);
+		for(mu=0;mu<dimx;mu++)
+			Ae[(dangqianhe+k)*zong+mu]=temg[mu];
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,2);
+	be[(dangqianhe+k)*zong+dimx]=temg[0];
+
+
+	
+
+	 
+	
+}	
+
+
+//不需要重复计算
+
+
+dangqianhi= Ntau*numcik;
+for(k=0;k<numpsii;k++)
+{
+	ttem=psii[k](xftf);
+	bi[dangqianhi +k  ]=ttem;
+
+
+
+	
+	free(temg);
+	temg=NULL;
+	temg=gpsi[k](xftf,1);
+		for(mu=0;mu<dimx;mu++)
+			Ai[(dangqianhi+k)*zong+mu]=temg[mu];
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,2);
+	bi[(dangqianhe+k)*zong+dimx]=temg[0];
+	
+}	
+		
+	
+	
+	
+return 1;	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+int zdxz(double *h,double *Ae,double *Ai,double *x0,double *XUk,double **xk,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,piandao gf,piandao gPHI,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double tt2,double  *wk,double *tt2wk,int Ntau,double *Dki)
+{
+double *temxu,*tem1,*tem2;
+
+int dangqianhe=numcek*Ntau+dimx*Ntau;
+int dangqianhi;
+double *temg1,*temg2;
+temg1=cshi(1);
+temg2=cshi(1);
+int lo,mu,k;
+double *temPHI1,*temPHI2,*temg;
+temPHI1=cshi(1);
+temPHI2=cshi(1);
+temg=cshi(1);
+
+int zong=(dimu+dimx)*Ntau+1;
+
+
+//目标函数的梯度修正   
+	free(temPHI1);
+	temPHI1=NULL;
+	temPHI1=gPHI(xftf,1);
+	free(temPHI2);
+	temPHI2=NULL;
+	temPHI2=gPHI(xftf,2);
+ 
+
+
+
+	for(k=0;k<Ntau;k++)
+	{
+		
+	X2xutk(XUk,xk,dimx,dimu, tauk,k+1);
+
+
+	temg=gf(xk,1);
+
+
+	for(mu=0;mu<(dimx);mu++)	
+	{	Ae[(k*dimx+mu)*zong+  mu]+=Dki[k*(Ntau)+k];
+
+		for(lo=0;lo<(dimx+dimu);lo++)	
+			Ae[(k*dimx+mu)*zong+  lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
+	}
+
+
+
+	//先算状态方程 然后其他终端的的约束计算过程应该类似
+
+	//指标 只要梯度 偏PHI	
+	//状态
+
+	free(tem1);
+	tem1=cshi(dimx);
+
+	free(tem2);
+	tem2=cshi(1);
+
+	 
+
+	 
+
+	///////////// //////////////////
+		
+	 
+	 cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],temPHI1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+	 
+
+
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temPHI1, dimx,jiluliang,1, 1,temPHI2, 1);
+		
+
+
+
+
+
+
+
+
+	 
+
+
+
+	for(mu=0;mu<dimx+dimu;mu++)	
+		h[k*(dimx+dimu)+mu]+=temxu[mu];
+		
+	h[Ntau*(dimx+dimu)]+=temPHI2[0];
+		
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	for(lo=0;lo<numphii;lo++)
+	{	for(mu=0;mu<dimx;mu++)
+			tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
+		tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
+		
+		 
+
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+
+
+
+	for(mu=0;mu<(dimx+dimu);mu++)
+		Ae[(dangqianhe+lo)*zong+mu]=temxu[mu];
+		
+
+
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+			
+		Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
+
+
+
+	}
+
+	//P kesiL  f   这个雅可比矩阵在mayer 指标 和mayer 等式不等式中都用到
+	//按照雅可比阵的  行列关系
+	//P_1 PHI 为行矩阵
+	//mayer 的输入为（xf,tf）
+	//返回
+
+	//f 的第一个是雅可比阵
+	//gf 返回一个二级指针 指向两个一级指针第一个是雅可比阵d行,(dx*du）列
+
+
+
+dangqianhi=Ntau*dimx+Ntau*numcek;
+
+	 
+	for(lo=0;lo<numpsii;lo++)
+	{	for(mu=0;mu<dimx;mu++)
+			tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
+		tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
+		
+		
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
+
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+		for(mu=0;mu<(dimx+dimu);mu++)
+		Ai[(dangqianhi+lo)*zong+mu]=temxu[mu];
+		
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+			
+		Ai[(dangqianhi+lo)*zong+dimx+dimu]=tem2[0];
+	}
+
+
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+return 1;	
+	
+	
+}
+
+
+
+
+
+
+
+
+//++===============================
+int xm(double *x)
+{
+	free(x);
+	x=NULL;
+	return 1;	
+}
+
+
+int xm2(double **x)
+{
+	free(x);
+	x=NULL;
+	return 1;	
+}
 
 
 

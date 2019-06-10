@@ -3816,7 +3816,7 @@ gftAe(Ae,gf,xk, dimx,dimu,i,tauk,tt2wk,Ntau,jiluliang);
 //第二 四组
 //系数和梯度都可以计算
 //——————————————！     3   ———————————————————————
-Ab24( cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, Ntau);
+Ab24(Ae,be,Ai,bi,xk,cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, Ntau);
 
 
 
@@ -3836,8 +3836,7 @@ Ab24( cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, Ntau);
 
 //根据叠加的 xf算出 对时间求梯度 的修正量 还有终端约束
 
-int zdys(x0,xftf,jiluxf,jiluliang,tf, t0, numphii,numpsii,dimx,dimu,tauk,tt2wk, Ntau);
-
+zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, numcik, numphii, numpsii, dimx, dimu,tauk,tt2wk, Ntau);
  
 
 
@@ -3870,8 +3869,7 @@ int zdys(x0,xftf,jiluxf,jiluliang,tf, t0, numphii,numpsii,dimx,dimu,tauk,tt2wk, 
 //——————————————！    5  ———————————————————————
 
 
-zdxz(x0,xftf,jiluxf,jiluliang,tf,t0, numphii, numpsii,dimx, dimu,tauk,tt2wk, Ntau)
-
+//zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
 
 
 
@@ -3895,6 +3893,7 @@ zdxz(x0,xftf,jiluxf,jiluliang,tf,t0, numphii, numpsii,dimx, dimu,tauk,tt2wk, Nta
 ////////////////////88/////////////////////////////////////// 
 
 
+
 xm2(xk);
 
 xm(temg);
@@ -3911,7 +3910,6 @@ xm(jiluxf);
 xm(jiluliang);
 xm(temxu);
 xm(tt2wk);
-
 
 
 
@@ -4766,7 +4764,7 @@ int Jgg(double *h,lyRnR g,piandao gg,double  **xk,double *wk,int dimx,int dimu,i
 {double *temxu;
 double *temg;
 int L;
-
+int mu;
 temg=gg(xk,1);
 
 temxu=cshi(dimx+dimu);
@@ -4806,10 +4804,12 @@ temg=NULL;
 }
 
 
-int fbe(double *be,lyRnR f,double  **xk,double *jiluxf,int dimx,int dimu,int i,double tt2,double *tt2wk,int Ntau,double *Dki)
+int fbe(double *be,lyRnRnk f,double  **xk,double *jiluxf,int dimx,int dimu,int i,double tt2,double *tt2wk,int Ntau,double *Dki)
 {
 double *temf;
 int L;
+int mu;
+
 
 temf=f(xk);
 
@@ -4885,10 +4885,10 @@ return 1;
 
 
 
-int Ab24(  lyRnR *cek,lyRnR *cik,piandao *gcek,piandao *gcik,int numcek,int numcik, dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau)
+int Ab24(double *Ae,double *be,double  *Ai,double *bi,double **xk, lyRnR *cek,lyRnR *cik,piandao *gcek,piandao *gcik,int numcek,int numcik,int dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau)
 {int dangqianhe;
 int dangqianhi;
-double zong=(dimx+dimu)*Ntau+1;
+int zong=(dimx+dimu)*Ntau+1;
 double *temg;
 int j,k;
  
@@ -4963,13 +4963,19 @@ temg=cshi(1);
 
 
 
-int zdys(double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,int numphii,int numpsii,dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
-{double *temf,dangqianhe,dangqianhi,ttem,*temg;
+int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *psii,lyRnR *phii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
+{
+printf("test");
+
+
+double *temf,ttem,*temg;
 int j,k,mu;
 
 temf=cshi(dimx);
-	
-	
+int zong=(dimx+dimu)*Ntau+1;
+int dangqianhi,dangqianhe;
+
+ 
 	
 memcpy(temf,x0,dimx*sizeof(double));
 cblas_daxpby(dimx, 1,jiluxf , 1, -1, temf, 1);
@@ -4983,14 +4989,23 @@ xftf[1][0]=tf;
 
 //终端约束
 
-
 dangqianhe=Ntau*dimx+Ntau*numcek;
 for(k=0;k<numphii;k++)
 {
 	ttem=phii[k](xftf);
 	be[dangqianhe +k  ]=ttem;
 
-	
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,1);
+		for(mu=0;mu<dimx;mu++)
+			Ae[(dangqianhe+k)*zong+mu]=temg[mu];
+	free(temg);
+	temg=NULL;
+	temg=gphi[k](xftf,2);
+	be[(dangqianhe+k)*zong+dimx]=temg[0];
+
+
 	
 
 	 
@@ -5041,14 +5056,22 @@ return 1;
 
 
 
-int zdxz(double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
+int zdxz(double *h,double *Ae,double *Ai,double *x0,double *XUk,double **xk,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,piandao gf,piandao gPHI,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double tt2,double  *wk,double *tt2wk,int Ntau,double *Dki)
 {
-	
+double *temxu,*tem1,*tem2;
 
-dangqianhe=numcek*Ntau+dimx*Ntau;
+int dangqianhe=numcek*Ntau+dimx*Ntau;
+int dangqianhi;
 double *temg1,*temg2;
 temg1=cshi(1);
 temg2=cshi(1);
+int lo,mu,k;
+double *temPHI1,*temPHI2,*temg;
+temPHI1=cshi(1);
+temPHI2=cshi(1);
+temg=cshi(1);
+
+int zong=(dimu+dimx)*Ntau+1;
 
 
 //目标函数的梯度修正   
@@ -5163,26 +5186,16 @@ temg2=cshi(1);
 
 
 
-
+dangqianhi=Ntau*dimx+Ntau*numcek;
 
 	 
 	for(lo=0;lo<numpsii;lo++)
-	{	for(mu=0;mu<dimx;i++)
+	{	for(mu=0;mu<dimx;mu++)
 			tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
 		tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
 		
 		
-	free(temg);
-	temg=NULL;
-	temg=gphi[k](xftf,1);
-		for(mu=0;mu<dimx;mu++)
-			Ae[(dangqianhe+k)*zong+mu]=temg[mu];
-	free(temg);
-	temg=NULL;
-	temg=gphi[k](xftf,2);
-	be[(dangqianhe+k)*zong+dimx]=temg[0];
-
-
+	
 
 		
 		
