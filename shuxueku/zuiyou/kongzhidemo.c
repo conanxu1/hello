@@ -16,27 +16,18 @@
 int main()
 {
 
- 
-int i,j,k;
-
+int i,j,k,geshu;
 lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
-int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
 piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek,*kkzgphi,*kkzgcik,*kkzgpsi;
-
-
-kkzgPHI=kzgPHI;
-
-
-
-
-
-int geshu;
-
-int dimx=3,dimu=1;
-int Ntau=3;
+double *h,*be,*Ae,*bi,*Ai,*XUk,*tk,*x0,t0;
 double *tauk,*wk,*Dki,*zuiyouX;
 
 
+
+//----------------------------------------------------------------
+//各种约束的个数
+
+int kkznumcek=0,kkznumcik=2,kkznumphii=2, kkznumpsii=0;
 
 kkzcek=malloc(kkznumcek*sizeof(lyRnR));
 kkzcik=malloc(kkznumcik*sizeof(lyRnR));
@@ -47,6 +38,31 @@ kkzgphi=malloc(kkznumphii*sizeof(piandao));
 kkzgcik=malloc(kkznumcik*sizeof(piandao));
 kkzgpsi=malloc(kkznumpsii*sizeof(piandao));
 
+
+
+//----------------------------------------------------------------
+//问题的维数 几阶勒让德
+
+
+int dimx=3,dimu=1;
+int Ntau=3;
+x0=cshi(dimx);
+
+tauk=cshi(Ntau);
+tk=cshi(Ntau);
+wk=cshi(Ntau);
+Dki=cshi(Ntau*Ntau);
+
+
+h=cshi(Ntau*(dimx+dimu)+1);
+
+
+
+
+//----------------------------------------------------------------
+//初始化一些函数
+
+kkzgPHI=kzgPHI;
 
 kkzcik[0]=kzcik1;
 kkzcik[1]=kzcik2;
@@ -67,72 +83,21 @@ kkzgphi[1]=kzgphi2;
 
 
 
-
-double *h,*be,*Ae,*bi,*Ai,*XUk,*tk,*x0,t0;
-
-
-
-
-h=cshi(Ntau*(dimx+dimu)+1);
-
-x0=(double *)malloc((dimx)*sizeof(double));
+t0=0;
 x0[0]=0;
 x0[1]=1;
 x0[2]=0;
 
 
-
-
-double *ioi,*ioi1;
-ioi=cshi(1);
-ioi1=cshi(1);
  
 
-free(ioi);
-ioi=NULL;
-ioi=cshi(1);
-
-free(ioi1);
-ioi1=NULL;
-ioi1=cshi(dimx);
-
- 
- cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,1,1,dimx, 1,x0, dimx,ioi1,1, 1,ioi, 1);
-
-
- 
-	
-
-
-
-
-
-
-
-
-t0=0;
-
-
-
-
-
-
-tauk=(double *)malloc((Ntau)*sizeof(double));
-tk=(double *)malloc((Ntau)*sizeof(double));
-
-
-
-wk=(double *)malloc((Ntau)*sizeof(double));
-Dki=(double *)malloc((Ntau*Ntau)*sizeof(double));
 lgd(tauk,Ntau-1);
-
-
 lg_AD(tauk, wk,Dki,Ntau-1);
 
 	
 
 
-zuiyouX=(double *)malloc(((dimx+dimu)*Ntau+1)*sizeof(double));
+zuiyouX=cshi((dimx+dimu)*Ntau+1);
 
 
 
@@ -162,6 +127,11 @@ printf("%d",geshu);
 
 geshu=(dimx+dimu)*Ntau+1;
 XUk=cshi(geshu);
+
+
+//-------------------------------
+
+//首末时间不能一样
 
 
 for(i=1;i<=Ntau;i++)

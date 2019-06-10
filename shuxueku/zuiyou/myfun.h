@@ -389,3 +389,23 @@ double* kzgcik2(double **xut,int flag);
 
 
 
+
+
+
+int Jgg(double *h,lyRnR g,piandao gg,double  **xk,double *wk,int dimx,int dimu,int i,double tt2,double *tauk,int Ntau);
+
+int fbe(double *be,lyRnR f,double  **xk,double *jiluxf,int dimx,int dimu,int i,double tt2,double *tt2wk,int Ntau,double *Dki);
+
+int gftAe(double *Ae,piandao gf,double  **xk,int dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau,double *jiluliang);
+
+int Ab24(  lyRnR *cek,lyRnR *cik,piandao *gcek,piandao *gcik,int numcek,int numcik, dimx,int dimu,int i,double *tauk,double *tt2wk,int Ntau);
+
+int zdys(double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,int numphii,int numpsii,dimx,int dimu,double *tauk,double *tt2wk,int Ntau);
+
+
+
+int zdxz(double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau);
+
+
+
+
