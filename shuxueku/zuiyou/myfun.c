@@ -3835,8 +3835,19 @@ Ab24(Ae,be,Ai,bi,xk,cek,cik,gcek,gcik, numcek, numcik, dimx,dimu,i,tauk,tt2wk, N
 
 
 //根据叠加的 xf算出 对时间求梯度 的修正量 还有终端约束
+double **oo;
+oo=(double **)malloc(2*sizeof(double *));
+oo[0]=(double *)malloc(dimx*sizeof(double ));
+oo[1]=(double *)malloc(sizeof(double ));
 
-printf("000000----------fff");
+
+memcpy(oo[0],jiluxf,dimx*sizeof(double));
+oo[1][0]=tf;
+phii[0](oo);
+printf("ppp%dppp",phii);
+
+printf("-++=%d-+----",gcek);
+
 
 zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, numcik, numphii, numpsii, dimx, dimu,tauk,tt2wk, Ntau);
  
@@ -3871,7 +3882,7 @@ zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, n
 //——————————————！    6  ———————————————————————
 
 
-//zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
+zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
 
 
 
@@ -4894,6 +4905,10 @@ int zong=(dimx+dimu)*Ntau+1;
 double *temg;
 int j,k;
  
+
+printf("----%d-----",gcek);
+
+
 temg=cshi(1);
 			dangqianhe=dimx*Ntau;
 
@@ -4965,7 +4980,7 @@ temg=cshi(1);
 
 
 
-int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *psii,lyRnR *phii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
+int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *phii,lyRnR *psii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
 {
 printf("test");
 
@@ -4985,6 +5000,10 @@ memcpy(temf,x0,dimx*sizeof(double));
 cblas_daxpby(dimx, 1,jiluxf , 1, -1, temf, 1);
 cblas_daxpby(dimx, 1/(tf-t0),temf , 1, 1, jiluliang, 1);
 
+
+
+
+
 memcpy(xftf[0],jiluxf,dimx*sizeof(double));
 xftf[1][0]=tf;
 
@@ -4992,8 +5011,6 @@ xftf[1][0]=tf;
 //+++++++++++++++++++++++++
 
 //终端约束
-
-
 
 
 dangqianhe=Ntau*dimx+Ntau*numcek;
@@ -5012,7 +5029,6 @@ for(k=0;k<numphii;k++)
 	temg=gphi[k](xftf,2);
 	be[(dangqianhe+k)*zong+dimx]=temg[0];
 
-
 	
 
 	 
@@ -5021,7 +5037,7 @@ for(k=0;k<numphii;k++)
 
 
 //不需要重复计算
-/*
+
 
 dangqianhi= Ntau*numcik;
 for(k=0;k<numpsii;k++)
@@ -5045,10 +5061,10 @@ for(k=0;k<numpsii;k++)
 }	
 		
 	
-*/	
+
 	
-xm(temg);
-xm(temf);
+
+
 
 
 return 1;	
@@ -5070,6 +5086,10 @@ return 1;
 int zdxz(double *h,double *Ae,double *Ai,double *x0,double *XUk,double **xk,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,piandao gf,piandao gPHI,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double tt2,double  *wk,double *tt2wk,int Ntau,double *Dki)
 {
 double *temxu,*tem1,*tem2;
+temxu=cshi(dimx+dimu);
+tem1=cshi(1);
+tem2=cshi(2);
+
 
 int dangqianhe=numcek*Ntau+dimx*Ntau;
 int dangqianhi;
@@ -5101,7 +5121,7 @@ int zong=(dimu+dimx)*Ntau+1;
 		
 	X2xutk(XUk,xk,dimx,dimu, tauk,k+1);
 
-
+        xm(temg);
 	temg=gf(xk,1);
 
 
@@ -5118,13 +5138,11 @@ int zong=(dimu+dimx)*Ntau+1;
 
 	//指标 只要梯度 偏PHI	
 	//状态
-
-	free(tem1);
+	xm(tem1);
 	tem1=cshi(dimx);
 
-	free(tem2);
+	xm(tem2);
 	tem2=cshi(1);
-
 	 
 
 	 

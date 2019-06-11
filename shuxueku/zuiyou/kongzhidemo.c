@@ -95,6 +95,8 @@ lgd(tauk,Ntau-1);
 lg_AD(tauk, wk,Dki,Ntau-1);
 
 	
+shuchud(Dki,Ntau,Ntau);
+printf("ee	\n");
 
 
 zuiyouX=cshi((dimx+dimu)*Ntau+1);
@@ -134,8 +136,8 @@ XUk=cshi(geshu);
 //首末时间不能一样
 
 
-for(i=1;i<=Ntau;i++)
-XUk[(dimx+dimu)*i-1]=1;
+for(i=1;i<=Ntau*(dimx+dimu);i++)
+XUk[(dimx+dimu)*i-1]=i;
  
 
 XUk[(dimx+dimu)*Ntau]=1;
