@@ -2793,6 +2793,8 @@ for(int i=0;i<dim;i++)
 //Hw 乘2   M t2+M t
 
 
+
+
 //调用erci 改变了什么
 
 
