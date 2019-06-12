@@ -73,7 +73,7 @@ double kzcik1(double **xut)
 {
 	
 	
-return xut[0][0]-1/9;	
+return xut[0][0]-1.0/9;	
 }
 
 double kzcik2(double **xut)

@@ -21,7 +21,7 @@ lyRnR *kkzcek,*kkzcik,*kkzphi,*kkzpsi;
 piandao kkzgPHI,kkzgg,kkzgf,*kkzgcek,*kkzgphi,*kkzgcik,*kkzgpsi;
 double *h,*be,*Ae,*bi,*Ai,*XUk,*tk,*x0,t0;
 double *tauk,*wk,*Dki,*zuiyouX;
-
+int zongdim;
 
 
 //----------------------------------------------------------------
@@ -56,8 +56,10 @@ Dki=cshi(Ntau*Ntau);
 
 h=cshi(Ntau*(dimx+dimu)+1);
 
-
-
+double *H;
+H=cshi((Ntau*(dimx+dimu)+1)*(Ntau*(dimx+dimu)+1));
+for(i=0;i<(Ntau*(dimx+dimu)+1);i++)
+	H[i*(Ntau*(dimx+dimu)+1)+i]=1;
 
 //----------------------------------------------------------------
 //初始化一些函数
@@ -107,9 +109,7 @@ geshu=(dimx+dimu)*Ntau+1;
 h=cshi(geshu);
 
 
-shuchud(h,geshu,1);
-
-
+ 
 
 
 geshu=kkznumcek*Ntau+kkznumphii+dimx*Ntau;
@@ -137,11 +137,14 @@ XUk=cshi(geshu);
 
 
 for(i=1;i<=Ntau*(dimx+dimu);i++)
-XUk[(dimx+dimu)*i-1]=i;
+XUk[i-1]=i;
  
 
 XUk[(dimx+dimu)*Ntau]=1;
 //t0  neq tf
+ printf("XUk\n");
+ shuchud(XUk,Ntau*(dimx+dimu)+1,1);
+ 
  
 
 
@@ -149,16 +152,9 @@ xishu(kzPHI, kzg,kzf,kkzcek,kkznumcek,kkzphi,kkznumphii,kkzcik,
 kkznumcik,kkzpsi,kkznumpsii,kkzgPHI,kzgg,kzgf,kkzgcek,kkzgphi,kkzgcik,kkzgpsi,
 dimx,dimu,Ntau,tauk,wk, Dki,zuiyouX ,h,be,Ae, bi, Ai,XUk, tk,x0,t0);
 
+zongdim=Ntau*(dimx+dimu)+1;
 
-
-
-
-
-printf("\n\ntauk...............\n");
-shuchud(tauk,Ntau,1);
-
-printf("\n\ntauk...............\n");
-shuchud(tauk,Ntau,1);
+qxt(H,	h,be ,Ae,	bi,	Ai,zongdim,	kkznumcek*Ntau+dimx*Ntau+kkznumphii,	kkznumcik*Ntau+kkznumphii	);
 
 
 
@@ -169,10 +165,11 @@ shuchud(tauk,Ntau,1);
 
 
 
-printf("\n\nbe...............\n");
-geshu=(kkznumcek*Ntau+kkznumphii+dimx*Ntau) ;
-shuchud(be,geshu,1);
-  
+
+
+
+
+
 
 /*
 

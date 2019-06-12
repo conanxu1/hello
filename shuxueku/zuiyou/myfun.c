@@ -2847,14 +2847,19 @@ shuchud(x0,dim+1,1);
 
 
 
-free(ait);
-free(BM);
-free(AM);
-free(x0);
 
 
 
 
+
+xm(bbe);
+xm(aae);
+xm(BM);
+xm(AM);
+xm(ait);
+xm(x0);
+xm(hw); 
+xm(Hw); 
 
 
 
@@ -4829,6 +4834,9 @@ temf=f(xk);
 
 cblas_daxpby(dimx, tt2wk[i],temf , 1, 1, jiluxf, 1);
 
+ 
+
+
 //第一组等式约束
 for(L=0;L<dimx;L++)
 {
@@ -4838,6 +4846,10 @@ be[i*(dimx)+L]+=-tt2*temf[L];
 			}
 
 }
+ 
+	
+	
+	
 	
 
 free(temf);
@@ -4865,8 +4877,7 @@ Ae[i*dimx*((dimx+dimu)*Ntau+1)+L*((dimx+dimu)*Ntau+1)+(dimx+dimu)*Ntau]+=(tauk[i
 
 
 
-
-
+ 
 
 cblas_daxpby(dimx, tt2wk[i],temg , 1, 1, jiluliang, 1);
 	
@@ -4906,8 +4917,7 @@ double *temg;
 int j,k;
  
 
-printf("----%d-----",gcek);
-
+ 
 
 temg=cshi(1);
 			dangqianhe=dimx*Ntau;
@@ -5096,11 +5106,36 @@ int dangqianhi;
 double *temg1,*temg2;
 temg1=cshi(1);
 temg2=cshi(1);
-int lo,mu,k;
+int lo,mu,k,ll;
 double *temPHI1,*temPHI2,*temg;
+
 temPHI1=cshi(1);
 temPHI2=cshi(1);
 temg=cshi(1);
+
+double ***temphi,***tempsi;
+
+
+temphi=(double ***)malloc(numphii*sizeof(double **));
+tempsi=(double ***)malloc(numpsii*sizeof(double **));
+
+for(lo=0;lo<numphii;lo++)
+{	temphi[lo]=(double **)malloc(2*sizeof(double *));
+
+	temphi[lo][0]=cshi(dimx);
+	temphi[lo][1]=cshi(1);
+	
+}
+for(lo=0;lo<numpsii;lo++)
+{tempsi[lo]=(double **)malloc(2*sizeof(double *));
+
+	tempsi[lo][0]=cshi(dimx);
+	tempsi[lo][1]=cshi(1);
+	
+}
+
+
+
 
 int zong=(dimu+dimx)*Ntau+1;
 
@@ -5126,16 +5161,21 @@ int zong=(dimu+dimx)*Ntau+1;
 
 
 	for(mu=0;mu<(dimx);mu++)	
-	{	Ae[(k*dimx+mu)*zong+  mu]+=Dki[k*(Ntau)+k];
+	{	for(ll=0;ll<(Ntau);ll++)
+			Ae[(k*dimx+mu)*zong+mu + ll*(dimx+dimu) ]+=Dki[k*(Ntau)+ll];
+
+
 
 		for(lo=0;lo<(dimx+dimu);lo++)	
-			Ae[(k*dimx+mu)*zong+  lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
+			Ae[(k*dimx+mu)*zong+ k*(dimx+dimu)+ lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
 	}
 
 
 
-	//先算状态方程 然后其他终端的的约束计算过程应该类似
 
+
+
+ 
 	//指标 只要梯度 偏PHI	
 	//状态
 	xm(tem1);
@@ -5181,24 +5221,40 @@ int zong=(dimu+dimx)*Ntau+1;
 	 
 	 
 	for(lo=0;lo<numphii;lo++)
-	{	for(mu=0;mu<dimx;mu++)
-			tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
-		tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
+	{	if(k==0)
+		{
+			for(mu=0;mu<dimx;mu++)
+				temphi[lo][0][mu]=Ae[(dangqianhe+lo)*zong+mu];
+			temphi[lo][1][0]=Ae[(dangqianhe+lo)*zong+dimx];
+		}
+
+//下一步提取就被覆盖了 		
 		
-		 
+	 
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2wk[k],temphi[lo][0], dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
 
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
-
-
+ 
 
 	for(mu=0;mu<(dimx+dimu);mu++)
-		Ae[(dangqianhe+lo)*zong+mu]=temxu[mu];
+		Ae[(dangqianhe+lo)*zong+k*(dimx+dimu)+mu]=temxu[mu];
 		
 
 
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+	
+	 
+	memcpy(tem1,temphi[lo][1],sizeof(double));
+	
+	
+	if(k==0)
+	{cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temphi[lo][0], dimx,jiluliang,1, 1,tem1, 1);
 			
-		Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
+			
+		Ae[(dangqianhe+lo)*zong+Ntau*(dimx+dimu)]=tem1[0];
+	}
+
+	 
+
+
 
 
 
@@ -5219,54 +5275,86 @@ dangqianhi=Ntau*dimx+Ntau*numcek;
 
 	 
 	for(lo=0;lo<numpsii;lo++)
-	{	for(mu=0;mu<dimx;mu++)
-			tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
-		tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
+	{	if(k==0)
+		{
+		for(mu=0;mu<dimx;mu++)
+			tempsi[lo][0][mu]=Ai[(dangqianhi+lo)*zong+mu];
+		tempsi[lo][1][0]=Ai[(dangqianhi+lo)*zong+dimx];
+		}
 		
-		
-	
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		 
 
-			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tempsi[lo][0], dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
 		for(mu=0;mu<(dimx+dimu);mu++)
-		Ai[(dangqianhi+lo)*zong+mu]=temxu[mu];
+		Ai[(dangqianhi+lo)*zong+k*(dimx+dimu)+mu]=temxu[mu];
 		
-			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+		
+		memcpy(tem1,tempsi[lo][1],sizeof(double));
+	
+		
+		
+	if(k==0)
+	{
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tempsi[lo][0], dimx,jiluliang,1, 1,tem1, 1);
 			
-		Ai[(dangqianhi+lo)*zong+dimx+dimu]=tem2[0];
+			
+			
+		Ai[(dangqianhi+lo)*zong+Ntau*(dimx+dimu)]=tem1[0];
+	}
 	}
 
 
 }
 
+ 
+xm(temxu);
+xm(tem1);
+xm(tem2);
+ 
+
+xm(temg1);
+xm(temg2);
+xm(temPHI1);
+xm(temPHI2);
+xm(temg);
+
+
+
+for(lo=0;lo<numphii;lo++)
+{	free(temphi[lo][0]);
+	temphi[lo][0]=NULL;
+	
+	free(temphi[lo][1]);
+	temphi[lo][1]=NULL;
+	
+}
+for(lo=0;lo<numphii;lo++)
+{	
+free(temphi[lo]);
+temphi[lo]=NULL;
+}
+free(temphi);
+temphi=NULL;
+
+for(lo=0;lo<numpsii;lo++)
+{	free(tempsi[lo][0]);
+	tempsi[lo][0]=NULL;
+	
+	free(tempsi[lo][1]);
+	tempsi[lo][1]=NULL;
+	
+}
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
+for(lo=0;lo<numpsii;lo++)
+{	
+free(tempsi[lo]);
+tempsi[lo]=NULL;
+}
+free(tempsi);
+tempsi=NULL;	
 	
 	
 return 1;	
