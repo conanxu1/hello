@@ -177,7 +177,8 @@ int erci(
 		int dim,		//问题的维��?
 		int e,			//等式个数
 		int ie,
-		double *xk);
+		double *xk,
+		double *lam);
 		
 int myqp(
 		double *G,		//hessian
@@ -204,8 +205,9 @@ int qxt(
 
 		int dim,		//问题的维��?
 		int e,		
-		int ie			//不等式个��?原问题的  2e+ie)
-		);
+		int ie,			//不等式个��?原问题的  2e+ie)
+		double *xx,
+		double *lam);
 
 //Rn->R
 typedef double (*RnR)(double *x,int n);

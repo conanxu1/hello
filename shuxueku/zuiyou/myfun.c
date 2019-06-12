@@ -2365,12 +2365,13 @@ int erci(
 		int dim,		//问题的维数
 		int e,			//等式个数
 		int ie,			//不等式个数
-		double *xk)
+		double *xk,
+		double *lam)
 {
 //等式约束
 
 //[G,-A;-A' 0] A等式
-
+int nu;
 
 
 double *G=(double *)malloc(dim*dim*sizeof(double));
@@ -2478,25 +2479,24 @@ int ho=0;
 while(ho<30)
 {
 ho++;
-printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
+printf("\n%d>>>>>>>>>d>>>>>>>>>>>>\n",ho);
 
 
 
 
 printf("xk\n");
-shuchud(xk,dim,1);
+shuchud(xk,1,dim);
 
-printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
-shuchud(xk,dim,1);	
-	printf("\n\n\n\n\n\n\nqiz\n");
-	shuchui(A0,ie,1);
+
+printf("\n\nqiz\n");
+shuchui(A0,1,ie);
 	
 	
 	
 //	printf("..\n");
-	printf("\n\n\nqinum\n");
-	printf("%d",qinum);
-
+ printf("\n qinum\n");
+ printf("%d",qinum);
+printf("\n");
 
 	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 	
@@ -2506,15 +2506,15 @@ shuchud(xk,dim,1);
 
 	memset(tb,0,(e+ie)*sizeof(double));
 
-	printf("\n++...G \n");
-	shuchud(G,dim,dim);
+//	printf("\n++...G \n");
+//	shuchud(G,dim,dim);
 	
-	printf("++...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
-	printf("++...tg\n");
-	shuchud(tg,dim,1);
-	printf("++... %d\n",e+qinum);
-	printf("..%lf..\n",tb[0]);
+//	printf("++...zuoyong \n");
+//	shuchud(zuoyong,e+qinum,dim);
+//	printf("++...tg\n");
+//	shuchud(tg,dim,1);
+//	printf("++... %d\n",e+qinum);
+//	printf("..%lf..\n",tb[0]);
 
 
 
@@ -2523,12 +2523,12 @@ shuchud(xk,dim,1);
 
 	memcpy(dk,tg,dim*sizeof(double));
 		
-	printf("++...dk\n");
-	shuchud(tg,dim,1);	
+//	printf("++...dk\n");
+//	shuchud(tg,dim,1);	
 	printf("++...lam_ki\n");
 	shuchud(tb,e+qinum,1);	
-	printf("++...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
+//	printf("++...zuoyong \n");
+//	shuchud(zuoyong,e+qinum,dim);
 
 		
 
@@ -2565,6 +2565,14 @@ shuchud(xk,dim,1);
 		else{
 ///gai x0weihao			
 			
+		for(nu=0;nu<e+ie;nu++)
+		lam[nu]=0;
+
+		for(nu=0;nu<qinum;nu++)
+		lam[A0[nu]]=tb[e+nu];
+
+
+
 			printf("ffinishd\n");
 			return 1;
 		}
@@ -2636,16 +2644,34 @@ shuchud(xk,dim,1);
 
 
 
-free(ait);
-free(dk);
-free(tb);
-	
-	
-free(tg);
-free(zuoyong);
-free(A0);
-free(G);
 
+
+
+
+
+
+
+
+
+
+
+
+
+xm(G);
+xm(tg);
+xm(zuoyong);
+xm(tb);
+xm(dk);
+xm(tbi);
+
+
+free(tp);
+
+free(ait);
+free(A0);
+ ait=NULL;
+A0=NULL;
+tp=NULL; 
 
 }
 
@@ -2675,7 +2701,9 @@ int qxt(
 
 		int dim,		//问题的维数
 		int e,		
-		int ie			//不等式个数(原问题的  2e+ie)
+		int ie,		//不等式个数(原问题的  2e+ie)
+		double *xx,   //zuiyoujie
+		double *lam
 		)
 {
 double *bbe=(double *)malloc(0*sizeof(double));
@@ -2835,7 +2863,7 @@ hw[dim]=M;
 printf("--------------x0\n");
 shuchud(x0,dim+1,1);
 
-erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
+erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
 
 
 }
@@ -2845,7 +2873,7 @@ shuchud(hw,dim+1,1);
 printf("x0%lf\n\n",log(M)/log(10));
 shuchud(x0,dim+1,1);
 
-
+memcpy(xx,hw,dim);
 
 
 
@@ -2863,7 +2891,7 @@ xm(Hw);
 
 
 
-
+return 1;
 
 }
 
@@ -3060,7 +3088,8 @@ double *A=(double *)malloc(ge*dim*sizeof(double));
 memcpy(A,Aw,ge*dim*sizeof(double));
 
 int tte=xxwg(AM,A, ge, dim);
-printf("000000000000000000000000000000000000000000000000000000000000step1\n");
+
+//printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
 if(tte<ge)
 {	
@@ -3245,20 +3274,19 @@ memcpy(b,bw,dim*sizeof(double));
 	
 	
 	
-free(bw);
-free(u);	
+xm(bw);
+xm(u);	
 
-free(G);
-free(GI);
-
-free(L);
-free(LW);
-free(Lz);
-free(LWz);
-free(TEM);
-free(TEM2);
-free(TEM3);
-free(V);
+xm(G);
+xm(GI);
+xm(L);
+xm(LW);
+xm(Lz);
+xm(LWz);
+xm(TEM);
+xm(TEM2);
+xm(TEM3);
+xm(V);
 
 	
 	

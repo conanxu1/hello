@@ -2365,12 +2365,13 @@ int erci(
 		int dim,		//问题的维数
 		int e,			//等式个数
 		int ie,			//不等式个数
-		double *xk)
+		double *xk,
+		double *lam)
 {
 //等式约束
 
 //[G,-A;-A' 0] A等式
-
+int nu;
 
 
 double *G=(double *)malloc(dim*dim*sizeof(double));
@@ -2478,25 +2479,24 @@ int ho=0;
 while(ho<30)
 {
 ho++;
-printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
+printf("\n%d>>>>>>>>>d>>>>>>>>>>>>\n",ho);
 
 
 
 
 printf("xk\n");
-shuchud(xk,dim,1);
+shuchud(xk,1,dim);
 
-printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
-shuchud(xk,dim,1);	
-	printf("\n\n\n\n\n\n\nqiz\n");
-	shuchui(A0,ie,1);
+
+printf("\n\nqiz\n");
+shuchui(A0,1,ie);
 	
 	
 	
 //	printf("..\n");
-	printf("\n\n\nqinum\n");
-	printf("%d",qinum);
-
+ printf("\n qinum\n");
+ printf("%d",qinum);
+printf("\n");
 
 	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 	
@@ -2506,15 +2506,15 @@ shuchud(xk,dim,1);
 
 	memset(tb,0,(e+ie)*sizeof(double));
 
-	printf("\n++...G \n");
-	shuchud(G,dim,dim);
+//	printf("\n++...G \n");
+//	shuchud(G,dim,dim);
 	
-	printf("++...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
-	printf("++...tg\n");
-	shuchud(tg,dim,1);
-	printf("++... %d\n",e+qinum);
-	printf("..%lf..\n",tb[0]);
+//	printf("++...zuoyong \n");
+//	shuchud(zuoyong,e+qinum,dim);
+//	printf("++...tg\n");
+//	shuchud(tg,dim,1);
+//	printf("++... %d\n",e+qinum);
+//	printf("..%lf..\n",tb[0]);
 
 
 
@@ -2523,12 +2523,12 @@ shuchud(xk,dim,1);
 
 	memcpy(dk,tg,dim*sizeof(double));
 		
-	printf("++...dk\n");
-	shuchud(tg,dim,1);	
+//	printf("++...dk\n");
+//	shuchud(tg,dim,1);	
 	printf("++...lam_ki\n");
 	shuchud(tb,e+qinum,1);	
-	printf("++...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
+//	printf("++...zuoyong \n");
+//	shuchud(zuoyong,e+qinum,dim);
 
 		
 
@@ -2565,6 +2565,14 @@ shuchud(xk,dim,1);
 		else{
 ///gai x0weihao			
 			
+		for(nu=0;nu<e+ie;nu++)
+		lam[nu]=0;
+
+		for(nu=0;nu<qinum;nu++)
+		lam[A0[nu]]=tb[e+nu];
+
+
+
 			printf("ffinishd\n");
 			return 1;
 		}
@@ -2636,16 +2644,34 @@ shuchud(xk,dim,1);
 
 
 
-free(ait);
-free(dk);
-free(tb);
-	
-	
-free(tg);
-free(zuoyong);
-free(A0);
-free(G);
 
+
+
+
+
+
+
+
+
+
+
+
+
+xm(G);
+xm(tg);
+xm(zuoyong);
+xm(tb);
+xm(dk);
+xm(tbi);
+
+
+free(tp);
+
+free(ait);
+free(A0);
+ ait=NULL;
+A0=NULL;
+tp=NULL; 
 
 }
 
@@ -2675,7 +2701,9 @@ int qxt(
 
 		int dim,		//问题的维数
 		int e,		
-		int ie			//不等式个数(原问题的  2e+ie)
+		int ie,		//不等式个数(原问题的  2e+ie)
+		double *xx,   //zuiyoujie
+		double *lam
 		)
 {
 double *bbe=(double *)malloc(0*sizeof(double));
@@ -2835,7 +2863,7 @@ hw[dim]=M;
 printf("--------------x0\n");
 shuchud(x0,dim+1,1);
 
-erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0);	
+erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
 
 
 }
@@ -2845,20 +2873,25 @@ shuchud(hw,dim+1,1);
 printf("x0%lf\n\n",log(M)/log(10));
 shuchud(x0,dim+1,1);
 
-
-
-free(ait);
-free(BM);
-free(AM);
-free(x0);
+memcpy(xx,hw,dim);
 
 
 
 
 
 
+xm(bbe);
+xm(aae);
+xm(BM);
+xm(AM);
+xm(ait);
+xm(x0);
+xm(hw); 
+xm(Hw); 
 
 
+
+return 1;
 
 }
 
@@ -3055,7 +3088,8 @@ double *A=(double *)malloc(ge*dim*sizeof(double));
 memcpy(A,Aw,ge*dim*sizeof(double));
 
 int tte=xxwg(AM,A, ge, dim);
-printf("000000000000000000000000000000000000000000000000000000000000step1\n");
+
+//printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
 if(tte<ge)
 {	
@@ -3240,20 +3274,19 @@ memcpy(b,bw,dim*sizeof(double));
 	
 	
 	
-free(bw);
-free(u);	
+xm(bw);
+xm(u);	
 
-free(G);
-free(GI);
-
-free(L);
-free(LW);
-free(Lz);
-free(LWz);
-free(TEM);
-free(TEM2);
-free(TEM3);
-free(V);
+xm(G);
+xm(GI);
+xm(L);
+xm(LW);
+xm(Lz);
+xm(LWz);
+xm(TEM);
+xm(TEM2);
+xm(TEM3);
+xm(V);
 
 	
 	
@@ -3844,7 +3877,7 @@ oo[1]=(double *)malloc(sizeof(double ));
 memcpy(oo[0],jiluxf,dimx*sizeof(double));
 oo[1][0]=tf;
 phii[0](oo);
-printf("ppp%dppp",phii[0]);
+printf("ppp%dppp",phii);
 
 printf("-++=%d-+----",gcek);
 
@@ -3882,7 +3915,7 @@ zdys(Ae,be,Ai,bi,x0,xftf,jiluxf,jiluliang, tf, t0,phii,psii,gphi,gpsi, numcek, n
 //——————————————！    6  ———————————————————————
 
 
-//zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
+zdxz(h,Ae,Ai,x0,XUk,xk,xftf,jiluxf,jiluliang, tf, t0, gf, gPHI, numcek, numcik, numphii, numpsii, dimx, dimu,tauk, tt2,wk,tt2wk, Ntau,Dki);
 
 
 
@@ -4829,6 +4862,9 @@ temf=f(xk);
 
 cblas_daxpby(dimx, tt2wk[i],temf , 1, 1, jiluxf, 1);
 
+ 
+
+
 //第一组等式约束
 for(L=0;L<dimx;L++)
 {
@@ -4838,6 +4874,10 @@ be[i*(dimx)+L]+=-tt2*temf[L];
 			}
 
 }
+ 
+	
+	
+	
 	
 
 free(temf);
@@ -4865,8 +4905,7 @@ Ae[i*dimx*((dimx+dimu)*Ntau+1)+L*((dimx+dimu)*Ntau+1)+(dimx+dimu)*Ntau]+=(tauk[i
 
 
 
-
-
+ 
 
 cblas_daxpby(dimx, tt2wk[i],temg , 1, 1, jiluliang, 1);
 	
@@ -4906,8 +4945,7 @@ double *temg;
 int j,k;
  
 
-printf("----%d-----",gcek);
-
+ 
 
 temg=cshi(1);
 			dangqianhe=dimx*Ntau;
@@ -4980,7 +5018,7 @@ temg=cshi(1);
 
 
 
-int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *psii,lyRnR *phii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
+int zdys(double *Ae,double *be,double  *Ai,double *bi,double *x0,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,lyRnR *phii,lyRnR *psii,piandao *gphi,piandao *gpsi,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double *tt2wk,int Ntau)
 {
 printf("test");
 
@@ -5012,13 +5050,11 @@ xftf[1][0]=tf;
 
 //终端约束
 
-printf("ppp%dppp",&phii);
-//phii[0](xftf);
 
 dangqianhe=Ntau*dimx+Ntau*numcek;
 for(k=0;k<numphii;k++)
 {
-/*	ttem=phii[k](xftf);
+	ttem=phii[k](xftf);
 	be[dangqianhe +k  ]=ttem;
 
 	free(temg);
@@ -5030,7 +5066,7 @@ for(k=0;k<numphii;k++)
 	temg=NULL;
 	temg=gphi[k](xftf,2);
 	be[(dangqianhe+k)*zong+dimx]=temg[0];
-*/
+
 	
 
 	 
@@ -5039,7 +5075,7 @@ for(k=0;k<numphii;k++)
 
 
 //不需要重复计算
-/*
+
 
 dangqianhi= Ntau*numcik;
 for(k=0;k<numpsii;k++)
@@ -5063,7 +5099,7 @@ for(k=0;k<numpsii;k++)
 }	
 		
 	
-*/	
+
 	
 
 
@@ -5088,17 +5124,46 @@ return 1;
 int zdxz(double *h,double *Ae,double *Ai,double *x0,double *XUk,double **xk,double **xftf,double *jiluxf,double *jiluliang,double tf,double t0,piandao gf,piandao gPHI,int numcek,int numcik,int numphii,int numpsii,int dimx,int dimu,double *tauk,double tt2,double  *wk,double *tt2wk,int Ntau,double *Dki)
 {
 double *temxu,*tem1,*tem2;
+temxu=cshi(dimx+dimu);
+tem1=cshi(1);
+tem2=cshi(2);
+
 
 int dangqianhe=numcek*Ntau+dimx*Ntau;
 int dangqianhi;
 double *temg1,*temg2;
 temg1=cshi(1);
 temg2=cshi(1);
-int lo,mu,k;
+int lo,mu,k,ll;
 double *temPHI1,*temPHI2,*temg;
+
 temPHI1=cshi(1);
 temPHI2=cshi(1);
 temg=cshi(1);
+
+double ***temphi,***tempsi;
+
+
+temphi=(double ***)malloc(numphii*sizeof(double **));
+tempsi=(double ***)malloc(numpsii*sizeof(double **));
+
+for(lo=0;lo<numphii;lo++)
+{	temphi[lo]=(double **)malloc(2*sizeof(double *));
+
+	temphi[lo][0]=cshi(dimx);
+	temphi[lo][1]=cshi(1);
+	
+}
+for(lo=0;lo<numpsii;lo++)
+{tempsi[lo]=(double **)malloc(2*sizeof(double *));
+
+	tempsi[lo][0]=cshi(dimx);
+	tempsi[lo][1]=cshi(1);
+	
+}
+
+
+
 
 int zong=(dimu+dimx)*Ntau+1;
 
@@ -5119,30 +5184,33 @@ int zong=(dimu+dimx)*Ntau+1;
 		
 	X2xutk(XUk,xk,dimx,dimu, tauk,k+1);
 
-
+        xm(temg);
 	temg=gf(xk,1);
 
 
 	for(mu=0;mu<(dimx);mu++)	
-	{	Ae[(k*dimx+mu)*zong+  mu]+=Dki[k*(Ntau)+k];
+	{	for(ll=0;ll<(Ntau);ll++)
+			Ae[(k*dimx+mu)*zong+mu + ll*(dimx+dimu) ]+=Dki[k*(Ntau)+ll];
+
+
 
 		for(lo=0;lo<(dimx+dimu);lo++)	
-			Ae[(k*dimx+mu)*zong+  lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
+			Ae[(k*dimx+mu)*zong+ k*(dimx+dimu)+ lo]+=-tt2*temg[mu*(dimx+dimu)+lo];
 	}
 
 
 
-	//先算状态方程 然后其他终端的的约束计算过程应该类似
 
+
+
+ 
 	//指标 只要梯度 偏PHI	
 	//状态
-
-	free(tem1);
+	xm(tem1);
 	tem1=cshi(dimx);
 
-	free(tem2);
+	xm(tem2);
 	tem2=cshi(1);
-
 	 
 
 	 
@@ -5181,24 +5249,40 @@ int zong=(dimu+dimx)*Ntau+1;
 	 
 	 
 	for(lo=0;lo<numphii;lo++)
-	{	for(mu=0;mu<dimx;mu++)
-			tem1[mu]=Ae[(dangqianhe+lo)*zong+mu];
-		tem2[0]=Ae[(dangqianhe+lo)*zong+dimx];
+	{	if(k==0)
+		{
+			for(mu=0;mu<dimx;mu++)
+				temphi[lo][0][mu]=Ae[(dangqianhe+lo)*zong+mu];
+			temphi[lo][1][0]=Ae[(dangqianhe+lo)*zong+dimx];
+		}
+
+//下一步提取就被覆盖了 		
 		
-		 
+	 
+	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2wk[k],temphi[lo][0], dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
 
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
-
-
+ 
 
 	for(mu=0;mu<(dimx+dimu);mu++)
-		Ae[(dangqianhe+lo)*zong+mu]=temxu[mu];
+		Ae[(dangqianhe+lo)*zong+k*(dimx+dimu)+mu]=temxu[mu];
 		
 
 
-	cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+	
+	 
+	memcpy(tem1,temphi[lo][1],sizeof(double));
+	
+	
+	if(k==0)
+	{cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,temphi[lo][0], dimx,jiluliang,1, 1,tem1, 1);
 			
-		Ae[(dangqianhe+lo)*zong+dimx+dimu]=tem2[0];
+			
+		Ae[(dangqianhe+lo)*zong+Ntau*(dimx+dimu)]=tem1[0];
+	}
+
+	 
+
+
 
 
 
@@ -5219,54 +5303,86 @@ dangqianhi=Ntau*dimx+Ntau*numcek;
 
 	 
 	for(lo=0;lo<numpsii;lo++)
-	{	for(mu=0;mu<dimx;mu++)
-			tem1[mu]=Ai[(dangqianhi+lo)*zong+mu];
-		tem2[0]=Ai[(dangqianhi+lo)*zong+dimx];
+	{	if(k==0)
+		{
+		for(mu=0;mu<dimx;mu++)
+			tempsi[lo][0][mu]=Ai[(dangqianhi+lo)*zong+mu];
+		tempsi[lo][1][0]=Ai[(dangqianhi+lo)*zong+dimx];
+		}
 		
-		
-	
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		 
 
-			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tem1, dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, (dimx+dimu), dimx,tt2*wk[k],tempsi[lo][0], dimx,temg,dimx+dimu, 0,temxu, dimx+dimu);
 		for(mu=0;mu<(dimx+dimu);mu++)
-		Ai[(dangqianhi+lo)*zong+mu]=temxu[mu];
+		Ai[(dangqianhi+lo)*zong+k*(dimx+dimu)+mu]=temxu[mu];
 		
-			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tem1, dimx,jiluliang,1, 1,tem2, 1);
+		
+		memcpy(tem1,tempsi[lo][1],sizeof(double));
+	
+		
+		
+	if(k==0)
+	{
+			cblas_dgemm(CblasRowMajor, CblasNoTrans,CblasNoTrans,1, 1,dimx, 1,tempsi[lo][0], dimx,jiluliang,1, 1,tem1, 1);
 			
-		Ai[(dangqianhi+lo)*zong+dimx+dimu]=tem2[0];
+			
+			
+		Ai[(dangqianhi+lo)*zong+Ntau*(dimx+dimu)]=tem1[0];
+	}
 	}
 
 
 }
 
+ 
+xm(temxu);
+xm(tem1);
+xm(tem2);
+ 
+
+xm(temg1);
+xm(temg2);
+xm(temPHI1);
+xm(temPHI2);
+xm(temg);
+
+
+
+for(lo=0;lo<numphii;lo++)
+{	free(temphi[lo][0]);
+	temphi[lo][0]=NULL;
+	
+	free(temphi[lo][1]);
+	temphi[lo][1]=NULL;
+	
+}
+for(lo=0;lo<numphii;lo++)
+{	
+free(temphi[lo]);
+temphi[lo]=NULL;
+}
+free(temphi);
+temphi=NULL;
+
+for(lo=0;lo<numpsii;lo++)
+{	free(tempsi[lo][0]);
+	tempsi[lo][0]=NULL;
+	
+	free(tempsi[lo][1]);
+	tempsi[lo][1]=NULL;
+	
+}
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
+for(lo=0;lo<numpsii;lo++)
+{	
+free(tempsi[lo]);
+tempsi[lo]=NULL;
+}
+free(tempsi);
+tempsi=NULL;	
 	
 	
 return 1;	
