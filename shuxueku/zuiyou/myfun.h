@@ -207,7 +207,9 @@ int qxt(
 		int e,		
 		int ie,			//不等式个��?原问题的  2e+ie)
 		double *xx,
-		double *lam);
+		double *lam
+		
+		);
 
 //Rn->R
 typedef double (*RnR)(double *x,int n);

@@ -22,11 +22,11 @@ double h[2]={-2,-6};
 
 double bi[2]={-2,-2};
 
-double Ai[4]={1,8,-1,5};
+double Ai[4]={-1,-8,1,-5};
 
 
-double Ae[4]={-2,5,5,-9};
-double be[2]={7,4};
+double Ae[4]={2,-5,-5,9};
+double be[2]={-7,-4};
 
 
 
@@ -38,7 +38,7 @@ double lam[4];
 
 
 
-erci(H,h,be ,Ae,bi,Ai,2,2,2,x0,lam);
+qxt(H,h,be ,Ae,bi,Ai,2,2,2,x0,lam);
 printf("\n");
 shuchud(h,2,1);
 

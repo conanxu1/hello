@@ -2433,8 +2433,12 @@ index=0;  //借用
 //printf("bi\n");
 //shuchud(bi,ie,1);
 
-printf("tbi\n");
-shuchud(tbi,ie,1);
+//printf("tbi\n");
+//shuchud(tbi,ie,1);
+
+
+
+
 //printf("H\n");
 //shuchud(H,dim,dim);
 
@@ -2484,19 +2488,19 @@ printf("\n%d>>>>>>>>>d>>>>>>>>>>>>\n",ho);
 
 
 
-printf("xk\n");
-shuchud(xk,1,dim);
+//printf("xk\n");
+//shuchud(xk,1,dim);
 
 
-printf("\n\nqiz\n");
-shuchui(A0,1,ie);
+//printf("\n\nqiz\n");
+//shuchui(A0,1,ie);
 	
 	
 	
 //	printf("..\n");
- printf("\n qinum\n");
- printf("%d",qinum);
-printf("\n");
+// printf("\n qinum\n");
+// printf("%d",qinum);
+//printf("\n");
 
 	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
 	
@@ -2525,8 +2529,8 @@ printf("\n");
 		
 //	printf("++...dk\n");
 //	shuchud(tg,dim,1);	
-	printf("++...lam_ki\n");
-	shuchud(tb,e+qinum,1);	
+//	printf("++...lam_ki\n");
+//	shuchud(tb,e+qinum,1);	
 //	printf("++...zuoyong \n");
 //	shuchud(zuoyong,e+qinum,dim);
 
@@ -2611,15 +2615,15 @@ printf("\n");
 					{zuixiao=test;
 					index=j;}
 			}}
-		printf("\n.dangqian.%lf..alpha",zuixiao);
+		//printf("\n.dangqian.%lf..alpha",zuixiao);
 		}
 
 
-		printf("\n....dk");
-		shuchud(dk,dim,1);
-		printf("\n");
-		printf("\n..%lf..alpha",zuixiao);
-		printf("\n");
+		//printf("\n....dk");
+		//shuchud(dk,dim,1);
+		//printf("\n");
+		//printf("\n..%lf..alpha",zuixiao);
+		//printf("\n");
 		
 		
 		cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
@@ -2790,6 +2794,7 @@ for(int i=0;i<dim;i++)
 	{	Hw[i*(dim+1)+j]=H[i*dim+j];}
 }
 
+
 //Hw 乘2   M t2+M t
 
 
@@ -2800,13 +2805,23 @@ for(int i=0;i<dim;i++)
 
 
 //shuchud(Ae,e,dim);
-//printf("Ae..\n");
+//printf("Ae..\n\n\nn\n\n\\n\n\\n\n");
 //shuchud(Ai,ie,dim);
-//printf("Ai..\n");
-shuchud(BM,(2*e+ie+1),1);
-printf("BM..\n");
-shuchud(AM,2*e+ie+1,dim+1);
-printf("AM..\n");
+//printf("Ai..\n\n\nn\n\n\\n\n\\n\n");
+//shuchud(AM,2*e+ie+1,dim+1);
+//printf("AM..\n\nn\\n\n\n\nn\\n\n");
+
+
+//linshiceshi
+
+//shuchud(be,e,1);
+//printf("be..\n");
+
+//shuchud(bi,ie,1);
+//printf("bi..\n");
+//shuchud(BM,(2*e+ie+1),1);
+//printf("BM..\n");
+
 
 shuchud(Hw,dim+1,dim+1);
 printf("HW\n");
@@ -2836,7 +2851,13 @@ else
 ///
 
 
-memset(hw,0,dim*sizeof(double));
+
+
+
+
+
+
+memcpy(hw,h,dim*sizeof(double));
 hw[dim]=1;
 
 
@@ -2862,18 +2883,18 @@ hw[dim]=M;
 
 
 
-printf("--------------x0\n");
-shuchud(x0,dim+1,1);
+//printf("--------------x0\n");
+//shuchud(x0,dim+1,1);
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
 
 
 }
 
-printf("hw\n\n");
-shuchud(hw,dim+1,1);
-printf("x0%lf\n\n",log(M)/log(10));
-shuchud(x0,dim+1,1);
+//printf("hw\n\n");
+//shuchud(hw,dim+1,1);
+//printf("x0%lf\n\n",log(M)/log(10));
+//shuchud(x0,dim+1,1);
 
 memcpy(xx,hw,dim);
 
