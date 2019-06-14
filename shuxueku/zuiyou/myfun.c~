@@ -2626,9 +2626,7 @@ shuchud(tb,e+qinum,1);
 		}
 
 
-if(ho>5)
-	return 1;
-
+ 
 
 
 
@@ -3064,7 +3062,7 @@ double *A=(double *)malloc(ge*dim*sizeof(double));
 memcpy(A,Aw,ge*dim*sizeof(double));
 
 int tte=xxwg(AM,A, ge, dim);
-printf("000000000000000000000000000000000000000000000000000000000000step1\n");
+//printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
 if(tte<ge)
 {	
@@ -3106,7 +3104,7 @@ if(tte<ge)
 }
 
 
-shuchud(A,tte,dim);
+//shuchud(A,tte,dim);
 int e=tte;
 
 
@@ -3152,8 +3150,8 @@ double *V=(double *)malloc(e*e*sizeof(double));
 memcpy(L, G, dim*dim*sizeof(double));	
 mychol(L,dim,Lz);
 //求下三角
-printf("L\n");
-shuchud(L,dim,dim);
+//printf("L\n");
+//shuchud(L,dim,dim);
 
 
 	
@@ -3181,14 +3179,14 @@ memcpy(LW, TEM3, e*e*sizeof(double));
 
 
 
-printf("Lw1\n");
-shuchud(LW,e,e);
+//printf("Lw1\n");
+//shuchud(LW,e,e);
 
 mychol(LW,e,LWz);
 
 
-printf("Lwz\n");
-shuchud(LWz,e,e);
+//printf("Lwz\n");
+//shuchud(LWz,e,e);
 	
 
 	

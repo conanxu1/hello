@@ -2626,9 +2626,7 @@ shuchud(tb,e+qinum,1);
 		}
 
 
-if(ho>5)
-	return 1;
-
+ 
 
 
 
