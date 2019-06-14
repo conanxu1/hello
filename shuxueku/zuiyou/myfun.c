@@ -2488,10 +2488,10 @@ shuchud(xk,dim,1);
 //	printf("\n\n\n\n\n\n\nqiz\n");
 //	shuchui(A0,ie,1);
 //	printf("..\n");
-	printf("\n\n\nqinum\n");
-	printf("%d",qinum);
-	printf("\n\n\nhhhhhh\n");
-	shuchud(h,1,dim);
+	// printf("\n\n\nqinum\n");
+	// printf("%d",qinum);
+	// printf("\n\n\nhhhhhh\n");
+	// shuchud(h,1,dim);
 	
 
 
@@ -2505,13 +2505,13 @@ shuchud(xk,dim,1);
 
 	memset(tb,0,(e+ie)*sizeof(double));
 
-	printf("\n++...G \n");
-	shuchud(G,dim,dim);
+	// printf("\n++...G \n");
+	// shuchud(G,dim,dim);
 	
-	printf("ziwenti...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
-	printf("ziwentitidu...\n");
-	shuchud(tg,dim,1);
+	// printf("ziwenti...zuoyong \n");
+	// shuchud(zuoyong,e+qinum,dim);
+	// printf("ziwentitidu...\n");
+	// shuchud(tg,dim,1);
 	//printf("++... %d\n",e+qinum);
 	//printf("..%lf..\n",tb[0]);
 
@@ -2522,12 +2522,12 @@ shuchud(xk,dim,1);
 
 	memcpy(dk,tg,dim*sizeof(double));
 		
-	printf("++...dk\n");
-	shuchud(tg,dim,1);	
-	printf("++...lam_ki\n");
-	shuchud(tb,e+qinum,1);	
-	printf("++...zuoyong \n");
-	shuchud(zuoyong,e+qinum,dim);
+	// printf("++...dk\n");
+	// shuchud(tg,dim,1);	
+	// printf("++...lam_ki\n");
+	// shuchud(tb,e+qinum,1);	
+	// printf("++...zuoyong \n");
+	// shuchud(zuoyong,e+qinum,dim);
 
 		
 
@@ -2576,9 +2576,9 @@ shuchud(xk,dim,1);
 		lam[e+A0[nu]]=tb[e+nu];
 		
 		}
-			shuchud( ,e+qinum,1);
+			// shuchud( ,e+qinum,1);
 
-///gai x0weihao			
+// ///gai x0weihao			
 			
 			printf("ffinishd\n");
 			return 1;
@@ -2596,11 +2596,11 @@ shuchud(xk,dim,1);
 			if(A0[j]>=0)
 			{tp[A0[j]]=1;}
 		}
-		printf("\n\n\n\n\n%d\n\nqiz\n",ie);
-		shuchui(A0,ie,1);
+		// printf("\n\n\n\n\n%d\n\nqiz\n",ie);
+		// shuchui(A0,ie,1);
 
-		printf("bukexingji....\n");
-		shuchui(tp,ie,1);
+		// printf("bukexingji....\n");
+		// shuchui(tp,ie,1);
 		//alpha测试一遍
 		for(int j=0;j<ie;j++)
 		{	
@@ -2844,11 +2844,11 @@ hw[dim]=M;
 
 
 
-printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n************************--------------x0\n");
-shuchud(x0,dim+1,1);
+// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n************************--------------x0\n");
+// shuchud(x0,dim+1,1);
 
-printf("hw\n\n");
-shuchud(hw,dim+1,1);
+// printf("hw\n\n");
+// shuchud(hw,dim+1,1);
 
 
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
