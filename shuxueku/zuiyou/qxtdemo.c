@@ -36,6 +36,8 @@ double x0[2]={0,0};
 
 qxt(H,	h,be ,Ae,	bi,	Ai,2,	1,2,x0,lam);
 
+//fanhuiyouwenti  haiyou buchengli dewenti
+printf("jj\n");
 shuchud(x0,2,1);
 shuchud(lam,1,3);
 
