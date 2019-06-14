@@ -2369,7 +2369,7 @@ int erci(
 		double *lam)
 {
 //等式约束
-
+ 
 //[G,-A;-A' 0] A等式
 
 int nu;
@@ -2379,7 +2379,7 @@ double *G=(double *)malloc(dim*dim*sizeof(double));
 
 cblas_daxpby(dim*dim, 2, H, 1, 0, G, 1);
 int qinum=0;
-double ep=1e-14;
+double ep=1e-6;
 //指标集 自动要求等式约束 
 int *A0=(int *)malloc((ie)*sizeof(int));
 int *tp=(int *)malloc((ie)*sizeof(int));
@@ -2472,13 +2472,14 @@ for(int i=0;i<ie;i++)
 
 /////***//d
 
-printf(" G\n");
-shuchud(G,dim,dim);	
+//printf(" G\n");
+//shuchud(G,dim,dim);	
 
 int ho=0;
 
+
 //////diedai
-while(ho<30)
+while(1)
 {
 ho++;
 printf("\n%d      >>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
@@ -2522,8 +2523,8 @@ shuchud(xk,dim,1);
 
 	memcpy(dk,tg,dim*sizeof(double));
 		
-	// printf("++...dk\n");
-	// shuchud(tg,dim,1);	
+	 printf("++...dk\n");
+	 shuchud(tg,dim,1);	
 	// printf("++...lam_ki\n");
 	// shuchud(tb,e+qinum,1);	
 	// printf("++...zuoyong \n");
@@ -2531,11 +2532,14 @@ shuchud(xk,dim,1);
 
 		
 
-
-
+printf("norm\n%15.15f",cblas_dasum(dim, tg,1));
+	
 	//dk=0
 	if(cblas_dasum(dim, tg,1)<ep)
-	{	
+	{
+
+			printf("\n--------------------------------------欧克\n");
+			
 		zuixiao=0;
 		index=-1;
 		for(int i=0;i<qinum;i++)
@@ -2563,19 +2567,25 @@ shuchud(xk,dim,1);
 		}
 		else{
 
+		
 
-		memset(lam,0,(e+ie)*sizeof(double));
 		for(nu=0;nu<e;nu++)
 		{lam[nu]=tb[nu];
 		
 		}
+		
 
+		for(nu=0;nu<ie;nu++)
+		{printf("???????%d",e+nu);
+		lam[e+nu]=0;
+		}
+		
 		for(nu=0;nu<qinum;nu++)
 		{
-		
 		lam[e+A0[nu]]=tb[e+nu];
-		
 		}
+
+		
 			// shuchud( ,e+qinum,1);
 
 // ///gai x0weihao			
@@ -2705,7 +2715,7 @@ double *BM=(double *)malloc((2*e+ie+1)*sizeof(double));
 double *AM=(double *)malloc((dim+1)*(2*e+ie+1)*sizeof(double));
 double *ait=(double *)malloc(dim*sizeof(double));
 
-
+int nu;
 
 /*扩张*/
 for(int i=0;i<e;i++)
@@ -2764,6 +2774,8 @@ BM[(2*e+ie)]=0;
 
 double *x0=(double *)malloc((dim+1)*sizeof(double));
 
+double *tlam;
+tlam=cshi(2*e+ie+1);
 
 
 /////////////////////////////////////
@@ -2823,7 +2835,7 @@ memcpy(hw,h,dim*sizeof(double));
 hw[dim]=M;
 
 
-while(x0[dim]>1e-13&&M<1e10)
+while(x0[dim]>1e-10&&M<1e10)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2851,25 +2863,30 @@ hw[dim]=M;
 // shuchud(hw,dim+1,1);
 
 
-erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
+erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,tlam);	
 
 
 }
 memcpy(xx,x0,dim*sizeof(double));
 
 
+t=x0[dim];
 
 
 
-printf("x0...log 10 M...%lf\n\n",log(M)/log(10));
-shuchud(x0,dim+1,1);
+printf("lam..t%lf.log 10 M...%lf\n\n",t,log(M)/log(10));
+shuchud(tlam,1,2*e+ie);
+printf("\n.\n");
+
+for(nu=0;nu<e;nu++)
+lam[nu]=tlam[2*nu]-tlam[2*nu+1];
+
+for(nu=0;nu<ie;nu++)
+lam[e+nu]=tlam[2*e+nu];
 
 
 
-
-
-
-
+xm(tlam);
 
 xm(bbe);
 xm(aae);
@@ -2882,6 +2899,13 @@ xm(Hw);
 
 
 
+//代表成功
+
+if(fabs(t)<1e-8)
+return 1;
+
+//失败
+return 0;
 
 
 }
