@@ -2576,7 +2576,7 @@ shuchud(xk,dim,1);
 		lam[e+A0[nu]]=tb[e+nu];
 		
 		}
-shuchud(tb,e+qinum,1);
+			shuchud( ,e+qinum,1);
 
 ///gai x0weihao			
 			
@@ -2855,6 +2855,10 @@ erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);
 
 
 }
+memcpy(xx,x0,dim*sizeof(double));
+
+
+
 
 
 printf("x0...log 10 M...%lf\n\n",log(M)/log(10));
