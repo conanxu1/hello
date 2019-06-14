@@ -2372,7 +2372,7 @@ int erci(
 
 //[G,-A;-A' 0] A等式
 
-
+int nu;
 
 double *G=(double *)malloc(dim*dim*sizeof(double));
 
@@ -2472,6 +2472,8 @@ for(int i=0;i<ie;i++)
 
 /////***//d
 
+printf(" G\n");
+shuchud(G,dim,dim);	
 
 int ho=0;
 
@@ -2479,24 +2481,20 @@ int ho=0;
 while(ho<30)
 {
 ho++;
-printf("\n%d>>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
+printf("\n%d      >>>>>>>>>>>>>>>>>>>>>>>>>>>>d>>>>>>>>>>>>\n",ho);
 
-
-
-
-printf("xk\n");
-shuchud(xk,dim,1);
-
-printf("G %lf g %lf dangqiandianxk\n",G[dim*dim-1],h[dim-1]);
+printf(" dangqiandianxk\n");
 shuchud(xk,dim,1);	
-	printf("\n\n\n\n\n\n\nqiz\n");
-	shuchui(A0,ie,1);
-	
-	
-	
+//	printf("\n\n\n\n\n\n\nqiz\n");
+//	shuchui(A0,ie,1);
 //	printf("..\n");
 	printf("\n\n\nqinum\n");
 	printf("%d",qinum);
+	printf("\n\n\nhhhhhh\n");
+	shuchud(h,1,dim);
+	
+
+
 
 
 	cblas_daxpby(dim, 1,h, 1, 0, tg, 1);
@@ -2510,12 +2508,12 @@ shuchud(xk,dim,1);
 	printf("\n++...G \n");
 	shuchud(G,dim,dim);
 	
-	printf("++...zuoyong \n");
+	printf("ziwenti...zuoyong \n");
 	shuchud(zuoyong,e+qinum,dim);
-	printf("++...tg\n");
+	printf("ziwentitidu...\n");
 	shuchud(tg,dim,1);
-	printf("++... %d\n",e+qinum);
-	printf("..%lf..\n",tb[0]);
+	//printf("++... %d\n",e+qinum);
+	//printf("..%lf..\n",tb[0]);
 
 
 
@@ -2564,6 +2562,22 @@ shuchud(xk,dim,1);
 			qinum=qinum-1;}	
 		}
 		else{
+
+
+		memset(lam,0,(e+ie)*sizeof(double));
+		for(nu=0;nu<e;nu++)
+		{lam[nu]=tb[nu];
+		
+		}
+
+		for(nu=0;nu<qinum;nu++)
+		{
+		
+		lam[e+A0[nu]]=tb[e+nu];
+		
+		}
+shuchud(tb,e+qinum,1);
+
 ///gai x0weihao			
 			
 			printf("ffinishd\n");
@@ -2582,15 +2596,18 @@ shuchud(xk,dim,1);
 			if(A0[j]>=0)
 			{tp[A0[j]]=1;}
 		}
-		//printf("bukexingji....\n");
-		//shuchui(tp,ie,1);
+		printf("\n\n\n\n\n%d\n\nqiz\n",ie);
+		shuchui(A0,ie,1);
+
+		printf("bukexingji....\n");
+		shuchui(tp,ie,1);
 		//alpha测试一遍
 		for(int j=0;j<ie;j++)
 		{	
 			//不属于的
 			if(tp[j]<1)
 			{for(int tt=0;tt<dim;tt++)
-					{ait[tt]=Ai[dim*j+tt];}
+			{ait[tt]=Ai[dim*j+tt];}
 			
 			
 
@@ -2600,7 +2617,8 @@ shuchud(xk,dim,1);
 				test=(bi[j]-cblas_ddot(dim, ait, 1, xk,1));
 				test=test/cblas_ddot(dim, ait, 1, dk,1);
 				//printf("%lf\n",test);		
-					if((test<zuixiao))
+
+		if((test<zuixiao))
 					{zuixiao=test;
 					index=j;}
 			}}
@@ -2608,12 +2626,13 @@ shuchud(xk,dim,1);
 		}
 
 
-		printf("\n....dk");
-		shuchud(dk,dim,1);
-		printf("\n");
-		printf("\n..%lf..alpha",zuixiao);
-		printf("\n");
-		
+if(ho>5)
+	return 1;
+
+
+
+
+
 		
 		cblas_daxpby(dim,zuixiao,dk,1,1,xk,1);
 	/////////
@@ -2806,7 +2825,7 @@ memcpy(hw,h,dim*sizeof(double));
 hw[dim]=M;
 
 
-while(x0[dim]>1e-13&&M<1e3)
+while(x0[dim]>1e-13&&M<1e10)
 {
 
 //迭代完成 hw 即x0自动满足约束
@@ -2830,13 +2849,16 @@ hw[dim]=M;
 printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n************************--------------x0\n");
 shuchud(x0,dim+1,1);
 
+printf("hw\n\n");
+shuchud(hw,dim+1,1);
+
+
 erci(Hw,hw,bbe,aae,BM,AM,dim+1,0,(2*e+ie+1),x0,lam);	
 
 
 }
 
-printf("hw\n\n");
-shuchud(hw,dim+1,1);
+
 printf("x0...log 10 M...%lf\n\n",log(M)/log(10));
 shuchud(x0,dim+1,1);
 
@@ -2999,44 +3021,31 @@ int mychol(
 		double *Lz		//转好
 		)		//维数
 {
-
+int i,j;
 int s=dim;
 int ipiv[s];
 int info;
-info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR,s,s,L,s,ipiv);
-//上三角
-//抹去上面  对角线开根号
+char job='L';
 
+info = LAPACKE_dpotrf(LAPACK_ROW_MAJOR,job,dim,L,dim);
+  
 
-printf("\n\n\n");
-for(int i=0;i<dim;i++)
-{
-	for(int j=i+1;j<dim;j++)
-	{
-	L[(i)*dim+j]=0;
-	Lz[(j)*dim+i]=0;
-	}
+//huanshunxujiasu
 
-	for(int j=0;j<i;j++)
-	{
-	L[(i)*dim+j]=L[(i)*dim+j]*sqrt(L[(j)*dim+j]);
-	Lz[(j)*dim+i]=L[(i)*dim+j];
-	}
+for(i=0;i<dim;i++)
+for(j=i;j<dim;j++)
+Lz[i*dim+j]=L[j*dim+i];
 
-}
-
-
-//最后再变化对角线  不能影响  下三角时以列为主循环
-for(int i=0;i<dim;i++)
-{L[(i)*dim+i]=sqrt(L[(i)*dim+i]);
-Lz[(i)*dim+i]=L[(i)*dim+i];
-
+for(i=0;i<dim;i++)
+for(j=0;j<i;j++)
+{Lz[i*dim+j]=0;
+L[j*dim+i]=0;
 }
 
 
 	
 //得下三角
-
+return 1;
 	
 }
 
@@ -3055,7 +3064,7 @@ double *A=(double *)malloc(ge*dim*sizeof(double));
 memcpy(A,Aw,ge*dim*sizeof(double));
 
 int tte=xxwg(AM,A, ge, dim);
-printf("000000000000000000000000000000000000000000000000000000000000step1\n");
+//printf("000000000000000000000000000000000000000000000000000000000000step1\n");
 
 if(tte<ge)
 {	
@@ -3097,7 +3106,7 @@ if(tte<ge)
 }
 
 
-shuchud(A,tte,dim);
+//shuchud(A,tte,dim);
 int e=tte;
 
 
@@ -3143,6 +3152,8 @@ double *V=(double *)malloc(e*e*sizeof(double));
 memcpy(L, G, dim*dim*sizeof(double));	
 mychol(L,dim,Lz);
 //求下三角
+//printf("L\n");
+//shuchud(L,dim,dim);
 
 
 	
@@ -3169,7 +3180,15 @@ memcpy(V, TEM3, e*e*sizeof(double));
 memcpy(LW, TEM3, e*e*sizeof(double));
 
 
+
+//printf("Lw1\n");
+//shuchud(LW,e,e);
+
 mychol(LW,e,LWz);
+
+
+//printf("Lwz\n");
+//shuchud(LWz,e,e);
 	
 
 	
@@ -3236,7 +3255,17 @@ LAPACKE_dgesv(LAPACK_ROW_MAJOR,dim,1,TEM,dim,ipiv,u,1);
 //shuchud(u,dim,1);
 	
 memcpy(gk,u,dim*sizeof(double));		
-memcpy(b,bw,dim*sizeof(double));		
+memcpy(b,bw,dim*sizeof(double));
+
+
+
+printf("Lw\n");
+shuchud(LW,e,e);
+
+
+
+
+		
 	
 	
 	
