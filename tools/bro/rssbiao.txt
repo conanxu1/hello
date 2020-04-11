@@ -1,0 +1,58 @@
+少数派 == https://sspai.com/feed
+bili   ==  http://192.168.0.119:1200/bilibili/bangumi/media/9192
+mit中文 == http://192.168.0.119:1200/bilibili/bangumi/media/9192
+36kr    == http://192.168.0.119:1200/36kr/newsflashes
+
+市场发明家 == http://192.168.0.119:1200/qdaily/column/7
+
+
+小众软件 == https://meta.appinn.com/posts.rss
+ 清华校内 == http://192.168.0.119:1200/thu/zhongyao
+香水时代 ==  http://192.168.0.119:1200/nosetime/home
+豆瓣一周榜单 == http://192.168.0.119:1200/douban/movie/weekly
+北大未名 ==  http://192.168.0.119:1200/pku/bbs/hot
+商务印书新书速递==  http://192.168.0.119:1200/douban/commercialpress/latest
+
+
+ 一休哲学（外网）== https://rsshub.app/telegram/channel/yixiuer
+	
+
+湾区日报 (外网)== https://rsshub.app/telegram/channel/wanqu_official
+
+逗比根据地(外网)== https://rsshub.app/telegram/channel/doubi_a
+
+ssr(telegram  外网)  == https://rsshub.app/telegram/channel/ACL4SSR
+v2ray(tg  外网)  == https://rsshub.app/telegram/channel/projectv2ray
+ v2fly_chat(tg  外网)  == https://rsshub.app/telegram/channel/v2fly_chat
+
+
+
+
+人民日报wx(CareerEngine)   ==  http://192.168.0.119:1200/wechat/ce/576b6cff73fc078e40615faa
+
+
+
+
+ 艾瑞         == http://www.iresearch.cn/common/rss/reports.xml
+
+
+活动 读懂财经 == http://app.dudong.com/?app=rss&controller=index&action=feed&catid=21
+公告 读懂财经 ==  http://app.dudong.com/?app=rss&controller=index&action=feed&catid=22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
