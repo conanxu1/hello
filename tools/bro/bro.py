@@ -84,6 +84,7 @@ class WebEngineView(QtWebEngineWidgets.QWebEngineView):
     def on_url_changed(self,url):
         self.setUrl(url)
 
+
  
 class MainWindow(QMainWindow):
     def __init__(self):
