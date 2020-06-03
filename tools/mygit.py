@@ -15,6 +15,7 @@ def fenxi(browser,uurl):
 
     f=open("out.txt","a+",encoding="utf-8")
     for ee in res:
+        f.write(ee.replace('''"''',"\n").replace('''www.''',"annie http://www."))
     f.close()
 
 
