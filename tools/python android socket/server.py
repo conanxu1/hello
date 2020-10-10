@@ -3,7 +3,7 @@
 
 import socket, traceback  
       
-host = '192.168.0.115' # Bind to all interfaces   
+host = '192.168.1.105' # Bind to all interfaces   
 port = 1234  
 
 
@@ -20,8 +20,11 @@ s.bind((host, port))
       
 # Step4: 监听该端口上的连接  
 while 1:  
+    print("here" )  
     try:  
+
         message, address = s.recvfrom(8192)
+
         
         print("Got data from ", address,"1")  
         print(message.decode("utf8"))
