@@ -641,7 +641,7 @@ Rn temxt=Rninit(dimx);
 		itr++;
 	}
 	
-	cout<<dimx<<dimu<<(this->tA)<<end;
+	cout<<dimx<<dimu<<(this->tA)<<endl;
 	
 	print_vec((this->solx)[itr-1],dimx);
 	
