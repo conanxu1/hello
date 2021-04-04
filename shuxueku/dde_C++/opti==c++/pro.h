@@ -18,10 +18,12 @@ using namespace std;
 
 //#define noeigen 1
 #ifdef noeigen
+	#pragma message("Eigen=No")
 	typedef double* Rn;
 	typedef double R;
 	double* Rninit(int nnnn);
 #else
+	#pragma message("Eigen=Yes")
 	#include <eigen3/Eigen/Dense>
 	using namespace Eigen;
 	typedef VectorXd Rn;
