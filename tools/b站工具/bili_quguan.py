@@ -72,16 +72,16 @@ def bili():
 
 	#################
 
-	urla=input("个人主页地址\n")
+	 
     
-	bili_opt=int(input("开始批量取关"))
+	print("开始批量取关")
 	
 	pp=100
 	
-	driver.get(urla)
+	driver.get("http://baidu.com")
 	action = ActionChains(driver)
 		
-	time.sleep(3)
+	time.sleep(300)
 		
     
     
@@ -172,13 +172,13 @@ def bili():
 		f.write(" ".join(jieguo))
 		f.close()
 	
-os.chdir("D:\\代码库\\bili图片")
+#os.chdir("D:\mygit\hello\tools\b站工具")
 print(os.getcwd())	
 	
 profile = webdriver.FirefoxProfile()
 profile.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:22.0) Gecko/20130405 Firefox/22.0")
 fireFoxOptions = webdriver.FirefoxOptions()
-fireFoxOptions.headless = True
+#fireFoxOptions.headless = True
 driver = webdriver.Firefox(profile,options=fireFoxOptions)
 	
 bili()
