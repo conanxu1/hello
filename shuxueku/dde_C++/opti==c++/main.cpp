@@ -66,7 +66,7 @@ double t0=0;
 double tf=5;
 
 Rn temut=Rninit(dimu);
-Rn temxt=Rninit(dimx);
+
 
 
 
@@ -100,6 +100,8 @@ Rn x0=Rninit(dimx);
 
 
 Rmn_copy(ttA,A,dimx,dimx);
+cout<<A;
+
 Rmn_copy(ttB,B,dimx,dimu);
 Rn_copy(tx0,x0,dimx);
 
