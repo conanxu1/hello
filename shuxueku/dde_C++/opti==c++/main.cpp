@@ -75,7 +75,7 @@ int main()
 
 
 
-Eu_Lode_Sol(1,1,0,5,100);
+Eu_Lode_Sol hSol(1,1,0,5,100);
 
 
 
