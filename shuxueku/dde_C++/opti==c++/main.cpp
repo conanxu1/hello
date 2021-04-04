@@ -65,7 +65,7 @@ int dimu=1;
 double t0=0;
 double tf=5;
 
-Rn temut=Rninit(int nnnn);
+Rn temut=Rninit(dimu);
 
 Rn myut(double t)
 {
