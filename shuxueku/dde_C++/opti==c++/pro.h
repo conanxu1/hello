@@ -86,7 +86,7 @@ class DAE_Solver
 	
 public:
 	// // virtual void sol()=0;//不需要再基类中给出函数的函数体
-	virtual void sol();
+	virtual void sol()=0;
 	
 };
 
