@@ -60,9 +60,18 @@ Rn pLpu(Rn x ,      Rn u     ,double        t ,int dimx,int dimu)
 
 Sol* pmysol;
 int N=2;
-int dimx=2;
+int dimx=1;
 int dimu=1;
+double t0=0;
+double tf=5;
+
+Rn temut=Rninit(int nnnn);
+
+Rn myut(double t)
+{
 	
+	return temut;
+}
 		
 // void fk(Rn a)
 // {
@@ -73,9 +82,12 @@ int dimu=1;
 int main()
 {
 
+double tA[1][1]={1}；
+double tB[1][1]={1}；
 
 
-Eu_Lode_Sol hSol(1,1,0,5,100);
+
+Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
 
 
 
