@@ -141,7 +141,7 @@ def bili():
 			action.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()	
 			time.sleep(5)
 			if oo<pp:
-				down_btn =  driver.find_element_by_xpath("//li[@class='be-pager-next']")
+				down_btn =  driver.find_element_by_xpath("//li[@class='be-dropdown-item']")
 		
 				time.sleep(5)
 				down_btn.click()
@@ -181,7 +181,27 @@ fireFoxOptions = webdriver.FirefoxOptions()
 #fireFoxOptions.headless = True
 driver = webdriver.Firefox(profile,options=fireFoxOptions)
 	
-bili()
+
+
+driver.get("https://space.bilibili.com/546934523/fans/follow")
+action = ActionChains(driver)
+
+
+
+for i in range(200):
+    print(i)
+driver.get("https://space.bilibili.com/546934523/fans/follow")
+driver.execute_script('''$(".be-dropdown-item:contains('取消关注')").click()''')
+time.sleep(10)
+
+
+
+
+
+
+
+
+
 
 driver.close()
 driver.quit()
