@@ -44,7 +44,7 @@ typedef Rn ( *pfpx)(Rn x ,      Rn u     ,double        t ,int dimx,int dimu);
 
 
 
-//优化问题中的一些数据结构
+//具体问题中的一些数据结构
 
 
 R L_zero(Rn x ,      Rn u     ,double        t );
@@ -64,6 +64,8 @@ struct point_con
 
 
 class Pro;
+class Sol;
+
 //约束优化问题
 
 class Pro
@@ -118,7 +120,7 @@ class Pro
 
 
 //微分方程求解
-class Sol;
+
 
 class Sol
 {
