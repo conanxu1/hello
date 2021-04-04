@@ -9,7 +9,7 @@ add_definitions(-std=c++11)
 add_definitions(-g -O3 -mavx -lm)
 
 
-# # # include_directories(include)
+include_directories(eigen3 )
 
 # # # set(CMAKE_CXX_STANDARD 11)
 # # # target_link_libraries(-lm -lstdc++)
