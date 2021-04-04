@@ -100,7 +100,8 @@ private:
 		int dimx;
 		int dimu;
 		double t0;
-		double tf;		
+		double tf;
+		int N;
 		dae_f fxut;	
 		Rmn tA;
 		Rmn tB;
@@ -111,7 +112,7 @@ public:
 		
 		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int lenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf){}
 		
-		void set(Rmn tA,Rmn tB,Rn_f tu);
+		void set(Rmn tA,Rmn tB,Rn_f tu,int N);
 		void sol( );
 		
 		
