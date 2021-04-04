@@ -85,7 +85,7 @@ VectorXd   Vec_myut(double t   )
 
 
 
-int main()
+int main_haha()
 {
 	int dimx=2;
 	int dimu=1;
