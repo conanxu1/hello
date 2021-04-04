@@ -131,21 +131,21 @@ void Rn_copy(double* tm,Rn tM,int n)
 
 
 #ifndef noeigen	
-void Rmn_copy(double* tm,Rmn tM,int m,int n)
+void Rmn_copy(double* tm,Rmn *tM,int m,int n)
 {
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
-	tM(i,j)=tm[ i*m+j ];
+	*tM(i,j)=tm[ i*m+j ];
 	
 	
 	
-	cout<<endl<<"Ma:"<<tM<<endl;
+	cout<<endl<<"Ma:"<<*tM<<endl;
 }
 
-void Rn_copy(double* tm,Rn tM,int n)
+void Rn_copy(double* tm,Rn *tM,int n)
 {
 	for(int i=0;i<n;i++)
-	tM(i)=tm[i];
+	*tM(i)=tm[i];
 }
 
 #endif
