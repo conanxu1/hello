@@ -12,6 +12,7 @@
 	{
 		double *p;
 		p=(double *)malloc(nnnn*sizeof(double));
+		memset( p,nnnn,sizeof(double) );
 		return p;
 	}
 	
@@ -19,6 +20,7 @@
 	{
 		double *p;
 		p=(double *)malloc((m*n)*sizeof(double));
+		memset( p,m*n,sizeof(double) );
 		return p;
 	}
 	
@@ -68,6 +70,7 @@
 	MatrixXd Rmninit(int m,int n)
 	{
 		MatrixXd mat(m,n);
+		mat=MatrixXd::Zero(nnnn,1);
 		return mat;
 	}
 	
@@ -91,12 +94,18 @@
 	
 	void axbyc(double a,Rn x,double b,Rn y,Rn &c,int hdim)
 	{
-		
-
 		c=a*x+b*y;
-		
-
 	}
+	
+	
+	
+	void aAb_cC(double a,Rmn tM,double c,Rmn C,int hdim)
+	{
+		C=a*tM+c*C;
+		
+	}
+	
+	
 	
 #endif
 
@@ -597,7 +606,7 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 
 void Eu_Lode_Sol:: sol( ) 
 {
-	
+	double =tnow;
 	cout<<"N:"<<(this->lenN)<<endl;
 	this->h=(this->tf-this->t0)/(this->lenN);
 	
@@ -610,12 +619,22 @@ void Eu_Lode_Sol:: sol( )
 	
 	(this->solx)[0]=x0;
 	(this->solt)[0]=this->t0;
+	tnow=this->t0;
 	
-	int itr=0;
+	int itr=1;
 	while(itr<lenN)
 	{
 		
+		(this->solx)[itr]=Rninit(dimx);
 		
+		
+		aAb_cC(double a,Rmn tM,double c,Rmn C,int hdim)
+		
+		
+		(this->solx)[itr]=		(this->solx)[itr-1]+h0*fAiut( tnow , (this->Vec_solx)[itr-1] ,  vec_delay     , this->vec_u);
+		
+		
+		tnow=tnow+h;
 		itr++;
 	}
 	
