@@ -41,6 +41,29 @@ typedef Rn ( *pfpx)(Rn x ,      Rn u     ,double        t ,int dimx,int dimu);
 
 
 
+
+
+
+//优化问题中的一些数据结构
+
+
+R L_zero(Rn x ,      Rn u     ,double        t );
+
+
+struct bolza_con
+{
+	opt_phi psi;
+	opt_int L;
+};
+
+struct point_con
+{
+	dae_f c;
+};
+
+
+
+class Pro;
 //约束优化问题
 
 class Pro
@@ -178,23 +201,6 @@ class Sol
 
 
 
-R L_zero(Rn x ,      Rn u     ,double        t );
-
-
-struct bolza_con
-{
-	opt_phi psi;
-	opt_int L;
-};
-
-struct point_con
-{
-	dae_f c;
-};
-
-
-
-class Pro;
 
 
 
