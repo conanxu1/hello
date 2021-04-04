@@ -628,8 +628,8 @@ void Eu_Lode_Sol:: sol( )
 		(this->solx)[itr]=Rninit(dimx);
 		
 		
-		aMx_cC(1,(this->A),(this->solx)[itr-1] ,0，(this->solx)[itr]   ,dimx);
-		aMx_cC(1,(this->B),(this->tu)(tnow) ,1，(this->solx)[itr]   ,dimx);
+		aMx_cC(1,(this->A),(this->solx)[itr-1] ,0,(this->solx)[itr]   ,dimx);
+		aMx_cC(1,(this->B),(this->tu)(tnow) ,1,(this->solx)[itr]   ,dimx);
 		axbyc( 1,(this->solx)[itr-1],1,xt,   (this->solx)[itr]      );
 		
 		
