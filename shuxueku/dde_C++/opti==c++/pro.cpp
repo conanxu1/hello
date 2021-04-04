@@ -602,8 +602,8 @@ void Eu_Lode_Sol:: sol( )
 	this->h=(this->tf-this->t0)/(this->lenN);
 	
 	
-	(this->solt)=(R*)malloc(Nmax*sizeof(double ));
-	(this->solx)=(Rn*)malloc(Nmax*sizeof(Rn));
+	(this->solt)=(R*)malloc(lenN*sizeof(double ));
+	(this->solx)=(Rn*)malloc(lenN*sizeof(Rn));
 	
 	
 	
