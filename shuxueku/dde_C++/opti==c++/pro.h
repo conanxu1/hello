@@ -45,6 +45,7 @@ void print_vec(Rn x,int n);
 
 
 
+
 //具体问题中的一些数据结构
 
 
@@ -90,6 +91,9 @@ private:
 		int dimx;
 		int dimu;
 public:
+		
+		
+		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int lenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf){}
 		
 		void sol(dae_f fxut );
 		

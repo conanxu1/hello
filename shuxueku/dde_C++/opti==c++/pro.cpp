@@ -1,5 +1,5 @@
 #include "pro.h"
-void print_vec(Rn x,int n);
+
 
 #ifdef noeigen
 	double* Rninit(int nnnn)
@@ -73,11 +73,12 @@ void print_vec(Rn x,int n);
 
 	}
 	
-	
-	
-	
-	
 #endif
+
+
+
+
+
 
 
 R testf(Rn x )
