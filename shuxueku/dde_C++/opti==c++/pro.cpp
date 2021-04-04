@@ -486,11 +486,6 @@ void ga_opti:: chooose()
 	}
 
 
-void Eu_LSol:: sol(dae_f fxut ) 
-{
-	
-	
-}
 
 
 
@@ -525,4 +520,12 @@ R L_zero(Rn x ,      Rn u     ,double        t )
 	return 0;
 }
 
+
+
+
+void Eu_Lode_Sol:: sol(dae_f fxut ) 
+{
+	
+	
+}
 

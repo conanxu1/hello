@@ -83,7 +83,7 @@ public:
 
 
 //欧拉法
-class Eu_LSol  : public DAE_Solver
+class Eu_Lode_Sol  : public DAE_Solver
 {
 private:
 		int dimx;
