@@ -22,6 +22,8 @@ using namespace std;
 #ifdef noeigen
 	typedef double* Rn;
 	typedef double R;
+	typedef double** Rmn;
+	
 	double* Rninit(int nnnn);
 #else
 	#include <Eigen/Dense>
