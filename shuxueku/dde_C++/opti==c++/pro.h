@@ -85,7 +85,9 @@ class DAE_Solver
 {
 	
 public:
-	virtual void sol()=0;//不需要再基类中给出函数的函数体
+	// // virtual void sol()=0;//不需要再基类中给出函数的函数体
+	virtual void sol();
+	
 };
 
 
@@ -110,7 +112,7 @@ public:
 		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int lenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf){}
 		
 		void set(Rmn tA,Rmn tB,Rn_f tu);
-		void sol(dae_f fxut );
+		void sol( );
 		
 		
 		// // // void display();
