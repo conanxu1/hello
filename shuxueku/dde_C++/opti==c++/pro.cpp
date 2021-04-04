@@ -65,10 +65,8 @@
 	}
 	MatrixXd Rmninit(int m,int n);
 	{
-		
-		MatrixXd vec;
-		vec=   MatrixXd::Zero(m,n);
-		return vec;
+		MatrixXd mat(m,n);
+		return mat;
 	}
 	
 	
@@ -109,8 +107,6 @@ void Rmn_copy(double* tm,Rmn tM,int m,int n)
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
 	tM[i][j]=tm[ (i-1)*m+j ];
-	
-	
 }
 
 

@@ -15,9 +15,12 @@ using namespace std;
 
 
 //=======================
-#define noeigen 0	
-//noeigen=0 不使用Eigen 库
-//noeigen=1 使用Eigen 库
+//#define noeigen 1	
+ 
+//定义     不使用Eigen 库
+//不定义 使用
+
+
 
 #ifdef noeigen
 	typedef double* Rn;
