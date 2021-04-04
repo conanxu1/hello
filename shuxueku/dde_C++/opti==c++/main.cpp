@@ -101,7 +101,7 @@ Rn_copy(tx0,x0,dimx);
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
 hSol.set(A,B,myut,x0 );
-
+hSol.sol( );
 
 
 //<-------------------------------

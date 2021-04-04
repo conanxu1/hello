@@ -608,6 +608,17 @@ void Eu_Lode_Sol:: sol( )
 	
 	
 	
+	(this->solx)[0]=x0;
+	(this->solt)[0]=this->t0;
+	
+	int itr=0;
+	while(itr<lenN)
+	{
+		
+		
+		
+	}
+	
 	
 	
 }
