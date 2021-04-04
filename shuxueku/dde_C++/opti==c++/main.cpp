@@ -63,9 +63,7 @@ int N=2;
 int dimx=2;
 int dimu=1;
 	
-	
-	
-	
+		
 // void fk(Rn a)
 // {
 	// a[0]=1;
@@ -75,57 +73,64 @@ int dimu=1;
 int main()
 {
 
+
+
+Eu_Lode_Sol(1,1,0,5,100);
+
+
+
+
+//<-------------------------------
 		
-		double tol=1e-8;
+		// // // double tol=1e-8;
 		
-		Pro mypro(dimx,dimu,0,1,1,1);
+		// // // Pro mypro(dimx,dimu,0,1,1,1);
 		
-		mypro.set_daef(my_fxut);
-		mypro.set_opt_int(my_opt_L);
-		mypro.set_opt_phi(my_opt_phi);
-		mypro.set_opt_pLp(	 pLpx,	  pLpu);
+		// // // mypro.set_daef(my_fxut);
+		// // // mypro.set_opt_int(my_opt_L);
+		// // // mypro.set_opt_phi(my_opt_phi);
+		// // // mypro.set_opt_pLp(	 pLpx,	  pLpu);
 
 	 
 		
-		//cout<<mypro.t0;
+		// // // // // // // // // // //cout<<mypro.t0;
 		
 		
-		Sol mysol(&mypro);
-		mysol.set();
-		mysol.display()		;
-		mysol.sol(N);
+		// // // Sol mysol(&mypro);
+		// // // mysol.set();
+		// // // mysol.display()		;
+		// // // mysol.sol(N);
 		
 	
 		
 
-		Rn th=Rninit(dimx*(N+1)+dimu*(N+1)+2);
-		for(int i=0;i<(dimx*(N+1)+dimu*(N+1)+2);i++)
-		{
-			th[i]=i;	
-		}
+		// // // Rn th=Rninit(dimx*(N+1)+dimu*(N+1)+2);
+		// // // for(int i=0;i<(dimx*(N+1)+dimu*(N+1)+2);i++)
+		// // // {
+			// // // th[i]=i;	
+		// // // }
 		
 
 			
-	mysol.hk_th(th,0);
+	// // // mysol.hk_th(th,0);
 	
   
-	int	NN=3;
-	ga_opti myga(dimx,NN,10);
+	// // // int	NN=3;
+	// // // ga_opti myga(dimx,NN,10);
 	
-	Rn lb =Rninit(dimx);
-	Rn ub =Rninit(dimx);
-	for(int i=0;i<dimx;i++)
-	{
-		lb[i]=-1;
-		ub[i]=1;
-	}
+	// // // Rn lb =Rninit(dimx);
+	// // // Rn ub =Rninit(dimx);
+	// // // for(int i=0;i<dimx;i++)
+	// // // {
+		// // // lb[i]=-1;
+		// // // ub[i]=1;
+	// // // }
 
-	myga.set_lbub(lb,ub);
-	myga.initialize();
-	myga.chooose();
+	// // // myga.set_lbub(lb,ub);
+	// // // myga.initialize();
+	// // // myga.chooose();
 
-		
-		
+//------------------------->
 
 
 
