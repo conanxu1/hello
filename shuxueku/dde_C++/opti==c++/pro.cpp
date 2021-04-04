@@ -111,8 +111,14 @@ void Rmn_copy(double* tm,Rmn tM,int m,int n)
 {
 	memcpy(tM, tm, (m*n)*sizeof(double));
 }
-#endif
 
+
+void Rn_copy(double* tm,Rn tM,int n)
+{
+	memcpy(tM, tm, (n)*sizeof(double));
+}
+ 
+#endif
 
 
 #ifndef noeigen	
@@ -122,6 +128,13 @@ void Rmn_copy(double* tm,Rmn tM,int m,int n)
 	for(int j=0;j<n;j++)
 	tM(i,j)=tm[ (i-1)*m+j ];
 }
+
+void Rn_copy(double* tm,Rn tM,int n)
+{
+	for(int i=0;i<m;i++)
+	tM(i)=tm[i];
+}
+
 #endif
 
 
@@ -571,11 +584,12 @@ R L_zero(Rn x ,      Rn u     ,double        t )
 
 
 
-void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu )
+void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 {
 	this->tA=tA;
 	this->tB=tB;
 	this->tu=tu;
+	this->x0=x0;
  
 }
 
@@ -586,6 +600,12 @@ void Eu_Lode_Sol:: sol( )
 	
 	cout<<"N:"<<(this->lenN)<<endl;
 	this->h=(this->tf-this->t0)/(this->lenN);
+	
+	
+	(this->solt)=(R*)malloc(Nmax*sizeof(double ));
+	(this->solx)=(Rn*)malloc(Nmax*sizeof(Rn));
+	
+	
 	
 	
 	

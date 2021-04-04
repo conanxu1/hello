@@ -112,13 +112,19 @@ private:
 		Rmn tA;
 		Rmn tB;
 		Rn_f tu;
+		Rn x0;
+		
+		Rn* solx;
+		R*   solt;
+		
+		
 		
 public:
 		
 		
 		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int tlenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf),lenN(tlenN){}
 		
-		void set(Rmn tA,Rmn tB,Rn_f tu);
+		void set(Rmn tA,Rmn tB,Rn_f tu,Rn x0);
 		void sol( );
 		
 		

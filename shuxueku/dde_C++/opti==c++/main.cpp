@@ -85,16 +85,22 @@ int main()
 
 double ttA[1*1]={1};
 double ttB[1*1]={1};
+double tx0[1]={1};
+
 
 Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
+Rn x0=Rninit(dimx);
 
 
-Rmn_copy(ttA,A,dimx,dimu);
+Rmn_copy(ttA,A,dimx,dimx);
+Rmn_copy(ttB,B,dimx,dimu);
+Rn_copy(tx0,x0,dimx);
+
 
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
-hSol.set(A,B,myut );
+hSol.set(A,B,myut,x0 );
 
 
 
