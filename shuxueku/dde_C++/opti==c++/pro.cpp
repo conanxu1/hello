@@ -102,13 +102,16 @@
 
 
 
+
+
+#ifndef noeigen	
 void Rmn_copy(double* tm,Rmn tM,int m,int n)
 {
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
-	tM[i][j]=tm[ (i-1)*m+j ];
+	tM(i,j)=tm[ (i-1)*m+j ];
 }
-
+#endif
 
 
 
