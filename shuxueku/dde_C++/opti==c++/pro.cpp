@@ -486,6 +486,16 @@ void ga_opti:: chooose()
 	}
 
 
+void Eu_LSol:: sol(dae_f fxut ) 
+{
+	
+	
+}
+
+
+
+
+
 
 
 	

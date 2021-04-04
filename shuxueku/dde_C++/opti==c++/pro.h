@@ -76,7 +76,7 @@ class DAE_Solver
 {
 	
 public:
-	virtual void display()=0;//不需要再基类中给出函数的函数体
+	virtual void sol()=0;//不需要再基类中给出函数的函数体
 };
 
 
@@ -90,7 +90,7 @@ private:
 		int dimu;
 public:
 		
-		void set_daef(dae_f fxut );
+		void sol(dae_f fxut );
 		
 		
 		// // // void display();
