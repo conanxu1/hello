@@ -640,6 +640,9 @@ Rn temxt=Rninit(dimx);
 		tnow=tnow+h;
 		itr++;
 	}
+	
+	cout<<dimx<<dimu<<(this->tA)<<end;
+	
 	print_vec((this->solx)[itr-1],dimx);
 	
 	
