@@ -1,4 +1,5 @@
 message("Linux")
+cmake_minimum_required (VERSION2.6)
 project(dde)
 
 
