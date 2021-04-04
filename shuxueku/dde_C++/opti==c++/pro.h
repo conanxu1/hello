@@ -11,20 +11,20 @@
 #include <algorithm>
 #include "nlopt.h"
 
-
-
 using namespace std;
 
 
-//#define noeigen 1
+//=======================
+#define noeigen 0	
+//noeigen=0 不使用Eigen 库
+//noeigen=1 使用Eigen 库
+
 #ifdef noeigen
-	#pragma message("Eigen=No")
 	typedef double* Rn;
 	typedef double R;
 	double* Rninit(int nnnn);
 #else
-	#pragma message("Eigen=Yes")
-	#include <eigen3/Eigen/Dense>
+	#include <Eigen/Dense>
 	using namespace Eigen;
 	typedef VectorXd Rn;
 	typedef double R;
