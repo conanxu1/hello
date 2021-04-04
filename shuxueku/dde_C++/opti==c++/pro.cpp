@@ -63,7 +63,9 @@
 		vec=   MatrixXd::Zero(nnnn,1);
 		return vec;
 	}
-	MatrixXd Rmninit(int m,int n);
+	
+	
+	MatrixXd Rmninit(int m,int n)
 	{
 		MatrixXd mat(m,n);
 		return mat;
