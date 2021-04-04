@@ -66,6 +66,10 @@ double t0=0;
 double tf=5;
 
 Rn temut=Rninit(dimu);
+Rn temxt=Rninit(xt);
+
+
+
 
 Rn myut(double t)
 {

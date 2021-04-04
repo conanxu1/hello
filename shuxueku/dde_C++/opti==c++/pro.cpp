@@ -70,7 +70,7 @@
 	MatrixXd Rmninit(int m,int n)
 	{
 		MatrixXd mat(m,n);
-		mat=MatrixXd::Zero(nnnn,1);
+		mat=MatrixXd::Zero(m,n);
 		return mat;
 	}
 	
@@ -92,16 +92,16 @@
 		}
 	}
 	
-	void axbyc(double a,Rn x,double b,Rn y,Rn &c,int hdim)
+	void axbyc(double a,Rn x,double b,Rn y,Rn c,int hdim)
 	{
 		c=a*x+b*y;
 	}
 	
 	
 	
-	void aAb_cC(double a,Rmn tM,double c,Rmn C,int hdim)
+	void aMx_cC(double a,Rmn tM,Rn x   ,double c,Rmn C,int hdim)
 	{
-		C=a*tM+c*C;
+		C=a*tM*x+c*C;
 		
 	}
 	
@@ -628,10 +628,11 @@ void Eu_Lode_Sol:: sol( )
 		(this->solx)[itr]=Rninit(dimx);
 		
 		
-		aAb_cC(double a,Rmn tM,double c,Rmn C,int hdim)
+		aMx_cC(1,(this->A),(this->solx)[itr-1] ,0，(this->solx)[itr]   ,dimx);
+		aMx_cC(1,(this->B),(this->tu)(tnow) ,1，(this->solx)[itr]   ,dimx);
+		axbyc( 1,(this->solx)[itr-1],1,xt,   (this->solx)[itr]      );
 		
 		
-		(this->solx)[itr]=		(this->solx)[itr-1]+h0*fAiut( tnow , (this->Vec_solx)[itr-1] ,  vec_delay     , this->vec_u);
 		
 		
 		tnow=tnow+h;
