@@ -2,12 +2,21 @@
 
 
 #ifdef noeigen
-	double* Rninit(int nnnn)
+	Rn Rninit(int nnnn)
 	{
 		double *p;
 		p=(double *)malloc(nnnn*sizeof(double));
 		return p;
 	}
+	
+	Rn Rmninit(int m,int n)
+	{
+		double *p;
+		p=(double *)malloc((m*n)*sizeof(double));
+		return p;
+	}
+	
+	
 
 	void theta2x(Rn theta,Rn x,int k, int dimx    )
 	{
@@ -48,6 +57,16 @@
 		vec=   MatrixXd::Zero(nnnn,1);
 		return vec;
 	}
+	MatrixXd Rmninit(int m,int n);
+	{
+		
+		MatrixXd vec;
+		vec=   MatrixXd::Zero(m,n);
+		return vec;
+	}
+	
+	
+	
 	void theta2x(Rn theta,Rn &x,int k, int dimx    )
 	{
 		for(int i=0;i<dimx;i++)

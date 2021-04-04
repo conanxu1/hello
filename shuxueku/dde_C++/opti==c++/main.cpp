@@ -83,13 +83,15 @@ Rn myut(double t)
 int main()
 {
 
-Rmn tA[1][1]={1};
-Rmn tB[1][1]={1};
+double ttA[1*1]={1};
+double ttB[1*1]={1};
+
+
 
 
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
-hSol.set(tA,tB,myut );
+hSol.set(A,B,myut );
 
 
 

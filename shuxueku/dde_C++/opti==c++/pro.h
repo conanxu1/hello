@@ -22,19 +22,19 @@ using namespace std;
 #ifdef noeigen
 	typedef double* Rn;
 	typedef double R;
-	typedef double** Rmn;
+	typedef double* Rmn;
 	
-	double* Rninit(int nnnn);
 #else
 	#include <Eigen/Dense>
 	using namespace Eigen;
 	typedef VectorXd Rn;
 	typedef MatrixXd Rmn;
 	typedef double R;
-	VectorXd Rninit(int nnnn);
-	 
-	
+
 #endif
+
+Rn Rninit(int nnnn);
+Rmn Rmninit(int m;int n);
 
 
 
