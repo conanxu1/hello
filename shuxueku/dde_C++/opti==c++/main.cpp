@@ -65,6 +65,8 @@ int dimu=1;
 double t0=0;
 double tf=5;
 
+Rn temut=Rninit(dimu);
+Rn temxt=Rninit(dimx);
 
 
 
@@ -82,8 +84,6 @@ Rn myut(double t)
 // {
 	// a[0]=1;
 // }	
-	
-	// // // Rn temut=Rninit(dimu);
 	
 	
 int main()
