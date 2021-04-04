@@ -40,7 +40,8 @@ typedef Rn ( *pfpx)(Rn x ,      Rn u     ,double        t ,int dimx,int dimu);
 
 
 
-
+//工具函数声明
+void print_vec(Rn x,int n);
 
 
 
