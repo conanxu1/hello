@@ -14,11 +14,9 @@ Linear DDE Solver
 
 # 🧂 开发环境
 
-G++
-
-eigen3
-
-nlopt
+- g++
+- eigen3
+- nlopt
 
 
 
@@ -28,9 +26,23 @@ nlopt
 
 # 🍼 **DEMO**
 
+采用cmake编译build_by_cmake
+
+
+
+
+
 
 
 # 🍺 **作者列表**
+
+conanxu1
+
+
+
+
+
+
 
 # **🍪历史版本**
 

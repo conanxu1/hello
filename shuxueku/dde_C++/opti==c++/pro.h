@@ -32,11 +32,17 @@ using namespace std;
 #endif
 
 
-typedef Rn (*dae_f)(Rn x ,      Rn u     ,double        t );
 
+
+
+typedef Rn (*dae_f)(Rn x ,      Rn u     ,double        t );
 typedef R (*opt_int)(Rn x ,      Rn u     ,double        t );
 typedef R (*opt_phi)(Rn xt0 ,     double t0 ,Rn xtf ,     double tf     );
 typedef Rn ( *pfpx)(Rn x ,      Rn u     ,double        t ,int dimx,int dimu);
+
+
+
+
 
 
 R L_zero(Rn x ,      Rn u     ,double        t );
