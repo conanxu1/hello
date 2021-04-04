@@ -530,3 +530,11 @@ void Eu_Lode_Sol:: sol(dae_f fxut )
 	
 }
 
+void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu)
+{
+	
+	
+	
+}
+
+

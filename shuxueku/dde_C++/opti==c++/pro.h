@@ -27,17 +27,22 @@ using namespace std;
 	#include <Eigen/Dense>
 	using namespace Eigen;
 	typedef VectorXd Rn;
+	typedef MatrixXd Rmn;
 	typedef double R;
 	VectorXd Rninit(int nnnn);
+	 
+	
 #endif
 
 
 
 typedef Rn (*dae_f)(Rn x ,      Rn u     ,double        t );
+
 typedef R (*opt_int)(Rn x ,      Rn u     ,double        t );
 typedef R (*opt_phi)(Rn xt0 ,     double t0 ,Rn xtf ,     double tf     );
 typedef Rn ( *pfpx)(Rn x ,      Rn u     ,double        t ,int dimx,int dimu);
 
+typedef Rn (*Rn_f)(double t);
 
 
 //工具函数声明
@@ -90,11 +95,19 @@ class Eu_Lode_Sol  : public DAE_Solver
 private:
 		int dimx;
 		int dimu;
+		double t0;
+		double tf;		
+		dae_f fxut;	
+		Rmn tA;
+		Rmn tB;
+		Rn_f tu
+		
 public:
 		
 		
 		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int lenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf){}
 		
+		void set(Rmn tA,Rmn tB,Rn_f tu);
 		void sol(dae_f fxut );
 		
 		
@@ -222,7 +235,7 @@ class Pro
 		void set_opt_int(opt_int jj_opt );
 		void set_opt_phi(opt_phi tphi_opt );
 		
-		void set_opt_pLp(	pfpx pLpx,	pfpx pLpu);
+		void set_opt_pLp(pfpx pLpx,	pfpx pLpu);
 
 		friend void Sol::set(  );
 };
