@@ -139,7 +139,7 @@ void Rmn_copy(double* tm,Rmn tM,int m,int n)
 	
 	
 	
-	cout<<endl<<"Ma:"<<*tM<<endl;
+	cout<<endl<<"Ma:"<<tM<<endl;
 	cout<<endl<<"Ma:"<<&tM<<endl;
 
 }
