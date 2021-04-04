@@ -606,7 +606,7 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 
 void Eu_Lode_Sol:: sol( ) 
 {
-	Rn temxt=Rninit(dimx);
+
 	
 	double tnow;
 	cout<<"N:"<<(this->lenN)<<endl;
@@ -632,7 +632,7 @@ void Eu_Lode_Sol:: sol( )
 		
 		aMx_cC(1,(this->tA),(this->solx)[itr-1] ,0,(this->solx)[itr]   ,dimx);
 		aMx_cC(1,(this->tB),(this->tu)(tnow) ,1,(this->solx)[itr]   ,dimx);
-		axbyc( 1,(this->solx)[itr-1],1,temxt,   (this->solx)[itr]      );
+		axbyc( 1,(this->solx)[itr-1],1,temxt,   (this->solx)[itr]     ,dimx );
 		
 		
 		
