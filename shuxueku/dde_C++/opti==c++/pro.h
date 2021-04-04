@@ -69,6 +69,41 @@ class Sol;
 
 
 
+
+
+//抽象类：微分方程求解器
+class DAE_Solver
+{
+	
+public:
+	virtual void display()=0;//不需要再基类中给出函数的函数体
+};
+
+
+
+
+//欧拉法
+class Eu_LSol  : public AE_Solver
+{
+private:
+		int dimx;
+		int dimu;
+public:
+		
+		void set_daef(dae_f fxut );
+		
+		
+		// // // void display();
+		// // // void sol(int N);
+		
+
+
+}
+
+
+
+
+
 //微分方程求解
 
 
@@ -211,7 +246,7 @@ class Pro
 
 
 
-
+//遗传算法
 
 
 
@@ -225,14 +260,6 @@ struct individual
 	R   sum_prob;
 	int cho_times;
 };
-
-
-
-
-
-// typedef R (*fff)(Rn x ,      Rn u     ,double        t );
-
-
 
 
 

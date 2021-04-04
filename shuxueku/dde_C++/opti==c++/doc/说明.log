@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.3.13)  4 APR 2021 17:08
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.3.13)  4 APR 2021 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -306,55 +306,4 @@ LaTeX Font Info:    Redeclaring math symbol \Theta on input line 5.
 LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 5.
 LaTeX Font Info:    Redeclaring math symbol \Xi on input line 5.
 LaTeX Font Info:    Redeclaring math symbol \Pi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 5.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 5.
-LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 5.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 5.
-LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 5.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 5.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 5.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 5.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.53937> on input line 13.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 13.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 13.
- [1
-
-] (./说明.aux) ) 
-Here is how much of TeX's memory you used:
- 6890 strings out of 479418
- 204750 string characters out of 5886785
- 490487 words of memory out of 5000000
- 24368 multiletter control sequences out of 15000+600000
- 533488 words of font info for 44 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 56i,8n,68p,342b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on 说明.pdf (1 page).
+LaTeX Font Info:  
