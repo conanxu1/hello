@@ -34,7 +34,7 @@ using namespace std;
 #endif
 
 Rn Rninit(int nnnn);
-Rmn Rmninit(int m;int n);
+Rmn Rmninit(int m,int n);
 
 
 

@@ -86,7 +86,8 @@ int main()
 double ttA[1*1]={1};
 double ttB[1*1]={1};
 
-
+Rmn A=Rmninit(dimx,dimx);
+Rmn B=Rmninit(dimx,dimu);
 
 
 
