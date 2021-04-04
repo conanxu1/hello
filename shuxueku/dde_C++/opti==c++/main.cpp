@@ -90,6 +90,8 @@ Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
 
 
+Rmn_copy(ttA,A,dimx,dimu);
+
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
 hSol.set(A,B,myut );
