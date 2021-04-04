@@ -66,56 +66,6 @@ struct point_con
 class Pro;
 class Sol;
 
-//约束优化问题
-
-class Pro
-{
-	private:
-		int dimx;
-		int dimu;
-		double t0;
-		double tf;
-		dae_f fxut;
-		opt_int j_opt;
-		opt_phi phi_opt;
-		
-		
-		
-		int numB;
-		//终端约束
-		int numC;
-		//点约束
-		
-		bolza_con	 	*b_c;
-		point_con 	*p_c;
-		
-		
-		// dae_f *nn;
-		// nn=new dae_f[5];
-		
-		pfpx pLpu;
-		pfpx pLpx;
-	
-	
-	public:
-		Pro(int tdimx,int tdimu,double tt0,double ttf ,int nnumB,int nnumC  ):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf), numB(nnumB),numC(nnumC) {
-			b_c=new 	bolza_con[numB];
-			p_c=new 	point_con[numC];
-			
-			
-		}
-			
-		~Pro(){}
-			
-		
-		void set_daef(dae_f fxut );
-		void set_opt_int(opt_int jj_opt );
-		void set_opt_phi(opt_phi tphi_opt );
-		
-		void set_opt_pLp(	pfpx pLpx,	pfpx pLpu);
-
-		friend void Sol::set(  );
-};
 
 
 
@@ -181,6 +131,65 @@ class Sol
 	
 	
 };
+
+
+
+
+
+//约束优化问题
+
+class Pro
+{
+	private:
+		int dimx;
+		int dimu;
+		double t0;
+		double tf;
+		dae_f fxut;
+		opt_int j_opt;
+		opt_phi phi_opt;
+		
+		
+		
+		int numB;
+		//终端约束
+		int numC;
+		//点约束
+		
+		bolza_con	 	*b_c;
+		point_con 	*p_c;
+		
+		
+		// dae_f *nn;
+		// nn=new dae_f[5];
+		
+		pfpx pLpu;
+		pfpx pLpx;
+	
+	
+	public:
+		Pro(int tdimx,int tdimu,double tt0,double ttf ,int nnumB,int nnumC  ):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf), numB(nnumB),numC(nnumC) {
+			b_c=new 	bolza_con[numB];
+			p_c=new 	point_con[numC];
+			
+			
+		}
+			
+		~Pro(){}
+			
+		
+		void set_daef(dae_f fxut );
+		void set_opt_int(opt_int jj_opt );
+		void set_opt_phi(opt_phi tphi_opt );
+		
+		void set_opt_pLp(	pfpx pLpx,	pfpx pLpu);
+
+		friend void Sol::set(  );
+};
+
+
+
+
 
 
 
