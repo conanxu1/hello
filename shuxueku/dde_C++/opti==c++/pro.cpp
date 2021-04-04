@@ -616,7 +616,7 @@ void Eu_Lode_Sol:: sol( )
 	{
 		
 		
-		
+		itr++;
 	}
 	
 	
