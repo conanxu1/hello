@@ -523,21 +523,21 @@ R L_zero(Rn x ,      Rn u     ,double        t )
 
 
 
-void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu,int N)
+void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu )
 {
 	this->tA=tA;
 	this->tB=tB;
 	this->tu=tu;
-	this->N=N;
+ 
 }
 
 
 
 void Eu_Lode_Sol:: sol( ) 
 {
-	this->N=N;
-	cout<<"N:"<<this->N<<endl;
-	this->h=(this->tf-this->t0)/this->N;
+	
+	cout<<"N:"<<this->this->lenN<<endl;
+	this->h=(this->tf-this->t0)/(this->lenN);
 	
 	
 	
