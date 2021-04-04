@@ -7,7 +7,8 @@ JavaScript error: chrome://browser/content/places/browserPlacesViews.js, line 13
 node.type: 0. node.parent: [xpconnect wrapped nsINavHistoryResultNode]
 1617508477913	Marionette	WARN	TLS certificate errors will be ignored for this session
 console.log: WebExtensions: reset-default-search: No addons in our list are installed.
-x\\firefox.exe" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Lenovo\\AppData\\Local\\Temp\\rust_mozprofile.tEgz8QolhDCR"
+Exiting due to channel error.
+-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\Lenovo\\AppData\\Local\\Temp\\rust_mozprofile.tEgz8QolhDCR"
 *** You are running in headless mode.
 JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
 console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
@@ -300,6 +301,26 @@ JavaScript error: https://s1.hdslb.com/bfs/static/jinkela/space/space.2278e88dee
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
 1617513323085	Marionette	INFO	Stopped listening on port 14422
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1617520886345	mozrunner::runner	INFO	Running command: "d:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Lenovo\\AppData\\Local\\Temp\\rust_mozprofile.GhV7S4oKmGHv"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 770))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+[Parent 2328, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1617520934935	Marionette	INFO	Listening on port 19962
+1617520938722	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: https://s1.hdslb.com/bfs/static/passport/static/js/vendor.1df40cffe928c2f4c77d.js, line 35: Error: timeout of 3000ms exceeded
+JavaScript warning: https://s1.hdslb.com/bfs/static/passport/static/js/vendor.1df40cffe928c2f4c77d.js, line 23: WebGL context was lost.
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: NotFoundError: No such JSWindowActor 'MarionetteEvents'
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: NotFoundError: No such JSWindowActor 'MarionetteEvents'
+JavaScript warning: https://s1.hdslb.com/bfs/static/passport/static/js/vendor.1df40cffe928c2f4c77d.js, line 23: WebGL context was lost.
+JavaScript warning: https://s1.hdslb.com/bfs/static/passport/static/js/vendor.1df40cffe928c2f4c77d.js, line 23: WebGL context was lost.
+JavaScript warning: https://s1.hdslb.com/bfs/static/passport/static/js/vendor.1df40cffe928c2f4c77d.js, line 23: WebGL context was lost.
+1617521015848	Marionette	INFO	Stopped listening on port 19962
 
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
