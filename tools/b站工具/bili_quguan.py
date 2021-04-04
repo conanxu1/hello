@@ -1,4 +1,4 @@
- # class="article-title">
+
 import os
 import time
 from selenium import webdriver
@@ -73,15 +73,23 @@ def bili():
 	#################
 
 	urla=input("个人主页地址\n")
-	bili_opt=int(input("1.下图 2.视频"))
+    
+	bili_opt=int(input("开始批量取关"))
 	
-	pp=int(input("页数\n"))
+	pp=100
 	
 	driver.get(urla)
 	action = ActionChains(driver)
 		
 	time.sleep(3)
 		
+    
+    
+    
+    
+    
+    
+    
 	jieguo=[]
 	
 	
