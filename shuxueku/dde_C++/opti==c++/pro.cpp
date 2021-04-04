@@ -106,6 +106,15 @@
 
 
 
+#ifdef noeigen	
+void Rmn_copy(double* tm,Rmn tM,int m,int n)
+{
+	memcpy(tM, tm, (m*n)*sizeof(double));
+}
+#endif
+
+
+
 #ifndef noeigen	
 void Rmn_copy(double* tm,Rmn tM,int m,int n)
 {
