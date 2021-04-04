@@ -102,6 +102,7 @@ private:
 		double t0;
 		double tf;
 		int N;
+		double h;
 		dae_f fxut;	
 		Rmn tA;
 		Rmn tB;
