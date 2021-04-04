@@ -102,7 +102,7 @@ private:
 		dae_f fxut;	
 		Rmn tA;
 		Rmn tB;
-		Rn_f tu
+		Rn_f tu;
 		
 public:
 		
