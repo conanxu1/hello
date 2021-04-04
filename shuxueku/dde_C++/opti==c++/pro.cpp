@@ -536,7 +536,7 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu )
 void Eu_Lode_Sol:: sol( ) 
 {
 	
-	cout<<"N:"<<this->this->lenN<<endl;
+	cout<<"N:"<<(this->lenN)<<endl;
 	this->h=(this->tf-this->t0)/(this->lenN);
 	
 	
