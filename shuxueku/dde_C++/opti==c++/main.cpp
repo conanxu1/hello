@@ -83,8 +83,8 @@ Rn myut(double t)
 int main()
 {
 
-double tA[1][1]={1};
-double tB[1][1]={1};
+Rmn tA[1][1]={1};
+Rmn tB[1][1]={1};
 
 
 
