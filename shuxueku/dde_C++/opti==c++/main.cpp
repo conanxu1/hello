@@ -69,6 +69,7 @@ Rn temut=Rninit(dimu);
 
 Rn myut(double t)
 {
+	temut[0]=sin(t);
 	
 	return temut;
 }
@@ -88,7 +89,7 @@ double tB[1][1]={1};
 
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
-
+hSol.set(tA,tB,myut );
 
 
 
