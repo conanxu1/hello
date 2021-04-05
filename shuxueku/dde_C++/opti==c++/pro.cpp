@@ -675,6 +675,22 @@ Rn temxt=Rninit(dimx);
  
  cout<< totaltime;
 	
+	
+	
+double 	x0=0;
+int nn=50000000;
+double h0=5/nn;
+
+
+
+starttime = clock();
+for (int i=1;i<=nn;i++)
+{x0=x0+h0*(x0+sin(i*h0-h0 ));
+}	
+cout<<x0;
+endtime = clock();
+totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
+	
 }
 
 
