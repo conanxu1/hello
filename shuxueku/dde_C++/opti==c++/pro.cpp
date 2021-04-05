@@ -92,14 +92,14 @@
 		}
 	}
 	
-	void axbyc(double a,Rn x,double b,Rn y,Rn& c,int hdim)
+	void axbyc(double& a,Rn& x,double& b,Rn& y,Rn& c,int& hdim)
 	{
 		c=a*x+b*y;
 	}
 	
 	
 	
-	void aMx_cC(double a,Rmn tM,Rn x   ,double c,Rn& C,int hdim)
+	void aMx_cC(double& a,Rmn& tM,Rn& x   ,double& c,Rn& C,int& hdim)
 	{
 		C=a*tM*x+c*C;
 
