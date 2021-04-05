@@ -98,7 +98,7 @@ Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
 
-Rmn* ptrM;
+Rmn *ptrM;
 
 ptrM=&A;
 
