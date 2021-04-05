@@ -133,8 +133,8 @@ void Rn_copy(double* tm,Rn tM,int n)
 #ifndef noeigen	
 
 
- 
-void Rmn_copy(double* tm, Rmn (*ptM),int m,int n)
+template<class TT>
+void Rmn_copy(double* tm, TT (*ptM),int m,int n)
 {
 	
 	
