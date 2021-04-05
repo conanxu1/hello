@@ -636,8 +636,8 @@ Rn temxt=Rninit(dimx);
 		(this->solx)[itr]=Rninit(dimx);
 		
 		
-		aMx_cC(1,(this->tA),(this->solx)[itr-1] ,0,(this->solx)[itr]   ,dimx);
-		aMx_cC(1,(this->tB),(this->tu)(tnow) ,1,(this->solx)[itr]   ,dimx);
+		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
+		aMx_cC(  (this->h)    ,(this->tB),  (this->tu)(tnow)   ,1 ,(this->solx)[itr]   ,dimx);
 		axbyc( 1,(this->solx)[itr-1],1,temxt,   (this->solx)[itr]     ,dimx );
 		
 		
