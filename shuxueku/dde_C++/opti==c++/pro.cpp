@@ -103,10 +103,7 @@
 	{
 		C=a*tM*x+c*C;
 
-		cout<<"<<<\n";
-		
-		print_vec(C,hdim);
-		cout<<">>>\n";
+
 	}
 	
 	
@@ -641,12 +638,6 @@ Rn temxt=Rninit(dimx);
 		
 		
 		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
-		
-		cout<<"[[[[\n";
-		
-		print_vec((this->solx)[itr] ,dimx);
-		cout<<"]]]\n";
-		
 		aMx_cC(  (this->h)    ,(this->tB),  (this->tu)(tnow)   ,1 ,(this->solx)[itr]   ,dimx);
 		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		
