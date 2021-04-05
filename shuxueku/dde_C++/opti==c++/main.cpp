@@ -109,18 +109,8 @@ ptrM=&A;
  
 
 Rmn_copy(ttA,A,dimx,dimx);
-
-
-
-cout<<endl<<"Macc:"<<A<<endl;
-cout<<endl<<"Ma:"<<&A<<endl;
-
-
-// // Rmn_copy(ttB,B,dimx,dimu);
-
-
-
-// Rn_copy(tx0,x0,dimx);
+Rmn_copy(ttB,B,dimx,dimu);
+Rn_copy(tx0,x0,dimx);
 
 
 

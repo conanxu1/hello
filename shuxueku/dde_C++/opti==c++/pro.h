@@ -43,7 +43,7 @@ Rmn Rmninit(int m,int n);
 
 
 void Rmn_copy(double* tm, Rmn (&ptM),int m,int n);
-
+void Rn_copy(double* tm,Rn  (&ptM),int n)
  
 
 
