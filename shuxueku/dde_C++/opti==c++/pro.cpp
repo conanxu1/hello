@@ -649,7 +649,7 @@ Rn temxt=Rninit(dimx);
 	}
 	
 	cout<<"{"<<tnow<<"}"<<endl;
-	print_vec((this->solx)[itr],dimx);
+	print_vec((this->solx)[lenN],dimx);
  
  
 	
