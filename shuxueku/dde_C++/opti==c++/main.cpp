@@ -108,7 +108,7 @@ ptrM=&A;
 
  
 
-Rmn_copy(ttA,ptrM,dimx,dimx);
+Rmn_copy(ttA,A,dimx,dimx);
 
 
 
