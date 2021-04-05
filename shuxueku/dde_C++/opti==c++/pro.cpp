@@ -641,16 +641,16 @@ Rn temxt=Rninit(dimx);
 		axbyc( 1,(this->solx)[itr-1],1,temxt,   (this->solx)[itr]     ,dimx );
 		
 		
+		print_vec((this->solx)[itr-1],dimx);
+		cout<<endl<<tnow;
 		
 		
 		tnow=tnow+h;
 		itr++;
 	}
 	
-	cout<<dimx<<dimu<<(this->tA)<<endl;
-	
-	print_vec((this->solx)[itr-1],dimx);
-	
+ 
+ 
 	
 }
 
