@@ -142,7 +142,7 @@ void Rmn_copy(double* tm, Rmn*  ptM,int m,int n)
 	// // for(int j=0;j<n;j++)
 	// // (tM)(i,j)=tm[ i*m+j ];
 	
-	cout<<endl<<"pMa:"<<&tM<<endl;
+	cout<<endl<<"pMa:"<<tM<<endl;
 
 }
 
