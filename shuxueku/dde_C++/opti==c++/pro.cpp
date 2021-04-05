@@ -103,6 +103,8 @@
 	{
 		C=a*tM*x+c*C;
 		
+		print_vec(C,hdim);
+		cout<<"=====";
 	}
 	
 	
