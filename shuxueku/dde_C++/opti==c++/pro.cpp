@@ -643,7 +643,7 @@ Rn temxt=Rninit(dimx);
 		
 		
 		
-		cout<<endl<<endl<<"=》"<<endl;
+		cout<<endl<<endl<<"=》"<<itr<<endl;
 		print_vec((this->solx)[itr],dimx);
 		cout<<"{"<<tnow<<"}"<<endl;
 		
