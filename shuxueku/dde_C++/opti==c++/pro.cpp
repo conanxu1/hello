@@ -640,6 +640,10 @@ Rn temxt=Rninit(dimx);
 		double totaltime;
 		starttime = clock();
 	
+	
+	
+	Rn temu= (this->tu)(tnow) ;
+	
 	for(int itr=1;itr<=lenN;itr++)
 	{
 		
@@ -647,7 +651,11 @@ Rn temxt=Rninit(dimx);
 		
 		
 		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
-		aMx_cC(  (this->h)    ,(this->tB),  (this->tu)(tnow)   ,1 ,(this->solx)[itr]   ,dimx);
+		
+		temu= (this->tu)(tnow) ;
+		aMx_cC(  (this->h)    ,(this->tB),   temu    ,1 ,(this->solx)[itr]   ,dimx);
+		
+		
 		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		
 		
