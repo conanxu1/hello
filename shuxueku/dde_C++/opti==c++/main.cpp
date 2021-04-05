@@ -102,17 +102,17 @@ Rmn *ptrM;
 
 
 
-cout << "\nddd==="<<typeid(ptrM).name();
+ 
 
 ptrM=&A;
 
-cout << "\nddd==="<<typeid(ptrM).name();
+ 
 
 Rmn_copy(ttA,ptrM,dimx,dimx);
 
 
 
-cout<<endl<<"Ma:"<<A<<endl;
+cout<<endl<<"Macc:"<<A<<endl;
 cout<<endl<<"Ma:"<<&A<<endl;
 
 
