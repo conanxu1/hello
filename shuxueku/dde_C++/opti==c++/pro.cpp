@@ -173,9 +173,9 @@ R testf(Rn x )
 		cout<<"[";
 		for(int i=0;i<n-1;i++)
 		{
-			cout<<x[i]<<","<<endl;
+			cout<<setw(10)<<x[i]<<","<<endl;
 		}
-		cout<<x[n-1]<<"]"<<endl<<endl;
+		cout<<setw(10)<<x[n-1]<<"]"<<endl<<endl;
 	}
 
 
