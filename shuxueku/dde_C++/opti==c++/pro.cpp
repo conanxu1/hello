@@ -138,7 +138,7 @@ void Rmn_copy(double* tm,Tmat& tM,int m,int n)
 {
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
-	M(i,j)=tm[ i*m+j ];
+	tM(i,j)=tm[ i*m+j ];
 	
 	cout<<endl<<"Ma:"<<tM<<endl;
 
