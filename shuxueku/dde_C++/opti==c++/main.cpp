@@ -102,11 +102,11 @@ Rmn *ptrM;
 
 
 
-cout << typeid(ptrM).name();
+cout << "ddd==="<<typeid(ptrM).name();
 
 ptrM=&A;
 
-cout << typeid(ptrM).name();
+cout << "ddd==="<<typeid(ptrM).name();
 
 // // Rmn_copy(ttA,ptrM,dimx,dimx);
 
