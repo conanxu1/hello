@@ -631,7 +631,7 @@ Rn temxt=Rninit(dimx);
 	tnow=this->t0;
 	
 	int itr=1;
-	while(itr<=(lenN+2))
+	while(itr<=(lenN))
 	{
 		
 		(this->solx)[itr]=Rninit(dimx);
