@@ -642,8 +642,10 @@ Rn temxt=Rninit(dimx);
 		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		
 		
+		
+		cout<<endl<<endl<<"=》"<<endl;
 		print_vec((this->solx)[itr],dimx);
-		cout<<endl<<"{"<<tnow<<"}"<<endl;
+		cout<<"{"<<tnow<<"}"<<endl;
 		
 		
 		tnow=tnow+h;
