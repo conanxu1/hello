@@ -382,10 +382,14 @@ Rn Sol::hk_th( Rn theta,int k)
 
 			Rn tem1=Rninit(this->dimx);
 			Rn tem2=Rninit(this->dimx);
+			Rn temff=temf(xk,uk,tk );
+			Rn temffk=temf(xk1,uk1,tk1 );
+			
+			
 			axbyc(0.5,xk,-0.5,xk1,tem1,this->dimx   );
 			
 			
-			axbyc((this->h)/8,temf(xk,uk,tk ),-(this->h)/8,temf(xk1,uk1,tk1 ),tem2,this->dimx   );
+			axbyc((this->h)/8, temff ,-(this->h)/8,temffk,tem2,this->dimx   );
 			
  
 			axbyc(1,tem1,1,tem2,xc  ,this->dimx     );
