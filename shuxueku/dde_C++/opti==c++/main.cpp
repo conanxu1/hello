@@ -100,7 +100,7 @@ Rn x0=Rninit(dimx);
 
 Rmn* ptrM;
 
-*ptrM=&A;
+ptrM=&A;
 
 cout << typeid(A).name();
 
