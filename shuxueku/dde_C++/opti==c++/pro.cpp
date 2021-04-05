@@ -133,8 +133,8 @@ void Rn_copy(double* tm,Rn tM,int n)
 #ifndef noeigen	
 
 
-template<class TT>
-void Rmn_copy(double* tm, TT (*ptM),int m,int n)
+
+void Rmn_copy(double* tm, Rmn (&ptM),int m,int n)
 {
 	
 	
@@ -147,11 +147,11 @@ void Rmn_copy(double* tm, TT (*ptM),int m,int n)
 }
 
 
-void Rn_copy(double* tm,Rn  tM,int n)
-{
-	for(int i=0;i<n;i++)
-	tM(i)=tm[i];
-}
+// // // void Rn_copy(double* tm,Rn  (*ptM),int n)
+// // // {
+	// // // for(int i=0;i<n;i++)
+	// // // (*ptM)(i)=tm[i];
+// // // }
 
 #endif
 

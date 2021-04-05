@@ -120,7 +120,7 @@ cout<<endl<<"Ma:"<<&A<<endl;
 
 
 
-Rn_copy(tx0,x0,dimx);
+// Rn_copy(tx0,x0,dimx);
 
 
 
