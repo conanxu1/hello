@@ -99,7 +99,7 @@ Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
 
 
-cout << typeid(v1).name();
+cout << typeid(A).name();
 
 Rmn_copy(ttA,A,dimx,dimx);
 
