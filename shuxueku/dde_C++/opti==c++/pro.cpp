@@ -133,8 +133,8 @@ void Rn_copy(double* tm,Rn tM,int n)
 #ifndef noeigen	
 
 
-template<typename Tmat>
-void Rmn_copy(double* tm,Tmat& tM,int m,int n)
+
+void Rmn_copy(double* tm,Rmn& tM,int m,int n)
 {
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
@@ -144,8 +144,8 @@ void Rmn_copy(double* tm,Tmat& tM,int m,int n)
 
 }
 
-template<typename Tvec>
-void Rn_copy(double* tm,Tvec & tM,int n)
+
+void Rn_copy(double* tm,Rn & tM,int n)
 {
 	for(int i=0;i<n;i++)
 	tM(i)=tm[i];
