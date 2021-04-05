@@ -99,7 +99,7 @@ Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
 
 
-Rmn_copy(ttA,&A,dimx,dimx);
+Rmn_copy(ttA,A,dimx,dimx);
 cout<<endl<<"Ma:"<<A<<endl;
 cout<<endl<<"Ma:"<<&A<<endl;
 
