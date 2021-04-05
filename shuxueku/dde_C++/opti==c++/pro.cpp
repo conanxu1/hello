@@ -134,7 +134,7 @@ void Rn_copy(double* tm,Rn tM,int n)
 
 
  
-void Rmn_copy(double* tm, Rmn*  ptM,int m,int n)
+void Rmn_copy(double* tm, Rmn&  ptM,int m,int n)
 {
 	
 	
