@@ -644,7 +644,7 @@ Rn temxt=Rninit(dimx);
 		
 		cout<<"[[[[\n";
 		
-		print_vec((this->solx)[itr] ,hdim);
+		print_vec((this->solx)[itr] ,dimx);
 		cout<<"]]]\n";
 		
 		aMx_cC(  (this->h)    ,(this->tB),  (this->tu)(tnow)   ,1 ,(this->solx)[itr]   ,dimx);
