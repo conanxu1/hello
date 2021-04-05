@@ -41,8 +41,7 @@ Rmn Rmninit(int m,int n);
 
 
 
-void Rmn_copy(double* tm,Rmn tM,int m,int n);
-void Rn_copy(double* tm,Rn tM,int n);
+ 
 
 
 typedef Rn (*dae_f)(Rn x ,      Rn u     ,double        t );
@@ -81,6 +80,7 @@ struct point_con
 
 class Pro;
 class Sol;
+
 
 
 
