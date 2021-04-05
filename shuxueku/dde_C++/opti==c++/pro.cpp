@@ -679,7 +679,7 @@ Rn temxt=Rninit(dimx);
 	
 double 	x0=0;
 int nn=50000000;
-double h0=5/nn;
+double h0=5.0/nn;
 
 cout<<endl<<setprecision(15)<<h0<<endl;
 
