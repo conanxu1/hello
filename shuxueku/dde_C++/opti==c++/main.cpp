@@ -104,7 +104,7 @@ ptrM=&A;
 
 cout << typeid(A).name();
 
-Rmn_copy(ttA,ptrM,dimx,dimx);
+// // Rmn_copy(ttA,ptrM,dimx,dimx);
 
 
 
@@ -112,7 +112,10 @@ cout<<endl<<"Ma:"<<A<<endl;
 cout<<endl<<"Ma:"<<&A<<endl;
 
 
-Rmn_copy(ttB,B,dimx,dimu);
+// // Rmn_copy(ttB,B,dimx,dimu);
+
+
+
 Rn_copy(tx0,x0,dimx);
 
 
