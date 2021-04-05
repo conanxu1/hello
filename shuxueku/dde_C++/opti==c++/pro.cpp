@@ -648,7 +648,7 @@ Rn temxt=Rninit(dimx);
 		cout<<"]]]\n";
 		
 		aMx_cC(  (this->h)    ,(this->tB),  (this->tu)(tnow)   ,1 ,(this->solx)[itr]   ,dimx);
-		axbyc( 1,(this->solx)[itr-1],1,temxt,   (this->solx)[itr]     ,dimx );
+		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		
 		
 		print_vec((this->solx)[itr-1],dimx);
