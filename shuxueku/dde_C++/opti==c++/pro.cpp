@@ -632,6 +632,10 @@ Rn temxt=Rninit(dimx);
 	
 	
 	
+		clock_t starttime, endtime;
+		double totaltime;
+		starttime = clock();
+	
 	for(int itr=1;itr<=lenN;itr++)
 	{
 		
