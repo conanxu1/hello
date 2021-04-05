@@ -623,8 +623,8 @@ Rn temxt=Rninit(dimx);
 	this->h=(this->tf-this->t0)/(this->lenN);
 	
 	
-	(this->solt)=(R*)malloc(lenN*sizeof(double ));
-	(this->solx)=(Rn*)malloc(lenN*sizeof(Rn));
+	(this->solt)=(R*)malloc( (lenN+1)*sizeof(double ));
+	(this->solx)=(Rn*)malloc( (lenN+1)*sizeof(Rn));
 	
 	
 	
@@ -634,7 +634,7 @@ Rn temxt=Rninit(dimx);
 	tnow=this->t0;
 	
 	int itr=1;
-	while(itr<lenN)
+	while(itr<=lenN)
 	{
 		
 		(this->solx)[itr]=Rninit(dimx);
