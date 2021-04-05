@@ -652,13 +652,11 @@ Rn temxt=Rninit(dimx);
 	 
 	}
 	
+	    endtime = clock();
+
+       totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
 	
-	
-	for(int itr=0;itr<lenN;itr++)
-	{
-		cout<<"{"<<itr*(this->h)<<"}"<<endl;
-		print_vec((this->solx)[itr],dimx);
-	}
+ 
  
 	
 }
