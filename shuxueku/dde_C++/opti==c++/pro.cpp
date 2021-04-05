@@ -687,7 +687,7 @@ starttime = clock();
 for (int i=1;i<=nn;i++)
 {x0=x0+h0*(x0+sin(i*h0-h0 ));
 }	
-cout<<x0;
+cout<<endl<<x0<<endl;
 endtime = clock();
 totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
 cout<<totaltime;
