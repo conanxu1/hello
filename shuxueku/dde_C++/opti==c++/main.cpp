@@ -104,7 +104,7 @@ ptrM=&A;
 
 cout << typeid(A).name();
 
-Rmn_copy(ttA,A,dimx,dimx);
+Rmn_copy(ttA,ptrM,dimx,dimx);
 
 
 
