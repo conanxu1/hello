@@ -654,7 +654,7 @@ Rn temxt=Rninit(dimx);
 	
 	
 	
-	cout<<"{"<<itr*(this->h)<<"}"<<endl;
+ 
 		print_vec((this->solx)[lenN],dimx);
 	    endtime = clock();
 
