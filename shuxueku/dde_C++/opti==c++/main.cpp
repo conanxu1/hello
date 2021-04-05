@@ -99,7 +99,12 @@ Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
 
 
+cout << typeid(v1).name();
+
 Rmn_copy(ttA,A,dimx,dimx);
+
+
+
 cout<<endl<<"Ma:"<<A<<endl;
 cout<<endl<<"Ma:"<<&A<<endl;
 
