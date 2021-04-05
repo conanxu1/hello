@@ -690,7 +690,8 @@ for (int i=1;i<=nn;i++)
 cout<<x0;
 endtime = clock();
 totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
-	
+cout<<totaltime;
+
 }
 
 
