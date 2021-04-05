@@ -108,7 +108,7 @@ ptrM=&A;
 
 cout << "\nddd==="<<typeid(ptrM).name();
 
-// // Rmn_copy(ttA,ptrM,dimx,dimx);
+Rmn_copy(ttA,ptrM,dimx,dimx);
 
 
 
