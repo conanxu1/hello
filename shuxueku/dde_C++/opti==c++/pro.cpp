@@ -630,8 +630,9 @@ Rn temxt=Rninit(dimx);
 	(this->solt)[0]=this->t0;
 	tnow=this->t0;
 	
-	int itr=1;
-	while(itr<=(lenN))
+	
+	
+	for(int itr=1;itr<=lenN;itr++)
 	{
 		
 		(this->solx)[itr]=Rninit(dimx);
@@ -643,15 +644,12 @@ Rn temxt=Rninit(dimx);
 		
 		
 		
-		cout<<endl<<endl<<"=》"<<itr<<endl;
-		print_vec((this->solx)[itr],dimx);
-		cout<<"{"<<tnow<<"}"<<endl;
-		
-		
 		tnow=tnow+h;
-		itr++;
+	 
 	}
 	
+	cout<<"{"<<tnow<<"}"<<endl;
+	print_vec((this->solx)[itr],dimx);
  
  
 	
