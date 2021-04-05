@@ -634,7 +634,7 @@ Rn temxt=Rninit(dimx);
 	tnow=this->t0;
 	
 	int itr=1;
-	while(itr<=(lenN+1))
+	while(itr<=(lenN+4))
 	{
 		
 		(this->solx)[itr]=Rninit(dimx);
@@ -651,7 +651,7 @@ Rn temxt=Rninit(dimx);
 		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		
 		
-		print_vec((this->solx)[itr-1],dimx);
+		print_vec((this->solx)[itr],dimx);
 		cout<<endl<<"{"<<tnow<<"}"<<endl;
 		
 		
