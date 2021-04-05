@@ -102,9 +102,11 @@
 	void aMx_cC(double a,Rmn tM,Rn x   ,double c,Rn& C,int hdim)
 	{
 		C=a*tM*x+c*C;
+
+		cout<<"<<<\n";
 		
 		print_vec(C,hdim);
-		cout<<"=====";
+		cout<<">>>\n";
 	}
 	
 	
