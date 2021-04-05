@@ -681,7 +681,7 @@ double 	x0=0;
 int nn=50000000;
 double h0=5/nn;
 
-cout<<endl<<setpresice(15)<<h0<<endl;
+cout<<endl<<setprecision(15)<<h0<<endl;
 
 starttime = clock();
 for (int i=1;i<=nn;i++)
