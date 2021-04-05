@@ -91,7 +91,7 @@ int main()
 
 double ttA[1*1]={1};
 double ttB[1*1]={1};
-double tx0[1]={1};
+double tx0[1]={0};
 
 
 Rmn A=Rmninit(dimx,dimx);
