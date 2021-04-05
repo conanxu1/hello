@@ -98,13 +98,7 @@ Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
 
-Rmn *ptrM;
 
-
-
- 
-
-ptrM=&A;
 
  
 
@@ -112,7 +106,7 @@ Rmn_copy(ttA,A,dimx,dimx);
 Rmn_copy(ttB,B,dimx,dimu);
 Rn_copy(tx0,x0,dimx);
 
-
+cout<<endl<<"Macc:"<<A<<endl;
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100);
 hSol.set(A,B,myut,x0 );
