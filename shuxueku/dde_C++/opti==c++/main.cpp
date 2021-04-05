@@ -100,9 +100,13 @@ Rn x0=Rninit(dimx);
 
 Rmn *ptrM;
 
+
+
+cout << typeid(ptrM).name();
+
 ptrM=&A;
 
-cout << typeid(A).name();
+cout << typeid(ptrM).name();
 
 // // Rmn_copy(ttA,ptrM,dimx,dimx);
 
