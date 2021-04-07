@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/ddetest.dir/main.cpp.o CMakeFiles/ddetest.dir/pro.cpp.o  -o ddetest 
