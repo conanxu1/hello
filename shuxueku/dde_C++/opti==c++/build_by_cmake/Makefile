@@ -177,6 +177,33 @@ pro.cpp.s:
 	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/pro.cpp.s
 .PHONY : pro.cpp.s
 
+use_opencv.o: use_opencv.cpp.o
+
+.PHONY : use_opencv.o
+
+# target to build an object file
+use_opencv.cpp.o:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_opencv.cpp.o
+.PHONY : use_opencv.cpp.o
+
+use_opencv.i: use_opencv.cpp.i
+
+.PHONY : use_opencv.i
+
+# target to preprocess a source file
+use_opencv.cpp.i:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_opencv.cpp.i
+.PHONY : use_opencv.cpp.i
+
+use_opencv.s: use_opencv.cpp.s
+
+.PHONY : use_opencv.s
+
+# target to generate assembly for a file
+use_opencv.cpp.s:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_opencv.cpp.s
+.PHONY : use_opencv.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... pro.o"
 	@echo "... pro.i"
 	@echo "... pro.s"
+	@echo "... use_opencv.o"
+	@echo "... use_opencv.i"
+	@echo "... use_opencv.s"
 .PHONY : help
 
 

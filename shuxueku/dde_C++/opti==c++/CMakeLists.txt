@@ -14,4 +14,7 @@ include_directories(/usr/include/eigen3 )
 
 
 
+find_package(OpenCV REQUIRED)
+target_link_libraries(ddetest ${OpenCV_LIBS})
+
 

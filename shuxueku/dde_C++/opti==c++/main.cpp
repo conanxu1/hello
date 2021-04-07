@@ -111,6 +111,8 @@ hSol.set(A,B,myut,x0 );
 hSol.sol( );
 
 
+test();
+
 //<-------------------------------
 		
 		// // // double tol=1e-8;

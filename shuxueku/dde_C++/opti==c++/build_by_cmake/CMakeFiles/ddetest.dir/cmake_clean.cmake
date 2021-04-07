@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ddetest.dir/main.cpp.o"
   "CMakeFiles/ddetest.dir/pro.cpp.o"
+  "CMakeFiles/ddetest.dir/use_opencv.cpp.o"
   "ddetest.pdb"
   "ddetest"
 )

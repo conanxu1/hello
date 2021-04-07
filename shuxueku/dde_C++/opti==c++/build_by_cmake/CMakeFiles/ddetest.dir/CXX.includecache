@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.cpp
-pro.h
-/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.h
-
 /home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.h
 iostream
 -
@@ -31,8 +27,14 @@ algorithm
 -
 nlopt.h
 /home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/nlopt.h
+opencv2/opencv.hpp
+-
 Eigen/Dense
 -
+
+/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/use_opencv.cpp
+pro.h
+/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.h
 
 /usr/include/eigen3/Eigen/Cholesky
 Core

@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11 -g -O3 -mavx -lm -lnlopt -W
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/eigen3 
+CXX_INCLUDES = -I/usr/include/eigen3 -isystem /usr/include/opencv 
 

@@ -6,12 +6,14 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/main.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/main.cpp.o"
   "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/pro.cpp.o"
+  "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/use_opencv.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/use_opencv.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
+  "/usr/include/opencv"
   )
 
 # Targets to which this target links.

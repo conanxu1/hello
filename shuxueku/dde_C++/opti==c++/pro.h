@@ -14,6 +14,18 @@
 using namespace std;
 
 
+
+
+#define useopencv 
+
+#ifdef useopencv
+
+#include <opencv2/opencv.hpp>
+#endif
+
+
+
+
 //=======================
 // #define noeigen 1	
  
@@ -338,7 +350,7 @@ public:
 
 
 
-
+void test();
 
 
 
