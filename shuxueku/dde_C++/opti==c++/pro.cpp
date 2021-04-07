@@ -666,6 +666,7 @@ Rn temxt=Rninit(dimx);
 	
 	
 	
+	
  
 		print_vec((this->solx)[lenN],dimx);
 	    endtime = clock();
@@ -695,5 +696,5 @@ cout<<totaltime;
 }
 
 
-
+o
 
