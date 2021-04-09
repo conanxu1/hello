@@ -629,13 +629,13 @@ Rn temxt=Rninit(dimx);
 	
 	
 	#ifdef USE_EIGEN
-	  MatrixXd *(this->solx)=new MatrixXd[lenN+1];
+	  MatrixXd *tsol=new MatrixXd[lenN+1];
 	#else
 	(this->solx)=(Rn*)malloc( (lenN+1)*sizeof(Rn));
 	
 	#endif
 	
-	
+	(this->solx)=tsol;
 	
 	
 	
