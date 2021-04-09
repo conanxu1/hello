@@ -57,7 +57,7 @@
 #endif
 	
 	
-#ifndef noeigen	
+#ifdef USE_EIGEN	
 	VectorXd Rninit(int nnnn)
 	{
 		
