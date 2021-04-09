@@ -17,9 +17,9 @@ message("${USE_EIGEN}")
 
 
 #set(USE_EIGEN 1)
-#if($USE_EIGEN)
+if($USE_EIGEN)
 include_directories(/usr/include/eigen3 )
-#endif($USE_EIGEN)
+endif($USE_EIGEN)
 
 
 
