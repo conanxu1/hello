@@ -631,7 +631,7 @@ Rn temxt=Rninit(dimx);
 	#ifdef USE_EIGEN
 	  Rmn *tsol=new Rmn[lenN+1];
 	#else
-	(this->solx)=(Rn*)malloc( (lenN+1)*sizeof(Rn));
+	(this->solx)=(Rmn*)malloc( (lenN+1)*sizeof(Rmn));
 	
 	#endif
 	
