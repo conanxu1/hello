@@ -21,4 +21,3 @@ target_link_libraries(ddetest ${OpenCV_LIBS})
 
  
 add_definitions(-g -O3 -mavx -lm -lnlopt  -W)
-
