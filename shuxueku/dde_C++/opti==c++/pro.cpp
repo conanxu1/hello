@@ -7,7 +7,7 @@
 
 
 
-#ifdef noeigen
+#ifndef USE_EIGEN
 	Rn Rninit(int nnnn)
 	{
 		double *p;
@@ -116,7 +116,7 @@
 
 
 
-#ifdef noeigen	
+#ifndef USE_EIGEN
 void Rmn_copy(double* tm,Rmn tM,int m,int n)
 {
 	memcpy(tM, tm, (m*n)*sizeof(double));
@@ -131,7 +131,7 @@ void Rn_copy(double* tm,Rn tM,int n)
 #endif
 
 
-#ifndef noeigen	
+#ifdef USE_EIGEN	
 
 
 
