@@ -16,9 +16,9 @@ using namespace std;
 
 
 
-#define useopencv 
+#define USE_OPENCV
 
-#ifdef useopencv
+#ifdef USE_OPENCV
 
 #include <opencv2/opencv.hpp>
 #endif
