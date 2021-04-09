@@ -131,8 +131,10 @@ private:
 		Rn_f tu;
 		Rn x0;
 		
-		Rn* solx;
+		Rmn* solx;
 		R*   solt;
+		
+	 
 		
 		
 		
