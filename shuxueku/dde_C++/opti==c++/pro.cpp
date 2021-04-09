@@ -672,9 +672,9 @@ Rn temxt=Rninit(dimx);
 	
  
 		print_vec((this->solx)[lenN],dimx);
-	    endtime = clock();
+    endtime = clock();
 
-       totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
+    totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
 	
  
  cout<< totaltime;
