@@ -647,18 +647,23 @@ Rn temxt=Rninit(dimx);
 	for(int itr=1;itr<=lenN;itr++)
 	{
 		
+		#ifdef USE_EIGEN
+		(this->solx)[itr]
+		
+		
+		#endif
+		
+		
+		
+		//
+		#ifndef USE_EIGEN
 		(this->solx)[itr]=Rninit(dimx);
-		
-		
 		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
-		
 		temu= (this->tu)(tnow) ;
 		aMx_cC(  (this->h)    ,(this->tB),   temu    ,1 ,(this->solx)[itr]   ,dimx);
-		
-		
 		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
-		
-		
+		#endif
+		/*--------------------*/
 		
 		tnow=tnow+h;
 	 
