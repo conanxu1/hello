@@ -655,11 +655,11 @@ Rn temxt=Rninit(dimx);
 		
 		//不用EIGEN库
 		#ifndef USE_EIGEN
-		(this->solx)[itr]=Rninit(dimx);
-		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
-		temu= (this->tu)(tnow) ;
-		aMx_cC(  (this->h)    ,(this->tB),   temu    ,1 ,(this->solx)[itr]   ,dimx);
-		axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
+		  (this->solx)[itr]=Rninit(dimx);
+		  aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
+		  temu= (this->tu)(tnow) ;
+	  	aMx_cC(  (this->h)    ,(this->tB),   temu    ,1 ,(this->solx)[itr]   ,dimx);
+	  	axbyc( 1,(this->solx)[itr-1],1,(this->solx)[itr] ,   (this->solx)[itr]     ,dimx );
 		#endif
 		/*--------------------*/
 		
