@@ -648,14 +648,16 @@ Rn temxt=Rninit(dimx);
 	{
 		
 		#ifdef USE_EIGEN
-		(this->solx)[itr]
+		(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*( (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           )
+		
+		
 		
 		
 		#endif
 		
 		
 		
-		//
+		//不用EIGEN库
 		#ifndef USE_EIGEN
 		(this->solx)[itr]=Rninit(dimx);
 		aMx_cC(   (this->h)   ,(this->tA),  (this->solx)[itr-1] ,0 ,(this->solx)[itr]   ,dimx);
