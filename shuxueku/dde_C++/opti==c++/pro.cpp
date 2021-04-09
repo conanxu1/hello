@@ -625,7 +625,16 @@ Rn temxt=Rninit(dimx);
 	
 	
 	(this->solt)=(R*)malloc( (lenN+1)*sizeof(double ));
+	
+	
+	
+	#ifdef USE_EIGEN
+	  MatrixXd (this->solx)[lenN+1];
+	#else
 	(this->solx)=(Rn*)malloc( (lenN+1)*sizeof(Rn));
+	
+	#endif
+	
 	
 	
 	
