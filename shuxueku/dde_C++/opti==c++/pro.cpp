@@ -649,10 +649,6 @@ Rn temxt=Rninit(dimx);
 		
 		#ifdef USE_EIGEN
 		(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*( (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           )
-		
-		
-		
-		
 		#endif
 		
 		
