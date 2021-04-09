@@ -9,9 +9,9 @@ add_executable(ddetest ${SRC_LIST})
 add_definitions(-std=c++11)
 
 
-if(#USE_EIGEN)
+if(USE_EIGEN)
 include_directories(/usr/include/eigen3 )
-endif(#USE_EIGEN)
+endif(USE_EIGEN)
 
 
 
