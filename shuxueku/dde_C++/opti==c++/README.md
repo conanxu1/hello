@@ -29,8 +29,7 @@ Linear DDE Solver
 # 🍼 **DEMO**
 
 采用cmake编译build_by_cmake
-
-
+./run.sh -DUSE_EIGEN=1
 
 
 

@@ -12,14 +12,13 @@ add_definitions(-std=c++11)
  
 
 
-message("${USE_EIGEN}")
 
 
 
-#set(USE_EIGEN 1)
-if($USE_EIGEN)
+if(${USE_EIGEN})
+message("USE_EIGEN")
 include_directories(/usr/include/eigen3 )
-endif($USE_EIGEN)
+endif(${USE_EIGEN})
 
 
 
@@ -27,6 +26,4 @@ endif($USE_EIGEN)
 find_package(OpenCV REQUIRED)
 target_link_libraries(ddetest ${OpenCV_LIBS})
 
-
- 
 add_definitions(-g -O3 -mavx -lm -lnlopt  -W)

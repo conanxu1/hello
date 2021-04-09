@@ -213,6 +213,9 @@ LIBRARY_OUTPUT_PATH:PATH=
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/usr/share/OpenCV
 
+//No help, variable specified on the command line.
+USE_EIGEN:UNINITIALIZED=1
+
 //Value Computed by CMake
 dde_BINARY_DIR:STATIC=/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake
 
