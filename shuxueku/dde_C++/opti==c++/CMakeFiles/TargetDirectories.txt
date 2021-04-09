@@ -1,3 +1,0 @@
-/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/CMakeFiles/rebuild_cache.dir
-/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/CMakeFiles/ddetest.dir
-/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/CMakeFiles/edit_cache.dir

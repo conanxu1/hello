@@ -10,8 +10,7 @@ add_definitions(-std=c++11)
 
 
  
-
-
+message(${USE_EIGEN})
 
 
 
