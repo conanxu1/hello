@@ -1,4 +1,6 @@
-cmake ..
+cmake  ..
+
+
 make -j4
 
 
