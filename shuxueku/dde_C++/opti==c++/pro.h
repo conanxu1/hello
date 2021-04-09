@@ -34,7 +34,7 @@ using namespace std;
 
 
 
-#ifdef noeigen
+#ifndef USE_EIGEN
 	typedef double* Rn;
 	typedef double R;
 	typedef double* Rmn;
