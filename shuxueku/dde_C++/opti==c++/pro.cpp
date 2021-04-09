@@ -675,9 +675,7 @@ Rn temxt=Rninit(dimx);
     endtime = clock();
 
     totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
-	
- 
- cout<< totaltime;
+	  cout<< totaltime;
 	
 	
 	
