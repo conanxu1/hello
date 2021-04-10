@@ -105,9 +105,9 @@ Rn_copy(tx0,x0,dimx);
 
 
 
-cout << (this->tA)<<endl;
-cout << (this->tB)<<endl;
-cout<<(this->x0)<<endl;
+cout <<A<<endl;
+cout <<B<<endl;
+cout<<x0<<endl;
   
 
 
