@@ -89,8 +89,8 @@ Rn myut(double t)
 int main()
 {
 
-double ttA[2*2]={1,1,1,1};
-double ttB[2*1]={0,0};
+double ttA[2*2]={1,2,3,4};
+double ttB[2*1]={-2,1};
 double tx0[2]={1,1};
 
 
