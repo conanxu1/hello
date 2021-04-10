@@ -7,5 +7,6 @@ MatrixXd AA;
 sizeof(AA)为24
 
 
+通过malloc 指针的方式 指针变量会多占用8个字节
 
  
