@@ -731,15 +731,20 @@ Rn temxt=Rninit(dimx);
 			/*--------------------*/
 			tnow=tnow+h;
 		}
+		
+		
+		print_vec((this->solx)[lenN],dimx);
+   	endtime = clock();
+	  totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
+	  cout<< totaltime;
+		
+		
 	#endif
 
 
 
 
-//	print_vec((this->solx)[lenN],dimx);
-//  	endtime = clock();
-//	totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
-//	cout<< totaltime;
+//
 
 
 /*
