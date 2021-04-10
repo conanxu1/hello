@@ -677,8 +677,8 @@ void Eu_Lode_Sol:: sol( )
 			  tnow=tnow+h;
 		    }
   
-  cout << (this->tA)
-    cout << (this->tB)
+  cout << (this->tA);
+    cout << (this->tB);
 
   
   
