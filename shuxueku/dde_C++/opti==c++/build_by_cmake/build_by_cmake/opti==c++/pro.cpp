@@ -659,7 +659,7 @@ Rn temxt=Rninit(dimx);
 		    {
 			  
 			  
-			  	(this->solx)[itr]=(this->solx)[itr-1]+(thisthis->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
+			  	(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*(   (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
 			  
 		    }
 			  
