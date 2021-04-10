@@ -658,6 +658,9 @@ Rn temxt=Rninit(dimx);
 			  for(int itr=1;itr<=lenN;itr++)
 		    {
 			  
+			  
+			  	(this->solx)[itr]=(this->solx)[itr-1]+(thisthis->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
+			  
 		    }
 			  
 			  
@@ -674,7 +677,7 @@ Rn temxt=Rninit(dimx);
 		
 		
 			#ifdef USE_EIGEN
-			(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*( (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
+		
 			#endif
 			//不用EIGEN库
 			#ifndef USE_EIGEN
