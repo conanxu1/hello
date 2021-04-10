@@ -140,7 +140,7 @@ void Rmn_copy(double* tm, Rmn (&tM),int m,int n)
 {
 	for(int i=0;i<m;i++)
 	for(int j=0;j<n;j++)
-		(tM)(i,j)=tm[ i*m+j ];
+		(tM)(i,j)=tm[ i*n+j ];
 	
  
 }
@@ -677,10 +677,7 @@ void Eu_Lode_Sol:: sol( )
 			  tnow=tnow+h;
 		    }
   
-  cout << (this->tA)<<endl;
-    cout << (this->tB)<<endl;
-cout<<(this->x0)<<endl;
-  
+
   
 		print_vec((this->solx)+lenN*(this->dimx) ,dimx);
    		endtime = clock();
