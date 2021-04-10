@@ -626,7 +626,7 @@ void Eu_Lode_Sol:: sol( )
   
   
   Rn temxt=Rninit(dimx);
-	
+	 
 	cout<<"1777";
 	double tnow;
 	cout<<"N:"<<(this->lenN)<<endl;
