@@ -60,7 +60,7 @@ Rn pLpu(Rn x ,      Rn u     ,double        t ,int dimx,int dimu)
 
 Sol* pmysol;
 int N=2;
-int dimx=1;
+int dimx=2;
 int dimu=1;
 double t0=0;
 double tf=5;
@@ -89,9 +89,9 @@ Rn myut(double t)
 int main()
 {
 
-double ttA[1*1]={1};
-double ttB[1*1]={1};
-double tx0[1]={0};
+double ttA[2*2]={1,1,1,1};
+double ttB[2*1]={1,1};
+double tx0[2]={0,0};
 
 
 Rmn A=Rmninit(dimx,dimx);
@@ -106,7 +106,7 @@ Rn_copy(tx0,x0,dimx);
 
 
 
-Eu_Lode_Sol hSol(dimx,dimu,t0,tf,7*100000000);
+Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100000000);
 hSol.set(A,B,myut,x0 );
 
 
