@@ -638,10 +638,14 @@ Rn temxt=Rninit(dimx);
 
 
 
+
+//-----------------------------------------------------------------------------------------------------
+
+
 		#ifdef LARGE_SCALE
 			#ifdef USE_EIGEN
 			  (this->solx)=(R*)malloc( ((lenN+1)*(this->dimx)      )*sizeof(R));
-			  
+			  vec2double((this->x0),(this->solx),(this->dimx));
 			  
 			  
 			  
@@ -654,16 +658,8 @@ Rn temxt=Rninit(dimx);
 		#endif
 
 
-//-----------------------------------------------------------------------------------------------------
 
-	#ifdef LARGE_SCALE
-	#ifdef USE_EIGEN
-
-		vec2double((this->x0),(this->solx),(this->dimx));
-		
-
-	#endif
-	#endif
+ 
 /*
 		(this->solt)[0]=this->t0;
 		tnow=this->t0;	
