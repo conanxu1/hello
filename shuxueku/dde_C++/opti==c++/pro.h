@@ -164,7 +164,7 @@ private:
 		R*   solt;
 		#endif
 	 	
-
+    //solx=[x1,x2,...,xn].';
 
 		
 		
