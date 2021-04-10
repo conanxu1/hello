@@ -109,7 +109,7 @@ Rn_copy(tx0,x0,dimx);
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,1000000);
 hSol.set(A,B,myut,x0 );
 
-cout<<"177"
+cout<<"177";
 
 hSol.sol( );
 
