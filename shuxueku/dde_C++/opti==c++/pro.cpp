@@ -642,7 +642,7 @@ void Eu_Lode_Sol:: sol( )
 
 		#ifdef SMALL_SCALE
 			#ifdef USE_EIGEN
-			  Rmn *tsol=new Rmn[lenN+1];
+			  Rn *tsol=new Rn[lenN+1];
 			#else
 			  (this->solx)=(Rmn*)malloc( (lenN+1)*sizeof(Rmn));
 			#endif
