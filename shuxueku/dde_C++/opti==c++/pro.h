@@ -89,7 +89,8 @@ typedef Rn (*Rn_f)(double t);
 
 
 //工具函数声明
-void print_vec(Rn x,int n);
+template <typename T_Rn>
+void print_vec(T_Rn x,int n);
 
 
 
