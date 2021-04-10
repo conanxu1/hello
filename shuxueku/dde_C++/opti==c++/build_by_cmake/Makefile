@@ -177,6 +177,33 @@ pro.cpp.s:
 	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/pro.cpp.s
 .PHONY : pro.cpp.s
 
+use_eigen.o: use_eigen.cpp.o
+
+.PHONY : use_eigen.o
+
+# target to build an object file
+use_eigen.cpp.o:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_eigen.cpp.o
+.PHONY : use_eigen.cpp.o
+
+use_eigen.i: use_eigen.cpp.i
+
+.PHONY : use_eigen.i
+
+# target to preprocess a source file
+use_eigen.cpp.i:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_eigen.cpp.i
+.PHONY : use_eigen.cpp.i
+
+use_eigen.s: use_eigen.cpp.s
+
+.PHONY : use_eigen.s
+
+# target to generate assembly for a file
+use_eigen.cpp.s:
+	$(MAKE) -f CMakeFiles/ddetest.dir/build.make CMakeFiles/ddetest.dir/use_eigen.cpp.s
+.PHONY : use_eigen.cpp.s
+
 use_opencv.o: use_opencv.cpp.o
 
 .PHONY : use_opencv.o
@@ -219,6 +246,9 @@ help:
 	@echo "... pro.o"
 	@echo "... pro.i"
 	@echo "... pro.s"
+	@echo "... use_eigen.o"
+	@echo "... use_eigen.i"
+	@echo "... use_eigen.s"
 	@echo "... use_opencv.o"
 	@echo "... use_opencv.i"
 	@echo "... use_opencv.s"

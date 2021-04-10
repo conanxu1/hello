@@ -39,7 +39,11 @@ using namespace std;
 	typedef double R;
 	typedef double* Rmn;
 	
-#else
+#endif
+
+
+
+#ifdef USE_EIGEN
 	#include <Eigen/Dense>
 	using namespace Eigen;
 	typedef VectorXd Rn;
@@ -47,6 +51,22 @@ using namespace std;
 	typedef double R;
 
 #endif
+
+#ifdef USE_EIGEN
+void double2mat(double *d_a,Rmn &m_a,int m,int n);
+void mat2double(Rmn &m_a,double *d_a,int m,int n);
+void double2vex(double *d_a,Rn &m_a,int m);
+void vec2double(Rn &m_a,double *d_a,int m);
+
+#endif
+
+
+
+
+
+
+
+
 
 Rn Rninit(int nnnn);
 Rmn Rmninit(int m,int n);
@@ -138,7 +158,12 @@ private:
 		Rmn* solx;
 		R*   solt;
 		#endif
-	 
+	 	
+		#ifdef LARGE_SCALE
+		R*   solx;
+		R*   solt;
+		#endif
+	 	
 
 
 		

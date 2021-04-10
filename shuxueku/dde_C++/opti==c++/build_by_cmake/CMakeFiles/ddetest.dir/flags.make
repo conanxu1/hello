@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS =   -std=c++11 -g -O3 -mavx -lm -lnlopt -W
 
-CXX_DEFINES = -DSMALL_SCALE -DUSE_EIGEN
+CXX_DEFINES = -DLARGE_SCALE -DUSE_EIGEN
 
 CXX_INCLUDES = -I/usr/include/eigen3 -isystem /usr/include/opencv 
 

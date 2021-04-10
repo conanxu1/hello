@@ -1,0 +1,20 @@
+#include "pro.h"
+
+#ifdef USE_EIGEN
+void double2mat(double *d_a,MatrixXd &m_a,int m,int n)
+double2mat(double *d_a,Rmn &m_a,int m,int n);{
+	for(int i=0;i<m;i++)
+	for(int j=0;j<n;j++)
+		m_a(i,j)=d_a[i*n+j];
+}
+
+void mat2double(MatrixXd &m_a,double *d_a,int m,int n)
+{
+	for(int i=0;i<m;i++)
+	for(int j=0;j<n;j++)
+		d_a[i*n+j]=m_a(i,j);
+}
+
+ void mat2double(Rmn &m_a,double *d_a,int m,int n); void 
+double2vex(double *d_a,Rn &m_a,int m);#endif
+void vec2double(Rn &m_a,double *d_a,int m);

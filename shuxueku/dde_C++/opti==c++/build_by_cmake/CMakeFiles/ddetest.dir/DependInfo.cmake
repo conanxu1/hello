@@ -6,13 +6,14 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/main.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/main.cpp.o"
   "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/pro.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/pro.cpp.o"
+  "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/use_eigen.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/use_eigen.cpp.o"
   "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/use_opencv.cpp" "/home/xuwenhan/mygit/hello/shuxueku/dde_C++/opti==c++/build_by_cmake/CMakeFiles/ddetest.dir/use_opencv.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "SMALL_SCALE"
+  "LARGE_SCALE"
   "USE_EIGEN"
   )
 
