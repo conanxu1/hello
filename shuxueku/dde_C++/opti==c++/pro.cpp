@@ -659,7 +659,9 @@ void Eu_Lode_Sol:: sol( )
 			  (this->solx)=(R*)malloc( ((lenN+1)*(this->dimx)      )*sizeof(R));
 			  vec2double((this->x0),(this->solx),(this->dimx));
 			  
-			  	print_vec( (this->solx),dimx                 );
+			  
+			  cout<< (this->x0);
+			  print_vec( (this->solx),dimx                 );
 			  
 			  
 			  
