@@ -623,6 +623,9 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 
 void Eu_Lode_Sol:: sol( ) 
 {
+  cout<<"1777";
+  
+  
 Rn temxt=Rninit(dimx);
 	
 	double tnow;
@@ -651,7 +654,7 @@ Rn temxt=Rninit(dimx);
 
 
 //-----------------------------------------------------------------------------------------------------
-cout<<"1";
+
 
 		#ifdef LARGE_SCALE
 			#ifdef USE_EIGEN
