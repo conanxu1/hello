@@ -29,7 +29,8 @@ Linear DDE Solver
 # 🍼 **DEMO**
 
 采用cmake编译build_by_cmake
-./run.sh "-DUSE_EIGEN=1"
+opti==c++$ ./*sh "-DUSE_EIGEN=1 -DSMALL_SCALE=1"
+
 
 使用EIGEN库编译
 

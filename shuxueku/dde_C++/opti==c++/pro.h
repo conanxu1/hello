@@ -131,10 +131,16 @@ private:
 		Rn_f tu;
 		Rn x0;
 		
+		
+
+
+		#ifdef SMALL_SCALE
 		Rmn* solx;
 		R*   solt;
-		
+		#endif
 	 
+
+
 		
 		
 		

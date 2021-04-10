@@ -204,6 +204,9 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 OpenCV_DIR:PATH=/usr/share/OpenCV
 
 //No help, variable specified on the command line.
+SMALL_SCALE:UNINITIALIZED=1
+
+//No help, variable specified on the command line.
 USE_EIGEN:UNINITIALIZED=1
 
 //Value Computed by CMake

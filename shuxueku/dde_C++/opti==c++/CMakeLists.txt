@@ -21,6 +21,12 @@ include_directories(/usr/include/eigen3 )
 endif(${USE_EIGEN})
 
 
+if(${SMALL_SCALE})
+message("SMALL_SCALE")
+add_definitions(-DSMALL_SCALE)
+endif(${SMALL_SCALE})
+
+
 
 
 find_package(OpenCV REQUIRED)
