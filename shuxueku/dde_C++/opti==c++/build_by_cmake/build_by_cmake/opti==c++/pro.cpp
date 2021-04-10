@@ -665,13 +665,10 @@ Rn temxt=Rninit(dimx);
 		    {
 		    double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk,this->dimx,1 );
 			  double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk_1,this->dimx,1 );
+			  temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)   );
 			  
-			  
-			  	(this->solx)[itr]
-			  	temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)   );
-			  
-			  mat2double(  temxk_1, (this->solx)+(itr)*(this->dimx)  ,this->dimx,1 );
-			  
+		    mat2double(  temxk_1, (this->solx)+(itr)*(this->dimx)  ,this->dimx,1 );
+			  tnow=tnow+h;
 		    }
 			  
 			  
