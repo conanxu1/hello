@@ -183,17 +183,17 @@ driver = webdriver.Firefox(profile,options=fireFoxOptions)
 	
 
 
-driver.get("https://space.bilibili.com/546934523/fans/follow")
+driver.get("https://space.bilibili.com/485156027/fans/follow")
 action = ActionChains(driver)
 
 input("开始取关")
 
 for i in range(200):
     print(i)
-    driver.get("https://space.bilibili.com/546934523/fans/follow")
-    time.sleep(10)
+    driver.get("https://space.bilibili.com/485156027/fans/follow")
+    time.sleep(20)
     driver.execute_script('''$(".be-dropdown-item:contains('取消关注')").click()''')
-    time.sleep(5)
+    time.sleep(20)
 
 
 
