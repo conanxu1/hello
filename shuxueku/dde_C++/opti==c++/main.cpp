@@ -105,6 +105,12 @@ Rn_copy(tx0,x0,dimx);
 
 
 
+cout << (this->tA)<<endl;
+cout << (this->tB)<<endl;
+cout<<(this->x0)<<endl;
+  
+
+
 
 Eu_Lode_Sol hSol(dimx,dimu,t0,tf,50000000);
 hSol.set(A,B,myut,x0 );
