@@ -660,7 +660,7 @@ void Eu_Lode_Sol:: sol( )
 			  vec2double((this->x0),(this->solx),(this->dimx));
 			  
 			  
-			  cout<< (this->x0);
+			  cout<< "?"<<(this->x0)<<x0;
 			  print_vec( (this->solx),dimx                 );
 			  
 			  
