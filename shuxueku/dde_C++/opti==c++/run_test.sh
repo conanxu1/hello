@@ -1,10 +1,5 @@
 cd ../../..
 git pull
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7c0cc035a2e82d50ab769b570c848bfbbaa25144
 cd shu*/dde*/*++
 
 
