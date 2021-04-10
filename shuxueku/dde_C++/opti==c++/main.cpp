@@ -115,17 +115,7 @@ test();
 
 
 
-MatrixXd* CC;
-MatrixXd  AA(5,5);
 
-double BB[4]={1,1,1,1};
-
-cout<<"\n------>\n"<<sizeof(AA);
-
-
-
-cout<<"\n======>\n"<<sizeof(BB);
-cout<<"\n===CC=>\n"<<sizeof(CC);
 
 
 
@@ -193,4 +183,15 @@ cout<<"\n===CC=>\n"<<sizeof(CC);
 
 
 
+/*
+MatrixXd* CC;
+MatrixXd  AA(5,5);
 
+double BB[4]={1,1,1,1};
+
+cout<<"\n------>\n"<<sizeof(AA);
+
+
+
+cout<<"\n======>\n"<<sizeof(BB);
+cout<<"\n===CC=>\n"<<sizeof(CC);*/
