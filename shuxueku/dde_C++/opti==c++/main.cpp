@@ -106,12 +106,28 @@ Rn_copy(tx0,x0,dimx);
 
 
 
-Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100000000);
+Eu_Lode_Sol hSol(dimx,dimu,t0,tf,1000000);
 hSol.set(A,B,myut,x0 );
 hSol.sol( );
 
 
 test();
+
+
+
+MatrixXd* CC;
+MatrixXd  AA(5,5);
+
+double BB[4]={1,1,1,1};
+
+cout<<"\n------>\n"<<sizeof(AA);
+
+
+
+cout<<"\n======>\n"<<sizeof(BB);
+cout<<"\n===CC=>\n"<<sizeof(CC);
+
+
 
 //<-------------------------------
 		
