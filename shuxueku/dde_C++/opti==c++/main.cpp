@@ -63,7 +63,7 @@ int N=2;
 int dimx=2;
 int dimu=1;
 double t0=0;
-double tf=5;
+double tf=2;
 
 Rn temut=Rninit(dimu);
 
