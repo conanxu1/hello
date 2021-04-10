@@ -31,8 +31,8 @@ using namespace std;
  
 //定义     不使用Eigen 库
 //不定义 使用
-
-#define USE_EIGEN 1
+// cmake add_definitions
+//#define USE_EIGEN 1
 
 #ifndef USE_EIGEN
 	typedef double* Rn;

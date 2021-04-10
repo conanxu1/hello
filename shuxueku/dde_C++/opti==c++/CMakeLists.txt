@@ -16,6 +16,7 @@ message(${USE_EIGEN})
 
 if(${USE_EIGEN})
 message("USE_EIGEN")
+add_definitions(-DUSE_EIGEN)
 include_directories(/usr/include/eigen3 )
 endif(${USE_EIGEN})
 
