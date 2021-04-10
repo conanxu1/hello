@@ -646,7 +646,7 @@ Rn temxt=Rninit(dimx);
 			#ifdef USE_EIGEN
 			  (this->solx)=(R*)malloc( ((lenN+1)*(this->dimx)      )*sizeof(R));
 			  vec2double((this->x0),(this->solx),(this->dimx));
-			  
+			  (this->solt)[0]=this->t0;
 			  
 			  
 			  
@@ -661,7 +661,7 @@ Rn temxt=Rninit(dimx);
 
  
 /*
-		(this->solt)[0]=this->t0;
+		
 		tnow=this->t0;	
 		clock_t starttime, endtime;
 		double totaltime;
