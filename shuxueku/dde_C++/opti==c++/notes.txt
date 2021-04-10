@@ -3,5 +3,9 @@
 
 部分地方可以 openblas armadillo 或者可以加入优化库
 
+MatrixXd AA;
+sizeof(AA)为24
 
 
+
+ 
