@@ -21,7 +21,7 @@ void mat2double(Rmn &m_a,double *d_a,int m,int n)
 void double2vex(double *d_a,Rn &m_a,int m)
 {
 	for(int i=0;i<m;i++)
-	d_a[i]=m_a[i];
+	m_a[i]=d_a[i];
 }
 
 
@@ -30,7 +30,7 @@ void double2vex(double *d_a,Rn &m_a,int m)
 void vec2double(Rn &m_a,double *d_a,int m)
 {
 	for(int i=0;i<m;i++)
-	m_a[i]=d_a[i];
+	d_a[i]=m_a[i];
 }
 
 
