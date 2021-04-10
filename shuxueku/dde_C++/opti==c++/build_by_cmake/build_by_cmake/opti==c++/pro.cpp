@@ -668,7 +668,7 @@ Rn temxt=Rninit(dimx);
 			  
 			  
 			  	(this->solx)[itr]
-			  	temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)           );
+			  	temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)   );
 			  
 		    }
 			  
