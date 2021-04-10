@@ -670,6 +670,8 @@ Rn temxt=Rninit(dimx);
 			  	(this->solx)[itr]
 			  	temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)   );
 			  
+			  mat2double(  temxk_1, (this->solx)+(itr)*(this->dimx)  ,this->dimx,1 );
+			  
 		    }
 			  
 			  
