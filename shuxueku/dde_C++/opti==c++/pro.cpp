@@ -623,25 +623,23 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 
 void Eu_Lode_Sol:: sol( ) 
 {
-  
-  
+
+ 
   Rn temxt=Rninit(dimx);
-	 
-	cout<<"1777";
+
 	double tnow;
 	cout<<"N:"<<(this->lenN)<<endl;
 	this->h=(this->tf-this->t0)/(this->lenN);
-	
-	
+
 	(this->solt)=(R*)malloc( (lenN+1)*sizeof(R ));
-	
+
 	clock_t starttime, endtime;
 	double totaltime;
 	starttime = clock();
-	
-	
-	
-	
+
+
+
+
 		#ifdef SMALL_SCALE
 			#ifdef USE_EIGEN
 			  Rmn *tsol=new Rmn[lenN+1];
@@ -663,31 +661,31 @@ void Eu_Lode_Sol:: sol( )
 			  (this->solt)[0]=this->t0;
 			  tnow=this->t0;	
 			  Rn temu= (this->tu)(tnow) ;
-			  
-			  
+ 
+ 
 			  Rmn temxk=Rmninit(this->dimx,1);
 			  Rmn temxk_1=Rmninit(this->dimx,1);
-			  
-			  
+  
+ 
 			  for(int itr=1;itr<=lenN;itr++)
 		    {
 		    double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk,this->dimx,1 );
 			  double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk_1,this->dimx,1 );
 			  temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)   );
-			  
+ 
 		    mat2double(  temxk_1, (this->solx)+(itr)*(this->dimx)  ,this->dimx,1 );
 			  tnow=tnow+h;
 		    }
+  
+  
+  
+		print_vec((this->solx)+lenN*(this->dimx) ,dimx);
+   		endtime = clock();
+	    	totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
+	    	cout<<"\ntime:"<< totaltime<<endl;
 			  
 			  
-			  
-			print_vec((this->solx)+lenN*(this->dimx) ,dimx);
-   	  endtime = clock();
-	    totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
-	    cout<<"\ntime:"<< totaltime<<endl;
-			  
-			  
-			#endif
+		#endif
 		#endif
 
 
