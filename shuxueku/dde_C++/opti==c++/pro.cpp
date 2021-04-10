@@ -677,6 +677,9 @@ void Eu_Lode_Sol:: sol( )
 			  tnow=tnow+h;
 		    }
   
+  cout << (this->tA)
+    cout << (this->tB)
+
   
   
 		print_vec((this->solx)+lenN*(this->dimx) ,dimx);
