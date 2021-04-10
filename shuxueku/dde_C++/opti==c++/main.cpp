@@ -90,7 +90,7 @@ int main()
 {
 
 double ttA[2*2]={1,1,1,1};
-double ttB[2*1]={1,1};
+double ttB[2*1]={0,0};
 double tx0[2]={0,0};
 
 
