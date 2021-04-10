@@ -1,7 +1,5 @@
 cd ../../..
 git pull
-
-
 cd shu*/dde*/*++
 
 
