@@ -727,9 +727,7 @@ cout<<(this->x0)<<endl;
 		(this->solx)[0]=x0;
 		(this->solt)[0]=this->t0;
 		tnow=this->t0;	
-		clock_t starttime, endtime;
-		double totaltime;
-		starttime = clock();
+	
 		Rn temu= (this->tu)(tnow) ;
 		for(int itr=1;itr<=lenN;itr++)
 		{
