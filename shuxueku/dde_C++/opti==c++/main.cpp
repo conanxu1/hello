@@ -111,7 +111,7 @@ hSol.set(A,B,myut,x0 );
 hSol.sol( );
 
 
-test();
+//test();
 
 
 
