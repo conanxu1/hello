@@ -30,9 +30,15 @@ Linear DDE Solver
 
 采用cmake编译build_by_cmake
 opti==c++$ ./*sh "-DUSE_EIGEN=1 -DSMALL_SCALE=1"
+使用EIGEN库，求解小规模问题不优化
 
 
-使用EIGEN库编译
+
+opti==c++$ ./*sh "-DUSE_EIGEN=1 -DLARGE_SCALE=1"
+使用EIGEN库，求解大规模问题。采用数组保存数据，计算过程中复制数据给MatrixXd，或者可以考虑使用openblas库进行处理。
+
+
+
 
 
 
