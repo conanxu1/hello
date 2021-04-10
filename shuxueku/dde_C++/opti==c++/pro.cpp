@@ -732,6 +732,8 @@ void Eu_Lode_Sol:: sol( )
 		(this->solt)[0]=this->t0;
 		tnow=this->t0;	
 	
+		cout<< "?"<<(this->x0)<<x0;
+	
 		Rn temu= (this->tu)(tnow) ;
 		for(int itr=1;itr<=lenN;itr++)
 		{
