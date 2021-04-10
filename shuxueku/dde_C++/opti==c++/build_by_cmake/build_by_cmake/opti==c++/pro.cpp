@@ -663,9 +663,12 @@ Rn temxt=Rninit(dimx);
 			  
 			  for(int itr=1;itr<=lenN;itr++)
 		    {
-			      double2mat(   (this->solx)[itr-1]  ,temxk,this->dimx,1 )
+		    double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk,this->dimx,1 );
+			  double2mat(   (this->solx)+(itr-1)*(this->dimx)  ,temxk_1,this->dimx,1 );
 			  
-			  	(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*(   (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
+			  
+			  	(this->solx)[itr]
+			  	temxk_1=temxk+(this->h)*(   (this->tA)* temxk  +(this->tB)      *(this->tu)(tnow)           );
 			  
 		    }
 			  
