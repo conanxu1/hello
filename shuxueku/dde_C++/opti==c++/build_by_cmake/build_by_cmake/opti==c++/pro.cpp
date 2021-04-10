@@ -625,7 +625,7 @@ Rn temxt=Rninit(dimx);
 	this->h=(this->tf-this->t0)/(this->lenN);
 	
 	
-	(this->solt)=(double*)malloc( (lenN+1)*sizeof(double ));
+	(this->solt)=(R*)malloc( (lenN+1)*sizeof(R ));
 	
 	
 		#ifdef SMALL_SCALE
