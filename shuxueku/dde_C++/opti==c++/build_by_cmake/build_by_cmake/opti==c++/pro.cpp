@@ -627,6 +627,12 @@ Rn temxt=Rninit(dimx);
 	
 	(this->solt)=(R*)malloc( (lenN+1)*sizeof(R ));
 	
+	clock_t starttime, endtime;
+	double totaltime;
+	starttime = clock();
+	
+	
+	
 	
 		#ifdef SMALL_SCALE
 			#ifdef USE_EIGEN
@@ -647,11 +653,12 @@ Rn temxt=Rninit(dimx);
 			  (this->solx)=(R*)malloc( ((lenN+1)*(this->dimx)      )*sizeof(R));
 			  vec2double((this->x0),(this->solx),(this->dimx));
 			  (this->solt)[0]=this->t0;
+			  tnow=this->t0;	
+			  Rn temu= (this->tu)(tnow) ;
+			  for(int itr=1;itr<=lenN;itr++)
+		    {
 			  
-			  
-			  
-			  
-			  
+		    }
 			  
 			  
 			#endif
@@ -662,13 +669,10 @@ Rn temxt=Rninit(dimx);
  
 /*
 		
-		tnow=this->t0;	
-		clock_t starttime, endtime;
-		double totaltime;
-		starttime = clock();
-		Rn temu= (this->tu)(tnow) ;
-		for(int itr=1;itr<=lenN;itr++)
-		{
+		
+		
+		
+		
 			#ifdef USE_EIGEN
 			(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*( (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
 			#endif
