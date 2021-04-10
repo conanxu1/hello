@@ -156,7 +156,7 @@ private:
 
 
 		#ifdef SMALL_SCALE
-		Rmn* solx;
+		Rn* solx;
 		R*   solt;
 		#endif
 	 	
