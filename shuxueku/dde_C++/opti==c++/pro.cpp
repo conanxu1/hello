@@ -658,6 +658,11 @@ void Eu_Lode_Sol:: sol( )
 			#ifdef USE_EIGEN
 			  (this->solx)=(R*)malloc( ((lenN+1)*(this->dimx)      )*sizeof(R));
 			  vec2double((this->x0),(this->solx),(this->dimx));
+			  
+			  	print_vec( (this->solx),dimx                 );
+			  
+			  
+			  
 			  (this->solt)[0]=this->t0;
 			  tnow=this->t0;	
 			  Rn temu= (this->tu)(tnow) ;
