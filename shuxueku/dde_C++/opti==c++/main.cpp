@@ -112,7 +112,7 @@ cout<<x0<<endl;
 
 
 
-Eu_Lode_Sol hSol(dimx,dimu,t0,tf,50000000);
+Eu_Lode_Sol hSol(dimx,dimu,t0,tf,700000000);
 hSol.set(A,B,myut,x0 );
 
 
