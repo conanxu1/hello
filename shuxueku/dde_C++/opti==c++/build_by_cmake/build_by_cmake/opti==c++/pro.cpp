@@ -655,9 +655,15 @@ Rn temxt=Rninit(dimx);
 			  (this->solt)[0]=this->t0;
 			  tnow=this->t0;	
 			  Rn temu= (this->tu)(tnow) ;
+			  
+			  
+			  Rmn temxk=Rmninit(this->dimx,1);
+			  Rmn temxk_1=Rmninit(this->dimx,1);
+			  
+			  
 			  for(int itr=1;itr<=lenN;itr++)
 		    {
-			  
+			      double2mat(   (this->solx)[itr-1]  ,temxk,this->dimx,1 )
 			  
 			  	(this->solx)[itr]=(this->solx)[itr-1]+(this->h)*(   (this->tA)* (this->solx)[itr-1]  +(this->tB)      *(this->tu)(tnow)           );
 			  
