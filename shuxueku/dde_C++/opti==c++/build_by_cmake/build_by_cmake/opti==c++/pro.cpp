@@ -168,8 +168,8 @@ R testf(Rn x )
 
 
 
-
-	void print_vec(Rn x,int n)
+template <typename T_Rn>
+	void print_vec(T_Rn x,int n)
 	{
 		cout<<"[";
 		for(int i=0;i<n-1;i++)
@@ -178,6 +178,11 @@ R testf(Rn x )
 		}
 		cout<<setprecision(10)<<x[n-1]<<"]"<<endl<<endl;
 	}
+
+
+
+
+
 
 
 
@@ -670,6 +675,13 @@ Rn temxt=Rninit(dimx);
 		    mat2double(  temxk_1, (this->solx)+(itr)*(this->dimx)  ,this->dimx,1 );
 			  tnow=tnow+h;
 		    }
+			  
+			  
+			  
+			print_vec((this->solx)[lenN],dimx);
+   	  endtime = clock();
+	    totaltime = (double)( (endtime - starttime)/(double)CLOCKS_PER_SEC );
+	    cout<< totaltime;
 			  
 			  
 			#endif
