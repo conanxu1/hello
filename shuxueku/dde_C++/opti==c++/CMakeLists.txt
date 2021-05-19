@@ -11,7 +11,7 @@ add_definitions(-std=c++11)
 
 
 
-option(USE_EIGEN "使用eigen库"  on)
+option(USE_EIGEN "使用eigen库"  OFF)
 
 message(${USE_EIGEN})
 
