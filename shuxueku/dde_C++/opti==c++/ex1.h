@@ -16,6 +16,13 @@ extern double t0;
 extern double tf;
 
 
+extern double ttA[2*2]={1,2,3,4};
+extern double ttB[2*1]={-2,1};
+extern double tx0[2]={1,1};
+
+
+
+
 Rn my_fxut(Rn x ,      Rn u     ,double        t );
 R my_opt_phi(Rn xt0 ,     double t0, Rn xtf ,     double tf );
 R my_opt_L(Rn x ,      Rn u     ,double        t );
