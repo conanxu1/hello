@@ -1,3 +1,6 @@
+#include "ex1.h"
+
+
 
 Rn my_fxut(Rn x ,      Rn u     ,double        t )
 {
@@ -51,14 +54,9 @@ Rn pLpu(Rn x ,      Rn u     ,double        t ,int dimx,int dimu)
 	// // // // return x[0]*x[0];
 // // // // }
 
-Sol* pmysol;
-int N=2;
-int dimx=2;
-int dimu=1;
-double t0=0;
-double tf=2;
 
-Rn temut=Rninit(dimu);
+
+
 
 
 
