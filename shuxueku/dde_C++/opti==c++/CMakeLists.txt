@@ -11,7 +11,7 @@ add_definitions(-std=c++11)
 
 
 
-option(USE_EIGEN "使用eigen库"  OFF)
+option(USE_EIGEN "使用eigen库"  ON)
 
 message(${USE_EIGEN})
 
@@ -34,17 +34,19 @@ add_definitions(-DSMALL_SCALE)
 endif(${SMALL_SCALE})
 
 
+option(USE_EIGEN "使用eigen库"  ON)
 
-if(LARGE_SCALE)
+
+# if(LARGE_SCALE)
+# message("LARGE_SCALE")
+# add_definitions(-DLARGE_SCALE)
+# endif()
+
+
+if(${LARGE_SCALE})
 message("LARGE_SCALE")
 add_definitions(-DLARGE_SCALE)
-endif()
-
-
-# # if(${LARGE_SCALE})
-# # message("LARGE_SCALE")
-# # add_definitions(-DLARGE_SCALE)
-# # endif(${LARGE_SCALE})
+endif(${LARGE_SCALE})
 
 
 
