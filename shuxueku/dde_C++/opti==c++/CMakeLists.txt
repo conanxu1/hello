@@ -33,10 +33,18 @@ message("SMALL_SCALE")
 add_definitions(-DSMALL_SCALE)
 endif(${SMALL_SCALE})
 
-if(${LARGE_SCALE})
+
+
+if(LARGE_SCALE)
 message("LARGE_SCALE")
 add_definitions(-DLARGE_SCALE)
-endif(${LARGE_SCALE})
+endif()
+
+
+# # if(${LARGE_SCALE})
+# # message("LARGE_SCALE")
+# # add_definitions(-DLARGE_SCALE)
+# # endif(${LARGE_SCALE})
 
 
 

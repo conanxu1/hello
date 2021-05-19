@@ -44,6 +44,9 @@ Linear DDE Solver
 
 采用cmake编译build_by_cmake
 opti==c++$ ./*sh "-DUSE_EIGEN=1 -DSMALL_SCALE=1"
+
+opti==c++$ ./*sh "-DUSE_EIGEN=ON -DSMALL_SCALE=ON"
+
 使用EIGEN库，求解小规模问题不优化
 
 
@@ -81,6 +84,27 @@ conanxu1
 条件编译
 
 https://blog.csdn.net/weixin_42986599/article/details/106569230
+
+
+
+```cmake
+if(USE_EIGEN)
+add_definitions(-DUSE_EIGEN)
+include_directories(/usr/include/eigen3 )
+endif()
+
+
+if(${SMALL_SCALE})
+message("SMALL_SCALE")
+add_definitions(-DSMALL_SCALE)
+endif(${SMALL_SCALE})
+```
+
+
+
+
+
+
 
 
 
