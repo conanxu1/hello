@@ -1,7 +1,12 @@
 #ifndef _PRO_H_
+#define _PRO_H_
 	#include "pro.h"
 #endif
- 
+
+#ifndef _EX1_H_
+#define _EX1_H_
+#include "ex1.h"
+#endif
  
 
 int main()

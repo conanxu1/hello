@@ -1,4 +1,26 @@
+#ifndef _PRO_H_
+#define _PRO_H_
 #include "pro.h"
+#endif
+
+#ifndef _EX1_H_
+#define _EX1_H_
+#include "ex1.h"
+#endif
+
+
+
+//Sol* pmysol;
+
+
+
+int N=2;
+int dimx=2;
+int dimu=1;
+double t0=0;
+double tf=2;
+
+
 
 
 
@@ -66,6 +88,7 @@ Rn pLpu(Rn x ,      Rn u     ,double        t ,int dimx,int dimu)
 
 Rn myut(double t)
 {
+	Rn temut=Rninit(dimu);
 	temut[0]=sin(t);
 	
 	return temut;

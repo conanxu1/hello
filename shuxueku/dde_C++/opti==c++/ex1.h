@@ -1,13 +1,20 @@
+#ifndef _PRO_H_
+#define _PRO_H_
 #include "pro.h"
+#endif
+
+#ifndef _EX1_H_
+#define _EX1_H_
+#include "ex1.h"
+#endif
 
 
-Sol* pmysol;
-int N=2;
-int dimx=2;
-int dimu=1;
-double t0=0;
-double tf=2;
-Rn temut=Rninit(dimu);
+extern int N;
+extern int dimx;
+extern int dimu;
+extern double t0;
+extern double tf;
+
 
 Rn my_fxut(Rn x ,      Rn u     ,double        t );
 R my_opt_phi(Rn xt0 ,     double t0, Rn xtf ,     double tf );
