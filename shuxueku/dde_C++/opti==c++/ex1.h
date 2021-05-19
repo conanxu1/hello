@@ -16,9 +16,6 @@ extern double t0;
 extern double tf;
 
 
-extern double ttA[2*2]={1,2,3,4};
-extern double ttB[2*1]={-2,1};
-extern double tx0[2]={1,1};
 
 
 
