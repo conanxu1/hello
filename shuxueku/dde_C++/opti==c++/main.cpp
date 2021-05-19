@@ -18,7 +18,6 @@ double ttA[2*2]={1,2,3,4};
 double ttB[2*1]={-2,1};
 double tx0[2]={1,1};
 
-
 Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
@@ -32,11 +31,8 @@ Rmn_copy(ttB,B,dimx,dimu);
 Rn_copy(tx0,x0,dimx);
 
 
-Eu_Lode_Sol hSol(dimx,dimu,t0,tf,100000000);
+Euler_Ode_Sol hSol(dimx,dimu,t0,tf,100000000);
 hSol.set(A,B,myut,x0 );
-
-
-
 hSol.sol( );
 
 

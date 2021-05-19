@@ -136,7 +136,7 @@ public:
 
 
 //欧拉法
-class Eu_Lode_Sol  : public DAE_Solver
+class Euler_Ode_Sol  : public DAE_Solver
 {
 private:
 		int dimx;
@@ -172,7 +172,7 @@ private:
 public:
 		
 		
-		Eu_Lode_Sol(int tdimx,int tdimu,double tt0,double ttf,int tlenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf),lenN(tlenN){}
+		Euler_Ode_Sol(int tdimx,int tdimu,double tt0,double ttf,int tlenN):dimx(tdimx),dimu(tdimu),t0(tt0),tf(ttf),lenN(tlenN){}
 		
 		void set(Rmn tA,Rmn tB,Rn_f tu,Rn x0);
 		void sol( );
