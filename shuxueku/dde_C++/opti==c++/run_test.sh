@@ -1,6 +1,6 @@
-cd ../../..
-git pull git://github.com/conanxu1/hello.git
-cd shu*/dde*/*++
+#cd ../../..
+#git pull git://github.com/conanxu1/hello.git
+#cd shu*/dde*/*++
 
 
 
