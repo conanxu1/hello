@@ -18,7 +18,21 @@ Linear DDE Solver
 
 - g++
 - eigen3
-- nlopt
+- nlopt 
+- opencv
+- cmake 
+- make
+
+
+
+
+
+
+
+1. sudo *apt*-get install g++ cmake make
+2.  sudo *apt*-get install lib*nlopt*-dev
+3. sudo apt install libopencv-dev
+4. sudo apt-get install lib*eigen3*-dev 
 
 
 
