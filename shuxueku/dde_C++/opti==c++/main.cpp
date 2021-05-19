@@ -2,7 +2,7 @@
 	#include "pro.h"
 #endif
  
-#include "ex1.h"
+ 
 
 int main()
 {
