@@ -11,30 +11,35 @@ add_definitions(-std=c++11)
 
 
 option(USE_EIGEN "使用eigen库"  ON)
-message("Eigen")
-message(${USE_EIGEN})
 if(USE_EIGEN)
 add_definitions(-DUSE_EIGEN)
 include_directories(/usr/include/eigen3 )
 endif() 
+message("Eigen")
+message(${USE_EIGEN})
+
+
 
 
 option(SMALL_SCALE "小规模"  OFF)
-message("SMALL_SCALE")
-message(${SMALL_SCALE})
 if(SMALL_SCALE)
 message("SMALL_SCALE")
 add_definitions(-DSMALL_SCALE)
 endif()
-
+message("SMALL_SCALE")
+message(${SMALL_SCALE})
 
 option(LARGE_SCALE "大规模"  ON)
-message("LARGE_SCALE")
-message(${LARGE_SCALE})
 if(LARGE_SCALE)
 message("LARGE_SCALE")
 add_definitions(-DLARGE_SCALE)
 endif()
+message("LARGE_SCALE")
+message(${LARGE_SCALE})
+
+
+
+
 
 # # # -DLARGE_SCALE=ON
 
