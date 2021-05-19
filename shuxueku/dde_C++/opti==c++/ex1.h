@@ -1,3 +1,6 @@
+#include "pro.h"
+
+
 Sol* pmysol;
 int N=2;
 int dimx=2;
