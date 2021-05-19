@@ -12,6 +12,8 @@
 int main()
 {
 
+
+
 double ttA[2*2]={1,2,3,4};
 double ttB[2*1]={-2,1};
 double tx0[2]={1,1};
@@ -20,6 +22,10 @@ double tx0[2]={1,1};
 Rmn A=Rmninit(dimx,dimx);
 Rmn B=Rmninit(dimx,dimu);
 Rn x0=Rninit(dimx);
+
+
+
+
 
 Rmn_copy(ttA,A,dimx,dimx);
 Rmn_copy(ttB,B,dimx,dimu);

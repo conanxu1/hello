@@ -610,7 +610,7 @@ R L_zero(Rn x ,      Rn u     ,double        t )
 
 
 
-void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
+void Euler_Ode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 {
 	this->tA=tA;
 	this->tB=tB;
@@ -621,7 +621,7 @@ void Eu_Lode_Sol::set(Rmn tA,Rmn tB,Rn_f tu ,Rn x0)
 
 
 
-void Eu_Lode_Sol:: sol( ) 
+void Euler_Ode_Sol:: sol( ) 
 {
 
  
