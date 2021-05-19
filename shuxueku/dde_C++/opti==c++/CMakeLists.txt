@@ -9,16 +9,23 @@ add_executable(ddetest ${SRC_LIST})
 add_definitions(-std=c++11)
 
 
- 
+
+
+option(USE_EIGEN "使用eigen库"  on)
+
 message(${USE_EIGEN})
 
 
-
-if(${USE_EIGEN})
-message("USE_EIGEN")
+if(USE_EIGEN)
 add_definitions(-DUSE_EIGEN)
 include_directories(/usr/include/eigen3 )
-endif(${USE_EIGEN})
+endif()
+#-----------------------算值
+# # if(${USE_EIGEN})
+# # message("USE_EIGEN")
+# # add_definitions(-DUSE_EIGEN)
+# # include_directories(/usr/include/eigen3 )
+# # endif(${USE_EIGEN})
 
 
 if(${SMALL_SCALE})
