@@ -92,12 +92,15 @@ if(USE_EIGEN)
 add_definitions(-DUSE_EIGEN)
 include_directories(/usr/include/eigen3 )
 endif()
+# # # -DLARGE_SCALE=ON
 
+ 
 
 if(${SMALL_SCALE})
 message("SMALL_SCALE")
 add_definitions(-DSMALL_SCALE)
 endif(${SMALL_SCALE})
+# # # -DLARGE_SCALE=1
 ```
 
 
