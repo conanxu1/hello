@@ -1,3 +1,6 @@
+#安装openblas
+
+
 
 cd /root
 

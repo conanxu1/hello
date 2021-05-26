@@ -1,3 +1,6 @@
+##-*- coding: utf-8 -*- 
+# conda install cvxopt
+
 
 from cvxopt import matrix, solvers
 import numpy as np
