@@ -5,10 +5,14 @@
 #include <stddef.h>
 #include <malloc.h>
 #include <string.h>
-#include "myfun.h"
+ 
 
 #include <complex.h>
 
+#ifndef MYFUN
+#define MYFUN
+#include "myfun.h"
+#endif
 
 
 
