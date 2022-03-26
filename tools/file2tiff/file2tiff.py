@@ -373,6 +373,10 @@ def png2file(pngname):
 	
 	
 	
+    
+print('''python new.py filename 3000 backup
+python new.py filename.tiff recover''')    
+    
 	
 	
 global infosize
