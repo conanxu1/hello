@@ -374,8 +374,7 @@ def png2file(pngname):
 	
 	
     
-print('''python new.py filename 3000 backup
-python new.py filename.tiff recover''')    
+print("python new.py filename 3000 backup"+"\n"+"python new.py filename.tiff recover"+"最小值200")    
     
 	
 	
