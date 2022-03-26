@@ -194,11 +194,15 @@ def png2file(pngname):
 		addnew=hex(int(img[0,j]))
 		bb=bb+addnew
 
+	print(bb)
 
-
-
+	
+    #nstr=bb.replace("0x","").rstrip("0")
+	
 	nstr=bb.replace("0x","").rstrip("0")
-	# # # print(nstr)
+	print(nstr)
+	
+    
 	try:
 		byarray=bytearray.fromhex(nstr)
 	except:
