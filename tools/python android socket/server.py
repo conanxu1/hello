@@ -3,7 +3,7 @@
 
 import socket, traceback  
       
-host = '192.168.1.105' # Bind to all interfaces   
+host = '192.168.1.122' # Bind to all interfaces   
 port = 1234  
 
 
