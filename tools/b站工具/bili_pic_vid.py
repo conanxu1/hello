@@ -118,7 +118,7 @@ def bili():
 						jilu=ee.get("href")
 						print(jilu)
 					
-						jieguo.append("annie -p http:"+jilu+'\n')
+						jieguo.append("lux -d -p http:"+jilu+'\n')
 			
 				except:
 					print(ee)
@@ -164,7 +164,9 @@ def bili():
 		f.write(" ".join(jieguo))
 		f.close()
 	
-os.chdir("D:\\代码库\\bili图片")
+    
+    
+# os.chdir("D:\\代码库\\bili图片")
 print(os.getcwd())	
 	
 profile = webdriver.FirefoxProfile()
