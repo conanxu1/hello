@@ -5154,3 +5154,45 @@ JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, li
 JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
 JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WebGL context was lost.
 1652615901105	Marionette	INFO	Stopped listening on port 2591
+1652688726983	geckodriver	INFO	Listening on 127.0.0.1:3426
+1652688730122	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-no-remote" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileL4H6wB"
+*** You are running in headless mode.
+1652688730592	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofileL4H6wB\\search.json.mozlz4", (void 0)))
+1652688731579	Marionette	INFO	Listening on port 3448
+Read port: 3448
+1652688731685	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Parent][PCompositorManagerParent] Error: RunMessage(msgname=PWebRenderBridge::Msg_Shutdown) Channel error: cannot send/recv
+
+
+###!!! [Parent][PCompositorManagerParent] Error: Send(msgname=PAPZ::Msg_Destroy) Channel error: cannot send/recv
+
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WebGL context was lost.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WebGL context was lost.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WebGL context was lost.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: WebGL context was lost.
+1652688767578	Marionette	INFO	Stopped listening on port 3448
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
+1652690292170	geckodriver	INFO	Listening on 127.0.0.1:6366
+1652690295265	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-no-remote" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofilenslN4p"
+*** You are running in headless mode.
+1652690295748	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofilenslN4p\\search.json.mozlz4", (void 0)))
+1652690296792	Marionette	INFO	Listening on port 6399
+Read port: 6399
+1652690296838	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: Failed to create WebGL context: WebGL is currently disabled.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: Failed to create WebGL context: WebGL is currently disabled.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: Failed to create WebGL context: WebGL is currently disabled.
+JavaScript warning: https://s1.hdslb.com/bfs/seed/log/report/log-reporter.js, line 1: Failed to create WebGL context: WebGL is currently disabled.
+1652690316048	Marionette	INFO	Stopped listening on port 6399
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
