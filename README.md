@@ -11,4 +11,5 @@ archinstall
 
 
 chroot
-pacman -S usbmuxd dhcp iwd
+pacman -S usbmuxd dhcp iwd openssh p7zip \
+
