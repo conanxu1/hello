@@ -23,5 +23,7 @@ wqy-zenei
 
 archlinuxcn
 arch4edu
-
+aur
+anaconda
+todesk
 
