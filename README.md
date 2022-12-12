@@ -20,3 +20,8 @@ locale-gen
 
 
 wqy-zenei
+
+archlinuxcn
+arch4edu
+
+
