@@ -26,4 +26,5 @@ arch4edu
 aur
 anaconda
 todesk
-
+yay 
+yaourt
