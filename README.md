@@ -1,4 +1,5 @@
 # hello
+
 no
 
 archlinux安装
@@ -9,7 +10,6 @@ archinstall
 
 拔U盘
 
-
 chroot
 pacman -S usbmuxd dhcp iwd openssh p7zip \
 falkon 
@@ -17,7 +17,6 @@ falkon
 /etc/locale.gen
 zh utf8
 locale-gen
-
 
 wqy-zenei
 
@@ -28,3 +27,9 @@ anaconda
 todesk
 yay 
 yaourt
+
+
+
+
+
+扫描仪 直播摄像头  ocr 转语音
