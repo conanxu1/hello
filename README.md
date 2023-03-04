@@ -28,8 +28,16 @@ todesk
 yay 
 yaourt
 
-
-
-
-
 扫描仪 直播摄像头  ocr 转语音
+
+paramiko
+
+ocr
+
+shc
+
+autopy
+
+pyautogui
+
+obsidian
