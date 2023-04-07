@@ -179,7 +179,8 @@ profile = webdriver.FirefoxProfile()
 profile.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:22.0) Gecko/20130405 Firefox/22.0")
 fireFoxOptions = webdriver.FirefoxOptions()
 #fireFoxOptions.headless = True
-driver = webdriver.Firefox(profile,options=fireFoxOptions)
+#driver = webdriver.Firefox(profile,options=fireFoxOptions)
+driver = webdriver.Firefox()
 	
 
 
@@ -191,9 +192,9 @@ input("开始取关")
 for i in range(200):
     print(i)
     driver.get("https://space.bilibili.com/485156027/fans/follow")
-    time.sleep(20)
+    time.sleep(0.2)
     driver.execute_script('''$(".be-dropdown-item:contains('取消关注')").click()''')
-    time.sleep(20)
+    time.sleep(0.2)
 
 
 

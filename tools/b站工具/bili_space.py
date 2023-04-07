@@ -40,10 +40,13 @@ def bili_space():
 
 
 profile = webdriver.FirefoxProfile()
-profile.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:22.0) Gecko/20130405 Firefox/22.0")
+#profile.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:22.0) Gecko/20130405 Firefox/22.0")
 fireFoxOptions = webdriver.FirefoxOptions()
 # fireFoxOptions.headless = True
-driver = webdriver.Firefox(profile,options=fireFoxOptions)
+#driver = webdriver.Firefox(profile,options=fireFoxOptions)
+driver = webdriver.Firefox()
+
+
 action = ActionChains(driver)
 
 
@@ -56,7 +59,7 @@ urla="https://space.bilibili.com/485156027/fans/follow"
 driver.get(urla)
 input("......")	
 
-for i in range(106):
+for i in range(151):
 	print(i)
 	try:
 		bili_space()
