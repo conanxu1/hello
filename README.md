@@ -41,3 +41,13 @@ autopy
 pyautogui
 
 obsidian
+
+
+
+- [ ] 力学 电学 经济学 相关计算
+
+- [ ] RFID搜书
+
+- [ ] 电池监控
+
+- [ ] 家庭电力监控
