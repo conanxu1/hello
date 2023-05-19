@@ -40,9 +40,9 @@ autopy
 
 pyautogui
 
+nuitka
+
 obsidian
-
-
 
 - [ ] 力学 电学 经济学 相关计算
 
