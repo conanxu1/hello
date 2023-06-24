@@ -54,17 +54,17 @@ obsidian
 
 金融经济 宏观经济 高级计量经济学 投资银行学
 
-
-
-
-
-
-
-
-
-
-
 ```bash
 modprobe usbserial
 modprobe cp210x
 ```
+
+
+
+
+
+
+
+librecad
+
+freecad
