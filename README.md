@@ -59,12 +59,18 @@ modprobe usbserial
 modprobe cp210x
 ```
 
-
-
-
-
-
-
 librecad
 
 freecad
+
+
+
+
+
+TODO LIST
+
+- [ ] 文件管理软件
+
+- [ ] 书本搜索
+
+- [ ] RFID
