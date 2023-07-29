@@ -44,6 +44,14 @@ nuitka
 
 obsidian
 
+screen
+
+cpupower
+
+
+
+
+
 - [ ] 力学 电学 经济学 相关计算
 
 - [ ] RFID搜书
@@ -75,4 +83,3 @@ dpkt
 tshark
 scapy
 hexdump
-
