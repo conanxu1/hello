@@ -85,8 +85,6 @@ fd
 fdfind
 fzf
 
-
-
 gost
 
 whistle
@@ -100,3 +98,7 @@ Kate kwrite
 fd ack fzf
 
 nethogs iftop
+
+
+
+flocuss
