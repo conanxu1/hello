@@ -94,3 +94,9 @@ whistle
  N_m3u8DL-RE
 
 browsh
+
+Kate kwrite
+
+fd ack fzf
+
+nethogs iftop
