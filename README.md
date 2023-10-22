@@ -80,9 +80,17 @@ tshark
 scapy
 hexdump
 
-
-
 shc
 fd
 fdfind
 fzf
+
+
+
+gost
+
+whistle
+
+ N_m3u8DL-RE
+
+browsh
