@@ -99,6 +99,13 @@ fd ack fzf
 
 nethogs iftop
 
-
-
 flocuss
+
+
+
+batcat
+
+
+
+wkhtmltopdf 
+pdfkit
