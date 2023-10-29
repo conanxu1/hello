@@ -101,11 +101,11 @@ nethogs iftop
 
 flocuss
 
-
-
 batcat
-
-
 
 wkhtmltopdf 
 pdfkit
+
+
+
+PrettyTable
