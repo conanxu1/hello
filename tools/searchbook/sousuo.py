@@ -65,7 +65,7 @@ daohangwangzhi=[
 "http://www.ixinqing.com/",
 "https://pdfzj.com/",
 "http://www.woaidu.cc/",
-"",
+"https://zh.annas-archive.org/",
 "",
 "",
 ]
