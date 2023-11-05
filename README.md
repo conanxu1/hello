@@ -106,6 +106,12 @@ batcat
 wkhtmltopdf 
 pdfkit
 
-
-
 PrettyTable
+
+
+
+
+
+```shell
+pip cache purge
+```
