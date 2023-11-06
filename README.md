@@ -108,7 +108,9 @@ pdfkit
 
 PrettyTable
 
+mitmproxy
 
+proxypin
 
 
 
