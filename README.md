@@ -112,8 +112,23 @@ mitmproxy
 
 proxypin
 
-
-
 ```shell
 pip cache purge
+
 ```
+
+
+
+
+
+apt
+
+cargo update
+
+mamba
+
+yarn
+
+brew
+
+yt-dlp
