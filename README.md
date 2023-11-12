@@ -114,12 +114,7 @@ proxypin
 
 ```shell
 pip cache purge
-
 ```
-
-
-
-
 
 apt
 
@@ -132,3 +127,5 @@ yarn
 brew
 
 yt-dlp
+
+chfs
