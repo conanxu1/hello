@@ -129,3 +129,13 @@ brew
 yt-dlp
 
 chfs
+
+
+
+
+
+dust
+
+kivy
+
+briefcase
