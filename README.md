@@ -130,12 +130,12 @@ yt-dlp
 
 chfs
 
-
-
-
-
 dust
 
 kivy
 
 briefcase
+
+watch -n   5 "cmd1 l cmd2"
+
+tree
