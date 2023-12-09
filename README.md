@@ -139,3 +139,9 @@ briefcase
 watch -n   5 "cmd1 l cmd2"
 
 tree
+
+
+
+pandas_ta
+
+conda install -c conda-forge ta-lib
