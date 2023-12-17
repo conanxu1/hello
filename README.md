@@ -56,6 +56,8 @@ cpupower
 
 - [ ] 家庭电力监控
 
+- [ ] 直播录制
+
 金融经济 宏观经济 高级计量经济学 投资银行学
 
 ```bash
@@ -153,3 +155,9 @@ textual-plotext
 dryscrape
 
 drissionpage
+
+xvfb
+
+```text
+EasyProcess xvfbwrapper  pyvirtualdisplay
+```
