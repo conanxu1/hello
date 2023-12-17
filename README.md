@@ -149,3 +149,7 @@ s-tui stress
 termplotlib
 
 textual-plotext
+
+dryscrape
+
+drissionpage
