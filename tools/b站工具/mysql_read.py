@@ -27,15 +27,21 @@ def myhand(sttr,mysql_config):
  
 results=myhand("select * from id_name",MYSQL_CONFIG)
  
- 
+
+
+
+f=open("name_id_read.txt","w",encoding="utf-8")
 for ee in results:
 	print("\nid:")
 	print(ee["id"])
 	print("\nname:")
 	print(ee["name"])
-
+    f.write(ee["id"]+";;;"+ee["name"]+"\n")
 	print("\n")
-	
+
+
+
+f.close()
  
 print(len(results))
 
