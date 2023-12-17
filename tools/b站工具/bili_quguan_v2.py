@@ -11,7 +11,7 @@ page.get(urla)
 
 input("开始取关")
 
-for i in range(200):
+for i in range(300):
     print(i)
     page.get("https://space.bilibili.com/485156027/fans/follow")
     time.sleep(2)
