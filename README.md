@@ -161,3 +161,5 @@ xvfb
 ```text
 EasyProcess xvfbwrapper  pyvirtualdisplay
 ```
+
+sshfs
