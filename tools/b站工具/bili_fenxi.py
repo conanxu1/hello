@@ -1,39 +1,45 @@
-from DrissionPage import WebPage
 import time
-from pyvirtualdisplay import Display
-from DrissionPage.easy_set import set_paths
+# from pyvirtualdisplay import Display
+import json
 
-
+from DrissionPage import WebPage
 from DrissionPage import ChromiumOptions
-from DrissionPage.easy_set import set_headless 
-set_headless(True)
+from DrissionPage import ChromiumPage
+from DrissionPage.easy_set import set_paths
+from DrissionPage.easy_set import set_headless
 
-from DrissionPage import ChromiumPage, ChromiumOptions
+import os
 
 
 
-display = Display(visible=0, size=(1280, 768))
-display.start()
+#co=ChromiumOptions().set_paths(browser_path="/usr/bin/chromium")
+#page = ChromiumPage(addr_driver_opts=co)
+#page = ChromiumPage(addr_driver_opts=co)
+#os.system("pkill chromium")
 
-do1 = ChromiumOptions().set_paths(local_port=9111)
 
-# 创建多个页面对象
-page1 = ChromiumPage(addr_driver_opts=do1)
 
+# # # # # display = Display(visible=0, size=(1280, 768))
+# # # # # display.start()
+
+
+
+port=9333
+os.system("nohup chromium --no-sandbox  --remote-allow-origins=\"*\" --remote-debugging-port="+str(port)+"  >  log.txt  2>&1   &  ")
+
+##co=ChromiumOptions().set_paths(local_port=port)
+##page = WebPage(addr_driver_opts=co)
+
+
+
+set_paths(local_port=port)
+page = WebPage()
 
 
 
 
  
-co = ChromiumOptions()
-co.set_argument('--incognito')
-co.set_argument('--no-sandbox') 
- 
-set_paths(browser_path="/usr/bin/chromium") #一般linux安装的google浏览器默认都在这个目录
 
-
-
-page = WebPage().set_paths(local_port=9234)
 
 
 
@@ -42,8 +48,80 @@ w=f.readlines()
 f.close()
 
 
+
+
+
+
+
+
+
+
+
+
+page.get("http://bilibili.com")
+
+input("====\n")
+    
+
+# uul="https://space.bilibili.com/"+str(aaa[0])+"/video"
+
+
+# page.get(uul)
+
+
 for ee in w:
     aaa=ee.split(";;;")
     print(aaa[1])
+    print(aaa[0])
+    
+    
+    
+    uul="https://space.bilibili.com/"+str(aaa[0])+"/video"
+    page.get(uul)
+    
+    
+    
+    time.sleep(5)
+    
+    uul="https://api.bilibili.com/x/space/wbi/arc/search?"\
+        +"mid="+str(aaa[0])\
+        +"&ps="+"10"\
+        +"&pn=1&order=pubdate"
+
+    
+    page.get(uul)
+    # # print(page.html)
+    
+    # js=json.loads(page.html.text)
+    
+    js=page.json
+    
+    print(js["data"]["list"]["vlist"])
+    
+    # # # # # # # print(page.html)
+    
+    
+    # # # # # # # pp=page.ele('@class=content').eles("tag:ul")
+    
+    
+    
+    # # # # # # ##选择第一个隐藏的！！
+    
+    
+    # # # # # # pp1=page.ele('@class=content')
+    # # # # # # print(page.html)
+    
+    # # # # # # pp=page.ele('@class=content').eles("tag:ul")
+    # # # # # # print(pp[1].html)
+    
+    # # # # # # # # pp=pp.ele("@class=list")
+    
+    
+    # # # # # # for uuii in pp[1].eles("tag:li"):
+        # # # # # # print(uuii)
+        # # # # # # print("\n")
+        
+
+    time.sleep(10)
     
 
