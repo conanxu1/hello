@@ -163,3 +163,15 @@ EasyProcess xvfbwrapper  pyvirtualdisplay
 ```
 
 sshfs
+
+termuxapi
+
+dropbear
+
+termux-server
+
+
+
+
+
+ebooklib
