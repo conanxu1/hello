@@ -170,8 +170,19 @@ dropbear
 
 termux-server
 
-
-
-
-
 ebooklib
+
+ntfs-3g
+
+fuse3
+
+rclone
+
+playwright
+
+
+
+```shell
+go env -w GOPROXY=https://goproxy.io,direct
+go install lux
+```

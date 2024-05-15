@@ -1,0 +1,98 @@
+sudo apt install npm nodejs  yarn
+
+npm i -g yarn
+
+#修改npm源，提高下载速度
+
+sudo npm config set registry https://registry.npm.taobao.org
+sudo npm config list　
+
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+  
+npm install -g npm  
+npm install -g cnpm  
+
+
+npm uninstall -g npm
+sudo cnpm install -g electron
+
+
+
+
+>npm install  node-pre-gyp -g
+
+ npm install --global windows-build-tools
+ cnpm install -g vue-cli 安装。下图展示了两种镜像的安装。
+
+ 
+ vue init simulatedgreg/electron-vue my-project  
+
+
+nvm
+
+
+npm install -g @vue/cli
+
+yarn add cross-enc
+
+ yarn global add @vue/cli
+npm install -g cross-env
+
+npm i -g electron-builder
+
+  npm run dev   
+
+
+ npm install yarn -g
+安装项目依赖： yarn install
+安装electron： yarn install electron --save
+重新启动程序： electron .
+
+
+
+ npm install node-sass
+
+
+yrm ls
+
+    npm -----  https://registry.npmjs.org/
+    cnpm ----  http://r.cnpmjs.org/
+    taobao --  https://registry.npm.taobao.org/
+    nj ------  https://registry.nodejitsu.com/
+    rednpm -- http://registry.mirror.cqupt.edu.cn
+    skimdb -- https://skimdb.npmjs.com/registry
+    yarn ----  https://registry.yarnpkg.com
+
+使用淘宝镜像源
+
+yrm use taobao
+
+
+npm install node-sass --save-dev //安装node-sass
+npm install sass-loader --save-dev //安装sass-loader
+npm install style-loader --save-dev //安装style-loader
+
+
+测试访问速度
+
+
+npm install -g node-gyp
+
+npm install --global --production windows-build-tools
+
+electron .
+
+
+ npm i -g webpack-cli
+ npm i -g webpack
+
+
+npm install electron-builder
+npm install electron-package
+
+yrm test taobao不是用这个链接解决的，但是我看内容差不多，我在评论中找啊找，然后又试了之前试的没成功的，结果就好了。使用 yarn install 还是报错，但是不管它，打开 package.json 删除掉所有的 cross-env 我看评论用的是 sudo npm install -g cross-env 但是用 yarn add cross-enc 应该就好了，之后直接 npm run dev 就不报错了。
+
+————————————————
+原文作者：风中絮
+转自链接：https://learnku.com/laravel/t/29488
+版权声明：著作权归作者所有。商业转载请联系作者获得授权，非商业转载请保留以上作者信息和原文链接。
