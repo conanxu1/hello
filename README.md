@@ -184,3 +184,9 @@ playwright
 go env -w GOPROXY=https://goproxy.io,direct
 go install lux
 ```
+
+nmon
+
+bmon
+
+iotop
