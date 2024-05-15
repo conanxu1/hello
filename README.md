@@ -180,8 +180,6 @@ rclone
 
 playwright
 
-
-
 ```shell
 go env -w GOPROXY=https://goproxy.io,direct
 go install lux
