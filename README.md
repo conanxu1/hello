@@ -190,3 +190,7 @@ nmon
 bmon
 
 iotop
+
+cdrtfe
+
+pyserial
