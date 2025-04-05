@@ -17,7 +17,7 @@ f.close()
 
 
 MYSQL_CONFIG = {
-    'host': 'localhost',  # IP地址
+    'host': '192.168.3.14',  # IP地址
     'port': 3306,  # 端口
     'user': 'xuwenhan',  # 用户名
     'passwd': 'xuwenhan',  # 密码

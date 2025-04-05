@@ -193,4 +193,14 @@ iotop
 
 cdrtfe
 
+BurnAware Free
+
 pyserial
+
+tree
+
+ranger
+
+bulkrename
+
+nnn ctrl+v ctrl+p

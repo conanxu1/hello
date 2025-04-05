@@ -20,10 +20,6 @@
 
 上传mysql
 
-
-
-
-
 union去重创建新表
 
 ```sql
@@ -33,5 +29,4 @@ as
 union 
 (select * from `id_name2`)
 ORDER BY `id` DESC
-
 ```
